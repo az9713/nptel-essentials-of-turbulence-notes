@@ -54,9 +54,9 @@
     },
     {
       "order": 8,
-      "title": "Random processes, spectra, and random fields",
+      "title": "Random processes, spectra and random fields: from one velocity record to the energy spectrum",
       "lectures": "20-22",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 9,

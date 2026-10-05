@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-05T19:34:49.003647+00:00",
+  "checked_at_utc": "2026-10-05T21:13:54.716483+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 8,
-    "local_links_checked": 120,
-    "timestamps_checked": 43,
+    "html_files": 9,
+    "local_links_checked": 144,
+    "timestamps_checked": 59,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -84,6 +84,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-07-random-variables-and-probability-density-functions.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 856,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-08-random-processes-spectra-and-random-fields.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 856,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-08-random-processes-spectra-and-random-fields.html",
         "viewport": 390
       },
       {

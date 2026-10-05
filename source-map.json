@@ -694,6 +694,226 @@
       "teaching_construction": "Six original exercises (check an assumption, counterexample, compute, counterexample, design, judge a claim) and full solutions for all eleven.",
       "evidence_class": "derivation",
       "chapter": "chapter-07-random-variables-and-probability-density-functions.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None directly; extends chapter 7's repeatable experiment.",
+      "research_extension": "None.",
+      "teaching_construction": "Random process as a family of random variables indexed by t; sample path; hot-wire record on the jet centreline of chapters 6-7 (mean 8 m/s, rms 2 m/s, ell_0 = 0.1 m, tau_eta = 0.43 ms, 20 kHz); assumed tau_bar = 0.01 s; symbol decisions s, t_s, x_s, T, T_p.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "A velocity recorded in time is a random process",
+      "video_id": "ku5aCqoMPT8",
+      "start": 60.67,
+      "end": 488.14,
+      "lecture_material": "U(t) as a random process; one-time CDF F(V,t) and PDF f(V;t); no joint information at two times; N-time CDF and complete characterization (almost impossible); Figure 3.19 (three sample paths); Figure 3.20 (five processes a-e with the same standardized Gaussian one-time PDF).",
+      "research_extension": "None.",
+      "teaching_construction": "Semicolon convention stated; N = 2 reduction to chapter 7's joint CDF (7.14).",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Statistical stationarity",
+      "video_id": "ku5aCqoMPT8",
+      "start": 488.14,
+      "end": 724.58,
+      "lecture_material": "Stationarity: multi-time statistics invariant under a shift in time; many turbulent flows stationary after an initial transient; flow variables vary, statistics do not.",
+      "research_extension": "Beyhaghi, Alimo, Bewley 2018 (arXiv p. 5): procedures to identify the initial transient; tests of second-order stationarity.",
+      "teaching_construction": "One- and two-time consequences of (8.3); examples of non-stationary flows; jet assumption; chapter 7 Lorenz-ensemble variances 57.8 and 61.6 as an undecided case.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Statistical stationarity (continued)",
+      "video_id": "ku5aCqoMPT8",
+      "start": 991.52,
+      "end": 1015.54,
+      "lecture_material": "Figure 3.21: mean and variance of the process of Figure 3.19 constant after the transient.",
+      "research_extension": "None.",
+      "teaching_construction": "As above.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Autocovariance, autocorrelation function and integral time scale",
+      "video_id": "ku5aCqoMPT8",
+      "start": 724.58,
+      "end": 1015.54,
+      "lecture_material": "R(s) and rho(s); properties rho(0) = 1, |rho| <= 1, even; periodicity; integral time scale tau_bar = int_0^inf rho ds, converging because correlation diminishes with lag.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of the bound from chapter 7's Cauchy-Schwarz argument and of evenness from a stationary shift; convergence of (8.6) as an assumption with counterexamples (1/(1+|s|), constant, cos s); exponential example (8.7) with running-case values; cutoff in estimating tau_bar (code: 0.989, 0.985 vs 0.993).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "What the autocorrelation distinguishes, and what it does not",
+      "video_id": "ku5aCqoMPT8",
+      "start": 1015.54,
+      "end": 1291.12,
+      "lecture_material": "Figure 3.22 (autocorrelations of a-e; a and c smooth at origin; b narrower; d and e exp(-|s|/tau_bar)); all except b share tau_bar; one-time PDF and autocorrelation do not characterize a process.",
+      "research_extension": "None.",
+      "teaching_construction": "Computed Ornstein-Uhlenbeck and jump processes with identical one-time PDF and autocorrelation; derivation of the jump-process autocorrelation and of the increment flatness 3/p = 61.5 (measured 62.0); Figure 8.1 from the listing's arrays.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "The frequency spectrum and the autocovariance form a Fourier pair",
+      "video_id": "ku5aCqoMPT8",
+      "start": 1291.12,
+      "end": 1617.33,
+      "lecture_material": "E(omega) = (1/pi) int R e^{-i omega s} ds = (2/pi) int_0^inf R cos; R(s) = (1/2) int E e^{i omega s} = int_0^inf E cos; 'twice the frequency spectrum' forms the pair; R and E real and even, same information; spectral representation as a sum of Fourier modes.",
+      "research_extension": "None.",
+      "teaching_construction": "Statement of the convention (one-sided, angular frequency, factor 2pi per Hz); exponential-Lorentzian pair (8.10) with checks and running-case values (E(0) = 0.0255 m^2/s, 15.9 Hz); code spectra at three frequencies. Existence condition for (8.8): absolutely integrable R; the constant and periodic processes as excluded cases; sin(s)/s derived from a band-limited spectrum by (8.9) as a finite tau_bar without absolute integrability.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "The frequency spectrum and the autocovariance form a Fourier pair (recap)",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 5.87,
+      "end": 259.24,
+      "lecture_material": "Recap of the Fourier pair and its cosine forms.",
+      "research_extension": "None.",
+      "teaching_construction": "As above.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "The spectrum distributes the variance over frequencies",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 259.24,
+      "end": 968.07,
+      "lecture_material": "R(0) = <u^2> = int_0^inf E d omega; band contribution (fundamental property); tau_bar = pi E(0)/(2<u^2>) derived on the board; process b smaller tau_bar and E(0), extends to higher frequencies; Figure 3.23 (spectra); one-time PDF and autocorrelation only a partial characterization.",
+      "research_extension": "None.",
+      "teaching_construction": "Expected periodogram (8.12) and non-negativity of E; derivative variance (8.14) from difference quotients and its spectral form; smoothness at the origin versus existence of a derivative; Ornstein-Uhlenbeck difference quotients in the code (9.1, 19.0, 39.1). Limit in (8.14) by dominated convergence (finite case) and Fatou's lemma (infinite case).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Time averages, ergodicity and the length of a record",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None in L20-L22 (the practice problem T1-P6, Exercise 9, states the central formula).",
+      "research_extension": "Beyhaghi, Alimo, Bewley 2018 (arXiv): p. 1 stationarity and ergodicity generally assumed for turbulence statistics; p. 2 eq. (1b) averaging-error model attributed to Lumley and Panofsky (1964); p. 3 validity for large T/tau_f and sampling interval 2 tau_f / c, c of order 10; p. 6 eq. (6) discrete form.",
+      "teaching_construction": "Time average (8.15); exact variance (8.16); long-time form (8.17) with its conditions; exact exponential form (8.18); link to E(0) (8.19); mean-square ergodicity and the sufficient condition int |R| < inf; running-case record lengths (0.28 m/s for 1 s; 12.5 s for 1 %; proportional to tau_bar); code: 0.0383 and 0.0381 vs 0.0392, naive 0.0010.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "The stationary Gaussian process, and why a turbulent velocity is not one",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 968.07,
+      "end": 1304.11,
+      "lecture_material": "Gaussian process: N-time PDF joint normal, characterized by means and covariances; stationary case characterized by mean, variance and rho; process c Gaussian with the spectrum of a; Figure 3.24 (second derivatives); kurtosis 3 for c and 11 for a; do not approximate a turbulent velocity by a Gaussian process.",
+      "research_extension": "Backward reference to chapter 7 (Wilczek et al. 2011; Kerr 1983 derivative flatness 3.39-5.11).",
+      "teaching_construction": "General N-dimensional normal density (8.20) and its N = 2 reduction to (7.22); conditions (stationarity, mean) for characterization by the spectrum; equal second-order derivative statistics of a and c; boundary of the lecture's warning by the order of the statistic.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Random fields: the one-point, one-time PDF",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 1304.11,
+      "end": 1572.29,
+      "lecture_material": "Velocity as a time-dependent random vector field; one-point one-time joint CDF and PDF (triple derivative); semicolon notation; no joint information at two points or times.",
+      "research_extension": "None.",
+      "teaching_construction": "Units of the PDF; chapter 7's joint and one-component PDFs as marginals of the one-point PDF; what a one- or two-component probe at the jet station measures.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Mean, fluctuation, Reynolds stresses and the N-point PDF",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 5.87,
+      "end": 397.92,
+      "lecture_material": "Mean velocity field, fluctuation, Reynolds decomposition, Reynolds stresses; differentiability (mean of derivative = derivative of mean); N-point N-time PDF impossible to determine; turbulent fields not Gaussian.",
+      "research_extension": "None.",
+      "teaching_construction": "Condition for interchanging mean and derivative linked to (8.14); slide misprint noted.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Stationarity and homogeneity of a field, and the channel flow",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 397.92,
+      "end": 789.78,
+      "lecture_material": "Stationarity and homogeneity in terms of the N-point PDF; homogeneous U implies uniform mean, zero in a suitable frame; homogeneous turbulence (fluctuation homogeneous) less restrictive, wind tunnels and DNS; Figure 3.25 channel: statistically 2D for b/h >> 1, |x3|/b << 1, 1D for x1/h >> 1.",
+      "research_extension": "Lee and Moser 2014 (arXiv:1410.7809): periodic x and z, domain 8 pi delta by 3 pi delta (p. 3); U(y) (p. 4); LM5200 run time 7.80 delta/u_tau without transition (Table 1, p. 4); sampling uncertainty (method of Oliver et al., named in the meta only) < 0.2 % mean, < 0.5 % near-wall and 3 % outer variances (p. 4); stationarity test via linear total stress (p. 5).",
+      "teaching_construction": "Independence of stationarity and homogeneity; linear mean compatible with homogeneous fluctuations; approximations versus exact properties; jet stationary but not homogeneous.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Isotropy",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 789.78,
+      "end": 903.32,
+      "lecture_material": "Homogeneous field invariant under translations; isotropic if also invariant under rotations and reflections; example <u1^2> = <u2^2> = <u3^2>; importance in experiments and theory; N-point PDF statement.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of <u_i u_j> = (2/3) k delta_ij from one reflection and one rotation; scope (shear flows, jet centreline test, local isotropy of chapter 5).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "The two-point correlation and the integral length scale",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 903.32,
+      "end": 1107.92,
+      "lecture_material": "Two-point one-time autocovariance R_ij(r,x,t); integral length scale L11; independence of x for homogeneous turbulence.",
+      "research_extension": "None.",
+      "teaching_construction": "Symmetry R_ij(r) = R_ji(-r) derived from homogeneity; L11 as the spatial counterpart of tau_bar; link to chapter 5's integral scale; single-probe limitation and forward pointer to Taylor's hypothesis.",
+      "evidence_class": "definition",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Wavenumber spectra: the velocity-spectrum tensor and the energy spectrum",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 1107.92,
+      "end": 1755.88,
+      "lecture_material": "Fourier mode, wavelength 2 pi/|kappa|; Phi_ij and R_ij Fourier pair with (2 pi)^-3; r = 0 gives Reynolds stresses; two kinds of directional information; energy-spectrum function with delta(|kappa| - kappa); integral of E gives k.",
+      "research_extension": "None.",
+      "teaching_construction": "Normalization compared with (8.8)-(8.9); units of Phi and E; reality of Phi_ii from evenness of R_ii; derivation of (8.33) from (8.31); isotropic shell formula E = 2 pi kappa^2 Phi_ii (8.34); distinction between E(omega) and E(kappa,t).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Executable processes: two processes with the same autocorrelation",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Processes (d) and (e) of Figure 3.20 motivate the pair.",
+      "research_extension": "None.",
+      "teaching_construction": "NumPy program (seed 8): Ornstein-Uhlenbeck (exact AR(1) sampling) and jump process with identical one-time PDF and autocorrelation; moments, autocorrelation, integral time scale, time-average variance vs (8.18), periodogram vs (8.10), increment flatness, OU difference quotients; four assertions (two per process); failure test (jump probability 0.5) fails the autocorrelation assertion.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "What the description establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Classification of definitions, derived results and assumptions; conventions; scope of second-order descriptions; dependence of running-case numbers on the assumed tau_bar.",
+      "evidence_class": "model",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercises 7-9 are adapted from the course practice problems L59-P7 (iX5PG6TPABQ 0:06), T1-P5 (fgMG7Jd89pw 40:28) and T1-P6 (fgMG7Jd89pw 46:59), as assigned by _editorial/practice-map.md.",
+      "research_extension": "Exercise 1(c) uses Beyhaghi et al. p. 3.",
+      "teaching_construction": "Six original exercises (compute, counterexample, check an assumption, derive, judge a claim, derive and judge) and full solutions for all nine.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
     }
   ]
 }

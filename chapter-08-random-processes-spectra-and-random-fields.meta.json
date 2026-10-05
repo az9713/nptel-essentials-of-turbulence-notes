@@ -1,0 +1,479 @@
+{
+  "chapter": 8,
+  "title": "Random processes, spectra and random fields: from one velocity record to the energy spectrum",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 3 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "ku5aCqoMPT8",
+      "lecture_number": 20,
+      "media_sha256": "dec73488751ad57d1cff52fb603db407433e965f5b6b31fdcbdb278203222760",
+      "duration_seconds": 1645.7735,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1617.33,
+      "role": "lecture"
+    },
+    {
+      "video_id": "Xg7KpnjVBVQ",
+      "lecture_number": 21,
+      "media_sha256": "08fd7f433aa4f68b39e12a8de67db741e5a5389675515970ed6d660670ac6802",
+      "duration_seconds": 1600.6935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1572.29,
+      "role": "lecture"
+    },
+    {
+      "video_id": "dH3Z9FZPOQ8",
+      "lecture_number": 22,
+      "media_sha256": "4911d19713dfd24ac61bb76c7ac5a9fd2c70261818bdb7a43ba052efbc4c1d69",
+      "duration_seconds": 1783.8935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1755.88,
+      "role": "lecture"
+    },
+    {
+      "video_id": "iX5PG6TPABQ",
+      "lecture_number": 59,
+      "media_sha256": "fde8d235e941b84477c179678f8a00670c2ec9df0a480ddd43396c60625f8a4e",
+      "duration_seconds": 1725.8935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1699.28,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercise L59-P7, Exercise 7; no chapter section is grounded in this recording."
+    },
+    {
+      "video_id": "fgMG7Jd89pw",
+      "lecture_number": null,
+      "media_sha256": "d5d3bc926ae0305a68ccb122602abeb3627b5e3779925a98d882d29367ac0981",
+      "duration_seconds": 3456.3135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 3427.81,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercises T1-P5 and T1-P6, Exercises 8 and 9; no chapter section is grounded in this recording.",
+      "tutorial_number": 1
+    }
+  ],
+  "frames_viewed": {
+    "ku5aCqoMPT8": [
+      "f0003",
+      "f0004",
+      "f0021",
+      "f0024",
+      "f0031",
+      "f0037",
+      "f0038",
+      "f0039",
+      "f0044"
+    ],
+    "Xg7KpnjVBVQ": [
+      "f0014",
+      "f0018",
+      "f0027",
+      "f0034",
+      "f0041",
+      "f0044"
+    ],
+    "dH3Z9FZPOQ8": [
+      "f0006",
+      "f0014",
+      "f0021",
+      "f0027",
+      "f0031",
+      "f0036",
+      "f0037",
+      "f0046",
+      "f0057"
+    ],
+    "iX5PG6TPABQ": [
+      "f0002"
+    ],
+    "fgMG7Jd89pw": [
+      "f0082",
+      "f0087",
+      "f0088",
+      "f0093",
+      "f0095",
+      "f0104"
+    ]
+  },
+  "contact_sheets_scanned": {
+    "ku5aCqoMPT8": [
+      "s01",
+      "s02",
+      "s03"
+    ],
+    "Xg7KpnjVBVQ": [
+      "s01",
+      "s02",
+      "s03"
+    ],
+    "dH3Z9FZPOQ8": [
+      "s01",
+      "s02",
+      "s03"
+    ]
+  },
+  "source_uncertainties": [
+    "Spoken slip (L21 888-893 s): 'because they have the same one-time pdf, they have the same autocorrelation function' for processes (d) and (e). The slides (L20 f0039, L21 f0027) state that (d) and (e) have the same autocorrelation exp(-|s|/tau_bar) and (e) the same spectrum as (d); the reader text states the correct logic (same autocovariance if and only if same spectrum, by the Fourier pair).",
+    "Spoken speculation (L21 669-673 s) that process (b) is 'probably at a higher Reynolds number': not in the slide caption; omitted from reader text.",
+    "Spoken term 'Kronecker delta' (L22 about 1579, 1647, 1680 s) for the delta in the energy-spectrum definition; the slide (L22 f0046) writes delta(|kappa| - kappa) with a continuous argument, a Dirac delta. Reader text follows the slide and notes the difference.",
+    "Slide misprint (L22 f0006): the lower limit of the mean-velocity integral prints as infinity, not minus infinity; reader text notes it.",
+    "Slide notation (L22 f0031): L11 integral written with bold dr; the integration variable is the scalar separation r; reader text notes it.",
+    "Slide typo (T1 f0082): 'autocovaiance' for autocovariance; not mentioned in reader text.",
+    "Slide figure caption (L20 f0021, Figure 3.20): '(see Chapter 12)' refers to a chapter of the slides' source book, not of this book; omitted from reader text.",
+    "Slide figures 3.19 and 3.21 (L20 f0004, f0031): the sample paths of Fig. 3.19 spread between about 1.5 and 5.5 after the transient, whereas the right axis of Fig. 3.21 gives a variance of about 0.065; the two appear inconsistent (a spread of that width suggests a variance of order 0.5-1). The chapter uses Fig. 3.21 only qualitatively (mean and variance become constant after about t = 6).",
+    "Slide value (L21 f0041, Figure 3.24): kurtosis 11 of the second derivative of the turbulent velocity (process a); attributed to the slide in reader text, not verified against a source.",
+    "Symbol T on the slides has three meanings: time shift in the stationarity definition (L20 f0004, L22 f0014), period of a periodic process (L20 f0024), record length (T1 f0095). Reader text uses t_s (shift, as chapter 6), T_p (period) and T (record length), and states this once.",
+    "Spoken (L22 1141-1150, 1203-1205 s): the lecturer uses k and kappa interchangeably for the wavenumber; the slides write kappa. Reader text uses kappa and keeps k for the turbulent kinetic energy.",
+    "Isotropy slide (L22 f0027) writes the transformed position and velocity with an overbar; this book reserves the overbar for the LES filtered velocity; reader text describes the transformation in words and points to chapter 6's direction cosines a_ij.",
+    "Running-case assumption: the integral time scale of the jet centreline velocity, tau_bar = 0.01 s, is assumed (of the order of ell_0 / <U_1> = 12.5 ms), not measured; every result that uses it is stated as proportional to it in reader text. Taylor's hypothesis is named only as a forward pointer.",
+    "Sources not obtainable by scripted download on 2026-10-05 and therefore not cited: G. I. Taylor (1938), 'The spectrum of turbulence', Proc. R. Soc. Lond. A 164 (publisher and mirror returned HTTP 403); D. H. Lenschow, J. Mann, L. Kristensen (1994), J. Atmos. Ocean. Tech. 11 (AMS and UCAR OpenSky returned challenge pages).",
+    "Beyhaghi, Alimo and Bewley (arXiv:1802.01056): journal version not checked; arXiv preprint pages cited and marked as such in reader text. Lee and Moser (arXiv:1410.7809): the preprint states it was under consideration at J. Fluid Mech.; no published version checked; preprint pages cited and marked in reader text.",
+    "Practice problem L59-P7 part 2 needs <udot^2> > 0 for a strict inequality, and T1-P6's long-time step needs (1/T) int_0^T s rho(s) ds -> 0; both provisos are added in the solutions (practice-map.md notes).",
+    "ASR spellings corrected: 'Onsten-Ollenberg', 'austen all in the process' = Ornstein-Uhlenbeck; 'round's decomposition' = Reynolds decomposition; 'RFS', 'R of s' = R(s); 'phii' = Phi_ii; 'chronicle delta' = Kronecker delta (as spoken); 'statistically fully disruptive inflow' = statistically fully developed flow; '1.1 time' = one-point, one-time; 'endpoint end time' = N-point N-time; 'U2' (L20 264 s) = U(t); 'feels' (L22 282 s) = fields.",
+    "The name 'Wiener-Khinchin theorem' was removed in round 1 (no source in the repository); the chapter states the parts it uses and their condition (absolutely integrable R) and cites no general theorem.",
+    "Practice problem T1-P5: board frames f0087, f0088 and f0093 viewed in round 1. The corrected board work differentiates in t (product rule), drops the total t-derivative by stationarity and boxes B(s) = -d^2R/ds^2 (f0093); the chapter's solution takes a different route (change from differentiating the second factor to the first) to the same result.",
+    "The source-note statement that the slides of this module name one source (Pope 2000) rests on chapter 7's check of the Module 04 Source slide (L17, extracted frame at 238.5 s; chapter 7 meta), not on a frame of L20-L22; the slides of L20-L22 carry the same Module 04 header and sidebar entry 'Source'.",
+    "Timestamps are section anchors from local speech-recognition segment times; they locate topic changes to within a few seconds. The section spanning the end of L21 and the start of L22 was split in round 1, so every timestamp now sits in a heading."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None directly; extends chapter 7's repeatable experiment.",
+      "research_extension": "None.",
+      "teaching_construction": "Random process as a family of random variables indexed by t; sample path; hot-wire record on the jet centreline of chapters 6-7 (mean 8 m/s, rms 2 m/s, ell_0 = 0.1 m, tau_eta = 0.43 ms, 20 kHz); assumed tau_bar = 0.01 s; symbol decisions s, t_s, x_s, T, T_p.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "A velocity recorded in time is a random process",
+      "video_id": "ku5aCqoMPT8",
+      "start": 60.67,
+      "end": 488.14,
+      "lecture_material": "U(t) as a random process; one-time CDF F(V,t) and PDF f(V;t); no joint information at two times; N-time CDF and complete characterization (almost impossible); Figure 3.19 (three sample paths); Figure 3.20 (five processes a-e with the same standardized Gaussian one-time PDF).",
+      "research_extension": "None.",
+      "teaching_construction": "Semicolon convention stated; N = 2 reduction to chapter 7's joint CDF (7.14).",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Statistical stationarity",
+      "video_id": "ku5aCqoMPT8",
+      "start": 488.14,
+      "end": 724.58,
+      "lecture_material": "Stationarity: multi-time statistics invariant under a shift in time; many turbulent flows stationary after an initial transient; flow variables vary, statistics do not.",
+      "research_extension": "Beyhaghi, Alimo, Bewley 2018 (arXiv p. 5): procedures to identify the initial transient; tests of second-order stationarity.",
+      "teaching_construction": "One- and two-time consequences of (8.3); examples of non-stationary flows; jet assumption; chapter 7 Lorenz-ensemble variances 57.8 and 61.6 as an undecided case.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Statistical stationarity (continued)",
+      "video_id": "ku5aCqoMPT8",
+      "start": 991.52,
+      "end": 1015.54,
+      "lecture_material": "Figure 3.21: mean and variance of the process of Figure 3.19 constant after the transient.",
+      "research_extension": "None.",
+      "teaching_construction": "As above.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Autocovariance, autocorrelation function and integral time scale",
+      "video_id": "ku5aCqoMPT8",
+      "start": 724.58,
+      "end": 1015.54,
+      "lecture_material": "R(s) and rho(s); properties rho(0) = 1, |rho| <= 1, even; periodicity; integral time scale tau_bar = int_0^inf rho ds, converging because correlation diminishes with lag.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of the bound from chapter 7's Cauchy-Schwarz argument and of evenness from a stationary shift; convergence of (8.6) as an assumption with counterexamples (1/(1+|s|), constant, cos s); exponential example (8.7) with running-case values; cutoff in estimating tau_bar (code: 0.989, 0.985 vs 0.993).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "What the autocorrelation distinguishes, and what it does not",
+      "video_id": "ku5aCqoMPT8",
+      "start": 1015.54,
+      "end": 1291.12,
+      "lecture_material": "Figure 3.22 (autocorrelations of a-e; a and c smooth at origin; b narrower; d and e exp(-|s|/tau_bar)); all except b share tau_bar; one-time PDF and autocorrelation do not characterize a process.",
+      "research_extension": "None.",
+      "teaching_construction": "Computed Ornstein-Uhlenbeck and jump processes with identical one-time PDF and autocorrelation; derivation of the jump-process autocorrelation and of the increment flatness 3/p = 61.5 (measured 62.0); Figure 8.1 from the listing's arrays.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "The frequency spectrum and the autocovariance form a Fourier pair",
+      "video_id": "ku5aCqoMPT8",
+      "start": 1291.12,
+      "end": 1617.33,
+      "lecture_material": "E(omega) = (1/pi) int R e^{-i omega s} ds = (2/pi) int_0^inf R cos; R(s) = (1/2) int E e^{i omega s} = int_0^inf E cos; 'twice the frequency spectrum' forms the pair; R and E real and even, same information; spectral representation as a sum of Fourier modes.",
+      "research_extension": "None.",
+      "teaching_construction": "Statement of the convention (one-sided, angular frequency, factor 2pi per Hz); exponential-Lorentzian pair (8.10) with checks and running-case values (E(0) = 0.0255 m^2/s, 15.9 Hz); code spectra at three frequencies. Existence condition for (8.8): absolutely integrable R; the constant and periodic processes as excluded cases; sin(s)/s derived from a band-limited spectrum by (8.9) as a finite tau_bar without absolute integrability.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The frequency spectrum and the autocovariance form a Fourier pair (recap)",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 5.87,
+      "end": 259.24,
+      "lecture_material": "Recap of the Fourier pair and its cosine forms.",
+      "research_extension": "None.",
+      "teaching_construction": "As above.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The spectrum distributes the variance over frequencies",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 259.24,
+      "end": 968.07,
+      "lecture_material": "R(0) = <u^2> = int_0^inf E d omega; band contribution (fundamental property); tau_bar = pi E(0)/(2<u^2>) derived on the board; process b smaller tau_bar and E(0), extends to higher frequencies; Figure 3.23 (spectra); one-time PDF and autocorrelation only a partial characterization.",
+      "research_extension": "None.",
+      "teaching_construction": "Expected periodogram (8.12) and non-negativity of E; derivative variance (8.14) from difference quotients and its spectral form; smoothness at the origin versus existence of a derivative; Ornstein-Uhlenbeck difference quotients in the code (9.1, 19.0, 39.1). Limit in (8.14) by dominated convergence (finite case) and Fatou's lemma (infinite case).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Time averages, ergodicity and the length of a record",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None in L20-L22 (the practice problem T1-P6, Exercise 9, states the central formula).",
+      "research_extension": "Beyhaghi, Alimo, Bewley 2018 (arXiv): p. 1 stationarity and ergodicity generally assumed for turbulence statistics; p. 2 eq. (1b) averaging-error model attributed to Lumley and Panofsky (1964); p. 3 validity for large T/tau_f and sampling interval 2 tau_f / c, c of order 10; p. 6 eq. (6) discrete form.",
+      "teaching_construction": "Time average (8.15); exact variance (8.16); long-time form (8.17) with its conditions; exact exponential form (8.18); link to E(0) (8.19); mean-square ergodicity and the sufficient condition int |R| < inf; running-case record lengths (0.28 m/s for 1 s; 12.5 s for 1 %; proportional to tau_bar); code: 0.0383 and 0.0381 vs 0.0392, naive 0.0010.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The stationary Gaussian process, and why a turbulent velocity is not one",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 968.07,
+      "end": 1304.11,
+      "lecture_material": "Gaussian process: N-time PDF joint normal, characterized by means and covariances; stationary case characterized by mean, variance and rho; process c Gaussian with the spectrum of a; Figure 3.24 (second derivatives); kurtosis 3 for c and 11 for a; do not approximate a turbulent velocity by a Gaussian process.",
+      "research_extension": "Backward reference to chapter 7 (Wilczek et al. 2011; Kerr 1983 derivative flatness 3.39-5.11).",
+      "teaching_construction": "General N-dimensional normal density (8.20) and its N = 2 reduction to (7.22); conditions (stationarity, mean) for characterization by the spectrum; equal second-order derivative statistics of a and c; boundary of the lecture's warning by the order of the statistic.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Random fields: the one-point, one-time PDF",
+      "video_id": "Xg7KpnjVBVQ",
+      "start": 1304.11,
+      "end": 1572.29,
+      "lecture_material": "Velocity as a time-dependent random vector field; one-point one-time joint CDF and PDF (triple derivative); semicolon notation; no joint information at two points or times.",
+      "research_extension": "None.",
+      "teaching_construction": "Units of the PDF; chapter 7's joint and one-component PDFs as marginals of the one-point PDF; what a one- or two-component probe at the jet station measures.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Mean, fluctuation, Reynolds stresses and the N-point PDF",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 5.87,
+      "end": 397.92,
+      "lecture_material": "Mean velocity field, fluctuation, Reynolds decomposition, Reynolds stresses; differentiability (mean of derivative = derivative of mean); N-point N-time PDF impossible to determine; turbulent fields not Gaussian.",
+      "research_extension": "None.",
+      "teaching_construction": "Condition for interchanging mean and derivative linked to (8.14); slide misprint noted.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Stationarity and homogeneity of a field, and the channel flow",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 397.92,
+      "end": 789.78,
+      "lecture_material": "Stationarity and homogeneity in terms of the N-point PDF; homogeneous U implies uniform mean, zero in a suitable frame; homogeneous turbulence (fluctuation homogeneous) less restrictive, wind tunnels and DNS; Figure 3.25 channel: statistically 2D for b/h >> 1, |x3|/b << 1, 1D for x1/h >> 1.",
+      "research_extension": "Lee and Moser 2014 (arXiv:1410.7809): periodic x and z, domain 8 pi delta by 3 pi delta (p. 3); U(y) (p. 4); LM5200 run time 7.80 delta/u_tau without transition (Table 1, p. 4); sampling uncertainty (method of Oliver et al., named in the meta only) < 0.2 % mean, < 0.5 % near-wall and 3 % outer variances (p. 4); stationarity test via linear total stress (p. 5).",
+      "teaching_construction": "Independence of stationarity and homogeneity; linear mean compatible with homogeneous fluctuations; approximations versus exact properties; jet stationary but not homogeneous.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Isotropy",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 789.78,
+      "end": 903.32,
+      "lecture_material": "Homogeneous field invariant under translations; isotropic if also invariant under rotations and reflections; example <u1^2> = <u2^2> = <u3^2>; importance in experiments and theory; N-point PDF statement.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of <u_i u_j> = (2/3) k delta_ij from one reflection and one rotation; scope (shear flows, jet centreline test, local isotropy of chapter 5).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The two-point correlation and the integral length scale",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 903.32,
+      "end": 1107.92,
+      "lecture_material": "Two-point one-time autocovariance R_ij(r,x,t); integral length scale L11; independence of x for homogeneous turbulence.",
+      "research_extension": "None.",
+      "teaching_construction": "Symmetry R_ij(r) = R_ji(-r) derived from homogeneity; L11 as the spatial counterpart of tau_bar; link to chapter 5's integral scale; single-probe limitation and forward pointer to Taylor's hypothesis.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Wavenumber spectra: the velocity-spectrum tensor and the energy spectrum",
+      "video_id": "dH3Z9FZPOQ8",
+      "start": 1107.92,
+      "end": 1755.88,
+      "lecture_material": "Fourier mode, wavelength 2 pi/|kappa|; Phi_ij and R_ij Fourier pair with (2 pi)^-3; r = 0 gives Reynolds stresses; two kinds of directional information; energy-spectrum function with delta(|kappa| - kappa); integral of E gives k.",
+      "research_extension": "None.",
+      "teaching_construction": "Normalization compared with (8.8)-(8.9); units of Phi and E; reality of Phi_ii from evenness of R_ii; derivation of (8.33) from (8.31); isotropic shell formula E = 2 pi kappa^2 Phi_ii (8.34); distinction between E(omega) and E(kappa,t).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Executable processes: two processes with the same autocorrelation",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Processes (d) and (e) of Figure 3.20 motivate the pair.",
+      "research_extension": "None.",
+      "teaching_construction": "NumPy program (seed 8): Ornstein-Uhlenbeck (exact AR(1) sampling) and jump process with identical one-time PDF and autocorrelation; moments, autocorrelation, integral time scale, time-average variance vs (8.18), periodogram vs (8.10), increment flatness, OU difference quotients; four assertions (two per process); failure test (jump probability 0.5) fails the autocorrelation assertion.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the description establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Classification of definitions, derived results and assumptions; conventions; scope of second-order descriptions; dependence of running-case numbers on the assumed tau_bar.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercises 7-9 are adapted from the course practice problems L59-P7 (iX5PG6TPABQ 0:06), T1-P5 (fgMG7Jd89pw 40:28) and T1-P6 (fgMG7Jd89pw 46:59), as assigned by _editorial/practice-map.md.",
+      "research_extension": "Exercise 1(c) uses Beyhaghi et al. p. 3.",
+      "teaching_construction": "Six original exercises (compute, counterexample, check an assumption, derive, judge a claim, derive and judge) and full solutions for all nine.",
+      "evidence_class": "derivation"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 20 recording",
+      "url": "https://www.youtube.com/watch?v=ku5aCqoMPT8",
+      "supports": "Random processes, stationarity, autocovariance, autocorrelation, integral time scale, five sample processes, frequency spectrum.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 21 recording",
+      "url": "https://www.youtube.com/watch?v=Xg7KpnjVBVQ",
+      "supports": "Spectrum and variance, integral time scale from E(0), spectra of the five processes, stationary Gaussian process, second derivative kurtosis 3 vs 11, random fields.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 22 recording",
+      "url": "https://www.youtube.com/watch?v=dH3Z9FZPOQ8",
+      "supports": "Mean, fluctuation, Reynolds stresses, N-point PDF; stationarity, homogeneity, channel flow; isotropy; two-point correlation and L11; wavenumber spectra and energy spectrum.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Practice problems: Lecture 59 and Tutorial 1",
+      "url": "https://www.youtube.com/watch?v=iX5PG6TPABQ",
+      "supports": "Statements of Exercises 7-9 (L59-P7, T1-P5, T1-P6).",
+      "page_checked": "slide frames iX5PG6TPABQ f0002, fgMG7Jd89pw f0082, f0095 and board frame f0104"
+    },
+    {
+      "title": "Beyhaghi, Alimo, Bewley 2018, A multiscale, asymptotically unbiased approach to uncertainty quantification in the numerical approximation of infinite time-averaged statistics (arXiv:1802.01056v1)",
+      "url": "https://arxiv.org/abs/1802.01056",
+      "supports": "p. 1 (abstract): 'the statistics of many turbulent flows are generally considered as stationary and ergodic after some initial transient is identified and set aside'. p. 2: eq. (1b) epsilon_hat(T) = sigma sqrt(2 tau_f / T), 'tau_f is a modeling parameter, referred to as the integral time scale'; model attributed to [20] = Lumley and Panofsky, The structure of atmospheric turbulence (1964) (reference list). p. 3: 'This model is found to be effective in practice only if the simulation time divided by the integral time scale, T/tau_f, is relatively large'; h = 2 tau_f / c with c of order 10; 'sampling substantially more frequently than this will not substantially reduce epsilon(T)'. p. 5: identification of the initial transient; second-order stationarity tests (Priestley-Subba-Rao, wavelet spectrum). p. 6: eq. (6) epsilon_s^2 = (sigma^2/s)[1 + 2 sum (1 - k/s) rho(k)].",
+      "page_checked": "arXiv preprint pp. 1, 2, 3, 5, 6 (PDF pp. 1, 2, 3, 5, 6); reference list PDF pp. 18-20; journal version not checked"
+    },
+    {
+      "title": "Lee and Moser 2014, Direct numerical simulation of turbulent channel flow up to Re_tau = 5200 (arXiv:1410.7809v1)",
+      "url": "https://arxiv.org/abs/1410.7809",
+      "supports": "p. 1: 'Under consideration for publication in J. Fluid Mech.'. p. 3: 'Periodic boundary conditions are applied in the streamwise (x) and spanwise (z) directions, and no-slip/no-penetration boundary conditions are applied at the wall. The computational domain sizes are Lx = 8 pi delta and Lz = 3 pi delta, where delta is the channel half-width'. p. 4: 'U(y) is the mean streamwise velocity'; Table 1: LM5200 Re_tau = 5186, T u_tau / delta = 7.80 ('Total simulation time without transition'); 'the estimated standard deviation of mean velocity is less than 0.2% and the estimated standard deviation of variance and covariance of the velocity components is less than 0.5% in near-wall region (y+ < 100 say) and 3% in outer-region (y > 0.2 delta say)', method of Oliver et al. (2014). p. 5: stationarity tested with the total stress, linear in a statistically stationary channel (eq. 2.1).",
+      "page_checked": "arXiv preprint pp. 1, 3, 4, 5 (PDF pp. 1, 3, 4, 5); published version not checked"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "U^(n)(t), U(t), <.>, u(t), sigma_u, <U_1>, ell_0, tau_eta, tau_bar",
+      "first_section": "model",
+      "definition": "Sample path of run n, random process, expectation, fluctuation, r.m.s. fluctuation, jet mean velocity, energy-containing eddy size, Kolmogorov time, integral time scale (assumed 0.01 s for the running case)."
+    },
+    {
+      "symbol": "s, t_s, x_s, T, T_p",
+      "first_section": "model",
+      "definition": "Time lag, time shift (slides T), position shift (slides X), record length, period."
+    },
+    {
+      "symbol": "F(V,t), f(V;t), F_N, f_N, V_n, t_n",
+      "first_section": "random-process",
+      "definition": "One-time CDF and PDF (semicolon: density in V), N-time CDF and PDF, sample-space variables and times."
+    },
+    {
+      "symbol": "R(s), rho(s), tau_bar",
+      "first_section": "autocorrelation",
+      "definition": "Autocovariance, autocorrelation function, integral time scale (8.6)."
+    },
+    {
+      "symbol": "p, Delta t, j",
+      "first_section": "autocorrelation-compared",
+      "definition": "Jump probability per time step (not a pressure), time step, lag in steps."
+    },
+    {
+      "symbol": "E(omega), omega, i, f, E_f(f)",
+      "first_section": "frequency-spectrum",
+      "definition": "One-sided frequency spectrum (8.8), angular frequency, imaginary unit, cyclic frequency, spectrum per Hz."
+    },
+    {
+      "symbol": "omega_a, omega_b, E_hat_T(omega), u_dot, h",
+      "first_section": "spectrum-variance",
+      "definition": "Band limits, periodogram (8.12), time derivative of the fluctuation, difference step."
+    },
+    {
+      "symbol": "<U>_T",
+      "first_section": "time-averages",
+      "definition": "Time average over a record of length T (8.15)."
+    },
+    {
+      "symbol": "V (vector), m_n, C_nm, U_ddot",
+      "first_section": "gaussian-process",
+      "definition": "Vector of sample-space variables, means, covariance matrix (sans-serif C, not the Kolmogorov constant) of the N-time normal density, second derivative."
+    },
+    {
+      "symbol": "U(x,t), V = (V1,V2,V3), F(V,x,t), f(V;x,t)",
+      "first_section": "random-fields",
+      "definition": "Random velocity field, sample-space vector, one-point one-time CDF and PDF."
+    },
+    {
+      "symbol": "u(x,t), <u_i u_j>, f_N(V^(1),x^(1),t^(1);...)",
+      "first_section": "field-statistics",
+      "definition": "Fluctuating field, Reynolds stresses, N-point N-time PDF."
+    },
+    {
+      "symbol": "x1, x2, x3, h, b, delta, U(y), u_tau",
+      "first_section": "homogeneity",
+      "definition": "Channel coordinates (flow, wall-normal, spanwise), wall distance, span (slide), half-width and mean velocity and friction velocity (Lee and Moser)."
+    },
+    {
+      "symbol": "k, delta_ij, a_ij",
+      "first_section": "isotropy",
+      "definition": "Turbulent kinetic energy, Kronecker delta, direction cosines (chapter 6)."
+    },
+    {
+      "symbol": "R_ij(r,x,t), r, e_1, L_11",
+      "first_section": "two-point",
+      "definition": "Two-point correlation, separation, unit vector along x1, longitudinal integral length scale."
+    },
+    {
+      "symbol": "kappa (vector), kappa, Phi_ij, E(kappa,t), delta(.), d Omega",
+      "first_section": "wavenumber-spectra",
+      "definition": "Wavenumber vector and magnitude, velocity-spectrum tensor, energy-spectrum function, Dirac delta, solid-angle element."
+    },
+    {
+      "symbol": "tau_c, A, sigma_A, w(t), sigma_w",
+      "first_section": "exercises",
+      "definition": "Correlation time in Exercises 2-3 (not theta, the temperature), run-to-run random constant and its standard deviation, stationary process and its standard deviation (Exercise 2)."
+    }
+  ],
+  "exercises": 9,
+  "practice_problems": {
+    "map": "_editorial/practice-map.md (present when checked at pass 6 and before the report)",
+    "assigned_to_chapter_8": [
+      "L59-P7",
+      "T1-P5",
+      "T1-P6"
+    ],
+    "chapter_exercises": {
+      "L59-P7": 7,
+      "T1-P5": 8,
+      "T1-P6": 9
+    }
+  },
+  "code_check": {
+    "command": "python -I ch08_extracted.py (the chapter listing, extracted from the HTML by _editorial/tmp/ch08_check.py and run in a fresh process; stdout compared byte for byte with the printed block); Python 3.13.5, NumPy 2.2.6; pycodestyle 0 errors; failure test exits with AssertionError",
+    "stdout_matches_printed": true
+  }
+}
