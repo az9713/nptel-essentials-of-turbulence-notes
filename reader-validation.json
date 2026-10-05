@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-05T17:10:43.737991+00:00",
+  "checked_at_utc": "2026-10-05T17:41:05.568147+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
     "html_files": 7,
-    "local_links_checked": 79,
-    "timestamps_checked": 28,
+    "local_links_checked": 92,
+    "timestamps_checked": 29,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -16,7 +16,25 @@
     "findings": [
       {
         "mathErrors": 0,
-        "mathNodes": 608,
+        "mathNodes": 487,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 487,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 611,
         "horizontalOverflow": false,
         "controls": true,
         "emptyToc": false,
@@ -25,7 +43,7 @@
       },
       {
         "mathErrors": 0,
-        "mathNodes": 608,
+        "mathNodes": 611,
         "horizontalOverflow": false,
         "controls": true,
         "emptyToc": false,

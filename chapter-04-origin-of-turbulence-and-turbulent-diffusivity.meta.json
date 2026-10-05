@@ -1,0 +1,336 @@
+{
+  "chapter": 4,
+  "title": "The origin of turbulence and turbulent diffusivity",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "sgsJOZTsR14",
+      "lecture_number": 8,
+      "media_sha256": "f1baccfd5d1cf2d6bbbbead487a6f6ce594298a94327b6d0a04aa489385b9dc3",
+      "duration_seconds": 1806.7335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1778.49
+    },
+    {
+      "video_id": "Pukxt4dxleU",
+      "lecture_number": 9,
+      "media_sha256": "d0076cb29db2cf84af265426cccb0da25415676f00d1cec572e1627201cd2a55",
+      "duration_seconds": 1640.0935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1611.72
+    }
+  ],
+  "frames_viewed": {
+    "sgsJOZTsR14": [
+      "f0009",
+      "f0014",
+      "f0015",
+      "f0021",
+      "f0026",
+      "f0040",
+      "f0044",
+      "f0058"
+    ],
+    "Pukxt4dxleU": [
+      "f0016",
+      "f0020",
+      "f0029",
+      "f0030",
+      "f0040"
+    ]
+  },
+  "source_uncertainties": [
+    "Unverified (named in reader text, not opened): Rayleigh (1880), 'On the stability, or instability, of certain fluid motions'. The derivation (4.3)-(4.5) follows Darrigol (2002, pp. 49-50), who reconstructs Rayleigh's argument; the reader text says so.",
+    "Unverified (named in reader text, not opened): Tennekes and Lumley, A First Course in Turbulence (1972), to which the lecture attributes the reading of Re as a ratio of time scales and the judgement that it is more reliable; the chapter attributes both to the lecture and relies on neither.",
+    "Slide (L8 f0058) gives 17 cm/s for the kinetic energy g h dtheta/theta = 0.03 m^2/s^2, which equals (g h dtheta/theta)^(1/2); the spoken explanation (L8 1566-1579 s) equates the energy to (1/2)V^2, which gives 0.26 m/s. The chapter states both and the factor sqrt(2).",
+    "Slide (L9 f0016, f0040) calls gamma a 'heat conductivity' / 'thermal conductivity'; the quantity in eqs. (1), (4), (9) of the slides is the heat diffusivity (m^2/s). The chapter writes Gamma (NOTATION.md) and says so.",
+    "Lecture states Pr = 0.73 for air (L9 f0016); the chapter computes 0.71 at 300 K from the 1976 U.S. Standard Atmosphere formulas and gives both.",
+    "Slide Re = 15000 for the room (L9 f0020); with nu = 1.569e-5 m^2/s at 300 K the value is 1.59e4. Both are given.",
+    "Lecture-stated values not checked against a primary source: room length 5 m; u ~ 5 cm/s as one third of the plume speed (the lecture's '30 %' fluctuation level); radiator height 0.1 m; dtheta = 10 K; smallest eddies about 1 cm (the lecture defers the estimate to the dissipation equations); roughness making transition occur sooner; laminarization by magnetic fields at low magnetic Reynolds number and by stable stratification; the transition sequence through secondary instabilities and turbulent spots; Re_delta* ~ 600 for the boundary layer and Re_D ~ 2100 for the pipe.",
+    "Schubauer and Skramstad Figure 7 (p. 7): the transition Reynolds numbers 2.8e6 (turbulence below about 0.08 %) and 1.5e6 (0.34 %) are read from the graph, not from a table; reading uncertainty about +/-0.1e6.",
+    "Reynolds (1883): the critical velocities are given as 1/43.79 and 1/278 times P/D in metre units with P a relative viscosity factor (pp. 943, 948); the chapter uses only their ratio 6.3. Converting either to Re_D would need the viscosity of water at 0 C, which was not checked; Exercise 6 identifies the lower value with ~2000 from Meseguer and Trefethen and says that the combination is the chapter's.",
+    "Meseguer and Trefethen (2003): pages checked in the Oxford Research Archive preprint (preprint pp. 1, 4, 10-11, 13, 15-16); journal pagination (J. Comput. Phys. 186, 178-197) not checked. Their Reynolds number definitions for plane Couette and plane Poiseuille flow were not read; Exercise 3 quotes the Couette value 350 as an order of magnitude and says so.",
+    "Taylor, 'Diffusion by continuous movements': the PDF pages carry the reading date 10 June 1920; the publication year 1922 is from the Crossref record of DOI 10.1112/plms/s2-20.1.196 (issue s2-20(1), pp. 196-212).",
+    "U.S. Standard Atmosphere 1976: in the scanned NTRS copy the exponent of the sea-level thermal conductivity in Table 10 (p. 20) reads as 10^-3; eq. (53) gives 2.5326 x 10^-2 W/(m K) at 288.15 K, the value also computed in a reader's errata note appended at PDF p. 243 (which concerns Table III, p. 101). The chapter uses eq. (53) at 300 K, not the table value. c_p = 3.5 R assumes a calorically perfect diatomic gas with the standard's ratio of specific heats 1.40.",
+    "The lecture recalls 'Taylor's hypothesis' (module 1) for converting the spatial decay of grid turbulence to a temporal one (L8 514-528 s); the chapter states only the conversion x -> x/U and does not discuss the hypothesis.",
+    "The slide figure of the flat-plate boundary layer (L8 f0014) labels the regions 'Low mixing: >> (du/dy)' and 'HIGH mixing (du/dy) >>', and the speech compares du/dy with 1 (L8 333-392 s); du/dy has units 1/s, so the chapter states only that the turbulent profile is fuller with a larger wall gradient. The figure's source (engineersvault.com) is not a primary source and is not cited.",
+    "ASR spellings corrected: 'Teneckis and Lumley', 'Ternicus and Lumley', 'Tenkes and Lumley', 'Genesis and Lambda' = Tennekes and Lumley; 'lambda flow' = laminar flow; 'turbula flow' = turbulent flow; 'density defenses' = density differences; 'cube row to the volume of the row' = cube root of the volume of the room; 'New' = nu; 'edit diffusivity' = eddy diffusivity; '100 Hz' = 100 hours; 'turbulent flow in a row' = in a room.",
+    "Timestamps are section anchors from local speech-recognition segment times; they locate topic changes to within a few seconds."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Room of size L (cube root of the volume), temperature theta at about 300 K, heat diffusivity (slides gamma), r.m.s. velocity u.",
+      "research_extension": "U.S. Standard Atmosphere 1976: eqs. (51), (53) (p. 19), Table 10 (p. 20), ratio of specific heats 1.40 (p. 18); nu = 1.57e-5 m^2/s, Gamma = 2.22e-5 m^2/s, Pr = 0.71 at 300 K.",
+      "teaching_construction": "Formal model of the room and its three times; meaning of ~; note on gamma as a diffusivity.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Turbulence begins as an instability of a laminar flow",
+      "video_id": "sgsJOZTsR14",
+      "start": 87.4,
+      "end": 204.83,
+      "lecture_material": "Turbulence arises from instabilities of laminar flow; pipe Re = UD/nu ~ 2100 (roughness makes transition sooner); zero-pressure-gradient boundary layer unstable at U delta*/nu ~ 600; critical Reynolds number.",
+      "research_extension": "Reynolds 1883 (pp. 943, 946, 948): sensitivity to inlet disturbance, two critical velocities, ratio 278/43.79. Meseguer and Trefethen 2003 (preprint pp. 1, 4, 10-11, 15-16): decaying eigenmodes to R = 1e7, transition depends on nonlinearity, transition near 2000. Schubauer and Skramstad 1948 (pp. 2, 7, 30): instability versus transition, delta* = 1.72 (nu x/U0)^(1/2), lower limit 450, transition at R_x ~ 2.8e6 and 1.5e6 by free-stream turbulence.",
+      "teaching_construction": "Definitions (4.1); conversion (4.2) of Re_delta* to Re_x; statement that each critical Re belongs to one flow, one length and one disturbance level.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Free shear layers can be unstable without viscosity",
+      "video_id": "sgsJOZTsR14",
+      "start": 204.83,
+      "end": 255.19,
+      "lecture_material": "Free shear flows unstable at very low Re by an inviscid mechanism that does not operate in boundary layers and pipe flow; wall flows have a velocity gradient because of the surface.",
+      "research_extension": "Darrigol 2002 (pp. 49-50): Rayleigh's 1880 stability equation and inflection-point criterion, eq. (19) vorticity conservation. Blasius 1908 (TM p. 7): zeta zeta'' = -zeta'''. Meseguer and Trefethen 2003 (p. 15): plane Poiseuille eigenvalue instability at R ~ 5772. Schubauer and Skramstad (pp. 1, 30): viscous stability theory of Tollmien and Schlichting, 'good agreement with theory'.",
+      "teaching_construction": "In-place proof that 2D inviscid vorticity is conserved (curl of the inviscid momentum equation; stretching term zero in 2D); derivation (4.3)-(4.5) in book notation; three-profile check (tanh, Poiseuille, Blasius sign argument); boundary (necessary, inviscid, linear, parallel).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Turbulence needs a supply of energy",
+      "video_id": "sgsJOZTsR14",
+      "start": 255.19,
+      "end": 276.92,
+      "lecture_material": "Turbulence cannot maintain itself; it depends on its environment for energy; shear and buoyancy as common sources.",
+      "research_extension": "None.",
+      "teaching_construction": "Room as buoyancy source.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Turbulence begins as an instability of a laminar flow (flat-plate figure, treated in that section)",
+      "video_id": "sgsJOZTsR14",
+      "start": 276.92,
+      "end": 410.61,
+      "lecture_material": "Figure of a flat-plate boundary layer: laminar region, transition region, turbulent region; low and high mixing; fuller turbulent profile.",
+      "research_extension": "Schubauer and Skramstad 1948 (pp. 2, 7, 30) for the positions of instability and transition.",
+      "teaching_construction": "The du/dy labels rendered as a statement about the wall gradient; the figure placed with the Re_delta* to Re_x conversion.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Turbulence needs a supply of energy (continued)",
+      "video_id": "sgsJOZTsR14",
+      "start": 410.61,
+      "end": 624.04,
+      "lecture_material": "Turbulence decays without shear or buoyancy; Re decreases and the flow tends to laminar; decay of grid turbulence; Taylor's hypothesis recalled; laminarization by magnetic fields and stable stratification.",
+      "research_extension": "None.",
+      "teaching_construction": "Room as buoyancy source; switching off the radiator; ceiling heater as stable stratification (illustration).",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Turbulence begins as an instability of a laminar flow (from instability to developed turbulence, treated in that section)",
+      "video_id": "sgsJOZTsR14",
+      "start": 624.04,
+      "end": 752.22,
+      "lecture_material": "Transition details poorly understood; primary 2D instability, 3D secondary motions, turbulent spots at random positions and times that grow and merge.",
+      "research_extension": "Reynolds 1883 (p. 943): eddies appear in a 'full-blown manner'.",
+      "teaching_construction": "Paragraph placed in the transition section, next to the instability-versus-transition distinction, with its own timestamp anchor (L8 10:24).",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Without air motion, heat crosses the room in days",
+      "video_id": "sgsJOZTsR14",
+      "start": 752.22,
+      "end": 1281.7,
+      "lecture_material": "Diffusivity as the outstanding characteristic; orders of magnitude faster transfer (fire versus candle flame); imposed-length problem; heat equation (slide eq. 1); Tm ~ L^2/gamma (slide eq. 2); L = 5 m gives order 1e6 s, more than 100 h.",
+      "research_extension": "Gamma at 300 K from the Standard Atmosphere formulas.",
+      "teaching_construction": "Numerical value 1.1e6 s; slowest-mode exact solution in an insulated cube, tau_1 = L^2/(pi^2 Gamma) = 32 h; 10 % time 73 h; dependence of the constant on the definition.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "A weak buoyant stir mixes the room in minutes",
+      "video_id": "sgsJOZTsR14",
+      "start": 1281.7,
+      "end": 1778.49,
+      "lecture_material": "Weak buoyant motions disperse heat quickly; Tt ~ L/u (slide eq. 3); buoyant acceleration g dtheta/theta ~ 0.3 m/s^2; KE g h dtheta/theta ~ 0.03 m^2/s^2; 17 cm/s; u ~ 5 cm/s; Tt = 100 s; eddies of about 1 cm smoothed in l^2/gamma, a few seconds.",
+      "research_extension": "None.",
+      "teaching_construction": "sqrt(2) discrepancy between the slide speed and (1/2)V^2; ratio Tm/Tt = 1.1e4 with uncertainty; two-step mechanism (transport by large eddies, molecular smoothing at 1 cm, 4.5 s).",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "A weak buoyant stir mixes the room in minutes (recap)",
+      "video_id": "Pukxt4dxleU",
+      "start": 5.87,
+      "end": 360.98,
+      "lecture_material": "Recap of the room case: 100 hours versus 2 minutes; 1 cm eddies dissipated in a few seconds; diffusion by random motion very rapid.",
+      "research_extension": "As above.",
+      "teaching_construction": "As above.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "The ratio of the two times is a Peclet number",
+      "video_id": "Pukxt4dxleU",
+      "start": 360.98,
+      "end": 570.38,
+      "lecture_material": "Tt/Tm ~ gamma/(uL) = 1/Pe (slide eq. 4); for gases gamma ~ nu, nu/gamma = 0.73 = Pr, so Tt/Tm ~ 1/Re (slide eq. 5); larger Re widens the gap.",
+      "research_extension": "Pr = 0.71 at 300 K (Standard Atmosphere formulas).",
+      "teaching_construction": "Identity Pe = Pr Re; room values Pe = 1.1e4, Re = 1.6e4; domain limit at Pe ~ 1 (Exercise 1).",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "The ratio of the two times is a Peclet number (Re as a ratio of times)",
+      "video_id": "Pukxt4dxleU",
+      "start": 570.38,
+      "end": 872.32,
+      "lecture_material": "Re = 15000 in the example; Re as ratio of a turbulence time to a molecular time; Tennekes and Lumley: more reliable than inertia/viscous ratio because viscous effects act at smaller scales than inertia effects.",
+      "research_extension": "None.",
+      "teaching_construction": "L^2/nu over L/u = Re; the lecture's argument stated as the lecture's reasoning; the judgement attributed, not adopted.",
+      "evidence_class": "hypothesis"
+    },
+    {
+      "section": "The eddy diffusivity",
+      "video_id": "Pukxt4dxleU",
+      "start": 872.32,
+      "end": 1611.72,
+      "lecture_material": "Effective diffusivity K (slide eq. 6); turbulence treated as a fluid property, conceptually dangerous; hypothetical turbulent diffusion process; T ~ L^2/K = Tt gives K ~ uL (slide eqs. 7-8); K/gamma ~ K/nu ~ Re (slide eq. 9); recap of the whole argument.",
+      "research_extension": "None.",
+      "teaching_construction": "K = 0.25 m^2/s for the room; calibration-not-prediction statement.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "When an eddy diffusivity is a diffusivity",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None (motivated by the lecture's 'hypothetical turbulent diffusion process').",
+      "research_extension": "Taylor 1922 (read 1920): p. 196 quotation; p. 197 heat flux -rho sigma beta [u(x-a)] and [uX] = (1/2) d[X^2]/dt; p. 207 eq. (18) and short-time eq. (19); p. 208 eq. (20) long-time limit with finite integral I.",
+      "teaching_construction": "Derivation of the flux -rho c_p beta <u_p X> from the initial linear temperature and of <u_p X> = (1/2) d<X^2>/dt; derivation of (4.15) through <u_p X> = u^2 int R_L ds with stationarity (R_L depends on the time difference and is even) stated; K(t) = (1/2) d<X^2>/dt from the flux comparison; K = u^2 T_L; exponential-correlation example (4.17) with values at T_L and 10 T_L; Figure 4.1; application to the room (T_L ~ L/u, 10 T_L ~ 1000 s, walls).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Executable checks",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Room values from the lecture.",
+      "research_extension": "Standard Atmosphere formulas; Blasius equation in Blasius's variables; coefficient 1.72 of Schubauer and Skramstad.",
+      "teaching_construction": "NumPy program: air properties at 300 K; room times and ratios with two identity assertions; Blasius RK4 shooting with assertions on the delta* coefficient (1.7208) and on zeta''' <= 0; Ornstein-Uhlenbeck dispersion of 20000 particles asserted against (4.17) within 5 % at t/T_L = 0.1, 1, 10; failure test with the diffusive formula.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the arguments establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Summary of the cited evidence.",
+      "teaching_construction": "Classification into empirical critical values, derivation (Rayleigh), scale arguments and model (K); stated uncertainties.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Room values; the lecture's critical Reynolds numbers.",
+      "research_extension": "Exercises 2, 3 and 6 use Schubauer and Skramstad, Meseguer and Trefethen, and Reynolds.",
+      "teaching_construction": "Six original exercises with full solutions, in ascending difficulty: check an assumption, compute, counterexample, derive and compute, judge a model, design and judge.",
+      "evidence_class": "engineering check"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 8 recording",
+      "url": "https://www.youtube.com/watch?v=sgsJOZTsR14",
+      "supports": "Origin of turbulence, critical Reynolds numbers, energy supply, decay, laminarization, spots; diffusivity and the heated room (molecular and turbulent times, buoyancy estimate, 1 cm eddies).",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 9 recording",
+      "url": "https://www.youtube.com/watch?v=Pukxt4dxleU",
+      "supports": "Time ratio as 1/Pe and 1/Re; Re as a ratio of times (Tennekes and Lumley per the slide); eddy diffusivity K ~ uL and K/nu ~ Re.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Reynolds 1883, An experimental investigation of the circumstances which determine whether the motion of water shall be direct or sinuous (Phil. Trans. R. Soc. Lond. 174, 935-982)",
+      "url": "https://doi.org/10.1098/rstl.1883.0029",
+      "supports": "p. 941: 'fitted with trumpet mouthpieces, so that water might enter without disturbance'. p. 943: U_s = (1/B_s) P/D, B_s = 43.79; 'the critical velocity was very sensitive to disturbance in the water before entering the tubes'; 'the greatest care as to the uniformity of the temperature of the tank and the stillness of the water'; 'the steady motion was unstable for large disturbances long before the critical velocity was reached'; eddies appeared in a 'full-blown manner'. p. 946: a second critical velocity at which existing eddies die out, 'This conclusion has been verified.' p. 948: v_c = (1/278) P/D; 'the ratio being 43.7 to 278'; nature of the surface affects the law of resistance above the critical velocity.",
+      "page_checked": "p. 941 (PDF p. 8); p. 943 (PDF p. 10); p. 946 (PDF p. 13); p. 948 (PDF p. 15); copy at damtp.cam.ac.uk"
+    },
+    {
+      "title": "Schubauer and Skramstad 1948, Laminar-boundary-layer oscillations and transition on a flat plate (NACA Report 909)",
+      "url": "https://ntrs.nasa.gov/citations/19930091976",
+      "supports": "p. 1: wave motion with the characteristics predicted by a stability theory based on exponential growth of small disturbances; contributions of Tollmien and Schlichting; stability depends on kinematic viscosity, boundary-layer thickness, outer speed and frequency or wavelength. p. 2: 'transition involves two things'; 'Sufficiently small disturbance cannot produce transition, but a small disturbance may grow according to stability theory until it is sufficiently large to cause the flow to become turbulent'; delta* = 1.72 (nu x/U0)^(1/2) for the Blasius distribution; R = U0 delta*/nu = 1.72 R_x^(1/2). p. 7, Figure 7: effect of turbulence 100 sqrt((u'^2+v'^2+w'^2)/3)/U0 on the x-Reynolds number of transition (read from the graph). p. 30: 'experimentally established lower limit R = 450'; transition delayed until R about 2000; 'If no disturbances were present, theoretically transition should not occur'; 'good agreement with theory'.",
+      "page_checked": "p. 1 (PDF p. 5); p. 2 (PDF p. 6); p. 7 (PDF p. 11); p. 30 (PDF p. 34)"
+    },
+    {
+      "title": "Meseguer and Trefethen 2003, Linearized pipe flow to Reynolds number 10^7 (J. Comput. Phys. 186, 178-197)",
+      "url": "https://doi.org/10.1016/S0021-9991(03)00029-9",
+      "supports": "p. 1: eigenvalues for R from 10^2 to 10^7. p. 4: R = a U_CL/nu. pp. 10-11: rightmost eigenvalues with negative real parts scaling as R^-1, R^-1/2, R^-1/3 for the modes studied. p. 13: eigenvalues of the operators in question all in the left half-plane. p. 15: 'Transition to turbulence, like turbulence itself, depends on nonlinearity'; L 'itself is eigenvalue stable'; plane Poiseuille eigenvalue instability at R ~ 5772; transition observed at R ~ 350 (plane Couette), 1000 (plane Poiseuille), 2000 (pipe, continued p. 16).",
+      "page_checked": "preprint pp. 1, 4, 10-11, 13, 15-16 (Oxford University Research Archive copy, https://ora.ox.ac.uk/objects/uuid:6f273a01-925c-4862-88a9-9bfe764b5d59); journal pagination not checked"
+    },
+    {
+      "title": "Darrigol 2002, Stability and instability in nineteenth-century fluid mechanics (Revue d'histoire des mathematiques 8, 5-65)",
+      "url": "https://doi.org/10.24033/rhm.120",
+      "supports": "p. 49: Rayleigh 1880 on two-dimensional parallel flow; vorticity equation (19) for inviscid 2D flow; linearization with u, v ~ exp(i(kx - sigma t)). p. 50: stability equation (21) (U - sigma/k)(v'' - k^2 v) - U'' v = 0; multiplication by v* and integration, eqs. (22)-(25); if U'' has constant sign, Im(sigma) = 0; Rayleigh noted the criterion is of no help for the jet, whose U'' changes sign.",
+      "page_checked": "pp. 49-50 (PDF pp. 45-46), numdam copy"
+    },
+    {
+      "title": "Blasius 1908, The boundary layers in fluids with little friction (NACA TM 1256)",
+      "url": "https://ntrs.nasa.gov/citations/20050028493",
+      "supports": "TM p. 7: xi = (1/2) sqrt(rho u/k) y/sqrt(x), psi = sqrt(k u/rho) sqrt(x) zeta, u = (1/2) u zeta', zeta zeta'' = -zeta''', zeta(0) = zeta'(0) = 0, zeta'(inf) = 2 (k the viscosity).",
+      "page_checked": "TM p. 7 (PDF p. 8)"
+    },
+    {
+      "title": "Taylor 1922, Diffusion by continuous movements (Proc. London Math. Soc. (2) 20, 196-212; read 10 June 1920)",
+      "url": "https://doi.org/10.1112/plms/s2-20.1.196",
+      "supports": "p. 196: 'turbulent motion is capable of diffusing heat and other diffusible properties through the interior of a fluid in much the same way that molecular agitation gives rise to molecular diffusion'. p. 197: heat conveyed across unit area = -rho sigma beta [u(x-a)]; [u(x-a)] = (1/2) d[X^2]/dt; turbulence uniformly distributed. p. 206: R_xi defined as the correlation of a particle's velocity at an interval xi. p. 207: eq. (18) [X^2] = 2[u^2] int int R_xi; eq. (19) short times. p. 208: lim int R_xi = I finite; eq. (20) [X^2] ~ 2 I T [u^2] at large T.",
+      "page_checked": "pp. 196-197 (PDF pp. 1-2); pp. 206-208 (PDF pp. 11-13); copy at courses.washington.edu"
+    },
+    {
+      "title": "U.S. Standard Atmosphere, 1976 (NOAA-S/T 76-1562, NASA-TM-X-74335)",
+      "url": "https://ntrs.nasa.gov/citations/19770009539",
+      "supports": "p. 18: gamma = 1.40 (ratio of specific heats). p. 19: eq. (51) mu = beta T^(3/2)/(T + S), beta = 1.458e-6, S = 110.4 K; eq. (53) k_t = 2.64638e-3 T^(3/2)/(T + 245.4 x 10^(-12/T)). p. 20, Table 10: P0 = 1.01325e5 N/m^2, T0 = 288.15 K, rho0 = 1.2250 kg/m^3, kinematic viscosity 1.4607e-5 m^2/s.",
+      "page_checked": "p. 18 (PDF p. 34); p. 19 (PDF p. 35); p. 20 (PDF p. 36); appended errata note PDF p. 243"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "L, theta, theta_0, Delta theta, u, nu, Gamma, k_t, rho, c_p, R, Pr, T_m, T_t",
+      "first_section": "model",
+      "definition": "Room size, temperature field, reference temperature 300 K, temperature difference, r.m.s. velocity, kinematic viscosity, heat diffusivity (slides gamma), thermal conductivity, density, specific heat, gas constant, Prandtl number, molecular and turbulent times."
+    },
+    {
+      "symbol": "D, U_b, Re_D, U_0, y, U(y), delta*, Re_delta*, x, Re_x, u', v', w'",
+      "first_section": "transition",
+      "definition": "Pipe diameter and bulk velocity and Reynolds number; free-stream velocity, wall distance, profile, displacement thickness and its Reynolds number; distance from the leading edge and its Reynolds number; free-stream r.m.s. fluctuations."
+    },
+    {
+      "symbol": "psi', bold U (total velocity), p, bold omega, omega, z, kappa, c = c_r + i c_i, hat psi, U_c, d, delta, zeta, xi",
+      "first_section": "inflection",
+      "definition": "Disturbance stream function, total velocity, pressure, vorticity vector and its normal component, coordinate normal to the plane, wavenumber, complex phase speed, amplitude, Poiseuille centreline speed, channel half-width (and Couette gap, Exercise 3), mixing-layer thickness, Blasius stream function and similarity variable."
+    },
+    {
+      "symbol": "tau_1, n_i",
+      "first_section": "molecular",
+      "definition": "Decay time of the slowest non-uniform mode; mode integers."
+    },
+    {
+      "symbol": "g, h, V",
+      "first_section": "stirred",
+      "definition": "Acceleration of gravity, radiator height, plume speed."
+    },
+    {
+      "symbol": "Pe, Re, bold U",
+      "first_section": "ratio",
+      "definition": "Peclet number uL/Gamma, Reynolds number uL/nu, velocity field."
+    },
+    {
+      "symbol": "K",
+      "first_section": "eddy-diffusivity",
+      "definition": "Eddy diffusivity (slide symbol)."
+    },
+    {
+      "symbol": "u_p, X, R_L, T_L, beta, K(t)",
+      "first_section": "taylor",
+      "definition": "Particle velocity, displacement, Lagrangian autocorrelation, Lagrangian integral time (Taylor's I), initial temperature gradient, time-dependent effective diffusivity."
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I ch04_extracted.py (the chapter listing extracted from the HTML by _editorial/tmp/ch04_check_code.py and run in a fresh process; stdout compared byte for byte with the printed block)",
+    "stdout_matches_printed": true
+  }
+}
