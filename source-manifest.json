@@ -42,9 +42,9 @@
     },
     {
       "order": 6,
-      "title": "Equations of fluid motion: continuity, momentum, pressure, scalars, and vorticity",
+      "title": "Equations of fluid motion: continuity, momentum, pressure, scalars and vorticity",
       "lectures": "14-16",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 7,

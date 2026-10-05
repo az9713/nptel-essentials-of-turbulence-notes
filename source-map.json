@@ -188,6 +188,171 @@
       "teaching_construction": "Six original exercises with full solutions: derive and compute, counterexample, check an assumption, compute, derive, judge a design.",
       "evidence_class": "engineering check",
       "chapter": "chapter-05-length-scales-in-turbulent-flows.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None (the slides' jet records motivate the choice of a jet).",
+      "research_extension": "U.S. Standard Atmosphere 1976, Table 10, p. 20: sea-level rho, mu, nu, c.",
+      "teaching_construction": "Formal model (continuum, constant density, Newtonian, conserved passive scalar); running case of one air jet at the nozzle (25 mm, 56 m/s, Re = 9.6e4) and at a downstream station (8 m/s, u0 = 2 m/s, ell0 = 0.1 m, eta = 79 micrometres).",
+      "evidence_class": "definition",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "A turbulent velocity signal and its smooth mean",
+      "video_id": "l9Ol7qsyRCg",
+      "start": 71.12,
+      "end": 711.66,
+      "lecture_material": "Centreline U1(t) record (Tong and Warhaft 1995 per caption), 25 % fluctuations, not periodic, wide range of time scales, 'stable'; mean profile at Re = 95,500 (Hussein, Capp, George 1994 per caption), smooth, close to laminar shape; enhanced mixing; Re = UL/nu.",
+      "research_extension": "None.",
+      "teaching_construction": "Framing question (which equations govern U(x,t)); deterministic equations versus irregular solutions; definition of the mean by pointer to chapter 7.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "The continuum hypothesis and the two descriptions of a flow",
+      "video_id": "l9Ol7qsyRCg",
+      "start": 711.66,
+      "end": 1102.3,
+      "lecture_material": "Continuum hypothesis, Kn = lambda/l << 1 with lambda = 1e-9 m and l = 1e-4 m; Eulerian and Lagrangian fields (X+, Y, rho+, U+); material derivative; material points, lines, surfaces, volumes; no mass flux across a material surface.",
+      "research_extension": "U.S. Standard Atmosphere 1976: mean-free-path definition (section 1.3.8, eq. 47, p. 17) and sea-level mean free path 6.6328e-8 m and number density 2.5470e25 m^-3 (Table 10, p. 20).",
+      "teaching_construction": "Correction of the slide value (spacing 3.4e-9 m versus mean free path 6.6e-8 m); Kn at the Kolmogorov scale of the running case (8.4e-4); chain-rule derivation of D/Dt; probe example.",
+      "evidence_class": "definition",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Conservation of mass and the incompressible approximation",
+      "video_id": "l9Ol7qsyRCg",
+      "start": 1102.3,
+      "end": 1328.19,
+      "lecture_material": "Continuity equation (slide eq. 1); material and specific-volume forms (slide eq. 2); incompressible flow gives div U = 0 (solenoidal); incompressibility defined as density independent of pressure.",
+      "research_extension": "Speed of sound 340.29 m/s (U.S. Standard Atmosphere Table 10).",
+      "teaching_construction": "Reading of div U as fractional volume rate; D rho/Dt = 0 versus rho constant; low-Mach estimate |div U| ~ Ma^2 U/L and drho/rho ~ Ma^2/2; running-case values 1.4 % (nozzle) and 3.5e-5 (station).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Momentum, the Newtonian stress and the Navier-Stokes equations",
+      "video_id": "l9Ol7qsyRCg",
+      "start": 1328.19,
+      "end": 1602.08,
+      "lecture_material": "Newton's second law; surface and body forces; symmetric stress tensor; momentum equation (slide eq. 3); Newtonian stress split into isotropic and deviatoric parts (slide eq. 4).",
+      "research_extension": "None.",
+      "teaching_construction": "Trace of the viscous stress is 2 mu div U (deviatoric only when div U = 0).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Momentum, the Newtonian stress and the Navier-Stokes equations (continued)",
+      "video_id": "OjW3S1VSadk",
+      "start": 5.87,
+      "end": 642.52,
+      "lecture_material": "Substitution of the stress into the momentum equation using continuity; incompressible Navier-Stokes equations (slide eq. 5); impermeability and no-slip conditions; Euler equations; Euler solutions differ from vanishing-viscosity NS solutions; Euler equations still used.",
+      "research_extension": "None.",
+      "teaching_construction": "Index derivation showing where continuity enters; four equations for four unknowns; backward link to chapter 5's singular-perturbation section.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Pressure is fixed by the constraint of zero divergence",
+      "video_id": "OjW3S1VSadk",
+      "start": 642.52,
+      "end": 1314.29,
+      "lecture_material": "Pressure acts like a body force with no connection to density; four equations, four unknowns, no pressure equation; divergence of momentum gives the Poisson equation (slide eq. 6); Poisson equation necessary and sufficient for a solenoidal field to remain solenoidal; solution procedure (assume p, correct by Poisson).",
+      "research_extension": "None.",
+      "teaching_construction": "Evolution equation for div U (6.11) and the necessity/sufficiency argument with its two conditions; wall Neumann condition (6.13); free-space Green's-function solution and non-locality (6.14); magnitude p ~ rho u0^2 = 4.9 Pa. Uniqueness in the sufficiency argument taken from the maximum principle (6.16) with Gamma = nu.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Conserved passive scalars and their bounds",
+      "video_id": "OjW3S1VSadk",
+      "start": 1314.29,
+      "end": 1655.27,
+      "lecture_material": "Conserved passive scalar equation (slide eq. 7); temperature and mixture fraction, thermal and mass diffusivity; boundedness phi_min <= phi <= phi_max; passive (temperature) versus active (reacting species) in the lecture's usage; summary of the equation set.",
+      "research_extension": "None.",
+      "teaching_construction": "Separation of 'conserved' and 'passive'; heated-jet example (5 K, 1.7 % density change); maximum-principle statement (6.16) for a bounded region or periodic box, with continuity on the closed region, proof and conditions; conservative versus advective form; pointer to the discrete counterexample (exercise 3).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "The vorticity equation and vortex stretching",
+      "video_id": "zKfqomYsmRs",
+      "start": 73.89,
+      "end": 811.99,
+      "lecture_material": "Vorticity as curl of U (slide eq. 8); turbulence is rotational; curl of NS with the vector identity for the convective term (slide eq. 9); pressure term vanishes; vortex stretching stretches material lines aligned with omega; stretching vanishes in 2D; 2D turbulence vastly different from 3D (slide).",
+      "research_extension": "Boffetta and Ecke 2012: 2D turbulence never strictly realized but approximates large-scale atmosphere and oceans (p. 428); enstrophy bound dZ/dt = -2 nu P, energy dissipation vanishes as nu -> 0, inverse energy cascade, contrast with 3D vortex stretching (p. 430).",
+      "teaching_construction": "Baroclinic term shown to vanish only for constant density; material-line equation (6.19) and the Cauchy-type correspondence for nu = 0; enstrophy equation (6.20); 2D enstrophy bound (6.21) derived; running-case vorticity ratio 117.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Rates of strain and rotation",
+      "video_id": "zKfqomYsmRs",
+      "start": 811.99,
+      "end": 1054.47,
+      "lecture_material": "Decomposition of the velocity gradient (slide eq. 10); S_ij and Omega_ij (slide eqs. 11-12); tau_ij = -p delta_ij + 2 mu S_ij, viscous stress independent of rotation; omega_i = -eps_ijk Omega_jk (slide eq. 13); Omega_ij a tensor, omega_i not.",
+      "research_extension": "Hunt, Wray and Moin 1988 (p. 196, eqs. 2.1-2.2): II = du_i/dx_j du_j/dx_i = E_ij^2 - omega_i^2/2; eddy zones where II < -II_E, plus a pressure-minimum criterion.",
+      "teaching_construction": "Sign check of (6.24) and its inverse; pseudovector argument with det(a); (omega.grad)U = S omega and the stretching/tilting split; Poisson right side as S:S - |omega|^2/2 (6.26) with rigid-rotation and plane-strain limit checks; box-average balance (6.27) and eps = nu <omega'^2> for homogeneous fluctuations; running-case rms vorticity 2.3e3 1/s.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Reynolds-number similarity",
+      "video_id": "zKfqomYsmRs",
+      "start": 1054.47,
+      "end": 1485.8,
+      "lecture_material": "Transformation-properties figure; two experiments with different time, place, orientation, platform, fluid and scale; scaling with U0 (script U) and L0 (script L); scaled continuity, momentum and Poisson equations (slide eq. 14); Re the only parameter; identical scaled fields for equal Re and identical ICs and BCs; scaled Euler equations scale invariant.",
+      "research_extension": "None.",
+      "teaching_construction": "Scaled pressure and the scalar's 1/(Re Sc); three boundaries (model approximations, identical scaled data, statistics for turbulent flows); half-scale air model at Ma = 0.33.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Invariance under changes of frame and time reversal",
+      "video_id": "zKfqomYsmRs",
+      "start": 1485.8,
+      "end": 1736.74,
+      "lecture_material": "Translation (slide eq. 15); rotation and reflection with direction cosines (slide eq. 16); time reversal changes the sign of the viscous term, Euler invariant (slide eq. 17); Galilean invariance (slide eq. 18).",
+      "research_extension": "None.",
+      "teaching_construction": "Chain-rule proof of Galilean invariance (6.31); accelerating frame absorbed into pressure; derivation of the rotating-frame equation (6.32) from the rotation of frame-fixed vectors, with Coriolis and centrifugal terms; link to chapter 5's Coriolis parameter; Table 6.1.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Executable check of the identities and of the pressure equation",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "NumPy spectral program on a periodic box: random solenoidal field; checks of div U, (6.24), (6.25), (6.26), (6.27); divergence tendency with Poisson pressure and with p = 0; Taylor-Green exact pressure; 2D versus 3D stretching; failure test without the projection.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "What the equations assume and what they do not establish",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Boffetta and Ecke 2012, p. 428 (2D never strictly realized).",
+      "teaching_construction": "List of the four approximations with their running-case error measures; status of each derived result; pointers to chapters 7, 8, 9. Closing statement of what the reader can now do.",
+      "evidence_class": "model",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercise 6 uses the time-reversal transformation of the slides.",
+      "research_extension": "Exercise 2 uses the Standard Atmosphere values.",
+      "teaching_construction": "Six original exercises with full solutions: derive and check a limit (rotation and strain pressures), compute and check assumptions (station), counterexample (central-difference scalar overshoot), derive (Coriolis term and the rotation axis), design (half-scale model), judge a claim (Taylor-Green under time reversal).",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-06-equations-of-fluid-motion.html"
     }
   ]
 }

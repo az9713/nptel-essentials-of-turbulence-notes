@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-05T15:33:01.478447+00:00",
+  "checked_at_utc": "2026-10-05T17:10:43.737991+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 5,
-    "local_links_checked": 50,
-    "timestamps_checked": 11,
+    "html_files": 7,
+    "local_links_checked": 79,
+    "timestamps_checked": 28,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -30,6 +30,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-05-length-scales-in-turbulent-flows.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 648,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-06-equations-of-fluid-motion.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 648,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-06-equations-of-fluid-motion.html",
         "viewport": 390
       },
       {
