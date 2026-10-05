@@ -1,0 +1,818 @@
+{
+  "course": "Essentials of Turbulence",
+  "provider": "NPTEL, IIT Bombay",
+  "instructor": "Prof. Abhilash J. Chandy",
+  "term": "January 2026",
+  "slug": "nptel-essentials-of-turbulence-notes",
+  "playlist": "PLOzRYVm0a65e-DeX7ubGuWE_yBp9psdW7",
+  "format": "HTML",
+  "publication": "local only",
+  "status": "in progress",
+  "scope_note": "Lectures 1-56 are grouped into 20 chapters. Lectures 57-60 (practice problems) and tutorials 1-2 supply exercises. The 4-minute course introduction is out of scope.",
+  "chapters": [
+    {
+      "order": 1,
+      "title": "Why turbulence resists prediction, and why it matters",
+      "lectures": "1-2",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 2,
+      "title": "Descriptions, definitions, and a short history of turbulence",
+      "lectures": "3-5",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 3,
+      "title": "Characteristics of turbulent flow and methods of analysis",
+      "lectures": "6-7",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 4,
+      "title": "The origin of turbulence and turbulent diffusivity",
+      "lectures": "8-9",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 5,
+      "title": "Length scales in turbulent flows",
+      "lectures": "10-13",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 6,
+      "title": "Equations of fluid motion: continuity, momentum, pressure, scalars, and vorticity",
+      "lectures": "14-16",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 7,
+      "title": "Random variables and probability density functions",
+      "lectures": "17-19",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 8,
+      "title": "Random processes, spectra, and random fields",
+      "lectures": "20-22",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 9,
+      "title": "Reynolds equations, closure, and turbulent viscosity",
+      "lectures": "23-25",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 10,
+      "title": "The energy cascade and Kolmogorov hypotheses",
+      "lectures": "26-28",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 11,
+      "title": "The energy spectrum",
+      "lectures": "29-30",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 12,
+      "title": "Fourier modes and their evolution",
+      "lectures": "31-33",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 13,
+      "title": "Spectral energy: Fourier modes, the velocity spectrum tensor, and one-dimensional spectra",
+      "lectures": "34-36",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 14,
+      "title": "Kolmogorov, model, and dissipation spectra",
+      "lectures": "37-40",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 15,
+      "title": "Reynolds-number effects and the energy-spectrum balance",
+      "lectures": "41-42",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 16,
+      "title": "Modeling approaches and criteria for appraising models",
+      "lectures": "43-45",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 17,
+      "title": "Direct numerical simulation: pseudo-spectral methods and cost",
+      "lectures": "46-48",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 18,
+      "title": "Turbulent viscosity models",
+      "lectures": "49-49",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 19,
+      "title": "Large-eddy simulation: conceptual steps and filtering",
+      "lectures": "50-53",
+      "chapter_status": "pending"
+    },
+    {
+      "order": 20,
+      "title": "Filtered equations, the Smagorinsky model, and LES in wavenumber space",
+      "lectures": "54-56",
+      "chapter_status": "pending"
+    }
+  ],
+  "lectures": [
+    {
+      "id": "xJD2ytlMtBM",
+      "title": "Week 1 : Lecture 1 : The “despair” in turbulence",
+      "lecture_number": 1,
+      "kind": "lecture",
+      "duration": 1551,
+      "url": "https://www.youtube.com/watch?v=xJD2ytlMtBM",
+      "chapter_order": 1,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "cEvlgNdHeqg",
+      "title": "Week 1 : Lecture 2 : Why Study Turbulence?",
+      "lecture_number": 2,
+      "kind": "lecture",
+      "duration": 1701,
+      "url": "https://www.youtube.com/watch?v=cEvlgNdHeqg",
+      "chapter_order": 1,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "Mk7wOgkG1sc",
+      "title": "Week 1 : Lecture 3 : Some descriptions of turbulence",
+      "lecture_number": 3,
+      "kind": "lecture",
+      "duration": 1759,
+      "url": "https://www.youtube.com/watch?v=Mk7wOgkG1sc",
+      "chapter_order": 2,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "UuNnYCtl8KM",
+      "title": "Week 1 : Lecture 4 : How to define turbulence?",
+      "lecture_number": 4,
+      "kind": "lecture",
+      "duration": 1546,
+      "url": "https://www.youtube.com/watch?v=UuNnYCtl8KM",
+      "chapter_order": 2,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "AjSItNLIBxU",
+      "title": "Week 1 : Lecture 5 : A brief history of turbulence",
+      "lecture_number": 5,
+      "kind": "lecture",
+      "duration": 1808,
+      "url": "https://www.youtube.com/watch?v=AjSItNLIBxU",
+      "chapter_order": 2,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "doIzWHHabxc",
+      "title": "Week 2 : Lecture 6 : Characteristics of turbulent flow",
+      "lecture_number": 6,
+      "kind": "lecture",
+      "duration": 1832,
+      "url": "https://www.youtube.com/watch?v=doIzWHHabxc",
+      "chapter_order": 3,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "PVK2xepz6mg",
+      "title": "Week 2 : Lecture 7 : Methods of analysis",
+      "lecture_number": 7,
+      "kind": "lecture",
+      "duration": 1608,
+      "url": "https://www.youtube.com/watch?v=PVK2xepz6mg",
+      "chapter_order": 3,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "sgsJOZTsR14",
+      "title": "Week 2 : Lecture 8 : Origin of turbulence",
+      "lecture_number": 8,
+      "kind": "lecture",
+      "duration": 1807,
+      "url": "https://www.youtube.com/watch?v=sgsJOZTsR14",
+      "chapter_order": 4,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "Pukxt4dxleU",
+      "title": "Week 2 : Lecture 9 : Diffusivity of turbulence",
+      "lecture_number": 9,
+      "kind": "lecture",
+      "duration": 1641,
+      "url": "https://www.youtube.com/watch?v=Pukxt4dxleU",
+      "chapter_order": 4,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "tg6XK8hHE0I",
+      "title": "Week 2 : Lecture 10 : Length scales in turbulent flows - Part A",
+      "lecture_number": 10,
+      "kind": "lecture",
+      "duration": 1620,
+      "url": "https://www.youtube.com/watch?v=tg6XK8hHE0I",
+      "chapter_order": 5,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "b6hUpXWUKtU",
+      "title": "Week 3 : Lecture 11 : Length scales in turbulent flows - Part B",
+      "lecture_number": 11,
+      "kind": "lecture",
+      "duration": 1577,
+      "url": "https://www.youtube.com/watch?v=b6hUpXWUKtU",
+      "chapter_order": 5,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "y6YEet19eag",
+      "title": "Week 3 : Lecture 12 : Length scales in turbulent flows - Part C",
+      "lecture_number": 12,
+      "kind": "lecture",
+      "duration": 1598,
+      "url": "https://www.youtube.com/watch?v=y6YEet19eag",
+      "chapter_order": 5,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "Of4gEhpBg1c",
+      "title": "Week 3 : Lecture 13 : Length scales in turbulent flows - Part D",
+      "lecture_number": 13,
+      "kind": "lecture",
+      "duration": 1708,
+      "url": "https://www.youtube.com/watch?v=Of4gEhpBg1c",
+      "chapter_order": 5,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "l9Ol7qsyRCg",
+      "title": "Week 3 : Lecture 14 : Nature of turbulent flows and Continuity equation",
+      "lecture_number": 14,
+      "kind": "lecture",
+      "duration": 1631,
+      "url": "https://www.youtube.com/watch?v=l9Ol7qsyRCg",
+      "chapter_order": 6,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "OjW3S1VSadk",
+      "title": "Week 3 : Lecture 15 : Momentum equations, Pressure and Conserved scalars",
+      "lecture_number": 15,
+      "kind": "lecture",
+      "duration": 1684,
+      "url": "https://www.youtube.com/watch?v=OjW3S1VSadk",
+      "chapter_order": 6,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "zKfqomYsmRs",
+      "title": "Week 4 : Lecture 16 : Vorticity equation, Rates of strain and rotation",
+      "lecture_number": 16,
+      "kind": "lecture",
+      "duration": 1760,
+      "url": "https://www.youtube.com/watch?v=zKfqomYsmRs",
+      "chapter_order": 6,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "B4vvx8-C6XU",
+      "title": "Week 4 : Lecture 17 : Random nature of turbulence",
+      "lecture_number": 17,
+      "kind": "lecture",
+      "duration": 1594,
+      "url": "https://www.youtube.com/watch?v=B4vvx8-C6XU",
+      "chapter_order": 7,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "GBMMb52KYe0",
+      "title": "Week 4 : Lecture 18 : Characterization of random variables and examples of PDF",
+      "lecture_number": 18,
+      "kind": "lecture",
+      "duration": 1645,
+      "url": "https://www.youtube.com/watch?v=GBMMb52KYe0",
+      "chapter_order": 7,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "pEfyjFekknE",
+      "title": "Week 4 : Lecture 19 : Joint random variables, Joint PDFs and Conditional PDFs",
+      "lecture_number": 19,
+      "kind": "lecture",
+      "duration": 1594,
+      "url": "https://www.youtube.com/watch?v=pEfyjFekknE",
+      "chapter_order": 7,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "ku5aCqoMPT8",
+      "title": "Week 4 : Lecture 20 : Random processes",
+      "lecture_number": 20,
+      "kind": "lecture",
+      "duration": 1646,
+      "url": "https://www.youtube.com/watch?v=ku5aCqoMPT8",
+      "chapter_order": 8,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "Xg7KpnjVBVQ",
+      "title": "Week 5 : Lecture 21 : Frequency spectrum and Gaussian process",
+      "lecture_number": 21,
+      "kind": "lecture",
+      "duration": 1601,
+      "url": "https://www.youtube.com/watch?v=Xg7KpnjVBVQ",
+      "chapter_order": 8,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "dH3Z9FZPOQ8",
+      "title": "Week 5 : Lecture 22 : Random fields and Wavenumber spectra",
+      "lecture_number": 22,
+      "kind": "lecture",
+      "duration": 1784,
+      "url": "https://www.youtube.com/watch?v=dH3Z9FZPOQ8",
+      "chapter_order": 8,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "n8ixX5Fl60k",
+      "title": "Week 5 : Lecture 23 : Reynolds equations",
+      "lecture_number": 23,
+      "kind": "lecture",
+      "duration": 1682,
+      "url": "https://www.youtube.com/watch?v=n8ixX5Fl60k",
+      "chapter_order": 9,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "xgKgXoLdHxc",
+      "title": "Week 5 : Lecture 24 : Closure problem in turbulence",
+      "lecture_number": 24,
+      "kind": "lecture",
+      "duration": 1616,
+      "url": "https://www.youtube.com/watch?v=xgKgXoLdHxc",
+      "chapter_order": 9,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "DANGQ4_bG80",
+      "title": "Week 5 : Lecture 25 : Gradient diffusion and Turbulent viscosity hypotheses",
+      "lecture_number": 25,
+      "kind": "lecture",
+      "duration": 1782,
+      "url": "https://www.youtube.com/watch?v=DANGQ4_bG80",
+      "chapter_order": 9,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "J_2qmhA5KkI",
+      "title": "Week 6 : Lecture 26 : Energy cascade",
+      "lecture_number": 26,
+      "kind": "lecture",
+      "duration": 1659,
+      "url": "https://www.youtube.com/watch?v=J_2qmhA5KkI",
+      "chapter_order": 10,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "HlG3DmlNklE",
+      "title": "Week 6 : Lecture 27 : Kolmogorov hypotheses Part 1",
+      "lecture_number": 27,
+      "kind": "lecture",
+      "duration": 1655,
+      "url": "https://www.youtube.com/watch?v=HlG3DmlNklE",
+      "chapter_order": 10,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "Lxw-20OCSa8",
+      "title": "Week 6 : Lecture 28 : Kolmogorov hypotheses Part 2",
+      "lecture_number": 28,
+      "kind": "lecture",
+      "duration": 1806,
+      "url": "https://www.youtube.com/watch?v=Lxw-20OCSa8",
+      "chapter_order": 10,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "y5bCLx0FOno",
+      "title": "Week 6 : Lecture 29 : Energy spectrum Part 1",
+      "lecture_number": 29,
+      "kind": "lecture",
+      "duration": 1587,
+      "url": "https://www.youtube.com/watch?v=y5bCLx0FOno",
+      "chapter_order": 11,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "S00uHOMJhr0",
+      "title": "Week 6 : Lecture 30 : Energy spectrum Part 2",
+      "lecture_number": 30,
+      "kind": "lecture",
+      "duration": 1693,
+      "url": "https://www.youtube.com/watch?v=S00uHOMJhr0",
+      "chapter_order": 11,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "Vyci5TPEAeg",
+      "title": "Week 7 : Lecture 31 : Fourier modes and Fourier series representation",
+      "lecture_number": 31,
+      "kind": "lecture",
+      "duration": 1725,
+      "url": "https://www.youtube.com/watch?v=Vyci5TPEAeg",
+      "chapter_order": 12,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "02YD75i0Dlg",
+      "title": "Week 7 : Lecture 32 : The evolution of Fourier modes Part 1",
+      "lecture_number": 32,
+      "kind": "lecture",
+      "duration": 1652,
+      "url": "https://www.youtube.com/watch?v=02YD75i0Dlg",
+      "chapter_order": 12,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "yNcX3jeVpFY",
+      "title": "Week 7 : Lecture 33 : The evolution of Fourier modes Part 2",
+      "lecture_number": 33,
+      "kind": "lecture",
+      "duration": 1680,
+      "url": "https://www.youtube.com/watch?v=yNcX3jeVpFY",
+      "chapter_order": 12,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "-nljYKsaUwo",
+      "title": "Week 7 : Lecture 34 : The kinetic energy of Fourier modes",
+      "lecture_number": 34,
+      "kind": "lecture",
+      "duration": 1645,
+      "url": "https://www.youtube.com/watch?v=-nljYKsaUwo",
+      "chapter_order": 13,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "7UlnbxU3C2c",
+      "title": "Week 7 : Lecture 35 : Velocity spectrum tensor and Energy spectrum function",
+      "lecture_number": 35,
+      "kind": "lecture",
+      "duration": 1512,
+      "url": "https://www.youtube.com/watch?v=7UlnbxU3C2c",
+      "chapter_order": 13,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "zBnxrFMKWNI",
+      "title": "Week 8 : Lecture 36 : One-dimensional spectra and comparison of spectra",
+      "lecture_number": 36,
+      "kind": "lecture",
+      "duration": 1671,
+      "url": "https://www.youtube.com/watch?v=zBnxrFMKWNI",
+      "chapter_order": 13,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "xmAnlM6F23k",
+      "title": "Week 8 : Lecture 37 : Kolmogorov spectra",
+      "lecture_number": 37,
+      "kind": "lecture",
+      "duration": 1617,
+      "url": "https://www.youtube.com/watch?v=xmAnlM6F23k",
+      "chapter_order": 14,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "_Yz1K7cBGA0",
+      "title": "Week 8 : Lecture 38 : Model spectra",
+      "lecture_number": 38,
+      "kind": "lecture",
+      "duration": 1602,
+      "url": "https://www.youtube.com/watch?v=_Yz1K7cBGA0",
+      "chapter_order": 14,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "m8MBR4Rtz3s",
+      "title": "Week 8 : Lecture 39 : Dissipation spectra",
+      "lecture_number": 39,
+      "kind": "lecture",
+      "duration": 1628,
+      "url": "https://www.youtube.com/watch?v=m8MBR4Rtz3s",
+      "chapter_order": 14,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "FbdNzaP6nn0",
+      "title": "Week 8 : Lecture 40 : Inertial subrange and Energy-containing range",
+      "lecture_number": 40,
+      "kind": "lecture",
+      "duration": 1643,
+      "url": "https://www.youtube.com/watch?v=FbdNzaP6nn0",
+      "chapter_order": 14,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "BK_FjrzElak",
+      "title": "Week 9 : Lecture 41 : Effects of Reynolds number",
+      "lecture_number": 41,
+      "kind": "lecture",
+      "duration": 1665,
+      "url": "https://www.youtube.com/watch?v=BK_FjrzElak",
+      "chapter_order": 15,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "xwif_UjmnEc",
+      "title": "Week 9 : Lecture 42 : Energy-spectrum balance",
+      "lecture_number": 42,
+      "kind": "lecture",
+      "duration": 1663,
+      "url": "https://www.youtube.com/watch?v=xwif_UjmnEc",
+      "chapter_order": 15,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "g83gewi4rHw",
+      "title": "Week 9 : Lecture 43 : Challenges and modeling approaches",
+      "lecture_number": 43,
+      "kind": "lecture",
+      "duration": 1652,
+      "url": "https://www.youtube.com/watch?v=g83gewi4rHw",
+      "chapter_order": 16,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "81Y5cmJ82HA",
+      "title": "Week 9 : Lecture 44 : Criteria for appraising models Part 1",
+      "lecture_number": 44,
+      "kind": "lecture",
+      "duration": 1653,
+      "url": "https://www.youtube.com/watch?v=81Y5cmJ82HA",
+      "chapter_order": 16,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "y9ynLwJhGFM",
+      "title": "Week 9 : Lecture 45 : Criteria for appraising models Part 2",
+      "lecture_number": 45,
+      "kind": "lecture",
+      "duration": 1614,
+      "url": "https://www.youtube.com/watch?v=y9ynLwJhGFM",
+      "chapter_order": 16,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "_2bmDxF8ReU",
+      "title": "Week 10 : Lecture 46 : Pseudo-spectral methods for DNS",
+      "lecture_number": 46,
+      "kind": "lecture",
+      "duration": 1656,
+      "url": "https://www.youtube.com/watch?v=_2bmDxF8ReU",
+      "chapter_order": 17,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "PzdrdWJ5dDI",
+      "title": "Week 10 : Lecture 47 : Computational cost of DNS Part 1",
+      "lecture_number": 47,
+      "kind": "lecture",
+      "duration": 1640,
+      "url": "https://www.youtube.com/watch?v=PzdrdWJ5dDI",
+      "chapter_order": 17,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "v0UsR4MzffM",
+      "title": "Week 10 : Lecture 48 : Computational cost of DNS Part 2",
+      "lecture_number": 48,
+      "kind": "lecture",
+      "duration": 1626,
+      "url": "https://www.youtube.com/watch?v=v0UsR4MzffM",
+      "chapter_order": 17,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "GH4QRyOFlp4",
+      "title": "Week 10 : Lecture 49 : Turbulent Viscosity Models",
+      "lecture_number": 49,
+      "kind": "lecture",
+      "duration": 1781,
+      "url": "https://www.youtube.com/watch?v=GH4QRyOFlp4",
+      "chapter_order": 18,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "IwqbEzn8LNE",
+      "title": "Week 10 : Lecture 50 : Four conceptual steps in LES",
+      "lecture_number": 50,
+      "kind": "lecture",
+      "duration": 1597,
+      "url": "https://www.youtube.com/watch?v=IwqbEzn8LNE",
+      "chapter_order": 19,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "jKcNOQhuED0",
+      "title": "Week 11 : Lecture 51 : Filtering in one-dimension",
+      "lecture_number": 51,
+      "kind": "lecture",
+      "duration": 1599,
+      "url": "https://www.youtube.com/watch?v=jKcNOQhuED0",
+      "chapter_order": 19,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "URI2YAfd7MY",
+      "title": "Week 11 : Lecture 52 : Spectral representation of LES filter",
+      "lecture_number": 52,
+      "kind": "lecture",
+      "duration": 1675,
+      "url": "https://www.youtube.com/watch?v=URI2YAfd7MY",
+      "chapter_order": 19,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "3mEFTyjWYI0",
+      "title": "Week 11 : Lecture 53 : Filtering in three-dimension",
+      "lecture_number": 53,
+      "kind": "lecture",
+      "duration": 1593,
+      "url": "https://www.youtube.com/watch?v=3mEFTyjWYI0",
+      "chapter_order": 19,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "d2UiVIgUbGo",
+      "title": "Week 11 : Lecture 54 : Filtered conservation equations",
+      "lecture_number": 54,
+      "kind": "lecture",
+      "duration": 1555,
+      "url": "https://www.youtube.com/watch?v=d2UiVIgUbGo",
+      "chapter_order": 20,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "ZHqm6yAAuPE",
+      "title": "Week 11 : Lecture 55 : Smagorinsky model",
+      "lecture_number": 55,
+      "kind": "lecture",
+      "duration": 1518,
+      "url": "https://www.youtube.com/watch?v=ZHqm6yAAuPE",
+      "chapter_order": 20,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "MCLApXrqnbs",
+      "title": "Week 12 : Lecture 56 : LES in wavenumber space",
+      "lecture_number": 56,
+      "kind": "lecture",
+      "duration": 1730,
+      "url": "https://www.youtube.com/watch?v=MCLApXrqnbs",
+      "chapter_order": 20,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "7UyTD2lT0sI",
+      "title": "Week 12 : Lecture 57 : Practice Problems Part 1",
+      "lecture_number": 57,
+      "kind": "practice problems",
+      "duration": 1612,
+      "url": "https://www.youtube.com/watch?v=7UyTD2lT0sI",
+      "chapter_order": null,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "nBZWHP4w8fY",
+      "title": "Week 12 : Lecture 58 : Practice Problems Part 2",
+      "lecture_number": 58,
+      "kind": "practice problems",
+      "duration": 1876,
+      "url": "https://www.youtube.com/watch?v=nBZWHP4w8fY",
+      "chapter_order": null,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "iX5PG6TPABQ",
+      "title": "Week 12 : Lecture 59 : Practice Problems Part 3",
+      "lecture_number": 59,
+      "kind": "practice problems",
+      "duration": 1726,
+      "url": "https://www.youtube.com/watch?v=iX5PG6TPABQ",
+      "chapter_order": null,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "8-WExK8ejdQ",
+      "title": "Week 12 : Lecture 60 : Practice Problems Part 4",
+      "lecture_number": 60,
+      "kind": "practice problems",
+      "duration": 1754,
+      "url": "https://www.youtube.com/watch?v=8-WExK8ejdQ",
+      "chapter_order": null,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "fgMG7Jd89pw",
+      "title": "Essentials of Turbulence - Tutorial 1 - Practice Problem",
+      "lecture_number": null,
+      "kind": "tutorial",
+      "duration": 3457,
+      "url": "https://www.youtube.com/watch?v=fgMG7Jd89pw",
+      "chapter_order": null,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    },
+    {
+      "id": "uWLlkjjBaYo",
+      "title": "Essentials of Turbulence - Tutorial 2 - Practice Problem",
+      "lecture_number": null,
+      "kind": "tutorial",
+      "duration": 2200,
+      "url": "https://www.youtube.com/watch?v=uWLlkjjBaYo",
+      "chapter_order": null,
+      "transcript_status": "local machine transcription (faster-whisper small.en)",
+      "frames_status": "one frame per 30 s, private"
+    }
+  ]
+}
