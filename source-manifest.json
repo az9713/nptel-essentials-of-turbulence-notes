@@ -48,9 +48,9 @@
     },
     {
       "order": 7,
-      "title": "Random variables and probability density functions",
+      "title": "Random variables and probability density functions: from repeated experiments to joint and conditional statistics",
       "lectures": "17-19",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 8,

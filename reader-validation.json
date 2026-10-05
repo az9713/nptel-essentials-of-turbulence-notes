@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-05T17:41:05.568147+00:00",
+  "checked_at_utc": "2026-10-05T19:34:49.003647+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 7,
-    "local_links_checked": 92,
-    "timestamps_checked": 29,
+    "html_files": 8,
+    "local_links_checked": 120,
+    "timestamps_checked": 43,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -66,6 +66,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-06-equations-of-fluid-motion.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 929,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-07-random-variables-and-probability-density-functions.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 929,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-07-random-variables-and-probability-density-functions.html",
         "viewport": 390
       },
       {
