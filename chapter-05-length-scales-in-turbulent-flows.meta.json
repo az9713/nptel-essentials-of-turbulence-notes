@@ -1,0 +1,383 @@
+{
+  "chapter": 5,
+  "title": "Length scales in turbulent flows: from boundary-layer depth to the Kolmogorov scales",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "tg6XK8hHE0I",
+      "lecture_number": 10,
+      "media_sha256": "6273315a2dc1fce5ca3bc983e7cf4bb6db0836af214571136a21a25b7ded8439",
+      "duration_seconds": 1619.0935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1590.85
+    },
+    {
+      "video_id": "b6hUpXWUKtU",
+      "lecture_number": 11,
+      "media_sha256": "4748ba92b2bd5a0848543121d066fb64b7ad49b38e3c6b225496e6db576ef5ab",
+      "duration_seconds": 1576.2135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1548.12
+    },
+    {
+      "video_id": "y6YEet19eag",
+      "lecture_number": 12,
+      "media_sha256": "4c05079302b4e5336ae5d26e829d53abce2bf4cb7896578ae4d64012069ea605",
+      "duration_seconds": 1597.2935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1568.94
+    },
+    {
+      "video_id": "Of4gEhpBg1c",
+      "lecture_number": 13,
+      "media_sha256": "c68bb368a9a7eff23bc7cc7bfdd2d7b07f972f2e1c8c50741c939af61976ea28",
+      "duration_seconds": 1707.8335,
+      "transcript_first_start_seconds": 6.75,
+      "transcript_last_end_seconds": 1679.64
+    }
+  ],
+  "frames_viewed": {
+    "tg6XK8hHE0I": [
+      "f0012",
+      "f0019",
+      "f0024",
+      "f0034",
+      "f0035",
+      "f0049",
+      "f0051"
+    ],
+    "b6hUpXWUKtU": [
+      "f0016",
+      "f0020",
+      "f0024",
+      "f0030",
+      "f0035",
+      "f0039",
+      "f0043"
+    ],
+    "y6YEet19eag": [
+      "f0010",
+      "f0017",
+      "f0025",
+      "f0045"
+    ],
+    "Of4gEhpBg1c": [
+      "f0010",
+      "f0021",
+      "f0033",
+      "f0035",
+      "f0046",
+      "f0048"
+    ]
+  },
+  "source_uncertainties": [
+    "Unverified (named in reader text, not opened on the page): Tennekes and Lumley, A First Course in Turbulence (1972), to which the lecture attributes the atmospheric example, the figures (slide captions Figure 1.1 to 1.6) and several statements; the book is not available. The chapter attributes these items to the lecture and uses none of them as a verified source.",
+    "Unverified: Taylor (1935). The chapter names it only as the attribution made by McComb et al. (2015, accepted manuscript p. 2), and says so; the 1935 paper was not accessible (publisher PDF behind a login on 2026-10-05).",
+    "Unverified: R. W. Stewart (1969) film sequence. Named only as the attribution printed in the slide caption of the jet sketch (Of4gEhpBg1c f0046); the chapter says 'the caption attributes'.",
+    "Lecture-stated values not checked against a primary source: atmospheric boundary-layer thickness about 10^3 m; turbulence velocity about 1/30 of the wind speed; L_t = (1/4) u/f; u/U of order 10^-2 over a wide range of Re; Prandtl number of air 0.73; nu = 0.15 cm^2/s.",
+    "The slides give Re of order 10^7 for the atmospheric case; with the slide values u = 0.3 m/s, f = 10^-4 1/s, nu = 1.5e-5 m^2/s the value is 6e7. The spoken estimate 'approximately 1000' for L_t/L_m (from sqrt(10^7)) is not used; the chapter uses 7.7e3 from the stated values.",
+    "The lecture describes eta*v/nu = 1 as an assumption made by Kolmogorov; with the definitions of slide eq. 22 it is an identity, and Kolmogorov's paper (p. 12) obtains it by choice of units. The chapter states the identity and separates the physical claim.",
+    "The spoken claim that Kolmogorov called these scales 'inner scales' in his paper is not supported by the 1991 English translation, which does not use that term; the slide attributes the name to 'the Russian literature'. The chapter omits the name.",
+    "Slide eq. 20 states that the turbulent mass-flow deficit is of order rho*u*l. The chapter states the assumption this requires (velocity deficit of order u across most of the layer) and checks it against the wall-stress interpretation; the assumption itself is not verified against data.",
+    "ASR spellings corrected (slide text and standard spelling):'Tannicus and Lavelli', 'Ternicus and Lumley', 'Tentacles in Lambda' = Tennekes and Lumley; 'Panel's boundary layer equations' = Prandtl's; 'Kommogorov', 'chromograph' = Kolmogorov; 'landscape' = length scale; 'new' = nu; 'round samples'/'rounds numbers' = Reynolds numbers; 'lambda flow' = laminar flow; 'Buckingham Pies' = Buckingham pi.",
+    "Timestamps are section anchors from local speech-recognition segment times; they locate topic changes to within a few seconds."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Running-case values (wind speed, turbulence velocity, viscosity, layer thickness) are taken from lecture 10.",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model of mean-flow, large-eddy and fluid parameters; meaning of the order-of-magnitude symbol; subscripted Reynolds numbers.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "An imposed time scale fixes the depth of the atmospheric boundary layer",
+      "video_id": "tg6XK8hHE0I",
+      "start": 5.87,
+      "end": 761.61,
+      "lecture_material": "Coriolis parameter and imposed time 1/f; laminar estimate L_m^2 ~ nu T = 40 cm; eddy diffusivity K ~ uL; L_t ~ uT = 3 km; L_t = u/(4f) correlation; large eddies comparable to flow width.",
+      "research_extension": "AMS Glossary: f = 2 Omega sin(latitude), Omega = 7.2921e-5 rad/s; f = 9.4e-5 1/s at 40 degrees.",
+      "teaching_construction": "Hinge that K grows with depth (T^1 versus T^(1/2)); dimensional reading u/f; buoyancy boundary.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "The ratio of the two depths is the square root of a Reynolds number",
+      "video_id": "tg6XK8hHE0I",
+      "start": 761.61,
+      "end": 1165.58,
+      "lecture_material": "L_t/L_m ~ (u^2/(f nu))^(1/2) = Re^(1/2); imposed-length case Re ~ T_m/T_t; Pr of air 0.73; turbulence a more effective diffusion agent.",
+      "research_extension": "None.",
+      "teaching_construction": "Numerical check 6e7 and 7.7e3 against the direct ratio; explanation of first power versus square root.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Inertia and viscosity act at different lengths",
+      "video_id": "tg6XK8hHE0I",
+      "start": 1165.58,
+      "end": 1590.85,
+      "lecture_material": "Range of scales bounded by flow size and viscosity; steady Navier-Stokes scale estimates U^2/L and nu U/L^2; ratio Re; no-slip prevents neglecting viscosity.",
+      "research_extension": "Blasius 1908 (NACA TM 1256, p. 3): friction gains influence when the friction constant is of order the squared thickness.",
+      "teaching_construction": "Singular-perturbation explanation; exactly solvable advection-diffusion model problem (5.7); fetch construction showing the viscous length after fetch UT equals L_m.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Inertia and viscosity act at different lengths (continued)",
+      "video_id": "b6hUpXWUKtU",
+      "start": 5.87,
+      "end": 423.14,
+      "lecture_material": "Viscous length l chosen so that viscous and inertial terms balance; l/L ~ Re^(-1/2).",
+      "research_extension": "As above.",
+      "teaching_construction": "Explanation of the exponent -1/2 versus -1 by the directions of the two derivatives.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Diffusive and convective lengths in laminar and turbulent boundary layers",
+      "video_id": "b6hUpXWUKtU",
+      "start": 423.14,
+      "end": 919.58,
+      "lecture_material": "Transverse diffusive length and convective length; slender shear flows; Prandtl approximation l/L -> 0; turbulent dl/dt ~ u, t ~ L/U, l/L ~ u/U; laminar l ~ (nu t)^(1/2); relations are not spreading-rate formulas.",
+      "research_extension": "None.",
+      "teaching_construction": "Crossover Re = (U/u)^2; running-case fetch U/f reproducing u/f, with the statement that this is bookkeeping, not confirmation.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Skin friction: why the turbulent drag coefficient is larger",
+      "video_id": "b6hUpXWUKtU",
+      "start": 919.58,
+      "end": 1548.12,
+      "lecture_material": "D ~ rho U^2 l, C_d ~ 2 Re^(-1/2) laminar; D ~ rho u U l, C_d ~ 2 (u/U)^2 turbulent; turbulence level varies slowly with Re; drag-coefficient figure with transition sensitivity.",
+      "research_extension": "Blasius 1908 (NACA TM 1256, p. 18): two-sided drag 1.327 b (mu rho l U^3)^(1/2), giving C_d = 1.327 Re^(-1/2) per side.",
+      "teaching_construction": "Wall-stress consistency checks (laminar tau_w ~ mu U/l; turbulent tau_w ~ rho u^2, u as friction velocity); Table 5.1; crossover Reynolds numbers; factor-9 sensitivity to u/U.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Viscosity cannot be removed: the small scales",
+      "video_id": "y6YEet19eag",
+      "start": 5.87,
+      "end": 838.84,
+      "lecture_material": "Large eddies do the transport; nonlinear generation of small scales; viscosity prevents infinitely small scales; singular small parameter; two-bin simplification; small time scales imply supply approximately equals dissipation and statistical independence; universal equilibrium theory.",
+      "research_extension": "Kolmogorov 1941 (p. 10 footnote): cascade of pulsations until the Reynolds number of order n is small; energy of finest pulsations becomes heat. Definition of the dissipation rate (p. 12, eq. 14).",
+      "teaching_construction": "Definition of epsilon with units before use; three-step argument with hypothesis labels; comparison with the wall-forced laminar layer.",
+      "evidence_class": "hypothesis"
+    },
+    {
+      "section": "The Kolmogorov scales follow from the dimensions of the dissipation rate and the viscosity",
+      "video_id": "y6YEet19eag",
+      "start": 838.84,
+      "end": 1476.06,
+      "lecture_material": "eta = (nu^3/eps)^(1/4), tau = (nu/eps)^(1/2), v = (nu eps)^(1/4) by Buckingham pi; Re formed with eta and v equals one; small-scale motion quite viscous.",
+      "research_extension": "Kolmogorov 1941 (p. 12, eqs. 15-20): the scales and the unit-viscosity, unit-dissipation rescaling.",
+      "teaching_construction": "Exponent equations with determinant; uniqueness statement; Re_eta = 1 shown as identity with the physical claim separated; notation change tau, v -> tau_eta, u_eta; sensitivity to epsilon.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "The Kolmogorov scales follow from the dimensions of the dissipation rate and the viscosity (recap)",
+      "video_id": "Of4gEhpBg1c",
+      "start": 6.75,
+      "end": 247.21,
+      "lecture_material": "Recap of the scales and of the unit Reynolds number.",
+      "research_extension": "As above.",
+      "teaching_construction": "As above.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "An inviscid estimate of the dissipation rate",
+      "video_id": "Of4gEhpBg1c",
+      "start": 247.21,
+      "end": 986.05,
+      "lecture_material": "Energy u^2, transfer rate u/l, eps ~ u^3/l; dissipation passive; significant energy fraction lost per turnover l/u; viscous decay time l^2/nu and rate nu u^2/l^2.",
+      "research_extension": "McComb, Berera, Yoffe, Linkmann 2015: C_eps = C_eps,inf + C'/R_L, C_eps,inf = 0.468 +/- 0.006, C' = 18.9 +/- 1.3 for forced isotropic DNS up to R_L = 5875; other studies about 0.4 and 0.5; energy balance with inertial and viscous terms of the same forms. Standard definition of the integral length scale given with a pointer to chapter 8.",
+      "teaching_construction": "Ratio of viscous to inertial loss = 1/Re_l; running-case times (56 min, 2100 years) and epsilon = 2.7e-5 m^2/s^3 with its scope limit.",
+      "evidence_class": "hypothesis"
+    },
+    {
+      "section": "The scale ratios widen as the Reynolds number increases",
+      "video_id": "Of4gEhpBg1c",
+      "start": 986.05,
+      "end": 1425.36,
+      "lecture_material": "eta/l ~ Re^(-3/4), tau u/l ~ Re^(-1/2), v/u ~ Re^(-1/4); separation widens with Re; statistical independence most evident at large Re; two jets at different Re with the same nozzle.",
+      "research_extension": "Constant-dependence of the ratios using the measured C_eps.",
+      "teaching_construction": "Ratios with C_eps kept; running-case values; Figure 5.1 (computed log-axis ladder); consistency-not-proof remark on the time-scale assumption.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Energy is carried by large scales and vorticity by small scales",
+      "video_id": "Of4gEhpBg1c",
+      "start": 1425.36,
+      "end": 1679.64,
+      "lecture_material": "Vorticity has units 1/s and scales as reciprocal time; small-scale vorticity much larger; small-scale energy much smaller; most energy at large scales, most vorticity at small scales.",
+      "research_extension": "Kolmogorov 1941 (pp. 11-12, eqs. 11 and 14): eps = 15 nu <(du1/dx1)^2> under local isotropy, so the rms velocity gradient is 1/(15^(1/2) tau_eta).",
+      "teaching_construction": "Ratios Re^(1/2) and Re^(-1/2) with running-case numbers.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "A resolution budget for a direct simulation",
+      "video_id": "y6YEet19eag",
+      "start": 1476.06,
+      "end": 1568.94,
+      "lecture_material": "DNS grid size comparable to the Kolmogorov length as the first check; eta estimated from Re before a simulation.",
+      "research_extension": "Yeung, Sreenivasan, Pope 2018 (p. 064603-3): dx/eta ~ 2.96/(k_max eta), k_max eta ~ 1.5 adequate for low-order statistics, larger for higher-order statistics because of intermittency; Courant constraint with beta ~ 12. Pope 2004 (pp. 4, 5, 6): cost factor 16 per halving; CPU time 16 and memory 8 per halving; requirements grow as a power of Re; near-wall viscous region.",
+      "teaching_construction": "N ~ Re^(3/4), N^3 ~ Re^(9/4), work ~ Re^3; running-case grid 3.5e15 points.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Executable scale calculator with independent checks",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Blasius constant and k_max eta = 1.5 from the cited sources.",
+      "teaching_construction": "NumPy program: exponents from the dimension matrix, running-case scales, five assertions (depth ratio, Re_eta = 1, three ratios of (5.18)), grid counts, drag crossovers; failure test.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the estimates establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Pope 2004 (near-wall region); Yeung, Sreenivasan, Pope 2018 (intermittency).",
+      "teaching_construction": "Classification of each assumption as model, observation, hypothesis or empirical assumption; boundaries; links to later chapters.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercise 3 examines the lecture's statement about Re_eta.",
+      "research_extension": "Exercises 3 and 6 use the resolution and cost sources.",
+      "teaching_construction": "Six original exercises with full solutions: derive and compute, counterexample, check an assumption, compute, derive, judge a design.",
+      "evidence_class": "engineering check"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 10 recording",
+      "url": "https://www.youtube.com/watch?v=tg6XK8hHE0I",
+      "supports": "Atmospheric boundary layer with an imposed time scale; Navier-Stokes scale analysis.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 11 recording",
+      "url": "https://www.youtube.com/watch?v=b6hUpXWUKtU",
+      "supports": "Viscous, diffusive and convective lengths; laminar and turbulent drag.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 12 recording",
+      "url": "https://www.youtube.com/watch?v=y6YEet19eag",
+      "supports": "Small scales, equilibrium argument, Kolmogorov scales, DNS grid remark.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 13 recording",
+      "url": "https://www.youtube.com/watch?v=Of4gEhpBg1c",
+      "supports": "Inviscid dissipation estimate, scale ratios, energy and vorticity.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Kolmogorov 1941, The local structure of turbulence (English translation, Proc. R. Soc. Lond. A 434, 1991)",
+      "url": "https://www.jstor.org/stable/51980",
+      "supports": "Cascade of pulsations ending where viscosity prevents further refinement; definitions of the length, time and velocity scales; rescaling to unit viscosity and dissipation; eps = 15 nu a^2 under local isotropy.",
+      "page_checked": "p. 10 (PDF p. 3), footnote; p. 11 (PDF p. 4), eq. 11; p. 12 (PDF p. 5), eqs. 14-20"
+    },
+    {
+      "title": "Blasius 1908, The boundary layers in fluids with little friction (NACA TM 1256)",
+      "url": "https://ntrs.nasa.gov/citations/20050028493",
+      "supports": "Order-of-magnitude balance k ~ eps^2; two-sided flat-plate drag 1.327 b (k rho l U^3)^(1/2), b the plate width, k the viscosity.",
+      "page_checked": "TM p. 3 (PDF p. 4); TM p. 18 (PDF p. 19)"
+    },
+    {
+      "title": "McComb, Berera, Yoffe, Linkmann 2015, Energy transfer and dissipation in forced isotropic turbulence (Phys. Rev. E 91, 043013)",
+      "url": "https://strathprints.strath.ac.uk/52798/",
+      "supports": "p. 2: 'epsilon = C_eps U^3/L, where U is the root-mean-square velocity and L is the integral scale', given by Taylor in 1935 (their attribution); p. 1: C_eps,inf = 0.468 +/- 0.006 and C = 18.9 +/- 1.3 for R_L up to 5875; p. 3: Donzis et al. about 0.4, Bos et al. about 0.5; p. 7, eq. 32: epsilon = A3 U^3/L + A2 nu U^2/L^2. Citation Phys. Rev. E 91, 043013 (2015) confirmed on https://strathprints.strath.ac.uk/52798/.",
+      "page_checked": "accepted-manuscript pp. 1, 2, 3, 7 (same as PDF pages); journal pagination not checked"
+    },
+    {
+      "title": "Yeung, Sreenivasan, Pope 2018, Effects of finite spatial and temporal resolution in DNS (Phys. Rev. Fluids 3, 064603)",
+      "url": "https://doi.org/10.1103/PhysRevFluids.3.064603",
+      "supports": "dx/eta ~ 2.96/(k_max eta); k_max eta ~ 1.5 adequate for low-order statistics; intermittency requires more; Courant number with beta ~ 12.",
+      "page_checked": "p. 064603-3 (PDF p. 3), author copy at tcg.mae.cornell.edu"
+    },
+    {
+      "title": "Pope 2004, Ten questions concerning the large-eddy simulation of turbulent flows (New J. Phys. 6, 35)",
+      "url": "https://iopscience.iop.org/article/10.1088/1367-2630/6/1/035",
+      "supports": "p. 6: 'With the numerical methods usually employed, halving the grid spacing increases the computational cost by about a factor of 2^4 = 16.' p. 5: 'halving the grid spacing h typically increases the required memory and CPU time by factors of 8 and 16, respectively.' p. 4: computational requirements increase as a power of Reynolds number; near-wall structures scale with the viscous length; Bradshaw: 'in the viscous near-wall region there are no large eddies'.",
+      "page_checked": "p. 4 (PDF p. 5); p. 5 (PDF p. 6); p. 6 (PDF p. 7)"
+    },
+    {
+      "title": "AMS Glossary of Meteorology, Coriolis parameter",
+      "url": "https://glossary.ametsoc.org/wiki/Coriolis_parameter",
+      "supports": "f = 2 Omega sin(latitude); fV is the horizontal Coriolis force per unit mass.",
+      "page_checked": "web entry, accessed 2026-10-05"
+    },
+    {
+      "title": "AMS Glossary of Meteorology, angular velocity of the earth",
+      "url": "https://glossary.ametsoc.org/wiki/Angular_velocity_of_the_earth",
+      "supports": "Omega = 7.2921e-5 rad/s.",
+      "page_checked": "web entry, accessed 2026-10-05"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "U, L, u, ell, nu, Re, Re_t, Re_ell",
+      "first_section": "model",
+      "definition": "Mean-flow velocity and length, large-eddy velocity and size, kinematic viscosity, three Reynolds numbers."
+    },
+    {
+      "symbol": "V, Omega, f, vartheta, T, z, L_m, K, L_t",
+      "first_section": "abl",
+      "definition": "Relative velocity, Earth angular velocity, Coriolis parameter, latitude (vartheta; glossary writes phi), imposed time, height, laminar depth, eddy diffusivity, turbulent depth."
+    },
+    {
+      "symbol": "Gamma, T_m, T_t, Pe",
+      "first_section": "ratio",
+      "definition": "Heat diffusivity (slides: gamma), molecular and eddy spreading times, Peclet number."
+    },
+    {
+      "symbol": "bold U, p, rho, phi(x), delta",
+      "first_section": "viscous-length",
+      "definition": "Velocity field, pressure, density, model-problem scalar, model-problem layer thickness."
+    },
+    {
+      "symbol": "D, C_d, mu, tau_w",
+      "first_section": "friction",
+      "definition": "Drag per unit span, drag coefficient, dynamic viscosity, wall shear stress."
+    },
+    {
+      "symbol": "eps, u_i, s_ij",
+      "first_section": "small-scales",
+      "definition": "Dissipation rate per unit mass, velocity fluctuation, fluctuating strain rate."
+    },
+    {
+      "symbol": "a, b, eta, tau_eta, u_eta, Re_eta",
+      "first_section": "kolmogorov-scales",
+      "definition": "Exponents of nu and eps in the dimensional solve; Kolmogorov length, time, velocity (slides: eta, tau, v) and their Reynolds number."
+    },
+    {
+      "symbol": "C_eps, C_eps_inf, C', A_2, A_3, R_L",
+      "first_section": "inviscid-estimate",
+      "definition": "Dissipation constant, its asymptote, the 1/R_L coefficient (the source writes C), the energy-balance coefficients, and the integral-scale Reynolds number of the cited simulations."
+    },
+    {
+      "symbol": "omega",
+      "first_section": "energy-vorticity",
+      "definition": "Vorticity."
+    },
+    {
+      "symbol": "Delta x, k_max, N, C, beta, u'",
+      "first_section": "resolution",
+      "definition": "Grid spacing, largest resolved wavenumber, points per direction, Courant number, Courant coefficient, rms velocity."
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I ch05_scales.py (the chapter listing, extracted and run in a fresh process; stdout compared byte for byte with the printed block)",
+    "stdout_matches_printed": true
+  }
+}

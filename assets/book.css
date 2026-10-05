@@ -5,3 +5,6 @@
 
 /* Keep accessible MathML available without widening narrow readers. */
 .layout mjx-assistive-mml{width:1px!important;height:1px!important}article{overflow-wrap:anywhere}
+
+/* Tagged display equations: keep MathJax min-width inside the scroll box (added for this course). */
+mjx-container[display=true]{min-width:0!important;max-width:100%}
