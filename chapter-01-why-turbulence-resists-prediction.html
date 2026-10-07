@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light"><meta name="book-content-sha256" content="d787ea5d779366388c9d340503c8a67d227c120a418f81dbdfc9e0ed9cf6579d"><title>Why turbulence resists prediction, and why it matters · Essentials of Turbulence</title>
+<link rel="stylesheet" href="assets/book.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'local'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="assets/mathjax-tex-svg.js"></script><script defer src="assets/book.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="index.html">Essentials of Turbulence · January 2026</a><nav class="course-nav" aria-label="Book"><a href="index.html">Lectures</a><a href="source-map.html">Source map</a><a href="references.html">References</a><a href="numerical-lab.html">Numerical lab</a></nav></header>
+<div class="layout"><aside class="toc" id="chapter-toc" aria-label="On this page"><h2>On this page</h2></aside><main id="main">
+<div class="reading-tools" aria-label="Reading controls"><button id="theme-toggle" aria-pressed="false">Light theme</button><button id="text-toggle" aria-pressed="false">Larger text</button><button id="solutions-toggle" aria-pressed="false">Expand solutions</button><button id="print-page">Print with solutions</button></div>
+<article id="chapter-content"><!-- BOOK-CONTENT-START --><h1>Why turbulence resists prediction, and why it matters</h1>
+<p class="lead">A fuel jet 1 cm in diameter enters a combustion chamber, and the designer must know how fast the fuel mixes with the surrounding air. The flow obeys known equations, yet three obstacles stand between the equations and the answer. In the lecture's example the eddies of the jet range from 1 cm down to 10 μm, so a computation that represents all of them in one cube of side 1 cm needs about \(10^{9}\) grid points. The detailed motion is sensitive to the initial state: where small errors grow exponentially, as in Lorenz's three-variable model of convection, a millionfold improvement in the precision of the initial state only about doubles the time over which the motion can be predicted. And no one has proved that the three-dimensional equations always have smooth solutions. This chapter states each obstacle precisely; section <a href="#unsolved">"What is unsolved"</a> takes them in the reverse order, from the mathematical question to the cost. It separates what can be predicted (statistics) from what cannot (individual realizations).</p>
+<p class="source-note">Grounded in two recordings of the NPTEL course <em>Essentials of Turbulence</em> (Prof. Abhilash J. Chandy, IIT Bombay): <a href="https://www.youtube.com/watch?v=xJD2ytlMtBM">Lecture 1</a> and <a href="https://www.youtube.com/watch?v=cEvlgNdHeqg">Lecture 2</a>. The slides of this module name four sources (lecture notes by J. M. McDonough, 2007, and by A. Bakker, 2008; Reynolds, 1883; Mellado and Ansorge, 2012); this chapter has not used them and attributes the slide sentences to the lecture. <strong>Lecture material:</strong> four quotations on the difficulty of turbulence; the reasons for studying it (occurrence, enhanced mixing, a wide range of interacting scales); the laboratory jet with structures from 1 cm to 0.001 cm; the statement that turbulent behaviour cannot be predicted reliably even in simple flows; eddies in the Weddell Sea and Kármán vortices behind islands and cylinders; the blind men and the elephant; Leonardo da Vinci's description of turbulent water; the incompressible Navier–Stokes equations and the continuum hypothesis. <strong>Research extensions:</strong> Fefferman's statement of the Clay Institute problem; Lorenz (1963); Sprott's Lorenz growth rate; Roshko (1954) on cylinder wakes; Boffetta and Ecke (2012) on two-dimensional turbulence; Darrigol (2002) on Navier, Stokes and Reynolds; Richter's translation of Leonardo, a Royal Collection Trust record and an etymological dictionary; the U.S. Standard Atmosphere (1976). <strong>Original teaching constructions:</strong> the running case with an assumed exit speed; the three meanings of "unsolved"; the grid count; the predictability-horizon model and its test; the island–cylinder comparison; the Knudsen-number check at the smallest eddies; the code and the six exercises.</p>
+
+<h2 id="model">The objects of the chapter and the running case</h2>
+<p><strong>The running case</strong> is the lecture's round air jet from a nozzle of diameter \(D=1\ \mathrm{cm}\) into still air. The lecture gives no exit speed; this chapter assumes \(U=15\ \mathrm{m/s}\), a teaching choice. Air properties are the sea-level values of the <a href="https://ntrs.nasa.gov/citations/19770009539">U.S. Standard Atmosphere, 1976</a> (Table 10, p. 20): kinematic viscosity \(\nu=1.4607\times10^{-5}\ \mathrm{m^2/s}\), speed of sound \(c=340.294\ \mathrm{m/s}\) and mean free path \(\lambda_{\mathrm m}=6.6328\times10^{-8}\ \mathrm m\), the mean distance that a molecule travels between collisions. The Reynolds number compares inertia with viscosity and the Mach number compares the flow speed with the speed of sound:</p>
+\[
+\mathrm{Re}=\frac{UD}{\nu}=\frac{15\times0.01}{1.4607\times10^{-5}}=1.03\times10^{4},\qquad
+\mathrm{Ma}=\frac{U}{c}=\frac{15}{340.294}=0.044. \tag{1.1}
+\]
+<p>This chapter writes \(U\) for the exit speed and \(D\) for the nozzle diameter, as the lecture does, and \(\ell\) for the size of a structure (the lecture's spoken \(L\)); later chapters write \(\mathcal U\), \(\mathcal L\) for a flow's velocity and length.</p>
+<p><strong>The formal model.</strong> The state of the flow at time \(t\) is the velocity field \(\mathbf U(\mathbf x,t)\), with components \(U_i\), at every position \(\mathbf x=(x_1,x_2,x_3)\), and the pressure \(p(\mathbf x,t)\); upper case denotes the full velocity. For constant density \(\rho\) and constant viscosity, the state obeys the incompressible Navier–Stokes equations (slide equations 1 and 2):</p>
+\[
+\nabla\cdot\mathbf U=0, \tag{1.2}
+\]
+\[
+\frac{\partial\mathbf U}{\partial t}+(\mathbf U\cdot\nabla)\mathbf U=-\frac1\rho\nabla p+\nu\nabla^2\mathbf U+\mathbf F_B. \tag{1.3}
+\]
+<p>Equation (1.2) is conservation of mass at constant density. Equation (1.3) is Newton's second law per unit mass: the acceleration of a fluid particle equals the pressure force, the viscous force and a body force \(\mathbf F_B\) per unit mass, such as gravity. The slide writes \(-\nabla P\) and \(\nu\) in the viscous term, so its \(P\) is the pressure divided by the density, \(p/\rho\); it writes \(\mathbf U_t\) for the time derivative. Section <a href="#navier-stokes">"The Navier–Stokes equations and their assumptions"</a> checks the conditions under which (1.2), (1.3) hold for the running case; chapter 6 derives them.</p>
+<p>A prediction also needs the initial field \(\mathbf U(\mathbf x,0)\) and conditions at the nozzle, the walls and the far field. Two tasks must be kept apart. One is to compute a single realization: the field that follows from one particular initial and boundary state. The other is to compute statistics: averages over many realizations, such as the mean velocity at a point or the mean mixing rate. The designer needs the second.</p>
+
+<h2 id="despair">The "despair" in turbulence: four quotations and their sources <a class="timestamp" href="https://www.youtube.com/watch?v=xJD2ytlMtBM&amp;t=162s">L1 2:42</a></h2>
+<p>The lecture opens with four statements of discouragement about turbulence. Table 1.1 gives each as the slide shows it, with the source that the slide names.</p>
+<div class="table-wrap"><table>
+<caption>Table 1.1. The four quotations of the lecture and the status of their attribution.</caption>
+<thead><tr><th scope="col">Quotation as shown on the slide</th><th scope="col">Attributed to</th><th scope="col">Source named on the slide</th><th scope="col">Status in this book</th></tr></thead>
+<tbody>
+<tr><td>"When I meet God, I am going to ask him two questions: Why relativity? And why turbulence? I really believe he will have an answer for the first."</td><td>Werner Heisenberg</td><td>A web page by B. Thurow, Auburn University</td><td>As quoted in the lecture</td></tr>
+<tr><td>"I am an old man now, and when I die and go to heaven there are two matters on which I hope for enlightenment. One is quantum electrodynamics, and the other is the turbulent motion of fluids. And about the former I am rather optimistic."</td><td>Horace Lamb, address to the British Association for the Advancement of Science, 1932; called on the slide "a possible derivative of the above quote"</td><td>A web page, nanoscience.info</td><td>As quoted in the lecture</td></tr>
+<tr><td>"We should not altogether neglect the possibility that there is no such thing as 'turbulence'. That is to say, it is not meaningful to talk of the properties of a turbulent flow independently of the physical situation in which it arises. In searching for a theory of turbulence, perhaps we are looking for a chimera."</td><td>P. G. Saffman, 1978</td><td>Lecture series of the Marie Curie Chair "Fundamental and Conceptual Aspects of Turbulent Flows"</td><td>As quoted in the lecture</td></tr>
+<tr><td>"Turbulence was probably invented by the Devil on the seventh day of Creation when the Good Lord wasn't looking."</td><td>P. Bradshaw, 1994</td><td>The same lecture series</td><td>As quoted in the lecture</td></tr>
+</tbody></table></div>
+<p>The sources named on the slide are secondary: two web pages and a lecture series. No publication or recorded speech of the person named is cited here for any of the four, and none is used below as evidence. The slide itself calls the Lamb version a possible derivative of the Heisenberg version; it does not say which came first.</p>
+<p>Only one of the four makes a technical claim. The Heisenberg and Lamb versions rank turbulence as harder to understand than a branch of fundamental physics. The lecture describes both the Saffman and the Bradshaw sentences as comments made in jest (<a class="timestamp" href="https://www.youtube.com/watch?v=xJD2ytlMtBM&amp;t=317s">L1 5:17</a>, <a class="timestamp" href="https://www.youtube.com/watch?v=xJD2ytlMtBM&amp;t=345s">L1 5:45</a>). This book nevertheless reads Saffman's sentence as a conjecture: that the properties of a turbulent flow cannot be separated from the particular flow, so that no flow-independent theory of turbulence exists. Later chapters test parts of it. Chapter 6 (section <a href="chapter-06-equations-of-fluid-motion.html#similarity">"Reynolds-number similarity"</a>) shows what geometrically similar flows at equal Reynolds number share, and chapter 10 (<em>The energy cascade and Kolmogorov hypotheses</em>) states hypotheses under which the small-scale motion is the same in all flows at high Reynolds number. Those are hypotheses, not theorems. The rest of this chapter replaces the lecture's summary, that turbulence is very difficult to understand, with three measurable statements.</p>
+
+<h2 id="why-study">Why study turbulence: occurrence, mixing and a range of scales <a class="timestamp" href="https://www.youtube.com/watch?v=xJD2ytlMtBM&amp;t=373s">L1 6:13</a></h2>
+<p>The lecture describes a laminar flow as smooth and regular, moving in layers and predictable, and a turbulent flow as irregular, with recirculating motions (eddies) and fluctuations in space and time, whose patterns may not recur. Its comparison is a candle flame, with a smooth, well-defined edge, and a forest fire. These are descriptions, not a definition; chapter 2 (<em>Descriptions, definitions, and a short history of turbulence</em>) develops the definition.</p>
+<p>The lecture states that almost all flows in engineering and nature are turbulent and that laminar flow is the exception. The slide lists places where turbulence occurs, from the interior of biological cells, circulatory and respiratory systems and household appliances to planetary interiors, oceans, atmospheres, stars and galactic scales, and shows cigarette smoke, the flow over a submarine hull, an aircraft wing-tip vortex and a forest fire. The lecture qualifies one item: flow in a biological cell is "different", because active forces within the cell drive it. This book's numerical examples are flows of air.</p>
+<p>The lecture names three attributes that distinguish turbulent flow: irregular fluctuations, enhanced transport of mass, momentum and energy, and a wide range of interacting scales. Its example of enhanced transport is the combustion chamber of an aircraft engine, where turbulence mixes fuel and oxidizer much faster than a laminar flow would. Chapter 4 (section <a href="chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html#ratio">"The ratio of the two times is a Péclet number"</a>) measures the difference for heat in a room: days by molecular diffusion, minutes with a weak turbulent stir. The slide's conclusion is that the study of turbulence is motivated both by its intellectual challenge and by the practical utility of understanding it; the lecture locates the challenge in the range of scales, the unpredictability and the non-repeating patterns. The next two sections make the first two precise.</p>
+
+<h2 id="range-of-scales">A laboratory jet contains three decades of length <a class="timestamp" href="https://www.youtube.com/watch?v=xJD2ytlMtBM&amp;t=942s">L1 15:42</a></h2>
+<p>The slide shows a photograph of a turbulent jet with the bullet: "the 'problem of turbulence' remains an unsolved problem of classical mathematical physics". Near the nozzle the jet is narrow and smooth; downstream it rolls up into structures that break into smaller ones, with every intermediate size present. A laminar jet from the same nozzle, in the lecture's sketch, is a smooth plume like a candle flame.</p>
+<p>The lecture's numbers: the largest structures are of the order of the nozzle diameter, and the smallest can be a few thousandths of it. For \(D=1\ \mathrm{cm}\) its example range is from \(\ell_{\max}=1\ \mathrm{cm}\) to \(\ell_{\min}=0.001\ \mathrm{cm}=10\ \mu\mathrm m\), three orders of magnitude; depending on the Reynolds number, it may be two or four, with a smallest size such as \(0.0001\ \mathrm{cm}=1\ \mu\mathrm m\). In the laminar jet all lengths are of order 1 cm. These are illustrative values. Chapter 5 (section <a href="chapter-05-length-scales-in-turbulent-flows.html#ratios">"The scale ratios widen as the Reynolds number increases"</a>) derives how the ratio depends on the Reynolds number. For comparison, chapter 6's 2.5 cm jet at 56 m/s has energy-containing eddies of about 0.1 m far downstream and smallest eddies estimated at 79 μm, a ratio of \(1.3\times10^{3}\).</p>
+<p><strong>The cost of representing every eddy.</strong> A computation that represents every eddy needs a grid spacing \(\Delta x\) no larger than the smallest eddy. With \(\Delta x=\ell_{\min}\), a cube of side \(\ell_{\max}\), which holds a single large eddy, needs</p>
+\[
+N=\frac{\ell_{\max}}{\Delta x}\ \text{points per direction},\qquad N^{3}=\Bigl(\frac{\ell_{\max}}{\ell_{\min}}\Bigr)^{3}\ \text{in total}. \tag{1.4}
+\]
+<p>For three decades, \(N=10^{3}\) and \(N^{3}=10^{9}\). At three velocity components and the pressure, 8 bytes each, one copy of the field takes 32 GB; for four decades, \(10^{12}\) points and 32 TB. If each time step moves the fluid at most one grid spacing, the fluid needs \(D/\Delta x=N\) steps to travel one nozzle diameter. A real jet computation needs a domain many diameters long, so (1.4) is a lower bound. The laminar jet, with all lengths of order 1 cm, has \(\ell_{\max}/\ell_{\min}\) of order 1, so (1.4) gives \(N^{3}\) of order 1 for the same cube: the turbulent count is \(10^{9}\) times larger, the cube of the ratio of scales. If every structure is to be resolved by ten points rather than one, both counts rise by \(10^{3}\), to \(10^{12}\) and \(10^{3}\), and the factor \(10^{9}\) between them does not change. The range of scales is the first obstacle: it makes one complete realization expensive, at a cost that rises with the Reynolds number. Chapter 5 (section <a href="chapter-05-length-scales-in-turbulent-flows.html#resolution">"A resolution budget for a direct simulation"</a>) and chapter 17 (<em>Direct numerical simulation: pseudo-spectral methods and cost</em>) derive that dependence and its assumptions.</p>
+
+<h2 id="unsolved">What is unsolved: existence, individual realizations and statistics <a class="timestamp" href="https://www.youtube.com/watch?v=xJD2ytlMtBM&amp;t=1285s">L1 21:25</a></h2>
+<p>The slide states that turbulence has been studied by many of the greatest physicists and engineers of the 19th and 20th centuries, "yet we do not understand in complete detail how or why turbulence occurs, nor can we predict turbulent behavior with any degree of reliability, even in very simple flow situations." The lecture calls turbulence one of the last unsolved problems of classical physics, and adds that every approach to it makes some assumption. "Unsolved" has three meanings with different status.</p>
+<p><strong>1. Existence and smoothness.</strong> The Clay Mathematics Institute lists the Navier–Stokes equations among its prize problems. <a href="https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf">Fefferman's official statement</a> asks for a proof of one of four statements (pp. 1–2): that for every smooth divergence-free initial velocity with suitable decay (in all of space, where the solution must also have bounded energy) or with periodicity, and no force, the three-dimensional equations (1.2), (1.3) have smooth solutions for all time; or that for some smooth initial velocity and some smooth force no such solution exists. The two-dimensional analogues have long been known; in three dimensions, smooth solutions are known to exist for small initial data, or for a finite time that depends on the data (p. 2). His assessment: "Since we don't even know whether these solutions exist, our understanding is at a very primitive level" (p. 4). The problem concerns the mathematics of the model. A proof either way would not give the designer the mixing rate, and a solution that blows up would leave the range in which (1.3) describes air (section <a href="#navier-stokes">"The Navier–Stokes equations and their assumptions"</a>). Later chapters assume that the solutions they discuss exist and are smooth; in three dimensions no theorem guarantees it.</p>
+<p><strong>2. Individual realizations.</strong> Equations (1.2), (1.3) are deterministic, yet solutions of nonlinear deterministic equations can amplify small differences in their initial state. Lorenz showed this for three ordinary differential equations obtained by truncating the equations of thermal convection: for such systems with bounded solutions, "nonperiodic solutions are ordinarily unstable with respect to small modifications, so that slightly differing initial states can evolve into considerably different states" (<a href="https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2">Lorenz 1963</a>, p. 130). Chapter 7 (sections <a href="chapter-07-random-variables-and-probability-density-functions.html#deterministic">"Deterministic equations, incomplete conditions and sensitivity"</a> and <a href="chapter-07-random-variables-and-probability-density-functions.html#lorenz">"Lorenz's equations"</a>) develops the system and the reasons why no experiment repeats its initial state exactly. The question here is how long a prediction of one realization stays useful.</p>
+<p>Let \(\delta(t)\) be the distance between two solutions that start \(\delta_0\) apart, and assume that while \(\delta\) is small it grows on average at a constant exponential rate \(\sigma\gt0\):</p>
+\[
+\delta(t)\approx\delta_0\,e^{\sigma t}. \tag{1.5}
+\]
+<p>The local growth rate varies along a solution; \(\sigma\), the largest Lyapunov exponent, is its long-time average, \(\sigma=\lim_{t\to\infty}\lim_{\delta_0\to0}t^{-1}\ln[\delta(t)/\delta_0]\), the limit \(\delta_0\to0\) taken first so that the separation stays small at every finite \(t\). Let the prediction horizon \(T_p\) be the time at which \(\delta\) reaches a tolerance \(\Delta\). Setting \(\delta(T_p)=\Delta\) in (1.5) and taking logarithms,</p>
+\[
+T_p\approx\frac1\sigma\ln\frac{\Delta}{\delta_0},\qquad
+T_p\Bigl(\frac{\delta_0}{10^{k}}\Bigr)-T_p(\delta_0)\approx\frac{k\ln10}{\sigma}. \tag{1.6}
+\]
+<p>The hinge is the logarithm: each tenfold gain in initial precision adds the same increment \(\ln10/\sigma\) to the horizon. For Lorenz's system with his constants, Sprott computed \(\sigma=0.906\) in the system's dimensionless time (<a href="https://sprott.physics.wisc.edu/chaos/lorenzle.htm">Sprott, technical note, 1997, revised 2005</a>), so each decade adds 2.54 time units. Lorenz's system, written out as (1.9) in section <a href="#implementation">"Executable checks"</a>, has three constants, which this book writes \(\mathrm{Pr}\), \(r\), \(\beta\) as chapter 7 does (Lorenz writes \(\sigma\), \(r\), \(b\); this chapter's \(\sigma\) is the growth rate). Lorenz shows that volumes of states shrink at the rate \(-(\mathrm{Pr}+1+\beta)\) (his eqs. (30) and (31), p. 135), \(-13.67\) for his values \(\mathrm{Pr}=10\), \(\beta=8/3\); Sprott notes that the three exponents must sum to this rate, and his values \(0.906\), \(0\), \(-14.572\) sum to \(-13.666\). The same section tests (1.6): the mean horizon is 13.88 time units for \(\delta_0=10^{-6}\) and 28.92 for \(\delta_0=10^{-12}\). A millionfold gain in precision about doubles the horizon.</p>
+<p>The model (1.5) holds only while \(\delta\) is small; once \(\delta\) is comparable with the solution itself, the two solutions are unrelated. Lorenz's system is a three-variable truncation whose solutions, Lorenz states, cannot be expected to resemble those of the full convection equations when convection is strong (p. 135). It demonstrates the mechanism; it supplies no growth rate for the jet. What carries over is the conclusion: if errors grow, every finite precision of the initial field gives a finite horizon for one realization.</p>
+<p><strong>3. Statistics.</strong> Lorenz names the alternative: because instantaneous turbulent flow patterns are so irregular, "attention is often confined to the statistics of turbulence, which, in contrast to the details of turbulence, often behave in a regular well-organized manner" (p. 130). He notes that a short-range weather forecaster cannot use it, because a forecast must predict individual cyclones and anticyclones. The jet designer can: the mean mixing rate is a statistic. On Lorenz's system, two solutions from different starting states follow unrelated paths (states \(10^{-6}\) apart reach a separation of 1 within about 14 time units on average), yet the time averages of their third variable, \(z\), over 1000 time units are 23.57 and 23.50. Whether the time average of one realization equals the average over many is the separate assumption of ergodicity (chapter 8, section <a href="chapter-08-random-processes-spectra-and-random-fields.html#time-averages">"Time averages, ergodicity and the length of a record"</a>).</p>
+<p>Statistics can be obtained in two ways. A computation that resolves all scales pays the cost (1.4) for every realization. Equations for the statistics themselves contain averages of products of fluctuations that the mean does not determine; chapter 9 (<em>Reynolds equations, closure, and turbulent viscosity</em>) derives them and counts the unknowns, and closing them requires a model, which chapter 16 (<em>Modeling approaches and criteria for appraising models</em>) appraises. This is the content of the lecture's remark that every approach makes an assumption: a computation of statistics either pays for all scales or models some of them.</p>
+
+<h2 id="nature">Turbulent eddies in nature and the condition for similarity <a class="timestamp" href="https://www.youtube.com/watch?v=cEvlgNdHeqg&amp;t=88s">L2 1:28</a></h2>
+<p>Lecture 2 shows three satellite images. In the Weddell Sea off Antarctica, an image 240 km by 320 km shows two ocean eddies 40 km to 60 km in diameter at the edge of the ice pack; the caption states that such eddies transport heat toward the pole. Near Alaska's Aleutian Islands, and over Alexander Selkirk Island in the southern Pacific (whose highest point, the caption says, is nearly a mile, 1.6 km, above sea level), winds form Kármán vortices behind the islands. The lecture's point is similarity: the island acts as a bluff body, and a laboratory cylinder, perhaps 10 cm in diameter, sheds vortices of similar appearance and of its own size.</p>
+<p><strong>The laboratory cylinder.</strong> The lecture states that the vortices appear as the flow speed increases. <a href="https://ntrs.nasa.gov/citations/19930092207">Roshko (1954)</a> measured cylinder wakes at \(\mathrm{Re}=Ud/\nu\) from 40 to 10 000, with \(d\) the diameter. His summary (p. 1): from 40 to 150, the stable range, regular vortex streets form without turbulent motion; from 150 to 300 is a transition range; above it, in the irregular range, turbulent fluctuations accompany the periodic shedding and the wake is fully turbulent 40 to 50 diameters downstream. The shedding frequency \(n\) is expressed by the Strouhal number</p>
+\[
+S=\frac{n\,d}{U},\qquad S=0.212\Bigl(1-\frac{12.7}{\mathrm{Re}}\Bigr)\quad(300\lt\mathrm{Re}\lt2000), \tag{1.7}
+\]
+<p>his fit (2b), which, extended to \(\mathrm{Re}=10\,000\), differs from his best-fit line by at most 4 % (p. 11). He adds that the boundaries 150 and 300 depend on the tunnel turbulence and the cylinder roughness (p. 17). For a 10 cm cylinder in air, \(\mathrm{Re}=40\) needs only 5.8 mm/s and \(\mathrm{Re}=300\) needs 44 mm/s. At an assumed 1 m/s, \(\mathrm{Re}=6.85\times10^{3}\): the wake is periodic and turbulent at once, and (1.7) gives \(S=0.212\) and 2.1 Hz. The lecture's "as the speed increases" thus corresponds to two thresholds: the vortex street near \(\mathrm{Re}=40\), and turbulence in it between 150 and 300.</p>
+<p><strong>Similarity requires equal Reynolds numbers.</strong> Chapter 6 (section <a href="chapter-06-equations-of-fluid-motion.html#similarity">"Reynolds-number similarity"</a>) shows that flows described by (1.2), (1.3), with similar geometry and identical scaled conditions, have the same scaled velocity field if their Reynolds numbers are equal. With the island height 1.6 km as the length and an assumed wind of 10 m/s, the island's Reynolds number is \(1.1\times10^{9}\), \(1.6\times10^{5}\) times that of the cylinder at 1 m/s; both inputs are order-of-magnitude choices, and the slide gives no horizontal size. The resemblance of the two wakes is therefore not Reynolds-number similarity. The atmosphere also has effects that the constant-density model excludes, in particular the variation of density with height, whose parameters would have to match too; this chapter does not analyse them.</p>
+<p>Geometry gives a second reason for resemblance across scales. <a href="https://doi.org/10.1146/annurev-fluid-120710-101240">Boffetta and Ecke (2012)</a> state that large-scale atmospheric and oceanic motions are, to a first approximation, two-dimensional turbulent flows, because their horizontal scales greatly exceed their vertical scales (p. 428). The Weddell Sea eddies are large-scale ocean motions in this sense; the slide gives no depth, so their aspect ratio cannot be computed from it. Section <a href="#leonardo">"Leonardo da Vinci's description"</a> shows that two-dimensional turbulence moves energy in the opposite direction. The lecture's questions about these eddies, whether such patterns recur and how often, are questions about statistics.</p>
+
+<h2 id="definition">What is turbulence? Partial descriptions of one phenomenon <a class="timestamp" href="https://www.youtube.com/watch?v=cEvlgNdHeqg&amp;t=596s">L2 9:56</a></h2>
+<p>The lecture approaches a definition through the fable of six blind men who each touch one part of an elephant and conclude that it is a fan, a wall, a tree, a spear, a snake or a rope. The slide caption draws the lesson: the same physical process is often described through several different terms, because one is never sure what part of it is central and what is peripheral. The lecture gives two readings: scientists since the 19th century have defined turbulence by the aspect that they observed, without being wrong; and turbulent structures do take many shapes, flat, long and thin, branched, and many sizes.</p>
+<p>The attributes used so far fit the fable. Irregularity, a range of scales, enhanced mixing and sensitivity to the initial state can each be measured, and none alone defines turbulence: Roshko's stable wake is unsteady without being turbulent, a laminar flow mixes a scalar slowly, and Lorenz's system is sensitive without being a fluid flow. Chapter 2 (<em>Descriptions, definitions, and a short history of turbulence</em>) and chapter 3 (<em>Characteristics of turbulent flow and methods of analysis</em>) give the course's definition and its list of characteristics.</p>
+
+<h2 id="leonardo">Leonardo da Vinci's description of turbulent water <a class="timestamp" href="https://www.youtube.com/watch?v=cEvlgNdHeqg&amp;t=934s">L2 15:34</a></h2>
+<p>The slide states that turbulence was recognized as a distinct fluid behaviour at least 500 years ago, shows a rendition of a Leonardo sketch of water falling into a pool, and quotes:</p>
+<blockquote><p>"Observe the motion of the surface of the water, which resembles that of hair, which has two motions, of which one is caused by the weight of the hair, the other by the direction of the curls; thus the water has eddying motions, one part of which is due to the principal current, the other to random and reverse motion… the smallest eddies are almost numberless, and large things are rotated only by large eddies and not by small ones, and small things are turned by small eddies and large."</p></blockquote>
+<p><strong>What can be checked.</strong> The first sentence appears, in different words, in J. P. Richter's 1888 translation of the notebooks, under "On hair falling down in curls" (§389, <a href="https://www.gutenberg.org/ebooks/5000">Project Gutenberg edition</a>): the hair "has two motions, of which one goes on with the flow of the surface, the other forms the lines of the eddies; thus the water forms eddying whirlpools one part of which are due to the impetus of the principal current and the other to the incidental motion and return flow." Richter's "incidental motion and return flow" is the slide's "random and reverse motion". The sentence on numberless eddies is not in Richter's translation; its source has not been found, and it is quoted as given in the lecture. The <a href="https://www.rct.uk/collection/912579/recto-studies-of-water-and-a-seated-old-man-verso-architectural-studies">Royal Collection Trust</a> dates a sheet of Leonardo's water studies, whose notes compare swirling water to plaited hair, to about 1512–13 (RCIN 912579), about 513 years before 2026. Whether the slide's sketch is that sheet is not established.</p>
+<p><strong>The word.</strong> The slide adds that Leonardo called such phenomena "turbolenza", "and hence the origin of our modern word". The second half is not supported: the <a href="https://www.etymonline.com/word/turbulence">Online Etymology Dictionary</a> dates the English noun "turbulence" to the early 15th century, from Late Latin <em>turbulentia</em>, before Leonardo's birth in 1452. The English word has a Latin origin that predates Leonardo.</p>
+<p><strong>What the passage contains.</strong> It makes three claims: the motion of the water is the sum of a part due to the principal current and an irregular part; there are eddies of many sizes, the small ones far more numerous; and an object is turned by eddies of its own size or larger. The first is the structure that Reynolds made quantitative. <a href="https://www.numdam.org/item/RHM_2002__8_1_5_0/">Darrigol (2002)</a> describes Reynolds's analysis of 1894: Reynolds assumed an averaging scale for which the mean motion no longer contains the eddies, and found that the energy of the eddying motion is drawn from the mean motion and removed by viscous forces (pp. 59–60). Chapter 8 (section <a href="chapter-08-random-processes-spectra-and-random-fields.html#field-statistics">"Mean, fluctuation, Reynolds stresses and the N-point PDF"</a>) defines that split.</p>
+<p><strong>The lecture's reading as an energy cascade.</strong> The lecture reads the passage as the energy cascade: energy goes from large to small scales and not the reverse, with exceptions to come later in the course. That is the lecture's interpretation. The passage speaks of motion and rotation, not energy, and states no direction of transfer between sizes. The cascade was formulated in the 20th century; Kolmogorov's 1941 paper states it, as a picture of how the flow may be thought of, in a footnote on p. 10 (chapter 5, section <a href="chapter-05-length-scales-in-turbulent-flows.html#small-scales">"Viscosity cannot be removed: the small scales"</a>), and chapter 10 develops it. Leonardo described eddies of many sizes coexisting, which the cascade picture explains.</p>
+<p>The exceptions include a whole class of flows. In two-dimensional turbulence, Boffetta and Ecke state that the additional conservation of the mean square vorticity leads to an inverse energy cascade to larger scales and a direct cascade of mean square vorticity to smaller scales (p. 427), and that energy "is dynamically transferred to large scales by the inverse cascade" (p. 430). What two dimensions lack is vortex stretching (p. 430), which chapter 6 (section <a href="chapter-06-equations-of-fluid-motion.html#vorticity">"The vorticity equation and vortex stretching"</a>) derives. The direction of energy transfer depends on the dimensionality of the flow.</p>
+
+<h2 id="navier-stokes">The Navier–Stokes equations and their assumptions <a class="timestamp" href="https://www.youtube.com/watch?v=cEvlgNdHeqg&amp;t=1249s">L2 20:49</a></h2>
+<p>The slide states that the Navier–Stokes equations "are now almost universally believed to embody the physics of all fluid flows (within the confines of the continuum hypothesis), including turbulent ones", and were introduced in the early to mid 19th century; Darrigol dates the equation to Navier in 1822 and its re-derivation to Stokes in 1845 (p. 13). The lecture names the terms of (1.3): transient, convection, pressure gradient, viscous and body force, which may be gravity, buoyancy or a magnetic force. "Almost universally believed" is a claim about evidence. The equations rest on two modelling assumptions besides the conservation laws, and each can be checked for the running case.</p>
+<p><strong>The continuum hypothesis.</strong> The fluid is treated as continuous: each property at a point is an average over a volume that holds very many molecules and is small compared with every length over which the flow changes. The slide writes the condition with the Knudsen number \(\lambda/\ell\); this book writes</p>
+\[
+\mathrm{Kn}=\frac{\lambda_{\mathrm m}}{\ell_g},\qquad\text{continuum model valid for }\mathrm{Kn}\ll1, \tag{1.8}
+\]
+<p>with \(\ell_g\) the smallest length of the flow (bare \(\lambda\) is reserved for a turbulence length of later chapters). Chapter 6 (section <a href="chapter-06-equations-of-fluid-motion.html#continuum">"The continuum hypothesis and the two descriptions of a flow"</a>) develops it. In a turbulent flow \(\ell_g\) is the smallest eddy, not the nozzle. For eddies of 10 μm, \(\mathrm{Kn}=6.6\times10^{-3}\): the eddy is 150 mean free paths across. For the lecture's alternative of 1 μm, \(\mathrm{Kn}=6.6\times10^{-2}\): 15 mean free paths, so \(\mathrm{Kn}\ll1\) holds ten times less well, and the lecture's four-decade example for a 1 cm air jet lies near the edge of the model it uses.</p>
+<p><strong>Incompressibility.</strong> The lecture defines incompressible flow as flow whose density does not change with pressure, and replaces \(\partial\rho/\partial t+\nabla\cdot(\rho\mathbf U)=0\) by (1.2). For a gas this is an approximation. Chapter 6 (section <a href="chapter-06-equations-of-fluid-motion.html#continuity">"Conservation of mass and the incompressible approximation"</a>) shows that air brought to rest from speed \(U\) changes its density by about \(\tfrac12\mathrm{Ma}^2\): for the running case \(9.7\times10^{-4}\), about 0.1 %. Constant viscosity also requires small temperature changes, which a burning jet violates; this chapter treats the cold jet.</p>
+<p>The running case therefore lies inside the domain of (1.2), (1.3), and its difficulties do not come from a failure of the model's assumptions. They arise inside the model: in the nonlinear term \((\mathbf U\cdot\nabla)\mathbf U\), which couples motions of different sizes, and in its size relative to the viscous term, which the Reynolds number measures. The lecture's closing statement is that the equations do not describe turbulence in words but describe all fluid flows mathematically, turbulent ones included, within the continuum hypothesis.</p>
+
+<h2 id="implementation">Executable checks</h2>
+<p>The program below computes every number in this chapter that is not quoted from a source. Its inputs, set in the code, are the air properties of the U.S. Standard Atmosphere, the running case (\(D=0.01\ \mathrm m\), assumed \(U=15\ \mathrm{m/s}\)), the lecture's smallest lengths 10 μm and 1 μm, the cylinder (0.1 m, assumed 1 m/s), the island (1.6 km, assumed 10 m/s) and Lorenz's equations with \(\mathrm{Pr}=10\), \(r=28\), \(\beta=8/3\), as in chapter 7:</p>
+\[
+\frac{dx}{dt}=\mathrm{Pr}\,(y-x),\qquad\frac{dy}{dt}=r\,x-y-xz,\qquad\frac{dz}{dt}=xy-\beta z, \tag{1.9}
+\]
+<p>where \(x\), \(y\), \(z\) are Lorenz's state variables, not coordinates, and \(t\) the dimensionless time, which Lorenz writes \(\tau\). The program evaluates (1.1), (1.4), (1.7) and (1.8), then integrates (1.9) by the classical fourth-order Runge–Kutta method with step 0.01. It takes 40 reference states one time unit apart after a transient of 50 units, displaces each in \(x\) by \(\delta_0=10^{-2},10^{-4},\ldots,10^{-12}\), and records the first time at which the distance to the reference solution exceeds \(\Delta=1\), the horizon of (1.6); \(\Delta=1\) is small against the size of the solution, whose \(x\) stays within about \(\pm20\) (chapter 7, section <a href="chapter-07-random-variables-and-probability-density-functions.html#lorenz">"Lorenz's equations"</a>). It fits the mean horizon against \(\ln(1/\delta_0)\), estimates \(\sigma\) separately by rescaling a separation of \(10^{-8}\) after each time unit for 500 units, and computes time averages of \(z\) from two starting states. Two assertions compare the fitted slope with \(1/0.906\) within 15 % and the estimated \(\sigma\) with 0.906 within 0.05; the tolerances are loose because the local growth rate varies along the solution. <code>numbers</code> raises <code>ValueError</code> for a non-positive speed or length. The program reads no files, uses no random numbers, writes only to standard output, requires NumPy and runs in well under a minute.</p>
+<pre><code class="language-python">import numpy as np
+
+# Air at sea level, U.S. Standard Atmosphere 1976, Table 10 (p. 20).
+NU, LAM_M, C_S = 1.4607e-5, 6.6328e-8, 340.294   # m^2/s, m, m/s
+
+
+def numbers(speed, length):
+    """Reynolds and Mach numbers of a flow of air."""
+    if speed &lt;= 0 or length &lt;= 0:
+        raise ValueError("speed and length must be positive")
+    return speed*length/NU, speed/C_S
+
+
+# Running case: the lecture's 1 cm jet, exit speed assumed 15 m/s.
+D, U = 0.01, 15.0
+re_jet, ma_jet = numbers(U, D)
+print(f"jet: Re={re_jet:.3g}  Ma={ma_jet:.3f}")
+for ell_min in (1e-5, 1e-6):                # lecture: 0.001 cm, 0.0001 cm
+    n = D/ell_min                           # grid points per direction
+    print(f"smallest {ell_min*1e6:4.0f} um: Kn={LAM_M/ell_min:.1e}  "
+          f"N^3={n**3:.0e}  memory={32*n**3/1e9:.3g} GB  "
+          f"steps per D/U={n:.0e}")
+
+# Cylinder (lecture: 10 cm) at an assumed 1 m/s; island (slide: 1.6 km
+# high) in an assumed 10 m/s wind. Roshko (1954) fit (2b) for S.
+re_cyl, _ = numbers(1.0, 0.10)
+re_isl, _ = numbers(10.0, 1600.0)
+s_cyl = 0.212*(1 - 12.7/re_cyl)
+print(f"cylinder: Re={re_cyl:.3g}  U(Re=40)={40*NU/0.10*1e3:.1f} mm/s  "
+      f"shedding {s_cyl*1.0/0.10:.2f} Hz")
+print(f"island: Re={re_isl:.2g}  ratio to cylinder={re_isl/re_cyl:.1e}")
+
+# Lorenz (1963) system, constants as in chapter 7.
+PR, R, BETA = 10.0, 28.0, 8.0/3.0
+DT = 0.01
+
+
+def rhs(s):
+    x, y, z = s
+    return np.array([PR*(y - x), R*x - y - x*z, x*y - BETA*z])
+
+
+def step(s):
+    """One classical fourth-order Runge-Kutta step of length DT."""
+    k1 = rhs(s)
+    k2 = rhs(s + 0.5*DT*k1)
+    k3 = rhs(s + 0.5*DT*k2)
+    k4 = rhs(s + DT*k3)
+    return s + DT*(k1 + 2*k2 + 2*k3 + k4)/6
+
+
+# 40 reference states on the attractor, one time unit apart.
+s, base = np.array([1.0, 1.0, 1.0]), []
+for i in range(int(90/DT)):
+    s = step(s)
+    if i &gt;= int(50/DT) and (i - int(50/DT)) % 100 == 0:
+        base.append(s)
+base = np.array(base).T                     # shape (3, 40)
+assert base.shape == (3, 40)
+
+# Horizon: first time at which the distance between a reference state
+# and its copy displaced by delta0 in x exceeds TOL.
+TOL, DELTAS = 1.0, 10.0**-np.arange(2, 13, 2)
+m = base.shape[1]
+a = np.tile(base, len(DELTAS))
+b = a.copy()
+b[0] += np.repeat(DELTAS, m)
+horizon, t = np.full(a.shape[1], np.nan), 0.0
+while np.isnan(horizon).any():
+    a, b, t = step(a), step(b), t + DT
+    hit = (np.linalg.norm(b - a, axis=0) &gt; TOL) &amp; np.isnan(horizon)
+    horizon[hit] = t
+    assert t &lt; 200, "a pair did not separate"
+mean_h = horizon.reshape(len(DELTAS), m).mean(axis=1)
+sd_h = horizon.reshape(len(DELTAS), m).std(axis=1)
+for d0, h, sd in zip(DELTAS, mean_h, sd_h):
+    print(f"delta0={d0:.0e}: mean horizon {h:5.2f}  (sd {sd:4.2f})")
+slope = np.polyfit(np.log(1/DELTAS), mean_h, 1)[0]
+print(f"slope dT/dln(1/delta0)={slope:.3f}  1/0.906={1/0.906:.3f}")
+assert abs(slope*0.906 - 1) &lt; 0.15
+
+# Growth rate: rescale the separation to 1e-8 after every time unit.
+s, e, total = base[:, 0].copy(), np.array([1e-8, 0.0, 0.0]), 0.0
+for k in range(500):
+    p = s + e
+    for _ in range(100):
+        s, p = step(s), step(p)
+    d = np.linalg.norm(p - s)
+    total += np.log(d/1e-8)
+    e = (p - s)*1e-8/d
+print(f"growth rate over 500 time units: {total/500:.3f}")
+assert abs(total/500 - 0.906) &lt; 0.05
+
+# Time averages of z over 1000 time units from two starting states.
+s, acc = np.array([[1.0, -5.0], [1.0, 3.0], [1.0, 30.0]]), 0.0
+for i in range(int(1050/DT)):
+    s = step(s)
+    if i &gt;= int(50/DT):
+        acc += s[2]
+za, zb = acc/int(1000/DT)
+print(f"time averages of z from (1, 1, 1) and (-5, 3, 30): "
+      f"{za:.2f} and {zb:.2f}")
+</code></pre>
+<p>Run in a fresh interpreter (<code>python -I</code>, Python 3.13, NumPy 2.2), the program prints:</p>
+<pre><code>jet: Re=1.03e+04  Ma=0.044
+smallest   10 um: Kn=6.6e-03  N^3=1e+09  memory=32 GB  steps per D/U=1e+03
+smallest    1 um: Kn=6.6e-02  N^3=1e+12  memory=3.2e+04 GB  steps per D/U=1e+04
+cylinder: Re=6.85e+03  U(Re=40)=5.8 mm/s  shedding 2.12 Hz
+island: Re=1.1e+09  ratio to cylinder=1.6e+05
+delta0=1e-02: mean horizon  4.30  (sd 1.30)
+delta0=1e-04: mean horizon  9.06  (sd 1.63)
+delta0=1e-06: mean horizon 13.88  (sd 1.23)
+delta0=1e-08: mean horizon 18.93  (sd 1.56)
+delta0=1e-10: mean horizon 23.70  (sd 1.62)
+delta0=1e-12: mean horizon 28.92  (sd 1.30)
+slope dT/dln(1/delta0)=1.068  1/0.906=1.104
+growth rate over 500 time units: 0.908
+time averages of z from (1, 1, 1) and (-5, 3, 30): 23.57 and 23.50
+</code></pre>
+<p>The first five lines are the numbers of the running case, the cylinder and the island. The horizon lines test (1.6): the mean horizon rises by 4.76 to 5.22 time units per two decades of \(\delta_0\), and the fitted slope, 1.068 per unit of \(\ln(1/\delta_0)\) or 2.46 per decade, is 3 % below \(1/\sigma=1.104\). The standard deviations, 1.2 to 1.6 time units, do not shrink with \(\delta_0\); they reflect the variation of the local growth rate with the starting point. The mean horizons lie 0.8 to 1.7 units below \(\sigma^{-1}\ln(\Delta/\delta_0)\); (1.6) fixes the slope, not this offset. The separate estimate of \(\sigma\), 0.908, is within 0.2 % of Sprott's value. The last line shows two time averages that agree to 0.07 although the solutions follow unrelated paths. These check arithmetic and the logarithmic law on a three-variable model; they say nothing about error growth in the jet.</p>
+<p>A failure test: replace <code>b[0] += np.repeat(DELTAS, m)</code> by <code>b[0] += 1e-6</code>. All six mean horizons become 13.88, the slope is printed as −0.000, and the first assertion fails. The assertion therefore tests the dependence on \(\delta_0\) that (1.6) predicts, not only that solutions separate.</p>
+
+<h2 id="limits">What the chapter establishes and what it does not</h2>
+<p>Three statements are established, each with a boundary. The cost (1.4) of representing every eddy grows as the cube of the range of scales; the range used is the lecture's illustrative one, and chapter 5 derives its dependence on the Reynolds number. The horizon of a prediction of one realization grows with the logarithm of the initial precision (1.6), under the model (1.5) of exponential error growth, tested on Lorenz's truncated model; no growth rate for the jet is given. Statistics can be reproducible when realizations are not, shown here for one time average of Lorenz's model; the equality of time and ensemble averages is an assumption treated in chapter 8.</p>
+<p>The existence and smoothness of three-dimensional solutions is open; the book assumes them. The model (1.2), (1.3) holds for the running case with \(\mathrm{Kn}=6.6\times10^{-3}\) at its smallest eddies and a density error of about 0.1 %; buoyancy, stratification, rotation and combustion are excluded. The quotations of Table 1.1 and the sentence on numberless eddies are recorded as quoted in the lecture. The statements that almost all flows are turbulent, that the Weddell Sea eddies transport heat and that turbulence occurs in biological cells rest on the lecture and its captions alone. The reading of Leonardo's passage as an energy cascade is the lecture's interpretation.</p>
+
+<h2 id="exercises">Exercises</h2>
+<p><strong>Exercise 1 (compute).</strong> An air jet has \(D=2.5\ \mathrm{cm}\) and exit speed 56 m/s (chapter 6's values); assume its smallest eddies are 20 μm across. With the air properties of section <a href="#model">"The objects of the chapter"</a>, compute (a) \(\mathrm{Re}\), \(\mathrm{Ma}\) and \(\tfrac12\mathrm{Ma}^2\); (b) \(\mathrm{Kn}\) at the smallest eddies; (c) the points and the memory (32 bytes per point) for a cube of side \(D\) with spacing equal to the smallest eddy.</p>
+<details><summary>Solution</summary>
+<p>(a) \(\mathrm{Re}=56\times0.025/(1.4607\times10^{-5})=9.6\times10^{4}\); \(\mathrm{Ma}=56/340.294=0.165\); \(\tfrac12\mathrm{Ma}^2=0.0135\), a 1.4 % density change, 14 times the running case's because it grows as the square of the speed. The incompressible model applies with an error of order 1 %.</p>
+<p>(b) \(\mathrm{Kn}=6.6328\times10^{-8}/2\times10^{-5}=3.3\times10^{-3}\), 300 mean free paths per eddy: the continuum model applies.</p>
+<p>(c) \(N=0.025/2\times10^{-5}=1250\), \(N^3=1.95\times10^{9}\), \(6.25\times10^{10}\) bytes, about 62 GB. The count varies as the inverse cube of the assumed smallest size: 40 μm gives 8 times fewer points.</p>
+</details>
+<p><strong>Exercise 2 (derive).</strong> (a) From (1.5), derive (1.6) and show that halving \(\delta_0\) adds \(\ln2/\sigma\). (b) A double-precision computation of Lorenz's system starts with an error of about \(10^{-15}\). With the program's horizon at \(\delta_0=10^{-12}\) and its fitted slope, estimate the horizon. (c) How much would 15 more correct digits add?</p>
+<details><summary>Solution</summary>
+<p>(a) \(\delta_0e^{\sigma T_p}=\Delta\) gives \(T_p=\sigma^{-1}\ln(\Delta/\delta_0)\). Replacing \(\delta_0\) by \(\delta_0/2\) adds \(\sigma^{-1}\ln2\), 0.77 time units for \(\sigma=0.906\).</p>
+<p>(b) From \(10^{-12}\) to \(10^{-15}\), \(\ln(1/\delta_0)\) grows by \(3\ln10=6.91\); with slope 1.068 the horizon grows by 7.4, from 28.9 to about 36.3.</p>
+<p>(c) \(15\times2.46=36.9\) time units with the fitted slope (38.1 with \(1/\sigma\)): fifteen more digits about double the horizon. This assumes that (1.5) holds over the whole range and that the integration error stays below \(\delta_0\), which a step of 0.01 does not achieve: chapter 7 (section <a href="chapter-07-random-variables-and-probability-density-functions.html#lorenz">"Lorenz's equations"</a>) finds that halving the step from 0.01 to 0.005 alone moves the time at which a difference first exceeds 1 from 31.0 to 29.0.</p>
+</details>
+<p><strong>Exercise 3 (counterexample).</strong> A student writes: "In every turbulent flow, kinetic energy moves from large eddies to small eddies, as Leonardo observed." Give a counterexample from this chapter's sources, name the physical difference that produces it, and correct the sentence.</p>
+<details><summary>Solution</summary>
+<p>Two-dimensional turbulence: Boffetta and Ecke (2012) state that conservation of the mean square vorticity leads to an inverse energy cascade to larger scales (p. 427), and that in fully developed two-dimensional turbulence energy is transferred to large scales (p. 430). The difference is the absence of vortex stretching in two dimensions (p. 430). The sentence also misattributes the claim: Leonardo describes eddies of many sizes and which bodies they turn, not a direction of energy transfer. Corrected: "In three-dimensional turbulence, kinetic energy is transferred on average from large to small eddies; in two-dimensional turbulence it goes to large scales. Leonardo described eddies of many sizes coexisting."</p>
+</details>
+<p><strong>Exercise 4 (judge a claim).</strong> An article states that the cloud vortices behind Alexander Selkirk Island "are the same flow" as the vortex street behind a laboratory cylinder, "only larger". (a) With the island height 1.6 km and an assumed 10 m/s wind, and a 10 cm cylinder at 1 m/s, compute both Reynolds numbers and the wind that would give the island \(\mathrm{Re}=100\). (b) Which part of the claim survives?</p>
+<details><summary>Solution</summary>
+<p>(a) Island \(1.1\times10^{9}\), cylinder \(6.8\times10^{3}\), ratio \(1.6\times10^{5}\). For \(\mathrm{Re}=100\): \(U=100\times1.4607\times10^{-5}/1600=9\times10^{-7}\ \mathrm{m/s}\), less than 1 mm in a quarter of an hour.</p>
+<p>(b) The geometric feature survives: a bluff obstacle sheds alternating vortices of about its own size. "The same flow" does not: Reynolds-number similarity requires equal Reynolds numbers and identical scaled conditions. The cylinder at 1 m/s is in Roshko's irregular range; a laminar-looking street needs \(\mathrm{Re}\) between 40 and 150. The atmospheric flow also contains effects excluded from (1.2), (1.3), such as density varying with height. The island inputs are order-of-magnitude choices, but a factor-of-100 error in them leaves a gap of three orders of magnitude.</p>
+</details>
+<p><strong>Exercise 5 (design).</strong> A group plans to compute the running-case jet, down to the lecture's 10 μm, in a box 20D long and 10D by 10D in cross-section. (a) Count points and memory at 32 bytes per point. (b) If each step moves the fastest fluid (15 m/s) at most one grid spacing, how many steps does one passage through the box take? (c) Which input would you check first?</p>
+<details><summary>Solution</summary>
+<p>(a) The box is 0.2 m by 0.1 m by 0.1 m: \(2\times10^{4}\times10^{4}\times10^{4}=2\times10^{12}\) points, 64 TB per copy of the field, 2000 times the cube of side \(D\).</p>
+<p>(b) \(0.2/10^{-5}=2\times10^{4}\) steps (step \(6.7\times10^{-7}\) s, passage 0.0133 s): about \(4\times10^{16}\) point updates per passage, and statistics need many passages.</p>
+<p>(c) The smallest eddy size, because the count varies as its inverse cube. The 10 μm is the lecture's illustrative value. This jet has \(\mathrm{Re}=1.03\times10^{4}\), lower than the \(9.6\times10^{4}\) of chapter 6's jet, whose smallest eddies far downstream are estimated at 79 μm; chapter 5's estimates would replace the assumption by a value derived from the Reynolds number.</p>
+</details>
+<p><strong>Exercise 6 (check an assumption).</strong> The lecture allows smallest eddies of 0.0001 cm in a 1 cm jet. (a) Compute \(\mathrm{Kn}\) and the mean free paths across one eddy. (b) A student concludes that "the Navier–Stokes equations predict their own failure for this jet". Correct? (c) What would decide whether such eddies occur in a given jet?</p>
+<details><summary>Solution</summary>
+<p>(a) \(\mathrm{Kn}=6.6328\times10^{-8}/10^{-6}=0.066\); 15 mean free paths across, against 150 at 10 μm.</p>
+<p>(b) Not as stated. The 1 μm is an illustrative number, not a computed solution. The correct statement is conditional: if a solution of (1.2), (1.3) for a given jet contained 1 μm structures, the continuum assumption would hold only weakly there, and those structures would need a molecular check. Whether they occur depends on the Reynolds number.</p>
+<p>(c) The exit speed and diameter, which fix the Reynolds number, and either a measurement of the smallest velocity gradients or of the quantities from which chapter 5 estimates the smallest length. Because the range of scales widens as the Reynolds number rises (chapter 5, section <a href="chapter-05-length-scales-in-turbulent-flows.html#ratios">"The scale ratios widen as the Reynolds number increases"</a>), a smallest eddy of 1 μm at fixed \(D\) needs a higher exit speed than one of 10 μm, so the Mach number would need checking too.</p>
+</details>
+
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li>Recordings: <a href="https://www.youtube.com/watch?v=xJD2ytlMtBM">Lecture 1</a>, <a href="https://www.youtube.com/watch?v=cEvlgNdHeqg">Lecture 2</a>, NPTEL <em>Essentials of Turbulence</em>, IIT Bombay, 2026.</li>
+<li>C. L. Fefferman, <a href="https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf">"Existence and smoothness of the Navier–Stokes equation"</a>, Clay Mathematics Institute, official problem description. Statements (A)–(D) (pp. 1–2), partial results (p. 2), significance (p. 4).</li>
+<li>E. N. Lorenz, <a href="https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2">"Deterministic nonperiodic flow"</a>, J. Atmos. Sci. 20 (1963) 130–141. Instability of nonperiodic solutions; statistics against details (p. 130); truncation limit and volume contraction (p. 135).</li>
+<li>J. C. Sprott, <a href="https://sprott.physics.wisc.edu/chaos/lorenzle.htm">"Lyapunov exponent and dimension of the Lorenz attractor"</a>, technical note, University of Wisconsin, 1997, revised 2005.</li>
+<li>A. Roshko, <a href="https://ntrs.nasa.gov/citations/19930092207">"On the development of turbulent wakes from vortex streets"</a>, NACA Report 1191 (1954). Ranges (p. 1); Strouhal fit (p. 11); dependence of the range boundaries (p. 17).</li>
+<li>G. Boffetta, R. E. Ecke, <a href="https://doi.org/10.1146/annurev-fluid-120710-101240">"Two-dimensional turbulence"</a>, Annu. Rev. Fluid Mech. 44 (2012) 427–451. Inverse cascade (pp. 427, 430); large-scale geophysical flows (p. 428).</li>
+<li>O. Darrigol, <a href="https://www.numdam.org/item/RHM_2002__8_1_5_0/">"Stability and instability in nineteenth-century fluid mechanics"</a>, Revue d'histoire des mathématiques 8 (2002) 5–65. Navier 1822, Stokes 1845 (p. 13); Reynolds 1894 (pp. 59–60).</li>
+<li>Leonardo da Vinci, <a href="https://www.gutenberg.org/ebooks/5000"><em>The Notebooks of Leonardo da Vinci</em></a>, translated by J. P. Richter (1888), Project Gutenberg eBook 5000, §389.</li>
+<li>Royal Collection Trust, <a href="https://www.rct.uk/collection/912579/recto-studies-of-water-and-a-seated-old-man-verso-architectural-studies">"Recto: Studies of water and a seated old man"</a>, RCIN 912579, c. 1512–13.</li>
+<li>Online Etymology Dictionary, <a href="https://www.etymonline.com/word/turbulence">"turbulence"</a>.</li>
+<li>NOAA, NASA, U.S. Air Force, <a href="https://ntrs.nasa.gov/citations/19770009539"><em>U.S. Standard Atmosphere, 1976</em></a>, Table 10 (p. 20).</li>
+</ul>
+<!-- BOOK-CONTENT-END --></article><nav class="page-turn" aria-label="Chapter navigation"><span>First available chapter</span><a href="index.html">Lecture index</a><a rel="next" href="chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html">Next available chapter</a></nav></main></div>
+<footer class="site-footer">Independent study notes. NPTEL IIT Bombay course recordings supply the topic sequence; added explanations and teaching constructions are separately attributed. Local edition in progress; a rendered page does not establish editorial completion.</footer></body></html>

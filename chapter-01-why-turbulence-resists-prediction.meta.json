@@ -1,0 +1,322 @@
+{
+  "chapter": 1,
+  "title": "Why turbulence resists prediction, and why it matters",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "xJD2ytlMtBM",
+      "lecture_number": 1,
+      "media_sha256": "e25280b269a6fa6aab34e4f6b7421d06db6fe7249d13913d28d05b28715860f4",
+      "duration_seconds": 1550.2935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1529.54
+    },
+    {
+      "video_id": "cEvlgNdHeqg",
+      "lecture_number": 2,
+      "media_sha256": "66fd686fbacc4625e06cb7b02fe771200e225b40a03fba56f2fb57269a884562",
+      "duration_seconds": 1700.6935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1672.17
+    }
+  ],
+  "frames_viewed": {
+    "xJD2ytlMtBM": [
+      "f0007",
+      "f0011",
+      "f0016",
+      "f0024",
+      "f0043",
+      "f0045"
+    ],
+    "cEvlgNdHeqg": [
+      "f0005",
+      "f0010",
+      "f0013",
+      "f0016",
+      "f0022",
+      "f0032",
+      "f0034",
+      "f0054"
+    ]
+  },
+  "source_uncertainties": [
+    "Frame extracted (not in the 30-s frame set): xJD2ytlMtBM at 152 s, the Module 01 'Sources' slide, shown about 148-161 s. It names McDonough (2007) 'Introductory lectures on turbulence: physics, mathematics and modeling'; Bakker (2008) 'Lectures on Applied Computational Fluid Dynamics'; Reynolds (1883), Phil. Trans. 174; Mellado and Ansorge (2012), 'Direct numerical simulation of turbulent mixing in the planetary boundary layer'. Pope is not named for this module. Kept in _editorial/tmp (ch01_L1_152s.jpg), not in the repository.",
+    "Not opened: McDonough (2007). The UKnowledge repository (https://uknowledge.uky.edu/me_textbooks/2/) returned a Cloudflare challenge page to scripted download on 2026-10-05, and a mirror returned HTTP 401. The chapter does not attribute any slide sentence to McDonough; it names the book only as listed on the Sources slide.",
+    "Unverified quotations (Table 1.1, marked 'As quoted in the lecture'): Heisenberg (slide source: a web page by B. Thurow, Auburn); Lamb 1932 (slide source: nanoscience.info); Saffman 1978 and Bradshaw 1994 (slide source: Marie Curie Chair lecture series). The two web pages were not opened (Wayback Machine returned HTTP 429). Goldstein (1969, Annu. Rev. Fluid Mech., DOI 10.1146/annurev.fl.01.010169.000245), which is often cited for the Lamb story, is not open access and was not checked; it is not cited. No claim that any quotation is apocryphal is made.",
+    "Spoken biographical statements not used: Saffman as a PhD student of Batchelor (ASR 'bachelor'); Heisenberg's role in the German nuclear programme. The slide caption linking cigarette smoke to 'black hole physics' (Source: ScienceDaily.com) is not used.",
+    "Leonardo: the first sentence of the slide quotation is checked in Richter's 1888 translation (section 389) in different wording; the sentence 'the smallest eddies are almost numberless ...' was not found in Richter's translation, and its source is not established. Marusic and Broomhall (2021, Annu. Rev. Fluid Mech. 53, DOI 10.1146/annurev-fluid-022620-122816) would be the natural check but is not open access (Cloudflare; no repository copy obtained). The identity of the sketch on the slide (cEvlgNdHeqg f0034) with RCIN 912579 is not established.",
+    "Slide claim corrected: 'turbolenza ... and hence the origin of our modern word'. The Online Etymology Dictionary dates English 'turbulence' to the early 15th century, before Leonardo's birth (1452).",
+    "Lecture-stated values not checked against a primary source: jet structures from 1 cm to 0.001 cm (or 0.0001 cm); Weddell Sea image 240 x 320 km and eddies 40-60 km; Alexander Selkirk Island height 1.6 km; laboratory cylinder about 10 cm; 'almost all flows are turbulent'; turbulence in biological cells.",
+    "Teaching assumptions (stated in the text): jet exit speed 15 m/s; cylinder speed 1 m/s; island wind 10 m/s; island length taken as its 1.6 km height (the slide gives no horizontal size).",
+    "The lecture's reading of Leonardo's passage as the energy cascade is attributed to the lecture and graded as an interpretation.",
+    "The handwritten definition on cEvlgNdHeqg f0054, 'density is a constant w.r.t. pressure', is reported as the lecture's definition; the chapter points to chapter 6 for the low-Mach-number statement.",
+    "Slide equation (2) writes -grad P with nu, so P is pressure divided by density; the chapter writes -(1/rho) grad p as chapter 6 does and states the slide form once. Slide Knudsen number lambda/l is written lambda_m/ell_g (chapter 6 decision).",
+    "ASR spellings corrected (slide text and standard spelling): 'Horace Lampe' = Horace Lamb; 'Safman' = Saffman; 'lambda flow' = laminar flow; 'landscapes', 'length schemes' = length scales; 'Vidal sea', 'Vettel Sea', 'Weddell Sear' (slide typo) = Weddell Sea; 'Arutian' = Aleutian; 'worn common', 'one common', 'more common' vortices = von Karman vortices; 'Alexander Circuit Island' = Alexander Selkirk Island; 'IDs' = eddies; 'principle correct' = principal current; 'by dimension' = by da Vinci; 'ethological figure' = mythological figure; 'PR grad' = pressure gradient; 'icepak' (slide typo) = ice pack.",
+    "Timestamps are section anchors from local speech-recognition segment times; they locate topic changes to within a few seconds."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Jet of nozzle diameter 1 cm (L1); incompressible Navier-Stokes equations, slide eqs. 1-2 (L2).",
+      "research_extension": "U.S. Standard Atmosphere 1976, Table 10 (p. 20): nu, speed of sound, mean free path at sea level.",
+      "teaching_construction": "Assumed exit speed 15 m/s; Re and Ma of the running case; state and prediction tasks (single realization against statistics).",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The despair in turbulence: four quotations and their sources (module introduction)",
+      "video_id": "xJD2ytlMtBM",
+      "start": 5.87,
+      "end": 161.93,
+      "lecture_material": "Module contents (despair, why study, what is turbulence, descriptions, attributes, history, three eras); Sources slide.",
+      "research_extension": "None.",
+      "teaching_construction": "Sources named in the source note; no statement relies on them.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The despair in turbulence: four quotations and their sources",
+      "video_id": "xJD2ytlMtBM",
+      "start": 161.93,
+      "end": 373.3,
+      "lecture_material": "Heisenberg, Lamb, Saffman and Bradshaw quotations with the sources named on the slides.",
+      "research_extension": "None (attributions not verifiable from accessible sources).",
+      "teaching_construction": "Table 1.1 with attribution status; the lecture grades the Saffman and Bradshaw sentences as jests (L1 317 s, 345 s); the book reads Saffman's sentence as a conjecture, says so, and gives forward references to chapters 6 and 10.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Why study turbulence: occurrence, mixing and a range of scales",
+      "video_id": "xJD2ytlMtBM",
+      "start": 373.3,
+      "end": 942.52,
+      "lecture_material": "Laminar against turbulent description (candle flame, forest fire); ubiquity list; four images; applications; enhanced mixing in an aircraft engine; wide range of interacting scales; intellectual challenge and practical utility.",
+      "research_extension": "None.",
+      "teaching_construction": "Backward reference structure: chapter 4 quantifies enhanced mixing.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Why study turbulence (recap at the start of Lecture 2)",
+      "video_id": "cEvlgNdHeqg",
+      "start": 5.87,
+      "end": 87.94,
+      "lecture_material": "Recap of the reasons for studying turbulence.",
+      "research_extension": "None.",
+      "teaching_construction": "None.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "A laboratory jet contains three decades of length",
+      "video_id": "xJD2ytlMtBM",
+      "start": 942.52,
+      "end": 1285.17,
+      "lecture_material": "Unsolved-problem bullet; turbulent jet photograph with large and small structures; laminar jet sketch; D = 1 cm, scales 1 cm to 0.001 cm, two to four decades depending on Re; laminar lengths all of order 1 cm.",
+      "research_extension": "None (forward references to chapters 5, 6, 17).",
+      "teaching_construction": "Grid count N^3 = (l_max/l_min)^3 = 1e9 and 1e12; memory 32 GB and 32 TB; steps per nozzle diameter; laminar comparison N^3 of order 1 under the same rule, ratio 1e9.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What is unsolved: existence, individual realizations and statistics",
+      "video_id": "xJD2ytlMtBM",
+      "start": 1285.17,
+      "end": 1529.54,
+      "lecture_material": "Studied by great physicists and engineers; neither understood in detail nor predictable with any reliability even in simple flows; every approach makes assumptions; intellectual challenge and practical utility.",
+      "research_extension": "Fefferman (Clay problem, pp. 1-2, 2, 4); Lorenz 1963 (p. 130 abstract and introduction; p. 135 eq. 31 and truncation limit); Sprott (sigma = 0.906; exponents sum to the contraction rate).",
+      "teaching_construction": "Three meanings of 'unsolved'; error-growth model (1.5) and horizon (1.6) with its logarithmic hinge; Lorenz contraction-rate check -13.67 against Sprott's sum -13.666; statistics against realizations; closure and cost as the two routes to statistics (forward to chapters 8, 9, 16).",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Turbulent eddies in nature and the condition for similarity",
+      "video_id": "cEvlgNdHeqg",
+      "start": 87.94,
+      "end": 596.01,
+      "lecture_material": "Weddell Sea eddies (240 x 320 km image, 40-60 km eddies, heat transport); Aleutian Islands and Alexander Selkirk Island Karman vortices (island 1.6 km high); bluff body; laboratory cylinder about 10 cm; similarity across scales; implications for weather.",
+      "research_extension": "Roshko 1954 (NACA Report 1191): stable 40-150, transition 150-300, irregular range (p. 1); S = 0.212(1 - 12.7/Re), 300 < Re < 2000, within 4 % to 10 000 (p. 11); range boundaries depend on tunnel turbulence and roughness (p. 17). Boffetta and Ecke 2012: large-scale atmospheric and oceanic flows approximately two-dimensional (p. 428).",
+      "teaching_construction": "Cylinder thresholds 5.8 mm/s and 44 mm/s; shedding 2.1 Hz at 1 m/s; island Re 1.1e9 against cylinder 6.85e3 (ratio 1.6e5); resemblance is not Reynolds-number similarity.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "What is turbulence? Partial descriptions of one phenomenon",
+      "video_id": "cEvlgNdHeqg",
+      "start": 596.01,
+      "end": 934.0,
+      "lecture_material": "Blind men and the elephant; slide caption on several terms for one process; two readings (history of definitions; shapes of turbulent structures).",
+      "research_extension": "None.",
+      "teaching_construction": "Each attribute measurable but none sufficient (Roshko stable wake, laminar mixing, Lorenz sensitivity); forward to chapters 2 and 3.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Leonardo da Vinci's description of turbulent water",
+      "video_id": "cEvlgNdHeqg",
+      "start": 934.0,
+      "end": 1248.74,
+      "lecture_material": "Turbulence recognized at least 500 years ago; da Vinci sketch and quotation; 'turbolenza' as origin of the modern word; two motions; reading as the energy cascade with exceptions.",
+      "research_extension": "Richter 1888 translation, section 389 (Project Gutenberg 5000); Royal Collection Trust RCIN 912579, c. 1512-13; Online Etymology Dictionary 'turbulence' (early 15c.); Darrigol 2002 (pp. 59-60, Reynolds 1894 averaging); Boffetta and Ecke 2012 (pp. 427, 430: inverse cascade, no vortex stretching in 2D).",
+      "teaching_construction": "Separation of checked and unchecked parts of the quotation; etymology correction; three claims of the passage; grading of the cascade reading.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "The Navier-Stokes equations and their assumptions",
+      "video_id": "cEvlgNdHeqg",
+      "start": 1248.74,
+      "end": 1672.17,
+      "lecture_material": "Navier-Stokes equations embody all fluid flows within the continuum hypothesis; introduced by Navier and Stokes; slide eqs. 1-2 and their terms; continuum hypothesis, Kn = lambda/l << 1; incompressible flow as density constant with respect to pressure.",
+      "research_extension": "Darrigol 2002 (p. 13): Navier 1822, Stokes 1845. U.S. Standard Atmosphere 1976 (Table 10, p. 20): mean free path.",
+      "teaching_construction": "Kn at the smallest eddies: 6.6e-3 (10 um, 150 mean free paths) and 6.6e-2 (1 um, 15 mean free paths); half Ma^2 = 9.7e-4 for the running case.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Executable checks",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Roshko fit (2b); Sprott sigma = 0.906; Lorenz constants.",
+      "teaching_construction": "NumPy program: Re, Ma, Kn, grid counts, cylinder and island numbers; Lorenz horizons for delta0 = 1e-2 ... 1e-12 over 40 reference states; slope fit; growth-rate estimate by rescaling; two time averages; two assertions; failure test.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the chapter establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "As in the sections above.",
+      "teaching_construction": "Boundaries of the three statements; list of unchecked lecture statements.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercises 5 and 6 use the lecture's scale range.",
+      "research_extension": "Exercise 3 uses Boffetta and Ecke; exercise 4 uses Roshko.",
+      "teaching_construction": "Six original exercises with full solutions: compute, derive, counterexample, judge a claim, design, check an assumption.",
+      "evidence_class": "engineering check"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 1 recording",
+      "url": "https://www.youtube.com/watch?v=xJD2ytlMtBM",
+      "supports": "Quotations, reasons for studying turbulence, jet range of scales, prediction statement.",
+      "page_checked": "slide frames listed in frames_viewed; Sources slide extracted at 152 s"
+    },
+    {
+      "title": "Lecture 2 recording",
+      "url": "https://www.youtube.com/watch?v=cEvlgNdHeqg",
+      "supports": "Nature examples, elephant fable, Leonardo, Navier-Stokes equations and continuum hypothesis.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Fefferman, Existence and smoothness of the Navier-Stokes equation (Clay Mathematics Institute problem description)",
+      "url": "https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf",
+      "supports": "Statements (A)-(D) (pp. 1-2); 2D analogues known, 3D smooth solutions for small data or short time (p. 2); 'Since we don't even know whether these solutions exist, our understanding is at a very primitive level' (p. 4).",
+      "page_checked": "pp. 1, 2, 4 (same as PDF pages)"
+    },
+    {
+      "title": "Lorenz 1963, Deterministic nonperiodic flow (J. Atmos. Sci. 20, 130-141)",
+      "url": "https://doi.org/10.1175/1520-0469(1963)020%3C0130:DNF%3E2.0.CO;2",
+      "supports": "p. 130 abstract: 'nonperiodic solutions are ordinarily unstable with respect to small modifications, so that slightly differing initial states can evolve into considerably different states'; p. 130 introduction: 'attention is often confined to the statistics of turbulence, which, in contrast to the details of turbulence, often behave in a regular well-organized manner'; forecaster must predict details. p. 135: eqs. (25)-(27); truncation limit; eq. (31) divergence -(sigma + b + 1).",
+      "page_checked": "p. 130 (PDF p. 1); p. 135 (PDF p. 6); page images rendered and viewed"
+    },
+    {
+      "title": "Sprott, Lyapunov exponent and dimension of the Lorenz attractor (technical note, 1997, revised 2005)",
+      "url": "https://sprott.physics.wisc.edu/chaos/lorenzle.htm",
+      "supports": "Lyapunov exponents (0.906, 0, -14.572) for p = 10, r = 28, b = 8/3; for a flow one exponent is zero and the sum is -p - 1 - b.",
+      "page_checked": "web page, accessed 2026-10-05"
+    },
+    {
+      "title": "Roshko 1954, On the development of turbulent wakes from vortex streets (NACA Report 1191)",
+      "url": "https://ntrs.nasa.gov/citations/19930092207",
+      "supports": "Summary: stable range Re = 40-150, transition 150-300, irregular range with turbulent fluctuations, wake fully turbulent in 40-50 diameters (p. 1); S = 0.212(1 - 12.7/R) for 300 < R < 2000, extension to 10 000 within 4 %, periodic fluctuations up to about 200 000 (p. 11); range boundaries depend on tunnel turbulence and roughness (p. 17).",
+      "page_checked": "p. 1 (PDF p. 3); p. 11 (PDF p. 13); p. 17 (PDF p. 19)"
+    },
+    {
+      "title": "Boffetta and Ecke 2012, Two-dimensional turbulence (Annu. Rev. Fluid Mech. 44, 427-451)",
+      "url": "https://doi.org/10.1146/annurev-fluid-120710-101240",
+      "supports": "Abstract: additional conservation of squared vorticity leads to an inverse energy cascade to larger scales and a direct enstrophy cascade (p. 427); large-scale atmospheric and oceanic motions approximately 2D owing to large aspect ratio (p. 428); vortex stretching absent in 2D; energy 'dynamically transferred to large scales by the inverse cascade' (p. 430).",
+      "page_checked": "p. 427 (PDF p. 1); p. 428 (PDF p. 2); p. 430 (PDF p. 4)"
+    },
+    {
+      "title": "Darrigol 2002, Stability and instability in nineteenth-century fluid mechanics (Revue d'histoire des mathematiques 8, 5-65)",
+      "url": "https://www.numdam.org/item/RHM_2002__8_1_5_0/",
+      "supports": "'an equation discovered by Claude-Louis Navier in 1822 and re-derived by Stokes in 1845' (p. 13); Reynolds [1894] assumed an averaging scale; energy of the eddying motion borrowed from the mean motion and damped by viscous forces (pp. 59-60).",
+      "page_checked": "p. 13 (PDF p. 9); pp. 59-60 (PDF pp. 55-56)"
+    },
+    {
+      "title": "Leonardo da Vinci, The Notebooks, translated by J. P. Richter (1888), Project Gutenberg eBook 5000",
+      "url": "https://www.gutenberg.org/ebooks/5000",
+      "supports": "Section 389 'On hair falling down in curls': 'Observe the motion of the surface of the water which resembles that of hair, and has two motions, of which one goes on with the flow of the surface, the other forms the lines of the eddies; thus the water forms eddying whirlpools one part of which are due to the impetus of the principal current and the other to the incidental motion and return flow.'",
+      "page_checked": "section 389 (plain-text edition, no page numbers)"
+    },
+    {
+      "title": "Royal Collection Trust, Recto: Studies of water and a seated old man (RCIN 912579)",
+      "url": "https://www.rct.uk/collection/912579/recto-studies-of-water-and-a-seated-old-man-verso-architectural-studies",
+      "supports": "Date c.1512-13; 'In his notes he compares the swirling water to plaited hair.'",
+      "page_checked": "web page, accessed 2026-10-05"
+    },
+    {
+      "title": "Online Etymology Dictionary, turbulence",
+      "url": "https://www.etymonline.com/word/turbulence",
+      "supports": "'early 15c., \"turbidity, cloudiness;\" 1590s, \"disturbed state;\" from Late Latin turbulentia'.",
+      "page_checked": "web page, accessed 2026-10-05"
+    },
+    {
+      "title": "U.S. Standard Atmosphere, 1976 (NOAA-S/T 76-1562)",
+      "url": "https://ntrs.nasa.gov/citations/19770009539",
+      "supports": "Table 10 sea-level values: speed of sound 3.40294e2 m/s; mean free path 6.6328e-8 m; kinematic viscosity 1.4607e-5 m^2/s.",
+      "page_checked": "p. 20 (PDF p. 36), page image rendered and viewed"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "D, U, nu, c, lambda_m, Re, Ma, ell",
+      "first_section": "model",
+      "definition": "Nozzle diameter, exit speed, kinematic viscosity, speed of sound, mean free path, Reynolds and Mach numbers, size of a structure (lecture's spoken L)."
+    },
+    {
+      "symbol": "bold U, U_i, bold x, t, p, rho, F_B",
+      "first_section": "model",
+      "definition": "Full velocity field and components, position, time, pressure, density, body force per unit mass (slide symbol)."
+    },
+    {
+      "symbol": "ell_max, ell_min, Delta x, N",
+      "first_section": "range-of-scales",
+      "definition": "Largest and smallest structure size, grid spacing, grid points per direction."
+    },
+    {
+      "symbol": "delta, delta_0, sigma, T_p, Delta",
+      "first_section": "unsolved",
+      "definition": "Separation of two solutions, its initial value, largest Lyapunov exponent, prediction horizon, tolerance."
+    },
+    {
+      "symbol": "d, n, S",
+      "first_section": "nature",
+      "definition": "Cylinder diameter, shedding frequency, Strouhal number."
+    },
+    {
+      "symbol": "Kn, ell_g",
+      "first_section": "navier-stokes",
+      "definition": "Knudsen number and smallest flow length (chapter 6 notation)."
+    },
+    {
+      "symbol": "Pr, r, beta",
+      "first_section": "unsolved",
+      "definition": "Lorenz constants (chapter 7 notation); Lorenz writes sigma, r, b."
+    },
+    {
+      "symbol": "x, y, z",
+      "first_section": "implementation",
+      "definition": "Lorenz state variables (not coordinates)."
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I ch01_extracted.py (the chapter listing extracted from the HTML by _editorial/tmp/ch01_check_code.py, run in a fresh process; stdout compared byte for byte with the printed block; pycodestyle clean)",
+    "stdout_matches_printed": true
+  }
+}
