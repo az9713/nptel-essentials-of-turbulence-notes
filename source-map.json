@@ -1695,6 +1695,171 @@
       "teaching_construction": "Six original exercises with full solutions: derive, compute, check an assumption, counterexample, judge a design, derive and compute.",
       "evidence_class": "engineering check",
       "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Symbols kappa = 2 pi / l, kappa_EI, kappa_DI, l_EI = l0/6, l_DI = 60 eta, u_0, Re_0 from the slides.",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model (homogeneous fluctuation field, isotropy only where stated); continuation of the jet of chapters 6-8 and the atmospheric layer of chapter 5; u' = (2k/3)^(1/2).",
+      "evidence_class": "definition",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "Energy and dissipation in a band of wavenumbers",
+      "video_id": "y5bCLx0FOno",
+      "start": 632,
+      "end": 770,
+      "lecture_material": "Band integrals k(ka,kb) and eps(ka,kb) (slide f0025); the lecture states that the derivation of the dissipation integral is not important now.",
+      "research_extension": "None.",
+      "teaching_construction": "Proof that eps = 2 nu int kappa^2 E dkappa needs homogeneity and incompressibility but not isotropy; the dissipation spectrum D(kappa).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The transfer rate through the inertial subrange",
+      "video_id": "y5bCLx0FOno",
+      "start": 165,
+      "end": 460,
+      "lecture_material": "T(l) ~ u(l)^2/tau(l), T_EI = T(l) = T_DI = eps (slides f0007, f0013).",
+      "research_extension": "None.",
+      "teaching_construction": "Stationary flux balance T(kappa) = eps - eps(0,kappa) and its assumptions.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "Dimensional analysis fixes the form of the spectrum",
+      "video_id": "y5bCLx0FOno",
+      "start": 771,
+      "end": 925,
+      "lecture_material": "E(kappa) universal function of eps and nu above kappa_EI; E = C eps^(2/3) kappa^(-5/3) between kappa_EI and kappa_DI (slide f0025).",
+      "research_extension": "None.",
+      "teaching_construction": "E = (eps nu^5)^(1/4) Psi(kappa eta); unique exponents; status of the hypothesis and of C.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The measured spectrum: what collapses, where the power law holds, and which constant",
+      "video_id": "y5bCLx0FOno",
+      "start": 461,
+      "end": 631,
+      "lecture_material": "Slide Figure 6.14 (one-dimensional longitudinal spectra scaled with Kolmogorov variables; caption cites Saddoughi and Veeravalli 1994); the lecture reads the collapse as the first similarity hypothesis.",
+      "research_extension": "Saddoughi (1993) Figure 3 and pp. 245-250; Yeung and Zhou (1997) abstract, eqs. (1)-(3), Table I; the one- versus three-dimensional distinction and C = (55/18) C1.",
+      "teaching_construction": "Reading of the collapse as a high-wavenumber statement; comparison of C values and their spread; comparison of kappa_DI with the simulated inertial range.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The convergence argument for the exponent",
+      "video_id": "y5bCLx0FOno",
+      "start": 933,
+      "end": 1398,
+      "lecture_material": "E = A kappa^-p; k(kappa,inf) = A kappa^-(p-1)/(p-1) for p > 1; eps(0,kappa) = 2 nu A kappa^(3-p)/(3-p) for p < 3; p = 5/3 (slide f0035).",
+      "research_extension": "None.",
+      "teaching_construction": "Critique: the conditions apply to an unbounded power law, not to the finite inertial range; per-logarithmic-interval reading of the exponents; Exercise 3.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "Where the energy and the dissipation lie",
+      "video_id": "y5bCLx0FOno",
+      "start": 1399,
+      "end": 1557,
+      "lecture_material": "k(kappa,inf) ~ kappa^(-2/3) and eps(0,kappa) ~ kappa^(4/3): bulk of energy at l > l_EI and bulk of dissipation at l < l_DI (slide f0046).",
+      "research_extension": "None.",
+      "teaching_construction": "Integrals of the -5/3 law between the nominal limits, shares 7.6/9.0 % (jet) and 13.2/11.1 % (layer), bounds 13.3/11.1 %, effect on the flux balance.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The hypotheses for the N-point density of velocity differences",
+      "video_id": "S00uHOMJhr0",
+      "start": 251,
+      "end": 644,
+      "lecture_material": "Definitions of local homogeneity and local isotropy and the three hypotheses for f_N (slides f0010, f0018).",
+      "research_extension": "Kolmogorov (1941) Definitions 1 and 2 and the hypotheses of similarity, pp. 9-10 and 12.",
+      "teaching_construction": "Remark that a second-order statistic is one moment of f_2 and that the hypotheses constrain no one-point statistics.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The second-order structure function",
+      "video_id": "S00uHOMJhr0",
+      "start": 645,
+      "end": 859,
+      "lecture_material": "D_ij definition, independence of x0, isotropic form D_ij = D_NN delta_ij + (D_LL - D_NN) r_i r_j / r^2 (slides f0022, f0027).",
+      "research_extension": "Kolmogorov (1941) eqs. (22)-(23), p. 13; Saddoughi (1993) p. 238 (C2 ~ 4 C1, third-order -4/5 law as quoted).",
+      "teaching_construction": "Proof of the isotropic form; D_LL = C2 (eps r)^(2/3) from the second hypothesis; C2 = 4.018 C1 from the cosine pair; the slide's typo in D_ij is corrected.",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The two-point correlation of isotropic turbulence: f, g and the integral scales",
+      "video_id": "S00uHOMJhr0",
+      "start": 860,
+      "end": 1232,
+      "lecture_material": "R_ij = u'^2 [g delta_ij + (f - g) r_i r_j / r^2]; L11 = int f dr; L22 = int g dr = L11/2 (slides f0033, f0036, f0037, f0039).",
+      "research_extension": "Kolmogorov (1941) eq. (12) and (24)-(25), pp. 11 and 13.",
+      "teaching_construction": "Continuity relation g = f + (r/2) f'; proof of L22 = L11/2 with its tail condition; D_NN = D_LL + (r/2) dD_LL/dr and its limits 2 and 4/3.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The Taylor microscales and the dissipation rate",
+      "video_id": "S00uHOMJhr0",
+      "start": 1233,
+      "end": 1449,
+      "lecture_material": "lambda_f = [-f''(0)/2]^(-1/2), lambda_g = [-g''(0)/2]^(-1/2), lambda_g = lambda_f/sqrt(2); Taylor (1935) eps = 15 nu u'^2/lambda_g^2 and its incorrect interpretation (slides f0042, f0046).",
+      "research_extension": "Kolmogorov (1941) eqs. (11), (13), (14), pp. 11-12; Saddoughi (1993) pp. 237 and 242.",
+      "teaching_construction": "Proof of lambda_g = lambda_f/sqrt(2) and of eps = 15 nu <(du1/dx1)^2> from f and g; the jet and layer numbers showing that lambda_g is not the dissipative-eddy size.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The large-scale, Taylor-scale and Kolmogorov scales",
+      "video_id": "S00uHOMJhr0",
+      "start": 1450,
+      "end": 1584,
+      "lecture_material": "L = k^(3/2)/eps, Re_L = k^2/(eps nu), lambda_g/L, eta/L, Re_lambda = (20 Re_L/3)^(1/2), lambda_g/u' = sqrt(15) tau_eta (slides f0050, f0055); the lecture's remarks that Re_lambda applies only to grid turbulence.",
+      "research_extension": "Saddoughi (1993) Table 1 and p. 242 (Re_lambda in a boundary layer); Yeung and Zhou (1997) abstract (Re_lambda > 140).",
+      "teaching_construction": "Algebraic proofs of the identities; running-case values; comparison of the nominal inertial-range width with measured and simulated ranges; grading of the lecturer's judgments.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The velocity-derivative skewness",
+      "video_id": "S00uHOMJhr0",
+      "start": 1585,
+      "end": 1692,
+      "lecture_material": "Definition S = <(du1/dx1)^3>/<(du1/dx1)^2>^(3/2) (slide f0055); no further discussion in the lecture.",
+      "research_extension": "Kerr (1983) p. 15 and p. 23 (value -0.505 +/- 0.005, no Reynolds-number dependence over a wide range, compressive principal strain).",
+      "teaching_construction": "Reflection-symmetry argument that S is not forced to zero, in contrast to odd moments of a transverse derivative.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "Executable checks: the spectrum integrals, the range shares and the isotropic relations",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program and its output; the nominal inertial-range width against Re_lambda.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "What the statements establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Kolmogorov (1962) p. 84 eq. (10); Yeung and Zhou (1997) p. 1 on intermittency and the second-order exponent.",
+      "teaching_construction": "Statement of the status of each result and the conditions of each share and constant.",
+      "evidence_class": "definition",
+      "chapter": "chapter-11-energy-spectrum.html"
     }
   ]
 }

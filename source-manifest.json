@@ -72,9 +72,9 @@
     },
     {
       "order": 11,
-      "title": "The energy spectrum",
+      "title": "The energy spectrum: how energy and dissipation are distributed over wavenumber, and what the second-order correlations add",
       "lectures": "29-30",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 12,
