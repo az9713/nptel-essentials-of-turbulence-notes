@@ -1,0 +1,312 @@
+{
+  "chapter": 2,
+  "title": "Descriptions, definitions, and a short history of turbulence",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "Mk7wOgkG1sc",
+      "lecture_number": 3,
+      "media_sha256": "c28ea85c8f922fd127eb88a70d8df7aa64f75bf077ac5a19863f27bfe064dbe7",
+      "duration_seconds": 1758.8535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1730.08
+    },
+    {
+      "video_id": "UuNnYCtl8KM",
+      "lecture_number": 4,
+      "media_sha256": "2049a006a2031284433e71b1106f5274519a1f17a85ba4d1f7d3b04230c9a860",
+      "duration_seconds": 1545.6935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1517.16
+    },
+    {
+      "video_id": "AjSItNLIBxU",
+      "lecture_number": 5,
+      "media_sha256": "4f8a9b0b244b43579afe5949388149997dcf87805394f6cbe724cf037e12e90e",
+      "duration_seconds": 1807.8535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1778.52
+    }
+  ],
+  "frames_viewed": {
+    "Mk7wOgkG1sc": [
+      "f0003",
+      "f0008",
+      "f0013",
+      "f0025",
+      "f0027",
+      "f0028",
+      "f0032",
+      "f0042",
+      "f0056"
+    ],
+    "UuNnYCtl8KM": [
+      "f0008",
+      "f0014",
+      "f0023",
+      "f0027",
+      "f0036",
+      "f0039",
+      "f0042",
+      "f0050"
+    ],
+    "AjSItNLIBxU": [
+      "f0006",
+      "f0014",
+      "f0023",
+      "f0028",
+      "f0036",
+      "f0040",
+      "f0042",
+      "f0043",
+      "f0045",
+      "f0050",
+      "f0054",
+      "f0057"
+    ]
+  },
+  "source_uncertainties": [
+    "The lecture's 'modern definition' of turbulence is attributed on the slide only through the lead-in 'Chapman and Tobak (1985) have described ... three eras ... A more precise definition is now possible within the context of ideas from the deterministic era'. The defining sentence is not in NASA TM 86679 (searched for 'chaotic solution', 'sensitive to initial', 'successive instabilit', 'bifurcation parameter', 'definition'). Its source was not found; McDonough (2007) and Bakker (2008), named on Module 01's Sources slide per chapter 1, were not obtained.",
+    "Not obtained, so given 'as stated in the lecture': Hinze (1959), von Kármán (1938) quoting Taylor, Tsinober (2001), Tennekes and Lumley (1972), Taylor (1935) and (1938), Prandtl (1925), Ruelle and Takens (1971; Project Euclid landing page only, PDF text not accessible), Landau (1944), the Kolmogorov 1941 papers other than the one translation in chapter 5, and all names of the 1940s-1990s entries on the timeline slide.",
+    "Reynolds's constants B_s=43.79 (p. 943), B_c=278 (p. 948; 279.7 and 272.0 in tubes 4 and 5, pp. 970-971) and A_c=47,700,000 (pp. 948, 972) were read from the extracted text and, for p. 948, from the page image (the ratio 43.7 on p. 948 is Reynolds's rounding of 43.79); the identification of Reynolds's i with head loss per unit length and g=9.81 m/s^2 are assumptions of the conversion (nu(0 C)=1.787e-6 m^2/s, Re_c=2.01e3, Re_s=1.28e4). The tube diameters near 1, 1/2 and 1/4 inch on p. 941 are partly illegible in the extracted text; the chapter computes with 12.7 mm as an illustrative value, and Re does not depend on D.",
+    "Source of the modern definition: the slide quotes the sentence and names no source; the lecturer says (L5, 975-980 s) that the modern definition of turbulence sort of came from the Ruelle and Takens paper, which was not accessible. Water viscosity at 0 C (1.7921 mPa s, density 0.99984 g/cm3, Lide 2004, p. 6-201) is quoted as cited by the Wikipedia data page for water; the handbook was not opened.",
+    "Reynolds 1894/1895: Darrigol (2002) cites 'Reynolds [1894]' (Phil. Trans. (1894)); Schmitt (2007) cites 1895. The paper was not opened; the chapter states both dates.",
+    "Lecture-stated values not verified: Re < 2300 / 2300-10000 / > 10000 (handwritten); cylinder wake: the lecture's 'quasi-periodic above 150' and 'fully turbulent at 5000-10000' disagree with Roshko and with Chapman and Tobak (its steady Re about 10 and periodic 50-150 agree); 'almost 300 years later' for 1877 (slide: > 100 yrs, actual about 150); Boussinesq 'himself offered a warning' (slide: 'Warning offered about the relationship', no author); chaotic solutions of 1-D and 2-D Navier-Stokes equations (no source found; chapter notes that 1-D incompressible flow has no spatial dynamics); 'RANS makes little sense if turbulence is random' (not in the text of Chapman and Tobak read).",
+    "Corrsin and Kistler (1955) page numbers use report page = PDF page - 3 (INDEX.md): definition of the intermittency factor PDF p. 8 = p. 5; Figure 32 PDF p. 28 = p. 25. Chapman and Tobak page numbers are the memorandum's own: PDF page - 2. Schmitt page numbers are preprint pages: PDF page - 1.",
+    "ASR spellings in the recordings (not used in reader text): 'Heinz' for Hinze, 'Bornkam' for von Karman, 'business', 'Bismiss' and 'Bissonin' for Boussinesq, 'Rolle and Teckens' for Ruelle and Takens, 'Laundry' for Launder, 'Figgen-Gau' for Feigenbaum, 'Lazure and Matras' for Lesieur and Metais, 'co-ep' for Couette, 'walls/vaults' for whirls, 'errors' for eras; the speaker says 'Chapman and Tobach 1981' (L5 about 1212 s) where the slide and the report give 1985; L5 places Reynolds's pipe experiments at 1894 (slide date of his seminal paper; the experiments are of 1883)."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Reynolds apparatus; Navier-Stokes equations",
+      "research_extension": "Reynolds (1883) pp. 941-943 for the tubes",
+      "teaching_construction": "running case and notation for Re_D",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The nonlinear term and the few exact solutions",
+      "video_id": "Mk7wOgkG1sc",
+      "start": 62,
+      "end": 262,
+      "lecture_material": "nonlinear term; plane Poiseuille and Couette flow; few exact solutions",
+      "research_extension": "none",
+      "teaching_construction": "plane-channel derivation showing the convective term vanishes identically, (2.3)",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Reynolds's colour bands and his two critical velocities",
+      "video_id": "Mk7wOgkG1sc",
+      "start": 262,
+      "end": 343,
+      "lecture_material": "dye streak in a pipe; laminar, transitional, turbulent; 2300 and 10000",
+      "research_extension": "Reynolds (1883) pp. 942-948, 971-972: observations, critical constants",
+      "teaching_construction": "conversion of Reynolds's constants to Reynolds numbers, (2.4)-(2.5), with program",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "One parameter from two terms",
+      "video_id": "Mk7wOgkG1sc",
+      "start": 343,
+      "end": 687,
+      "lecture_material": "Re as ratio of inertia to viscous forces; single parameter",
+      "research_extension": "Reynolds (1883) p. 938 derivation from the equations of motion",
+      "teaching_construction": "scaling (2.6) and the grading of 'Re is the only parameter'",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Convective transport and enhanced diffusion",
+      "video_id": "Mk7wOgkG1sc",
+      "start": 687,
+      "end": 1730,
+      "lecture_material": "enhanced diffusion; coffee and milk; planetary boundary layer and jet pictures",
+      "research_extension": "slide captions only",
+      "teaching_construction": "scalar equation (2.7) and conditions on two lecture statements",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Four attempts at a definition",
+      "video_id": "UuNnYCtl8KM",
+      "start": 154,
+      "end": 714,
+      "lecture_material": "Richardson, von Karman (Taylor), Hinze quotations; lack of precision",
+      "research_extension": "Richardson (1922) p. 66; Kolmogorov (1962) p. 82",
+      "teaching_construction": "grading of the lecture's criticism",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The lecture's modern definition and its three elements",
+      "video_id": "UuNnYCtl8KM",
+      "start": 714,
+      "end": 1063,
+      "lecture_material": "definition sentence and its elements",
+      "research_extension": "Chapman and Tobak (1985) pp. 1-2, absence of the sentence",
+      "teaching_construction": "three limits of the definition",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Why the definition says three-dimensional",
+      "video_id": "UuNnYCtl8KM",
+      "start": 1063,
+      "end": 1204,
+      "lecture_material": "vortex stretching absent in 1-D and 2-D; chaos is not necessarily turbulence",
+      "research_extension": "Boffetta and Ecke (2012) pp. 427, 428, 430",
+      "teaching_construction": "one-dimensional incompressibility remark",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Six attributes and their status",
+      "video_id": "UuNnYCtl8KM",
+      "start": 1204,
+      "end": 1426,
+      "lecture_material": "six attributes",
+      "research_extension": "none",
+      "teaching_construction": "Table 2.2 grading",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Intermittency: the fraction of time a point sees irregular motion",
+      "video_id": "UuNnYCtl8KM",
+      "start": 1426,
+      "end": 1517,
+      "lecture_material": "intermittency sketches",
+      "research_extension": "Corrsin and Kistler (1955) definition and Figure 32; Kolmogorov (1962) p. 82; Chapman and Tobak p. 4",
+      "teaching_construction": "synthetic two-state record and threshold test, (2.8)",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Boussinesq and the turbulent viscosity",
+      "video_id": "AjSItNLIBxU",
+      "start": 82,
+      "end": 343,
+      "lecture_material": "timeline; Boussinesq hypothesis",
+      "research_extension": "Schmitt (2007) pp. 3-5, 7-8",
+      "teaching_construction": "Table 2.3; comparison of the slide form with Boussinesq's tensor form (2.9)-(2.10)",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Reynolds's averaging and Prandtl's mixing length",
+      "video_id": "AjSItNLIBxU",
+      "start": 343,
+      "end": 671,
+      "lecture_material": "Reynolds decomposition; mixing length",
+      "research_extension": "Darrigol (2002) pp. 59-60; Chapman and Tobak pp. 3-5",
+      "teaching_construction": "none",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Taylor, Kolmogorov and the computer",
+      "video_id": "AjSItNLIBxU",
+      "start": 671,
+      "end": 969,
+      "lecture_material": "Taylor 1935; Kolmogorov 1941; Lorenz 1963",
+      "research_extension": "Kolmogorov (1962) p. 82; Chapman and Tobak pp. 4, 8",
+      "teaching_construction": "none",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Ruelle-Takens and the cylinder wake",
+      "video_id": "AjSItNLIBxU",
+      "start": 969,
+      "end": 1190,
+      "lecture_material": "Ruelle-Takens sequence; cylinder at Re about 10, 150, 5000-10000",
+      "research_extension": "Chapman and Tobak pp. 8, 9, 11, 12, 13, 17; Roshko (1954) p. 1",
+      "teaching_construction": "comparison of the lecture's numbers with the sources",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Three movements, and the lecture's reading",
+      "video_id": "AjSItNLIBxU",
+      "start": 1190,
+      "end": 1778,
+      "lecture_material": "statistical, structural and deterministic movements; future approaches",
+      "research_extension": "Chapman and Tobak pp. 3-9, 16",
+      "teaching_construction": "Table 2.4",
+      "evidence_class": "hypothesis"
+    },
+    {
+      "section": "Executable checks",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "none",
+      "research_extension": "none",
+      "teaching_construction": "program for (2.5) and (2.8)",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the chapter establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "none",
+      "research_extension": "none",
+      "teaching_construction": "limits",
+      "evidence_class": "engineering check"
+    }
+  ],
+  "references": [
+    {
+      "title": "O. Reynolds, An experimental investigation of the circumstances which determine whether the motion of water shall be direct or sinuous, and of the law of resistance in parallel channels, Phil. Trans. R. Soc. Lond. 174 (1883) 935-982",
+      "url": "https://doi.org/10.1098/rstl.1883.0029",
+      "supports": "parameter from the equations of motion; colour-band observations; the two critical velocities and constants",
+      "page_checked": "pp. 938, 941-943, 946-948, 970-972 (PDF pp. 5, 8-10, 13-15, 37-39); figs. 3-5 on p. 942"
+    },
+    {
+      "title": "G. T. Chapman, M. Tobak, Observations, theoretical ideas, and modeling of turbulent flows: past, present, and future, NASA TM 86679 (1985)",
+      "url": "https://ntrs.nasa.gov/citations/19850018856",
+      "supports": "three movements and their assessments; Landau versus Ruelle and Takens; cylinder sequence; absence of the lecture's definition sentence",
+      "page_checked": "pp. 1-9, 11-13, 16-17 (PDF pp. 3-11, 13-15, 18-19)"
+    },
+    {
+      "title": "F. G. Schmitt, About Boussinesq's turbulent viscosity hypothesis, C. R. Mecanique 335 (2007) 617-627",
+      "url": "https://hal.science/hal-00264386",
+      "supports": "Boussinesq 1877 closure, mixing-length form, Kelvin 1887, failures of the hypothesis in DNS data",
+      "page_checked": "preprint pp. 3-5, 7-8 (PDF pp. 4-6, 8-9)"
+    },
+    {
+      "title": "L. F. Richardson, Weather Prediction by Numerical Process (1922)",
+      "url": "https://archive.org/details/weatherpredictio00richrich",
+      "supports": "the whirls sentence and its context",
+      "page_checked": "p. 66 (PDF p. 84)"
+    },
+    {
+      "title": "A. N. Kolmogorov, A refinement of previous hypotheses concerning the local structure of turbulence, J. Fluid Mech. 13 (1962) 82-85",
+      "url": "https://doi.org/10.1017/S0022112062000518",
+      "supports": "1941 papers a, b, c; Richardson's idea; Landau's objection",
+      "page_checked": "p. 82 (PDF p. 1)"
+    },
+    {
+      "title": "O. Darrigol, Stability and instability in nineteenth-century fluid mechanics, Rev. Hist. Math. 8 (2002) 5-65",
+      "url": "https://www.numdam.org/item/RHM_2002__8_1_5_0/",
+      "supports": "Reynolds's 1894 averaging argument",
+      "page_checked": "pp. 59-60 (PDF pp. 55-56)"
+    },
+    {
+      "title": "S. Corrsin, A. L. Kistler, Free-stream boundaries of turbulent flows, NACA Report 1244 (1955)",
+      "url": "https://ntrs.nasa.gov/citations/19930092246",
+      "supports": "definition of the intermittency factor; intermittency distributions",
+      "page_checked": "p. 5 (PDF p. 8); Figure 32 and its text, p. 25 (PDF p. 28)"
+    },
+    {
+      "title": "A. Roshko, On the development of turbulent wakes from vortex streets, NACA Report 1191 (1954)",
+      "url": "https://ntrs.nasa.gov/citations/19930092207",
+      "supports": "stable, transition and irregular ranges of the cylinder wake",
+      "page_checked": "p. 1 (PDF p. 3); p. 17 (PDF p. 19), quoted in the cylinder-wake paragraph and Table 2.2"
+    },
+    {
+      "title": "G. Boffetta, R. E. Ecke, Two-dimensional turbulence, Annu. Rev. Fluid Mech. 44 (2012) 427-451",
+      "url": "https://doi.org/10.1146/annurev-fluid-120710-101240",
+      "supports": "no vortex stretching in 2-D; inverse cascade; atmospheric flows as 2-D",
+      "page_checked": "pp. 427, 428, 430 (PDF pp. 1, 2, 4)"
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I _editorial/tmp/ch02_code.py",
+    "stdout_matches_printed": true
+  }
+}

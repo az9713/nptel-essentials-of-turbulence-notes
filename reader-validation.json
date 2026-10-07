@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-07T02:41:01.906545+00:00",
+  "checked_at_utc": "2026-10-07T04:28:14.177324+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 12,
-    "local_links_checked": 225,
-    "timestamps_checked": 100,
+    "html_files": 14,
+    "local_links_checked": 259,
+    "timestamps_checked": 126,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -34,7 +34,25 @@
       },
       {
         "mathErrors": 0,
-        "mathNodes": 487,
+        "mathNodes": 259,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-02-descriptions-definitions-history.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 259,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-02-descriptions-definitions-history.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 488,
         "horizontalOverflow": false,
         "controls": true,
         "emptyToc": false,
@@ -43,7 +61,7 @@
       },
       {
         "mathErrors": 0,
-        "mathNodes": 487,
+        "mathNodes": 488,
         "horizontalOverflow": false,
         "controls": true,
         "emptyToc": false,
