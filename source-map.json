@@ -1068,6 +1068,193 @@
       "teaching_construction": "Six original exercises (compute, counterexample, check an assumption, derive, judge a claim, derive and judge) and full solutions for all nine.",
       "evidence_class": "derivation",
       "chapter": "chapter-08-random-processes-spectra-and-random-fields.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Symbols u(l), tau(l), l_0, u_0, Re, Re_0 from the slides.",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model of flow scales and eddy scales; continuation of the air jet of chapters 6-8 with the atmospheric layer of chapter 5 as contrast; notation Re_0 versus Re(l).",
+      "evidence_class": "definition",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Turbulent motions span a range of sizes that widens with the Reynolds number",
+      "video_id": "J_2qmhA5KkI",
+      "start": 88,
+      "end": 470,
+      "lecture_material": "Laminar flow has one characteristic length (1 cm jet example); turbulent motions range from the flow width delta to much smaller scales that shrink as Re increases; continuum still valid; Re 1e5 versus 1e10 illustration.",
+      "research_extension": "None.",
+      "teaching_construction": "Factor 5.6e3 from Re^(-3/4) with its assumptions; Knudsen number from chapter 6.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Richardson's energy cascade: inviscid transfer and viscous dissipation",
+      "video_id": "J_2qmhA5KkI",
+      "start": 470,
+      "end": 801,
+      "lecture_material": "Richardson (1922) cascade idea; production at the largest scales; transfer by inviscid processes; dissipation by viscosity; Navier-Stokes inertia term breaks up large scales, viscous term dominant at small scales; Kolmogorov (1941) quantified the picture.",
+      "research_extension": "Richardson 1922, p. 66: 'big whirls have little whirls...' in the context of cumulus convection and a single eddy coefficient.",
+      "teaching_construction": "Proof (10.1)-(10.2) that inertia and pressure terms conserve energy in a periodic box; triad identity (10.3); statement that neither proves direction or locality of transfer.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Eddies, their scales and the Reynolds number of the largest eddies",
+      "video_id": "J_2qmhA5KkI",
+      "start": 801,
+      "end": 1330,
+      "lecture_material": "Re = U L/nu known before the flow; eddy definition; u(l), tau(l) = l/u(l); l_0 comparable to L; u_0 of order u' = (2k/3)^(1/2) comparable to U; Re_0 = u_0 l_0/nu large, viscous effects negligible.",
+      "research_extension": "None.",
+      "teaching_construction": "Origin of the factor 2/3 via (8.25); local flow scales in a developing jet (factor 28); Re_0^(-1) = 7.3e-5 via (5.17).",
+      "evidence_class": "definition",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The dissipation rate is set by the largest eddies",
+      "video_id": "J_2qmhA5KkI",
+      "start": 1330,
+      "end": 1630.17,
+      "lecture_material": "Richardson's notion of unstable eddies; cascade continues until Re small; epsilon ~ u_0^2/tau_0 = u_0^3/l_0 set by the first step; consistent with observations in free shear flows where epsilon is independent of nu.",
+      "research_extension": "McComb et al. 2015: epsilon = C_eps U^3/L (p. 2), Batchelor 1953 and Sreenivasan 1984 attributions (p. 2), C_eps = C_eps,inf + C/R_L with 0.468 +/- 0.006 and 18.9 +/- 1.3 up to R_L = 5875 (p. 1).",
+      "teaching_construction": "Exact dimensional form (10.6); pipeline argument for why the first step sets the rate; running-case C_eps = 0.4694 and 0.3 % change per factor 2 in nu; correction of the board tau_0.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The hypothesis of local isotropy",
+      "video_id": "HlG3DmlNklE",
+      "start": 70,
+      "end": 321,
+      "lecture_material": "Two questions (size of smallest eddies; trend of u(l), tau(l)); three hypotheses premised on decreasing u(l), tau(l); large eddies anisotropic and affected by BCs; directional bias lost; hypothesis of local isotropy at sufficiently high Re for l << l_0; 'sufficiently high Re' emphasized.",
+      "research_extension": "Kolmogorov 1941, Definitions 1-2 (pp. 9-10), likelihood statement, domain conditions, cannot be rigorously proved, Taylor isotropy confirmed only for grid turbulence (p. 10). Schumacher, Sreenivasan, Yeung (arXiv pp. 1-2): skewness of du/dy falls off less steeply than 1/R_lambda; hyperskewness not perceptibly diminished at R_lambda 1000; Shen and Warhaft seventh moment increases; their reading that this need not imply persistent anisotropy.",
+      "teaching_construction": "Reflection proof (10.8) that odd moments of a transverse derivative vanish under local isotropy; application to the jet.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "A demarcation length and the loss of the flow's geometry",
+      "video_id": "HlG3DmlNklE",
+      "start": 321,
+      "end": 610,
+      "lecture_material": "l_EI ~ l_0/6 (nominal); anisotropic large and isotropic small eddies; geometry of large eddies lost; universality; zoom-in illustration jet versus channel versus cylinder.",
+      "research_extension": "None.",
+      "teaching_construction": "Running-case l_EI values; distinction between pictures and statistics.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Transfer, dissipation and the first similarity hypothesis",
+      "video_id": "HlG3DmlNklE",
+      "start": 610,
+      "end": 1189,
+      "lecture_material": "Two dominant processes: transfer rate T_EI and viscous dissipation; epsilon ~ T_EI; first similarity hypothesis; Kolmogorov scales; identities Re_eta = 1 and epsilon = nu (u_eta/eta)^2 = nu/tau_eta^2; Kolmogorov scales characterize the dissipative eddies.",
+      "research_extension": "Kolmogorov 1941, p. 12: first hypothesis of similarity in his words.",
+      "teaching_construction": "Small-scale energy budget (10.9) for homogeneous turbulence, with the large-scale dissipation bounded by Re(l_EI)^-1 = 8.0e-4 for the jet, (transport term needed and not estimated for the jet) and departure estimate (10.10) with decaying-grid-turbulence value 0.2; universal-function form (10.11); exact mean-square strain (10.13) and running-case value 1.65e3 1/s.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "In Kolmogorov units the small scales of different flows are statistically identical",
+      "video_id": "HlG3DmlNklE",
+      "start": 1189,
+      "end": 1381,
+      "lecture_material": "y = (x - x_0)/eta, w(y) = [U(x,t_0) - U(x_0,t_0)]/u_eta; statistically isotropic and identical for |y| < l_EI/eta; statistically similar, identical when scaled.",
+      "research_extension": "Kolmogorov 1941, p. 9 (moving coordinates) and p. 12 (eqs. 15-18, rescaling to unit viscosity and dissipation).",
+      "teaching_construction": "Statement in terms of the N-point PDF (8.23); jet versus ABL conversions (127 eta and 3.0 eta per cm; u_eta ratio 41; |y| = 20 lengths; bound ratio 240).",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The ratios of the smallest to the largest scales",
+      "video_id": "HlG3DmlNklE",
+      "start": 1381,
+      "end": 1627.93,
+      "lecture_material": "Ratios from the definitions and epsilon ~ u_0^3/l_0; derivation of eta/l_0 ~ Re^(-3/4).",
+      "research_extension": "None.",
+      "teaching_construction": "Back-reference to (5.18) without re-derivation; constants C_eps kept; statement that the ratios need the empirical scaling; running-case values.",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The ratios of the smallest to the largest scales (continued)",
+      "video_id": "Lxw-20OCSa8",
+      "start": 5.87,
+      "end": 744,
+      "lecture_material": "Recap of the first similarity hypothesis and identities; derivations of u_eta/u_0 ~ Re^(-1/4) and tau_eta/tau_0 ~ Re^(-1/2); smallest scales very small compared with largest; separation widens with Re.",
+      "research_extension": "None.",
+      "teaching_construction": "As above.",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The second similarity hypothesis",
+      "video_id": "Lxw-20OCSa8",
+      "start": 744,
+      "end": 886,
+      "lecture_material": "Range l_0 >> l >> eta; Re of these eddies large; second similarity hypothesis (determined by epsilon, independent of nu).",
+      "research_extension": "Kolmogorov 1941, p. 12: second hypothesis of similarity in his words (lower bound only) and its footnote; p. 13, eqs. 22-23: B_dd(r) ~ C eps^(2/3) r^(2/3) with an absolute constant.",
+      "teaching_construction": "Unique exponents (10.16) with undetermined constant; consistency of the two hypotheses (Phi(x) -> C_u x^(1/3)).",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "The energy-containing range, the inertial subrange and the dissipation range",
+      "video_id": "Lxw-20OCSa8",
+      "start": 886,
+      "end": 1152,
+      "lecture_material": "l_DI = 60 eta (nominal); universal equilibrium range split into inertial subrange and dissipation range; energy-containing range l_0/6 < l < 6 l_0; slide figure of eddy-size ranges.",
+      "research_extension": "None.",
+      "teaching_construction": "Figure 10.1 computed for jet and ABL; existence condition (10.17) with thresholds 2.56e3 and 5.5e4 (C_eps = 1), 3.30e3 and 7.1e4 (C_eps = 0.468); jet 0.55 decades, ABL 2.9 decades; sensitivity to the nominal factors.",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Velocity and time scales in the inertial subrange",
+      "video_id": "Lxw-20OCSa8",
+      "start": 1152,
+      "end": 1778.6,
+      "lecture_material": "u(l) = (eps l)^(1/3) = u_eta (l/eta)^(1/3) ~ u_0 (l/l_0)^(1/3); tau(l) = (l^2/eps)^(1/3) = tau_eta (l/eta)^(2/3) ~ tau_0 (l/l_0)^(2/3); board elimination of nu; u(l) and tau(l) decrease as l decreases.",
+      "research_extension": "None.",
+      "teaching_construction": "Constant-transfer identity (10.20); end-value identities; eddy Reynolds number (10.21) with Re(l_DI) = 235; running-case velocities and times; gradient scaling l^(-2/3).",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Executable range calculator with identity checks",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "McComb et al. constants in (10.7).",
+      "teaching_construction": "NumPy program: exponents of (10.16) and group of (10.11) from dimension matrices; scales and ranges for jet and ABL; 12 assertions (6 identities per flow) plus 4 threshold assertions; bisection for (10.17); C_eps(R_L); failure test.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "What the hypotheses establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Kolmogorov 1962 (pp. 82-85): Landau's objection, log-normal epsilon_r with variance A + 9k log(L/r), refined hypotheses, moments (10.22) with macrostructure-dependent C_p. Schumacher et al. (shear-flow anisotropy); Yeung, Sreenivasan, Pope 2018 via chapter 5.",
+      "teaching_construction": "Classification of each statement (picture, empirical result, hypothesis, dimensional consequence, nominal value); finite-Re limits for the two flows.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Exercise 4 uses Kolmogorov 1941 eq. 14 via chapter 5; exercise 6 uses Kolmogorov 1962 eq. 10.",
+      "teaching_construction": "Six original exercises with full solutions: derive, compute, check an assumption, counterexample, judge a design, derive and compute.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html"
     }
   ]
 }
