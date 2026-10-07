@@ -1,0 +1,495 @@
+{
+  "chapter": 9,
+  "title": "Reynolds equations, closure and turbulent viscosity: what the mean flow needs to know about the fluctuations",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "n8ixX5Fl60k",
+      "lecture_number": 23,
+      "media_sha256": "0d3c4e94e02aa9cc96bb362fa0444d238bbec40ebc2734744ff376e319b9caab",
+      "duration_seconds": 1681.7335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1653.34,
+      "role": "lecture"
+    },
+    {
+      "video_id": "xgKgXoLdHxc",
+      "lecture_number": 24,
+      "media_sha256": "a4820982a0ede637c0a44abedab43026cd8c5585b49fe4dac6f8515d38dad74a",
+      "duration_seconds": 1615.8535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1587.44,
+      "role": "lecture"
+    },
+    {
+      "video_id": "DANGQ4_bG80",
+      "lecture_number": 25,
+      "media_sha256": "62bda7fb7f686d5b0593180d48d93e5a0b729679a641dbb13704cdfb8351dbdc",
+      "duration_seconds": 1781.9335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1753.12,
+      "role": "lecture"
+    },
+    {
+      "video_id": "7UyTD2lT0sI",
+      "lecture_number": 57,
+      "media_sha256": "203d27fe14cd38c8c7a44e8db5fd5d5660c8f14f6406cef9cd87a6e05ebf316d",
+      "duration_seconds": 1611.5335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1582.71,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercise L57-P2, Exercise 7 (problem starts at 606.6 s; link t=607s); no chapter section is grounded in this recording."
+    },
+    {
+      "video_id": "iX5PG6TPABQ",
+      "lecture_number": 59,
+      "media_sha256": "fde8d235e941b84477c179678f8a00670c2ec9df0a480ddd43396c60625f8a4e",
+      "duration_seconds": 1725.8935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1699.28,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercise L59-P8, Exercise 8 (the words 'Problem number 8' fall in the segment 588.5-602.6 s; link t=600s; practice-map.md gives 10:03); no chapter section is grounded in this recording."
+    }
+  ],
+  "frames_viewed": {
+    "n8ixX5Fl60k": [
+      "f0004",
+      "f0019",
+      "f0026",
+      "f0036",
+      "f0045",
+      "f0050"
+    ],
+    "xgKgXoLdHxc": [
+      "f0021",
+      "f0026",
+      "f0030",
+      "f0044",
+      "f0052"
+    ],
+    "DANGQ4_bG80": [
+      "f0004",
+      "f0017",
+      "f0020",
+      "f0022",
+      "f0026",
+      "f0030",
+      "f0039",
+      "f0045",
+      "f0050",
+      "f0053",
+      "f0057"
+    ],
+    "7UyTD2lT0sI": [
+      "f0021"
+    ],
+    "iX5PG6TPABQ": []
+  },
+  "source_uncertainties": [
+    "All nine contact sheets (three per lecture) were scanned before full frames were opened.",
+    "Slide defects corrected in reader text, each attributed: (1) L23 f0045 bracketed stress form omits rho on <u_i u_j> while the slide text names -rho<u_i u_j>; (2) L23 f0050 keeps n_i inside the volume integral after the divergence theorem; (3) L24 f0026 writes '<u_1^2> > 0' beside 'non-negative'; (4) L25 f0017 prints <u_3^2> in the (2,2) entry of the statistically 2D stress matrix; (5) L25 f0020 reads '<U_2> = 0 and <u_1u_2> = 0 are odd functions of x_2'; (6) L25 f0050 defines a_ij with <u_iu_i> in place of <u_iu_j>. The L25 slides write bar S_ij for the mean strain rate; the chapter writes <S_ij> and says so.",
+    "Slide text versus speech in L25 (frames f0030, f0039, f0053, f0057): slide text states Gamma_T and nu_T positive, the Boussinesq 1877 attribution, the Fourier/Fick and Newtonian analogies, 'basis for a lot of the earlier simplistic models', and the scaling of nu_T and Gamma_T with the flow scales (ratios increasing linearly with Re). Spoken only (not on any slide viewed, slide 26 of 27 is the last one shown before the credits): 'almost every turbulence model uses it', Pr_T approximately 1, 'data contradicts this hypothesis'.",
+    "Spoken statements corrected or qualified in reader text, each attributed: L24 ~895-1004 s 'isotropic part is the diagonal, anisotropic the off-diagonal' (a_ij has non-zero diagonal unless the normal stresses are equal; channel data show b_11 = 0.13 to 0.51); L25 ~364-470 s 'in irrotational flow the Reynolds stress has only an isotropic effect' (Corrsin and Kistler 1955 p. 15: the tensor need not be diagonal; only its divergence is a gradient); L25 604-622 s 'all you have is u1^2, u2^2, u3^2' in the channel (<u_1u_2> is odd in x_2 and carries 97 % of the stress at y/d = 0.1).",
+    "Lecture-stated value not checked against a source: turbulent Prandtl number nu_T/Gamma_T approximately 1 (L25 1674-1677 s). Attributed to the lecture in reader text.",
+    "Boussinesq (1877), Essai sur la theorie des eaux courantes, was not opened. The date, the 1872 meeting and the tensorial reading are taken from Schmitt (2007) and attributed to him; the attribution of the hypothesis to Boussinesq is also the lecture's (L25 1151-1156 s).",
+    "Lee and Moser (2015, J. Fluid Mech. 774) published paper not checked; the data files (header values, columns) and the 2014 arXiv preprint (pp. 3, 5) were checked. The running-case dimensional values (d = 2 cm, nu = 1.0e-6 m^2/s, rho = 1000 kg/m^3) are chosen inputs and are stated as such in reader text.",
+    "Schmitt (2007) reports the near-wall minimum of the total-stress alignment indicator at y+ = 10.5 +/- 0.5 for databases with friction Reynolds numbers 82 to 590 and a boundary layer; the same computation on the Lee-Moser files gives 0.238 at y+ = 13.8 (Re_tau 543), 0.229 at 14.2 (1000) and 0.209 at 14.8 (5186). The difference is reported, not explained.",
+    "Milani, Ling and Eaton (2020): arXiv preprint v2 cited; journal version not checked.",
+    "ASR spellings corrected: 'Bissonness', 'Bissoness' = Boussinesq; 'Corzine-Kitzler' = Corrsin-Kistler (slide: 'Corrsin Kistler equation'); 'round stresses', 'runner stresses', 'Ral stress', 'RSD' = Reynolds stresses; 'new' = nu; 'Ternikis and Nablus' = Tennekes and Lumley (not used in reader text); 'female' (L25 1749 s) = phi mean; 'phi components' (L25 1524 s) = five components; 'ionisotropic' = anisotropic; 'del x psi' = d/dx_i; 'impression' (L25 475 s) = pressure.",
+    "The lecture says the mean is averaged 'over a period of time' (L23 169-174 s); reader text uses the expectation and states the stationarity and ergodicity conditions for a time average.",
+    "Timestamps are section anchors from local speech-recognition segment times; they locate topic changes to within a few seconds."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Constant-density incompressible setting of the module; the channel geometry with x_2 from the centreplane appears on the L25 symmetry slide.",
+      "research_extension": "Lee and Moser data files (Re_tau = 1000.512, U_b+ = 1/0.0500256 = 19.99, domain 8 pi d x 3 pi d) and arXiv preprint p. 3.",
+      "teaching_construction": "Formal model; the expectation as the averaging operator, with the time-average conditions; wall units; chosen dimensional values d = 2 cm, nu = 1e-6, rho = 1000 giving u_tau = 0.0500 m/s, U_b = 1.000 m/s, tau_w = 2.50 Pa.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The Reynolds decomposition and the mean continuity equation",
+      "video_id": "n8ixX5Fl60k",
+      "start": 5.87,
+      "end": 521.04,
+      "lecture_material": "Module introduction and Source slide (Pope 2000); Reynolds decomposition; <u> = 0; averaging continuity with commuting differentiation; mean and fluctuating fields each solenoidal.",
+      "research_extension": "None.",
+      "teaching_construction": "Averaging rules (9.2) stated with their conditions; <<U_i>u_j> = 0; channel consequence <U_2> = 0 from continuity and impermeable walls.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Averaging the momentum equation: the Reynolds stresses appear",
+      "video_id": "n8ixX5Fl60k",
+      "start": 521.04,
+      "end": 1048.92,
+      "lecture_material": "Conservative substantial derivative; <U_iU_j> = <U_i><U_j> + <u_iu_j>; mean substantial derivative; Reynolds equations; the Reynolds-stress term as the crucial difference. Reynolds stresses zero in laminar flow (said at L23 1315 s, inside the next section's window; used here as the laminar check of (9.7)).",
+      "research_extension": "None.",
+      "teaching_construction": "Continuity step behind the conservative form; statement of what the derivation does not assume.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The Poisson equation for the mean pressure",
+      "video_id": "n8ixX5Fl60k",
+      "start": 1048.92,
+      "end": 1282.13,
+      "lecture_material": "Mean pressure satisfies a Poisson equation, by averaging or by taking the divergence of the Reynolds equations (slide f0036).",
+      "research_extension": "None.",
+      "teaching_construction": "Hinge: the fluctuation-gradient product equals the second derivative of <u_iu_j> because grad.u = 0; agreement of the two routes.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The Reynolds stress as an apparent stress",
+      "video_id": "n8ixX5Fl60k",
+      "start": 1282.13,
+      "end": 1459.1,
+      "lecture_material": "stress form with viscous, isotropic and apparent stresses; molecular versus fluctuating momentum transfer.",
+      "research_extension": "None.",
+      "teaching_construction": "Correction of the missing rho on slide f0045; separation of the covariance and stress sign conventions; where the molecular analogy holds and fails.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The Reynolds stress as a mean momentum flux",
+      "video_id": "n8ixX5Fl60k",
+      "start": 1459.1,
+      "end": 1653.34,
+      "lecture_material": "Control-volume rate of gain of momentum; mean of its j component; divergence theorem; Reynolds stress as mean momentum flux due to the fluctuating velocity.",
+      "research_extension": "Lee-Moser data: <u_1u_2>+ negative in the lower half, minimum -0.903 at y+ = 54.",
+      "teaching_construction": "Correction of n_i in the volume integral (f0050); heuristic for the negative sign of <u_1u_2>, labelled as heuristic.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The Reynolds stress as a mean momentum flux (continued)",
+      "video_id": "xgKgXoLdHxc",
+      "start": 5.87,
+      "end": 476.58,
+      "lecture_material": "Recap of the decomposition, the Reynolds equations, the strain-rate form of the viscous term and the momentum-flux interpretation.",
+      "research_extension": "As above.",
+      "teaching_construction": "As above.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The running case: the Reynolds equations in a fully developed channel",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None (the channel and its statistical one-dimensionality appear in L25 and in chapter 8).",
+      "research_extension": "Lee-Moser data: max |dU+/dy+ - <uv>+ - (1 - y/d)| = 3.9e-4 over 256 points; P column satisfies P+ + <vv>+ = 0 to 2e-15 (the file's convention for the mean pressure, derived from (9.12), not an independent check; preprint p. 3); crossover y+ ~ 11; Reynolds share 97.3 % at y/d = 0.1; preprint p. 5 (total-stress linearity as stationarity test).",
+      "teaching_construction": "Reduction (9.11)-(9.13); <p> + rho<u_2^2> = p_w(x_1); laminar comparison U_b+ = Re_tau/3 = 333.5 against 19.99 (factor 16.7); Figure 9.1.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The closure problem: four equations and ten unknowns",
+      "video_id": "xgKgXoLdHxc",
+      "start": 476.58,
+      "end": 760.22,
+      "lecture_material": "Four independent equations (three Reynolds plus continuity or Poisson, not both); more than four unknowns; six independent Reynolds stresses by symmetry; normal and shear stresses; 'unsolved problem' framing.",
+      "research_extension": "None.",
+      "teaching_construction": "Explicit count 4 against 10; channel count 1 against 2; moment hierarchy via third moments (Exercise 1); forward pointers to chapters 16 and 18 by manifest title.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Properties of the Reynolds-stress tensor",
+      "video_id": "xgKgXoLdHxc",
+      "start": 760.22,
+      "end": 888.94,
+      "lecture_material": "k as half the trace; mean kinetic energy per unit mass of the fluctuations; principal axes; non-negative eigenvalues; symmetric positive semi-definite.",
+      "research_extension": "Lee-Moser data: rho_12 = -0.41 at y/d = 0.1, between -0.396 and -0.417 for 0.05 <= y/d <= 0.5.",
+      "teaching_construction": "Proof of positive semi-definiteness by the quadratic form; Cauchy-Schwarz consequence; realizability; correction of '> 0' on f0026.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Isotropic and anisotropic parts",
+      "video_id": "xgKgXoLdHxc",
+      "start": 888.94,
+      "end": 1251.18,
+      "lecture_material": "Isotropic stress 2/3 k delta_ij; a_ij; b_ij; <u_iu_j> = 2/3 k delta_ij + a_ij = 2k(delta_ij/3 + b_ij).",
+      "research_extension": "Lee-Moser data: b diagonal at y+ = 1, y/d = 0.1 and near the centreplane; |b_12| <= 0.135; b_22 = -0.333 at the wall; max b_11 = 0.512 at y+ = 7.8.",
+      "teaching_construction": "Correction of 'diagonal = isotropic'; derivation of the bounds -1/3 <= b_aa <= 2/3, |b_ab| <= 1/2 and of the eigenvalue range.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Only the anisotropic part transports momentum: the modified mean pressure",
+      "video_id": "xgKgXoLdHxc",
+      "start": 1251.18,
+      "end": 1587.44,
+      "lecture_material": "Substitution of the decomposition into the pressure and Reynolds-stress terms; Kronecker delta switches the index; modified mean pressure <P_m> = <p> + 2/3 rho k; only a_ij effective in transporting momentum.",
+      "research_extension": "None.",
+      "teaching_construction": "Mechanism: a gradient force is absorbed by the pressure of incompressible flow; boundaries (pressure boundary conditions, k needed to recover <p>); channel value p_m - p_w = -2 rho k b_22, 2.9 Pa at y/d = 0.1.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Only the anisotropic part transports momentum (recap)",
+      "video_id": "DANGQ4_bG80",
+      "start": 5.87,
+      "end": 87.53,
+      "lecture_material": "Recap of the isotropic part absorbed into the pressure.",
+      "research_extension": "As above.",
+      "teaching_construction": "As above.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Irrotational fluctuations: the Corrsin-Kistler result",
+      "video_id": "DANGQ4_bG80",
+      "start": 87.53,
+      "end": 475.2,
+      "lecture_material": "Irrotational flow: zero vorticity; derivation of d<u_iu_j>/dx_i = dk/dx_j (Corrsin Kistler equation, slide f0004); Reynolds stress acts like an isotropic stress; turbulence is rotational.",
+      "research_extension": "Corrsin and Kistler 1955, NACA Report 1244, p. 15 (PDF p. 18), eqs. (23)-(25) and the following sentences: no net apparent shear forces; the tensor need not have only diagonal terms.",
+      "teaching_construction": "Index steps of the derivation; condition on a_ij compatible with (9.21); qualification of the lecture's 'only isotropic effect'.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Reflection symmetries of the Reynolds stresses",
+      "video_id": "DANGQ4_bG80",
+      "start": 475.2,
+      "end": 634.84,
+      "lecture_material": "Statistically 2D flow invariant under x_3 reflection: <U_3> = <u_1u_3> = <u_2u_3> = 0; channel symmetric about x_2 = 0.",
+      "research_extension": "Lee-Moser data: max |<u_1u_3>+| = 4.9e-3, |<u_2u_3>+| = 4.7e-4 against 0.903; max |W+| = 8.6e-3 (3.8e-4 of the centreline velocity); header calls them quality indicators.",
+      "teaching_construction": "Derivation from the PDF; correction of the (2,2) slide entry and of the conclusion that only normal stresses remain; <U_2> = 0 attributed to continuity.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The mean scalar equation and the scalar flux",
+      "video_id": "DANGQ4_bG80",
+      "start": 634.84,
+      "end": 861.66,
+      "lecture_material": "Scalar decomposition; averaged scalar equation; turbulent scalar flux; scalar closure problem; temperature as an example.",
+      "research_extension": "None.",
+      "teaching_construction": "Unit of the flux; count of new unknowns.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The gradient-diffusion hypothesis",
+      "video_id": "DANGQ4_bG80",
+      "start": 861.66,
+      "end": 1128.7,
+      "lecture_material": "Hypothesis <u phi'> = -Gamma_T grad<phi>; effective diffusivity; flow property not fluid property; used by almost every turbulence model (lecture's judgement).",
+      "research_extension": "Milani, Ling, Eaton 2020 (arXiv v2): p. 1 two types of counter-gradient transport in an inclined jet in crossflow and a stable tensor diffusivity; p. 3 definition and earlier reports; pp. 8-9 near-wall type with both v'c' and dc/dy positive and pressure-scalar correlation.",
+      "teaching_construction": "Separation of the alignment and sign claims; ill-posedness of Gamma_eff < 0 (growth rate |Gamma_eff| kappa^2); link to chapter 4's K.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The turbulent-viscosity hypothesis",
+      "video_id": "DANGQ4_bG80",
+      "start": 1128.7,
+      "end": 1463.12,
+      "lecture_material": "Boussinesq 1877 (lecture's attribution); analogy with the Newtonian stress; deviatoric Reynolds stress proportional to the mean strain rate; nu_eff; modified pressure; five components related through nu_T.",
+      "research_extension": "Schmitt 2007 (HAL preprint pp. 3-4): 1877 publication reporting an 1872 Academy meeting; Reynolds 1895; tensorial form of Boussinesq's expressions.",
+      "teaching_construction": "Why the deviatoric part is required (trace argument); alignment of principal axes; reduction of unknowns to nu_T and Gamma_T.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Shear-flow forms, scaling, and what the hypothesis leaves open",
+      "video_id": "DANGQ4_bG80",
+      "start": 1463.12,
+      "end": 1753.12,
+      "lecture_material": "Boundary-layer forms with opposite signs; specifying nu_T and Gamma_T solves the closure; nu_T and Gamma_T scale with the flow and grow linearly with Re away from walls; Pr_T approximately 1; data contradict the hypothesis but it is the simplest closure.",
+      "research_extension": "Lee-Moser data: nu_T/nu = 0.13 (y+ 5), 0.81 (10), 7.9 (29), 36.6 (y/d 0.1), 78.7 (y/d 0.5); nu_T/(u_tau d) = 0.0785, 0.0786, 0.0835 at Re_tau 543, 1001, 5186 (y/d ~ 0.5); nu_T/nu = 8.0, 7.9, 8.3 at y+ ~ 30.",
+      "teaching_construction": "Evaluation of nu_T from the DNS; quantitative test of the Re-scaling statement; link to (4.13).",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Testing the turbulent-viscosity hypothesis on the channel",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None (the lecture states only that data contradict the hypothesis).",
+      "research_extension": "Schmitt 2007: indicator and 0.86 threshold (p. 6), databases (pp. 6-7), total-stress alignment poor for 3 < y+ < 70 with minimum at y+ = 10.5 +/- 0.5 (p. 8), annular-pipe point with S = 0 and R non-zero (p. 8), 'almost never verified' (p. 1), mean fields versus second moments (p. 10). Lee-Moser data: b_11 0.13-0.51, b_22 -0.33 to -0.06; gamma_aS turbulent 0.013 to at most 0.59; total 0.996 at y+ 1, below 0.86 beyond y+ 2.9, near-wall minimum 0.23 at y+ 14, 0.018 near the centreplane. Lee-Moser data at Re_tau 543 and 5186: minimum of gamma_aS with viscous stress at y+ = 13.8 (0.238) and 14.8 (0.209); running case max <u_1^2>+ = 8.10 at y+ = 15.2, one grid point from the minimum.",
+      "teaching_construction": "TVH prediction of isotropic normal stresses in simple shear; gamma_aS for the channel reduces to sqrt(2)|<uv>|/|a|; Figure 9.2.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Executable check: the channel data against the equations and the hypothesis",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Matrices of practice problem L59-P8.",
+      "research_extension": "Nine rows of the Lee-Moser Re_tau = 1000 files and two header values.",
+      "teaching_construction": "NumPy program: realizability by eigenvalues, k, a_ij, b_ij, three assertions per row (b eigenvalues in [-1/3, 2/3], zero trace, total stress = 1 - y/d within 2e-3), nu_T, gamma_aS with and without viscous stress, laminar comparison, running-case units, L59-P8 rejection; failure test flipping one <uv> sign.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the equations establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Schmitt 2007; Milani et al. 2020; Corrsin and Kistler 1955.",
+      "teaching_construction": "Classification of exact results, constraints and models; a priori versus a posteriori testing.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercises 7 and 8 adapted from the course practice problems L57-P2 (7UyTD2lT0sI 10:07) and L59-P8 (iX5PG6TPABQ 10:00), as assigned by _editorial/practice-map.md.",
+      "research_extension": "Exercise 6 uses Milani et al. 2020 (pp. 1, 8-9); Exercise 3 uses the Lee-Moser rows.",
+      "teaching_construction": "Six original exercises (derive, check an assumption, compute, derive, counterexample, judge a design) and full solutions for all eight.",
+      "evidence_class": "derivation"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 23 recording",
+      "url": "https://www.youtube.com/watch?v=n8ixX5Fl60k",
+      "supports": "Reynolds decomposition, mean continuity and momentum, mean Poisson equation, Reynolds stresses as stress and momentum flux; Source slide (Pope 2000).",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 24 recording",
+      "url": "https://www.youtube.com/watch?v=xgKgXoLdHxc",
+      "supports": "Closure problem, tensor properties, anisotropy tensors, modified mean pressure.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 25 recording",
+      "url": "https://www.youtube.com/watch?v=DANGQ4_bG80",
+      "supports": "Irrotational motion, symmetries, mean scalar equation, gradient-diffusion and turbulent-viscosity hypotheses.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 57 recording (practice problem 2)",
+      "url": "https://www.youtube.com/watch?v=7UyTD2lT0sI&t=607s",
+      "supports": "Exercise 7 statement (slide f0021) and worked answer P = R(rho_bar T_bar + <rho' T'>) at 15:30-15:58.",
+      "page_checked": "frame f0021"
+    },
+    {
+      "title": "Lecture 59 recording (practice problem 8)",
+      "url": "https://www.youtube.com/watch?v=iX5PG6TPABQ&t=600s",
+      "supports": "Exercise 8 matrices (frame extracted at 606 s) and worked answers (<u_3^2> = -0.1 at 11:53-12:01; b_11 = -0.4 < -1/3 at 14:02-14:25).",
+      "page_checked": "extracted frame at 606 s"
+    },
+    {
+      "title": "Lee and Moser, channel-flow DNS data files, Re_tau = 550, 1000, 5200 (LM_Channel_*_mean_prof.dat, LM_Channel_*_vel_fluc_prof.dat)",
+      "url": "https://turbulence.oden.utexas.edu/channel2015/content/Data_2015_1000.html",
+      "supports": "Headers: Re_tau = 543.496, 1000.512, 5185.897; u_tau = 5.00256e-02 with U_mean = 1.000 (U_b+ = 19.99); domain 8 pi x 3 pi; nu; 'Data at y/delta = 1.0 is not computed'; W, u'w', v'w' reported as quality indicators. Columns: y/delta, y+, U, dU/dy, W, P; u'u', v'v', w'w', u'v', u'w', v'w', k. All profile numbers in the chapter computed from these files.",
+      "page_checked": "file headers and data columns, files dated 6/15/2015, downloaded 2026-10-05"
+    },
+    {
+      "title": "Lee and Moser 2014, Direct numerical simulation of turbulent channel flow up to Re_tau = 5200 (arXiv:1410.7809v1)",
+      "url": "https://arxiv.org/abs/1410.7809",
+      "supports": "Periodic domain 8 pi delta x 3 pi delta (p. 3); total stress linear in wall distance used as stationarity test (p. 5). Published version (J. Fluid Mech. 774, 2015, 395-415, as the data files request) not checked.",
+      "page_checked": "preprint p. 3 (PDF p. 3); p. 5 (PDF p. 5)"
+    },
+    {
+      "title": "Corrsin and Kistler 1955, Free-stream boundaries of turbulent flows (NACA Report 1244)",
+      "url": "https://ntrs.nasa.gov/citations/19930092246",
+      "supports": "Eq. (24): for irrotational fluctuations d(u_iu_j)/dx_j = (1/2) d(q^2)/dx_i; eq. (25) with P + (rho/2) q^2; 'irrotational fluctuations give no net apparent shear forces on a fluid element'; 'This does not necessarily mean, however, that the Reynolds shear force on a plane is zero or that the Reynolds stress tensor -rho u_iu_k has only leading diagonal terms.'",
+      "page_checked": "report p. 15 (PDF p. 18), page image rendered and read"
+    },
+    {
+      "title": "Schmitt 2007, About Boussinesq's turbulent viscosity hypothesis: historical remarks and a direct evaluation of its validity (C. R. Mecanique 335, 617-627; HAL hal-00264386)",
+      "url": "https://hal.science/hal-00264386",
+      "supports": "p. 1: hypothesis 'almost never verified'; p. 3: 1877 publication is a report of an 1872 Academy meeting, Reynolds 1895; p. 4: Boussinesq's stresses as tensorial closure, eq. (5); p. 5: R = -2 nu_T S, eq. (8); p. 6: indicator rho_RS = |R:S|/(|R||S|), 0.86 for angles below pi/6, databases; p. 7: normal stresses unequal so the hypothesis cannot hold, eq. (11), total stress aligned very close to the wall; p. 8: alignment bad for 3 < y+ < 70, minimum at y+ = 10.5 +/- 0.5, annular pipe point with S = 0 and R non-zero; p. 10: models predict mean fields of simple flows, second moments not satisfactory.",
+      "page_checked": "HAL preprint pp. 1, 3, 4, 5, 6, 7, 8, 10 (PDF pp. 2, 4, 5, 6, 7, 8, 9, 11); journal pagination 617-627 not checked"
+    },
+    {
+      "title": "Milani, Ling and Eaton 2020, Turbulent scalar flux in inclined jets in crossflow: counter gradient transport and deep learning modelling (arXiv:2001.04600v2)",
+      "url": "https://arxiv.org/abs/2001.04600",
+      "supports": "p. 1: highly resolved LES at velocity ratios 1 and 2; two types of counter-gradient transport (windward shear layer, cross-gradient; near wall after injection, non-local); matrix diffusivity ensured stable. p. 3: counter-gradient = a flux component with the same sign as the gradient component, 'directly contradicts' the GDH with positive diffusivity; earlier reports. pp. 8-9: Type 2, both v'c' and dc/dy positive; budget points to non-local effects, chiefly fluctuating pressure.",
+      "page_checked": "arXiv preprint pp. 1, 3, 8, 9 (same as PDF pages); journal version not checked"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "U, U_i, p, rho, nu, mu, phi, Gamma, <.>",
+      "first_section": "model",
+      "definition": "Velocity, pressure, constant density and viscosities, passive scalar and its diffusivity, expectation."
+    },
+    {
+      "symbol": "x_2 (from centreplane), d, y = x_2 + d, tau_w, u_tau, y+, U+, Re_tau, U_b",
+      "first_section": "model",
+      "definition": "Channel coordinates, half-width (Lee-Moser delta), wall distance, wall stress, friction velocity, wall units, friction Reynolds number, bulk velocity."
+    },
+    {
+      "symbol": "u, p', phi', c_1, c_2, g",
+      "first_section": "decomposition",
+      "definition": "Fluctuations; non-random numbers and function in the averaging rules."
+    },
+    {
+      "symbol": "<u_iu_j>, D/Dt, bar D/bar Dt",
+      "first_section": "momentum",
+      "definition": "Reynolds stresses; substantial derivative; mean substantial derivative (slide notation, an operator, not a filter)."
+    },
+    {
+      "symbol": "delta_ij, mathcal V, mathcal A, n, M_dot",
+      "first_section": "stress / momentum-flux",
+      "definition": "Kronecker delta; control volume, surface, unit normal, momentum gain rate (slide symbols)."
+    },
+    {
+      "symbol": "p_w(x_1)",
+      "first_section": "channel",
+      "definition": "Mean wall pressure."
+    },
+    {
+      "symbol": "k, e, rho_ab (Greek indices, no summation)",
+      "first_section": "tensor-properties",
+      "definition": "Turbulent kinetic energy; unit vector; correlation coefficient of two components."
+    },
+    {
+      "symbol": "a_ij, b_ij",
+      "first_section": "anisotropy",
+      "definition": "Deviatoric anisotropy and normalized anisotropy tensors."
+    },
+    {
+      "symbol": "p_m",
+      "first_section": "modified-pressure",
+      "definition": "Modified mean pressure <p> + 2/3 rho k (board: <P_m>)."
+    },
+    {
+      "symbol": "q^2",
+      "first_section": "irrotational",
+      "definition": "Corrsin and Kistler's u_ju_j (only in the citation)."
+    },
+    {
+      "symbol": "f(V; x, t), V",
+      "first_section": "symmetries",
+      "definition": "One-point velocity PDF and sample-space variable (chapter 8)."
+    },
+    {
+      "symbol": "Gamma_T, Gamma_eff, kappa",
+      "first_section": "gradient-diffusion",
+      "definition": "Turbulent and effective diffusivity; wavenumber of a perturbation."
+    },
+    {
+      "symbol": "<S_ij>, nu_T, nu_eff",
+      "first_section": "turbulent-viscosity",
+      "definition": "Mean rate of strain; turbulent and effective viscosity."
+    },
+    {
+      "symbol": "Pr_T",
+      "first_section": "consequences",
+      "definition": "Turbulent Prandtl number nu_T/Gamma_T (lecture value about 1)."
+    },
+    {
+      "symbol": "gamma_aS",
+      "first_section": "tests",
+      "definition": "Alignment indicator (Schmitt writes rho_RS)."
+    },
+    {
+      "symbol": "U_inf, tau_s, T, s, R, theta, rho', sigma_rho, sigma_theta",
+      "first_section": "exercises",
+      "definition": "Exercise-local: spin-up speed and time, record length, plane-strain rate, gas constant (not an autocovariance), temperature and fluctuations."
+    }
+  ],
+  "exercises": 8,
+  "practice_problems": {
+    "map": "_editorial/practice-map.md (read at pass 6; both assignments flagged uncertain there)",
+    "assigned_to_chapter_9": [
+      "L57-P2",
+      "L59-P8"
+    ],
+    "chapter_exercises": {
+      "L57-P2": 7,
+      "L59-P8": 8
+    }
+  },
+  "code_check": {
+    "command": "python -I ch09_extracted.py (the chapter listing, extracted from the HTML by _editorial/tmp/ch09_check.py and run in a fresh process; stdout compared byte for byte with the printed block); Python 3.13.5, NumPy 2.2.6; pycodestyle 0 errors; failure test (one <uv> sign flipped) exits with AssertionError on the total-stress residual",
+    "stdout_matches_printed": true
+  }
+}

@@ -60,9 +60,9 @@
     },
     {
       "order": 9,
-      "title": "Reynolds equations, closure, and turbulent viscosity",
+      "title": "Reynolds equations, closure and turbulent viscosity: what the mean flow needs to know about the fluctuations",
       "lectures": "23-25",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 10,
