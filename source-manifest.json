@@ -78,9 +78,9 @@
     },
     {
       "order": 12,
-      "title": "Fourier modes and their evolution",
+      "title": "Fourier modes and their evolution: the Navier&ndash;Stokes equations for the coefficients of a periodic velocity field",
       "lectures": "31-33",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 13,

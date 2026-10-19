@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light"><meta name="book-content-sha256" content="109148d414051cf01be4f91b8c702abaaa126f79f1aea93a08beaa297d354f52"><title>Fourier modes and their evolution: the Navier–Stokes equations for the coefficients of a periodic velocity field · Essentials of Turbulence</title>
+<link rel="stylesheet" href="assets/book.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'local'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="assets/mathjax-tex-svg.js"></script><script defer src="assets/book.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="index.html">Essentials of Turbulence · January 2026</a><nav class="course-nav" aria-label="Book"><a href="index.html">Lectures</a><a href="source-map.html">Source map</a><a href="references.html">References</a><a href="numerical-lab.html">Numerical lab</a></nav></header>
+<div class="layout"><aside class="toc" id="chapter-toc" aria-label="On this page"><h2>On this page</h2></aside><main id="main">
+<div class="reading-tools" aria-label="Reading controls"><button id="theme-toggle" aria-pressed="false">Light theme</button><button id="text-toggle" aria-pressed="false">Larger text</button><button id="solutions-toggle" aria-pressed="false">Expand solutions</button><button id="print-page">Print with solutions</button></div>
+<article id="chapter-content"><!-- BOOK-CONTENT-START --><h1>Fourier modes and their evolution: the Navier&ndash;Stokes equations for the coefficients of a periodic velocity field</h1>
+<p class="lead">A direct simulation of homogeneous turbulence has to evaluate velocity derivatives on every one of its grid points, and the accuracy of those derivatives sets the accuracy of the computed dissipation. A second-order central difference applied to a single sinusoidal mode with 8 grid points per wavelength gives a derivative that is wrong by 9.97&nbsp;%, because the difference quotient multiplies the exact derivative by \(\sin\theta/\theta\) with \(\theta=2\pi/8\). The Fourier derivative of the same mode is exact to rounding error (\(4\times10^{-16}\) in the program of this chapter). The reason is that, for a velocity field that repeats with period \(\mathcal L\) in every direction, differentiation in space becomes multiplication by \(i\kappa_j\) for each Fourier mode, and the pressure, which in physical space depends on the whole flow, becomes a division by \(\kappa^2\) for each mode. This chapter derives the Navier&ndash;Stokes equations in that form: an ordinary differential equation for the complex coefficient of every wavenumber vector, coupled to the others only through the nonlinear term. The lecture reaches this point with the pressure term and stops one line before the final equation; this chapter finishes the line, writes the nonlinear term as a sum over pairs of modes, and states what the representation does and does not make exact.</p>
+<p class="source-note">Grounded in three recordings of the NPTEL course <em>Essentials of Turbulence</em> (Prof. Abhilash J. Chandy, IIT Bombay): <a href="https://www.youtube.com/watch?v=Vyci5TPEAeg">Lecture 31</a>, <a href="https://www.youtube.com/watch?v=02YD75i0Dlg">Lecture 32</a> and <a href="https://www.youtube.com/watch?v=yNcX3jeVpFY">Lecture 33</a>, with four exercises adapted from the practice problems of <a href="https://www.youtube.com/watch?v=uWLlkjjBaYo">Tutorial 2</a>. The slides of this module name one source: S. B. Pope, <em>Turbulent Flows</em> (Cambridge University Press, 2000). No page, equation number or value in this chapter is taken from that book. <strong>Lecture material:</strong> the Fourier series of a periodic velocity field and the wavenumber lattice; the Kronecker delta and the orthonormality of the modes; the coefficient of a mode as a box average; the transform operator and the transform of a derivative; the coefficients of the velocity (random, zero mean, conjugate symmetric); the continuity equation in wavenumber space; the decomposition of a vector into parts parallel and perpendicular to the wavevector and the projection tensor; the transform of each term of the Navier&ndash;Stokes equations; the Poisson equation for the pressure in wavenumber space and the statement that the pressure cancels the parallel part of the nonlinear term; the expression for the energy of a mode; four practice problems. <strong>Research extension:</strong> Yeung, Sreenivasan and Pope (2018), for the use of the Fourier representation in simulations and the errors that remain. <strong>Original teaching constructions:</strong> the periodic box for the air jet of chapters 6&ndash;8 and the Taylor&ndash;Green vortex as the running case; the energy of the box as a sum over modes; the derivation of the derivative rule from the periodicity of the box average; the divergence-free count of degrees of freedom; the properties of the projection tensor; the equation for each mode with the pressure eliminated (the substitution with which Lecture 34 opens, written here because the later sections use it); the treatment of the zero wavenumber; the nonlinear term as a sum over pairs of modes; the energy balance of one mode; the program, its aliasing example, and the six original exercises.</p>
+
+<h2 id="model">The objects of the chapter and the running case</h2>
+<p>The formal model is a real velocity field \(\mathbf u(\mathbf x,t)\) with these properties: it is <em>periodic</em> with period \(\mathcal L\) in each of the three Cartesian directions, so that it is determined by its values in the cube \(0\le x_i\le\mathcal L\); it is divergence-free; its average over the cube is zero; the kinematic pressure \(p/\rho\) is periodic with the same period, so that it has no mean gradient across the box (a mean gradient would act as a uniform body force; Exercise 9); and it advances in time by the incompressible Navier&ndash;Stokes equations of chapter 6 with constant density \(\rho\) and constant kinematic viscosity \(\nu\). Chapters 6 to 8 used capital \(\mathbf U\) for the full velocity and lower-case \(\mathbf u\) for its fluctuation about the mean. The slides of this module write \(\mathbf u\) for the whole field, because the mean velocity in the box is zero; with \(\langle\mathbf U\rangle=0\) the two coincide, and this chapter follows the slides. The model stands for homogeneous turbulence in a region much larger than the integral length scale \(L_{11}\) of chapter 8; the section <a href="#series">"A periodic velocity field is a sum of Fourier modes"</a> states what that periodicity costs.</p>
+<p>Two cases run through the chapter. The first is the physical reference of chapters 6 to 8 and 10: air with the kinematic viscosity of chapter 6, \(\nu=1.4607\times10^{-5}\ \mathrm{m^2/s}\), energy-containing eddies of size \(\ell_0=0.1\ \mathrm m\) and velocity \(u_0=2\ \mathrm{m/s}\), so \(\mathrm{Re}_0=u_0\ell_0/\nu=1.37\times10^{4}\). With the dissipation rate \(\varepsilon=u_0^3/\ell_0=80\ \mathrm{m^2/s^3}\) (the unit constant of chapters 5 and 10), the Kolmogorov length is \(\eta=(\nu^3/\varepsilon)^{1/4}=7.90\times10^{-5}\ \mathrm m\) and the Kolmogorov time is \(\tau_\eta=(\nu/\varepsilon)^{1/2}=0.43\ \mathrm{ms}\), the values of chapters 6 and 10 (chapter 5 used \(\nu=1.5\times10^{-5}\ \mathrm{m^2/s}\) and found \(\eta=81\ \mu\mathrm m\)). A box of side \(\mathcal L=1\ \mathrm m\), ten times \(\ell_0\), is an assumed choice for which \(\mathcal L\gg L_{11}\), taking \(L_{11}\) of the order of \(\ell_0\). In this chapter \(\mathcal L\) is the side of the box; in chapter 6 the same symbol was the nozzle diameter, \(0.025\ \mathrm m\). The lowest wavenumber of the box is \(\kappa_0=2\pi/\mathcal L=6.28\ \mathrm{rad/m}\). For a simulation on \(N^3\) grid points whose highest retained wavenumber is \(\kappa_{\max}=\sqrt2N\kappa_0/3\) (the truncation of Yeung, Sreenivasan and Pope 2018, p. 064603-3, for a box of side \(2\pi\), scaled by \(\kappa_0\)), the resolution \(\kappa_{\max}\eta=1.5\) needs \(N=6.4\times10^3\), or \(2.6\times10^{11}\) grid points. The chapter does not simulate this flow. It uses the numbers to fix the sizes that the Fourier representation must handle.</p>
+<p>The second case can be computed exactly. It is the Taylor&ndash;Green vortex in a box of side \(\mathcal L=2\pi\), in dimensionless units with \(\kappa_0=1\) and \(\nu=0.01\). Its initial velocity is</p>
+\[
+\mathbf u(\mathbf x,0)=(\cos x_1\sin x_2,\;-\sin x_1\cos x_2,\;0).
+\]
+<p>The field is periodic, divergence-free and has zero box average. It is a flow in the plane \((x_1,x_2)\) that does not vary with \(x_3\); it has no vortex stretching and it is laminar, so it is not a model of turbulence. It serves because the equations of this chapter can be solved for it by hand and checked against a program: the section <a href="#pressure">"Pressure in wavenumber space"</a> shows that its modes decay without exchanging energy, and the section <a href="#triads">"The nonlinear coefficient is a sum over pairs of modes"</a> shows which modes its nonlinear term excites and why the pressure removes them. A third object, a random solenoidal field with a band-limited set of modes, supplies generic coefficients for identities that the vortex satisfies trivially. It is a test field, not a flow: the program does not advance it in time, and it is used only at the instant of its construction.</p>
+<p>Two notational points. The box average is written \(\langle\cdot\rangle_V\), as in chapter 6; the slides write \(\langle\cdot\rangle_{\mathcal L}\). The expectation, the ensemble average of chapter 7, keeps the plain angle brackets \(\langle\cdot\rangle\). The slides write the shift of the periodicity condition with an integer vector \(\mathbf N\) and the wavenumber lattice with an integer vector \(\mathbf n\); this chapter writes \(\mathbf m\) for the shift and \(\mathbf n\) for the lattice, because \(N\) is the number of grid points per direction in the chapter "Direct numerical simulation: pseudo-spectral methods and cost".</p>
+
+<h2 id="why-modes">Why the equations are rewritten for each wavenumber <a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=209s">L31 3:29</a></h2>
+<p>Chapter 8 described homogeneous turbulence by its two-point correlation \(R_{ij}(\mathbf r,t)\) and by the velocity-spectrum tensor \(\Phi_{ij}(\boldsymbol\kappa,t)\), related by the Fourier pair (8.29) and (8.30), and it defined the energy spectrum \(E(\kappa,t)\) (8.32). The slide recalls that the longitudinal autocorrelation function \(f(r,t)\) obeys the K&aacute;rm&aacute;n&ndash;Howarth equation, which is derived from the Navier&ndash;Stokes equations and which this course does not derive. The slide states that this equation fully describes the dynamics of the two-point correlation and does not provide a clear picture of the energy cascade. The statement can be understood from (8.30): every value of \(R_{ij}\) at a separation \(\mathbf r\) is a sum of contributions from all wavenumbers, so the energy that belongs to one scale is not read from one value of \(\mathbf r\). A description that separates the scales has to give each wavenumber its own variable and its own equation of motion.</p>
+<p>The lecture gives two reasons for doing this. The first is that the velocity at every point of the domain does not by itself say how much energy lies in the large scales and how much in the small ones; the Fourier coefficient of each wavenumber does, and the product of a coefficient with its complex conjugate is the energy at that wavenumber. The second is that the derivatives of the Navier&ndash;Stokes equations become multiplications. The lecture adds (<a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=842s">L31 14:02</a>) that a direct numerical simulation of homogeneous turbulence is usually performed in wavenumber space and links this to the absence of truncation errors. A simulation of this kind is reported by Yeung, Sreenivasan and Pope (2018, pp. 064603-2 and 064603-3): isotropic turbulence in a periodic cube of side \(2\pi\) with a Fourier pseudospectral algorithm. Their account lists, beside the Fourier derivatives, the errors that remain: truncation in space and time and aliasing errors that arise from the nonlinear products (p. 064603-2). The section <a href="#limits">"What the representation establishes and what it does not"</a> returns to the lecture's statement with that list.</p>
+
+<h2 id="series">A periodic velocity field is a sum of Fourier modes <a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=290s">L31 4:50</a></h2>
+<p>The lecture first writes the series and then states the condition that makes it possible (<a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=926s">L31 15:26</a>). A velocity field is <em>periodic</em> with period \(\mathcal L\) if</p>
+\[
+\mathbf u(\mathbf x+\mathcal L\mathbf m,t)=\mathbf u(\mathbf x,t)\qquad\text{for every integer vector }\mathbf m=(m_1,m_2,m_3). \tag{12.1}
+\]
+<p>The slide takes the cube \(0\le x_i\le\mathcal L\) with \(\mathcal L\) large compared with the integral scale \(L_{11}\) of chapter 8. In one direction, (12.1) says that the values at \(x_1=0\) and at \(x_1=\mathcal L\) agree, and that the function repeats beyond them. A periodic field has a Fourier series</p>
+\[
+\mathbf u(\mathbf x,t)=\sum_{\boldsymbol\kappa}e^{i\boldsymbol\kappa\cdot\mathbf x}\,\hat{\mathbf u}(\boldsymbol\kappa,t). \tag{12.2}
+\]
+<p>Here \(\boldsymbol\kappa\) is a <em>wavenumber vector</em> in rad/m, \(\boldsymbol\kappa\cdot\mathbf x=\kappa_1x_1+\kappa_2x_2+\kappa_3x_3\), and \(\hat{\mathbf u}(\boldsymbol\kappa,t)\) is a complex vector, the <em>Fourier coefficient</em> of the velocity at \(\boldsymbol\kappa\), with the units of velocity. The periodicity (12.1) restricts the sum to the lattice</p>
+\[
+\boldsymbol\kappa=\kappa_0\,\mathbf n,\qquad\kappa_0=\frac{2\pi}{\mathcal L},\qquad\mathbf n=(n_1,n_2,n_3)\ \text{integers of either sign}. \tag{12.3}
+\]
+<p>For each \(\mathbf n\) the exponential \(e^{i\boldsymbol\kappa\cdot\mathbf x}\) satisfies (12.1), because \(e^{i\kappa_0n_j\mathcal L m_j}=e^{2\pi in_jm_j}=1\); a wavenumber off this lattice would not repeat after \(\mathcal L\). The lowest nonzero wavenumber, \(\kappa_0\), has the wavelength \(\mathcal L\) in each coordinate direction, and every other wavenumber component is an integer multiple of it. The sum in (12.2) runs over all vectors of the lattice, positive and negative components alike, and has no upper limit. The lecture speaks of a sum "over all wavenumber magnitudes"; the sum is over vectors, and many lattice vectors share one magnitude \(\kappa=|\boldsymbol\kappa|\).</p>
+<p>The factor \(e^{i\boldsymbol\kappa\cdot\mathbf x}\) is a <em>Fourier mode</em>. It factorizes into one exponential per direction, \(e^{i\boldsymbol\kappa\cdot\mathbf x}=e^{i\kappa_0n_1x_1}e^{i\kappa_0n_2x_2}e^{i\kappa_0n_3x_3}\), and each factor is \(\cos(\kappa_0n_jx_j)+i\sin(\kappa_0n_jx_j)\). The slide gives the vector form \(\boldsymbol\kappa=\kappa_0(\mathbf e_1n_1+\mathbf e_2n_2+\mathbf e_3n_3)\), in which \(\mathbf e_j\) are the unit vectors along the coordinate axes (the lecture calls them direction cosines; the direction cosines of \(\boldsymbol\kappa\) are the components of \(\boldsymbol\kappa/\kappa\)). A mode is constant on every plane perpendicular to \(\boldsymbol\kappa\) and oscillates along \(\boldsymbol\kappa\) with wavelength \(2\pi/\kappa\). The slide interprets it through the magnitude \(\kappa\equiv|\boldsymbol\kappa|\) and the direction \(\mathbf e\equiv\boldsymbol\kappa/\kappa\). The modes are fixed functions of position and do not depend on time or on the realization; the lecture states that all the time dependence and all the randomness of \(\mathbf u\) sit in the coefficients \(\hat{\mathbf u}(\boldsymbol\kappa,t)\).</p>
+<p><strong>What the periodicity costs.</strong> The lecture notes that periodicity is a strict requirement that turbulent flows hardly ever satisfy. In the model it is imposed, not observed. Its consequences for the statistics are specific. No motion with a scale larger than \(\mathcal L\) exists in the field, because the lowest wavenumber is \(\kappa_0\). The two-point correlation \(R_{ij}(\mathbf r)=\langle u_i(\mathbf x)u_j(\mathbf x+\mathbf r)\rangle\) of chapter 8 is itself periodic in \(\mathbf r\): at \(\mathbf r=\mathcal L\mathbf e_1\) the second factor is the first, so \(R_{ij}(\mathcal L\mathbf e_1)=R_{ij}(0)\) and the correlation returns to its full value instead of decaying to zero. The correlation and the integral scale \(L_{11}\) are therefore meaningful only for separations well below \(\mathcal L/2\), and the condition \(\mathcal L\gg L_{11}\) is what keeps the correlation small over most of that range. For the jet case \(\mathcal L/\ell_0=10\) and the largest separation that is not a repeat of a smaller one is \(\mathcal L/2=0.5\ \mathrm m\). A flow with walls cannot be represented in this way in the wall-normal direction; the channel of chapter 8 was simulated with periodic streamwise and spanwise directions only.</p>
+
+<h2 id="orthonormality">Orthonormality of the modes and the coefficients of the series <a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=1166s">L31 19:26</a></h2>
+<p>The coefficients of (12.2) are found from one property of the modes. Let \(\delta_{\boldsymbol\kappa,\boldsymbol\kappa'}\) be the Kronecker delta of two wavenumber vectors: 1 if \(\boldsymbol\kappa=\boldsymbol\kappa'\) and 0 otherwise. It has two vector indices; the Dirac delta of chapters 7 and 8 always has an argument. Let the box average of a function \(g\) be</p>
+\[
+\langle g\rangle_V=\frac1{\mathcal L^3}\int_0^{\mathcal L}\!\!\int_0^{\mathcal L}\!\!\int_0^{\mathcal L}g(\mathbf x)\,dx_1\,dx_2\,dx_3 .
+\]
+<p>The modes are <em>orthonormal</em> under this average:</p>
+\[
+\bigl\langle e^{i\boldsymbol\kappa\cdot\mathbf x}\,e^{-i\boldsymbol\kappa'\cdot\mathbf x}\bigr\rangle_V=\delta_{\boldsymbol\kappa,\boldsymbol\kappa'} . \tag{12.4}
+\]
+<p>The lecture states (12.4) without proof (<a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=1299s">L31 21:39</a>). The product is \(e^{i(\boldsymbol\kappa-\boldsymbol\kappa')\cdot\mathbf x}\), the average over the cube factorizes into three one-dimensional averages, and each is the average of \(e^{i\kappa_0(n_j-n_j')x_j}\) over one period of the lowest mode. That average is 1 if \(n_j=n_j'\) and 0 otherwise, because the integral of a complex exponential over a whole number of periods vanishes. Exercise 7 carries out the integral, as the practice problem of the tutorial asks.</p>
+<p>Now take a real periodic function \(g(\mathbf x)\) with the series \(g=\sum_{\boldsymbol\kappa}e^{i\boldsymbol\kappa\cdot\mathbf x}\hat g(\boldsymbol\kappa)\) (a component of the velocity at one time is an example). Multiply by \(e^{-i\boldsymbol\kappa'\cdot\mathbf x}\) and average over the box. The coefficients \(\hat g(\boldsymbol\kappa)\) do not depend on \(\mathbf x\), so they leave the average, and (12.4) leaves only the term \(\boldsymbol\kappa=\boldsymbol\kappa'\):</p>
+\[
+\bigl\langle g\,e^{-i\boldsymbol\kappa'\cdot\mathbf x}\bigr\rangle_V=\sum_{\boldsymbol\kappa}\hat g(\boldsymbol\kappa)\,\delta_{\boldsymbol\kappa,\boldsymbol\kappa'}=\hat g(\boldsymbol\kappa'). \tag{12.5}
+\]
+<p>The hinge is the exchange of the sum and the average, which holds when the series converges well enough, for example uniformly. Equation (12.5) is the formula for the coefficient. The lecture defines the transform operator \(\mathscr F_{\boldsymbol\kappa}\{g\}\equiv\langle g\,e^{-i\boldsymbol\kappa\cdot\mathbf x}\rangle_V=\hat g(\boldsymbol\kappa)\) (<a class="timestamp" href="https://www.youtube.com/watch?v=02YD75i0Dlg&amp;t=330s">L32 5:30</a>), so that \(\mathscr F_{\boldsymbol\kappa}\{\cdot\}\) is the coefficient of the mode \(\boldsymbol\kappa\) of its argument. Two special cases follow at once. For \(\boldsymbol\kappa=0\), \(\hat g(0)=\langle g\rangle_V\): the coefficient of the zero wavenumber is the box average. And, because \(g\) is real, the complex conjugate of (12.5) is the coefficient at \(-\boldsymbol\kappa\), which is the <em>conjugate symmetry</em> stated on the slide:</p>
+\[
+\hat g(-\boldsymbol\kappa)=\hat g^{*}(\boldsymbol\kappa),\qquad\text{so that }\hat{\mathbf u}(-\boldsymbol\kappa,t)=\hat{\mathbf u}^{*}(\boldsymbol\kappa,t). \tag{12.6}
+\]
+<p>The asterisk denotes the complex conjugate. Condition (12.6) is what makes the sum (12.2) real: the terms at \(\boldsymbol\kappa\) and \(-\boldsymbol\kappa\) are complex conjugates of each other. The values at \(-\boldsymbol\kappa\) therefore carry no information beyond those at \(\boldsymbol\kappa\).</p>
+<p>The Taylor&ndash;Green vortex gives a first check. Its box averages (12.5) give four nonzero coefficients, at \(\boldsymbol\kappa=(\pm1,\pm1,0)\). At \(\boldsymbol\kappa=(1,1,0)\), \(\hat{\mathbf u}=(-i/4,\,i/4,\,0)\); at \((-1,-1,0)\) the values are the complex conjugates, as (12.6) requires. The program of the section <a href="#implementation">"Executable check"</a> reproduces this: the imaginary parts are \(-0.2500\) and \(0.2500\) and the largest real part is \(7.6\times10^{-17}\).</p>
+
+<h2 id="mode-energy">The energy of a mode and the energy of the box <a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=612s">L31 10:12</a></h2>
+<p>The lecture states early (before it shows that a coefficient is a box average, L31 19:26) that the energy at a wavenumber is the coefficient multiplied by its complex conjugate, and the slide writes</p>
+\[
+\hat E(\boldsymbol\kappa,t)=\bigl\langle\hat{\mathbf u}^{*}(\boldsymbol\kappa,t)\cdot\hat{\mathbf u}(\boldsymbol\kappa,t)\bigr\rangle . \tag{12.7}
+\]
+<p>Here the angle brackets are the expectation and the dot sums over the three components, so \(\hat E=\langle|\hat{\mathbf u}|^2\rangle\) in \(\mathrm{m^2/s^2}\). The slide introduces (12.7) as the balance equation for the kinetic energy at the wavenumber \(\boldsymbol\kappa\). It is a definition of a quantity, not a balance equation: it has no time derivative and no source terms. The lecturer notes that the factor \(\tfrac12\) of the kinetic energy per unit mass is left out; the energy per unit mass in the mode is \(\tfrac12\hat E\). The lecturer adds (<a class="timestamp" href="https://www.youtube.com/watch?v=Vyci5TPEAeg&amp;t=741s">L31 12:21</a>) that this is not the exact equation and that it is taken up later. The balance equation for the mode follows from the evolution equation derived below and is the subject of the section <a href="#mode-balance">"The energy of one mode"</a>. The symbol \(\hat E(\boldsymbol\kappa,t)\), with a vector argument and a hat, is not the energy spectrum \(E(\kappa,t)\) of chapter 8: \(\hat E\) is a quantity per mode in \(\mathrm{m^2/s^2}\), and \(E\) is a density per unit wavenumber in \(\mathrm{m^3/s^2}\). The argument is always written.</p>
+<p>The relation to the energy of the box needs one more step, which the lecture does not give and which needs the orthonormality (12.4) of the previous section. For two periodic functions \(g\) and \(h\), the product of their series and the orthonormality (12.4) give \(\langle g\,h^{*}\rangle_V=\sum_{\boldsymbol\kappa}\hat g(\boldsymbol\kappa)\hat h^{*}(\boldsymbol\kappa)\). Taking \(g=h=u_j\), a real field, and summing over \(j\),</p>
+\[
+\tfrac12\langle u_ju_j\rangle_V=\sum_{\boldsymbol\kappa}\tfrac12\,\hat{\mathbf u}^{*}(\boldsymbol\kappa,t)\cdot\hat{\mathbf u}(\boldsymbol\kappa,t). \tag{12.8}
+\]
+<p>This is Parseval's relation for the box. Each term of the sum is the kinetic energy per unit mass in one mode. When the turbulence is statistically homogeneous, the expectation \(\langle u_ju_j\rangle\) does not depend on \(\mathbf x\) and equals the expectation of the box average, so taking expectations of (12.8) gives \(k=\tfrac12\sum_{\boldsymbol\kappa}\hat E(\boldsymbol\kappa,t)\), with \(k=\tfrac12\langle u_iu_i\rangle\) the turbulent kinetic energy of chapter 8. The Taylor&ndash;Green vortex has \(k=\tfrac12(\tfrac14+\tfrac14)=\tfrac14\) from the box average, and each of its four modes has \(|\hat{\mathbf u}|^2=\tfrac1{16}+\tfrac1{16}=\tfrac18\), so \(\tfrac12\sum\hat E\) over the four modes is \(\tfrac14\): the program prints 0.250000 for both.</p>
+<p>The link to the energy spectrum of chapter 8 follows from the normalization (8.33), \(\int_0^\infty E(\kappa,t)\,d\kappa=k\). A simulation estimates \(E\) by grouping the lattice vectors into shells of width \(\kappa_0\) and dividing the shell sum of \(\tfrac12\hat E\) by the width. This is a definition of a binned spectrum that is consistent with (8.33), not a derivation of \(E\) from the modes; the relation between the coefficients of a box and the continuous spectrum tensor \(\Phi_{ij}\) of (8.29), including its behaviour as \(\mathcal L\) grows, belongs to the chapter "Spectral energy: Fourier modes, the velocity spectrum tensor, and one-dimensional spectra".</p>
+
+<h2 id="derivatives">Differentiation becomes multiplication <a class="timestamp" href="https://www.youtube.com/watch?v=02YD75i0Dlg&amp;t=416s">L32 6:56</a></h2>
+<p>The lecture calls this the main reason for using the Fourier representation. The question is the coefficient of \(\partial g/\partial x_j\) when \(g\) is periodic and differentiable with a periodic derivative. By definition (12.5),</p>
+\[
+\mathscr F_{\boldsymbol\kappa}\Bigl\{\frac{\partial g}{\partial x_j}\Bigr\}=\Bigl\langle\frac{\partial g}{\partial x_j}e^{-i\boldsymbol\kappa\cdot\mathbf x}\Bigr\rangle_V .
+\]
+<p>The product rule gives \(\partial g/\partial x_j\,e^{-i\boldsymbol\kappa\cdot\mathbf x}=\partial(g\,e^{-i\boldsymbol\kappa\cdot\mathbf x})/\partial x_j-g\,\partial e^{-i\boldsymbol\kappa\cdot\mathbf x}/\partial x_j\), and the second term contains \(\partial e^{-i\boldsymbol\kappa\cdot\mathbf x}/\partial x_j=-i\kappa_j\,e^{-i\boldsymbol\kappa\cdot\mathbf x}\). The box average of the first term is zero, and this is the step on which the result rests. The function \(h=g\,e^{-i\boldsymbol\kappa\cdot\mathbf x}\) is periodic, because both factors are, and the integral of \(\partial h/\partial x_j\) over one period in \(x_j\) is \(h(x_j=\mathcal L)-h(x_j=0)=0\). A tempting reason is that the coefficient \(\hat g\) does not depend on position; but \(\hat g\) does not appear in this average, and the vanishing comes from the periodicity of \(h\). The remaining term gives</p>
+\[
+\mathscr F_{\boldsymbol\kappa}\Bigl\{\frac{\partial g}{\partial x_j}\Bigr\}=i\kappa_j\,\hat g(\boldsymbol\kappa). \tag{12.9}
+\]
+<p>The rule can also be read from the series: differentiating \(\sum e^{i\boldsymbol\kappa\cdot\mathbf x}\hat g\) term by term multiplies each term by \(i\kappa_j\), which is (12.9) once the coefficients are identified by (12.5). The two routes agree whenever the series may be differentiated term by term; the first route shows what fails when the field is not periodic (Exercise 4). The factor \(i\) in \(i\kappa_j\) is the imaginary unit and not an index.</p>
+<p>Applying (12.9) to each derivative gives the rules for the operators of the equations of motion. For a periodic vector field \(\mathbf u\) with coefficients \(\hat{\mathbf u}\),</p>
+\[
+\nabla g\to i\boldsymbol\kappa\,\hat g,\qquad\nabla\cdot\mathbf u\to i\boldsymbol\kappa\cdot\hat{\mathbf u},\qquad\nabla\times\mathbf u\to i\boldsymbol\kappa\times\hat{\mathbf u},\qquad\nabla^2g\to-\kappa^2\hat g, \tag{12.10}
+\]
+<p>where the last follows from applying (12.9) twice, \((i\kappa_k)(i\kappa_k)=-\kappa^2\). The vorticity rule is the subject of Exercise 10 and the Laplacian rule of Exercise 8.</p>
+<p>The central-difference comparison of the lead follows from the same calculation done for a difference quotient. For the mode \(e^{i\kappa x}\) sampled with spacing \(h\), the central difference is \([e^{i\kappa h}-e^{-i\kappa h}]/(2h)\,e^{i\kappa x}=i\,[\sin(\kappa h)/h]\,e^{i\kappa x}\), so the computed derivative is \(\sin(\kappa h)/(\kappa h)\) times the exact one, with relative error \(1-\sin(\kappa h)/(\kappa h)\approx(\kappa h)^2/6\) for small \(\kappa h\). With 4, 8 and 16 points per wavelength (\(\kappa h=2\pi/4,2\pi/8,2\pi/16\)) the errors are 36.3&nbsp;%, 9.97&nbsp;% and 2.55&nbsp;%; the small-\(\kappa h\) estimate gives 41.1&nbsp;%, 10.3&nbsp;% and 2.57&nbsp;%. The error of the difference falls as the square of the spacing, and it is largest for the highest wavenumbers, which are the ones that carry the dissipation. The Fourier derivative multiplies by \(i\kappa\) exactly, for every mode that the grid represents: the program prints 0.0997 for the central difference of \(\cos x\) on 8 points and \(4.4\times10^{-16}\) for the Fourier derivative. What this does and does not make exact is the subject of the section <a href="#limits">"What the representation establishes and what it does not"</a>.</p>
+
+<h2 id="coefficients">The coefficients of the velocity: random, zero mean and perpendicular to the wavevector <a class="timestamp" href="https://www.youtube.com/watch?v=02YD75i0Dlg&amp;t=973s">L32 16:13</a></h2>
+<p>For the velocity, (12.5) defines the coefficient of each component, \(\hat u_j(\boldsymbol\kappa,t)=\mathscr F_{\boldsymbol\kappa}\{u_j(\mathbf x,t)\}\). The modes are non-random and fixed in time, and \(\mathbf u\) is a random field that changes in time, so the coefficients are random and time-dependent. The slide adds that the means \(\langle\hat{\mathbf u}(\boldsymbol\kappa,t)\rangle\) are zero because the mean \(\langle\mathbf u(\mathbf x,t)\rangle\) is zero. The step is short but needs both of its ingredients to be stated. The expectation of a box average is the box average of the expectation, because both are linear, so \(\langle\hat{\mathbf u}(\boldsymbol\kappa,t)\rangle=\langle\langle\mathbf u\rangle e^{-i\boldsymbol\kappa\cdot\mathbf x}\rangle_V\), and this is zero when \(\langle\mathbf u(\mathbf x,t)\rangle=0\) at every \(\mathbf x\). The statement is about the expectation. It does not say that the coefficient of one realization vanishes.</p>
+<p>The distinction matters for the zero wavenumber. By (12.5), \(\hat{\mathbf u}(0,t)=\langle\mathbf u\rangle_V\), the box average of one realization. A zero expectation allows this to be nonzero in a given realization. The practice problem of the tutorial (Exercise 9) assumes that the box average of the velocity is zero and concludes \(\hat{\mathbf u}(0,t)=0\). The condition can be imposed because \(\hat{\mathbf u}(0,t)\) does not change in time (the section <a href="#ns-modes">"The Navier&ndash;Stokes equations for the coefficients"</a>), so a frame that moves with the box-average velocity, in which the equations keep their form (chapter 6, the section on invariance under changes of frame), has \(\hat{\mathbf u}(0,t)=0\). From here on the model has \(\hat{\mathbf u}(0,t)=0\).</p>
+<p>The continuity equation \(\partial u_j/\partial x_j=0\) gives a relation between each coefficient and its own wavevector. Apply (12.9) to \(\partial u_j/\partial x_j\) and sum over \(j\): the coefficient of the divergence at \(\boldsymbol\kappa\) is \(i\kappa_j\hat u_j=i\boldsymbol\kappa\cdot\hat{\mathbf u}\). The divergence is zero at every point, so every coefficient of it is zero:</p>
+\[
+\boldsymbol\kappa\cdot\hat{\mathbf u}(\boldsymbol\kappa,t)=0. \tag{12.11}
+\]
+<p>Every velocity coefficient is perpendicular to its wavevector. Because \(\boldsymbol\kappa\) is real, (12.11) holds separately for the real part and the imaginary part of \(\hat{\mathbf u}\), so both lie in the plane perpendicular to \(\boldsymbol\kappa\). A complex vector in a plane has two independent complex components, so a divergence-free field has two degrees of freedom per wavevector instead of three. The physical content is that a mode \(e^{i\boldsymbol\kappa\cdot\mathbf x}\) varies only along \(\boldsymbol\kappa\); a velocity component along \(\boldsymbol\kappa\) would then compress the fluid, and continuity excludes it. The Taylor&ndash;Green coefficient \(\hat{\mathbf u}(1,1,0)=(-i/4,i/4,0)\) satisfies (12.11): \((1)(-i/4)+(1)(i/4)=0\). The program prints the largest value of \(|\boldsymbol\kappa\cdot\hat{\mathbf u}|\) over all modes, \(1.6\times10^{-16}\).</p>
+
+<h2 id="projection">The projection tensor <a class="timestamp" href="https://www.youtube.com/watch?v=02YD75i0Dlg&amp;t=1260s">L32 21:00</a></h2>
+<p>The lecture then studies how an arbitrary complex vector \(\hat{\mathbf G}\) at one wavevector sits relative to \(\boldsymbol\kappa\). It splits the vector into a part parallel to \(\boldsymbol\kappa\) and a part perpendicular to it, \(\hat{\mathbf G}=\hat{\mathbf G}^{\parallel}+\hat{\mathbf G}^{\perp}\), and continues in the next recording (<a class="timestamp" href="https://www.youtube.com/watch?v=yNcX3jeVpFY&amp;t=97s">L33 1:37</a>). Let \(\mathbf e=\boldsymbol\kappa/\kappa\) be the unit vector along \(\boldsymbol\kappa\), for \(\kappa\ne0\). The component of \(\hat{\mathbf G}\) along \(\mathbf e\) is \(\mathbf e\cdot\hat{\mathbf G}\), so</p>
+\[
+\hat{\mathbf G}^{\parallel}=\mathbf e\,(\mathbf e\cdot\hat{\mathbf G})=\frac{\boldsymbol\kappa\,(\boldsymbol\kappa\cdot\hat{\mathbf G})}{\kappa^2},\qquad\hat G^{\parallel}_j=\frac{\kappa_j\kappa_k}{\kappa^2}\hat G_k . \tag{12.12}
+\]
+<p>In the second form \(k\) is a summed index. The perpendicular part is the remainder, \(\hat{\mathbf G}^{\perp}=\hat{\mathbf G}-\hat{\mathbf G}^{\parallel}\), and in index form \(\hat G^{\perp}_j=\hat G_j-\kappa_j\kappa_k\hat G_k/\kappa^2=P_{jk}\hat G_k\) with the <em>projection tensor</em></p>
+\[
+P_{jk}(\boldsymbol\kappa)=\delta_{jk}-\frac{\kappa_j\kappa_k}{\kappa^2}. \tag{12.13}
+\]
+<p>Here \(\delta_{jk}\) is the Kronecker delta of two indices. The tensor \(P_{jk}\) projects a vector onto the plane perpendicular to \(\boldsymbol\kappa\), which is the statement on the slide. It is defined for \(\kappa\ne0\) only, since it divides by \(\kappa^2\). The lecture states these definitions; the properties below follow directly and are used in the rest of the chapter.</p>
+\[
+P_{jk}\kappa_k=0,\qquad P_{jk}=P_{kj},\qquad P_{jl}P_{lk}=P_{jk},\qquad P_{jj}=2. \tag{12.14}
+\]
+<p>The first holds because \(\kappa_j-\kappa_j\kappa^2/\kappa^2=0\): the projection removes the part along \(\boldsymbol\kappa\). The second is read from (12.13). The third, idempotence, holds because \(P_{jl}P_{lk}=\delta_{jk}-2\kappa_j\kappa_k/\kappa^2+\kappa_j\kappa_k\kappa^2/\kappa^4=P_{jk}\), so projecting twice changes nothing. The fourth is the trace: \(\delta_{jj}-\kappa_j\kappa_j/\kappa^2=3-1=2\), the dimension of the plane, and it agrees with the two degrees of freedom of the previous section. Since \(\hat{\mathbf G}^{\parallel*}\cdot\hat{\mathbf G}^{\perp}=0\), the squared lengths add: \(|\hat{\mathbf G}|^2=|\hat{\mathbf G}^{\parallel}|^2+|\hat{\mathbf G}^{\perp}|^2\). A divergence-free coefficient satisfies \(P_{jk}\hat u_k=\hat u_j\), by (12.11).</p>
+<figure>
+<svg viewBox="0 0 360 220" role="img" aria-labelledby="fig-proj-title fig-proj-desc" font-family="Georgia, serif" font-size="13" fill="currentColor">
+<title id="fig-proj-title">Decomposition of a vector into parts parallel and perpendicular to the wavevector</title>
+<desc id="fig-proj-desc">From a common origin, a long arrow for the wavevector at 20 degrees above the horizontal, an arrow for the vector G, an arrow along the wavevector for its parallel part, and an arrow perpendicular to the wavevector for its perpendicular part. Two dashed lines complete the parallelogram whose diagonal is G.</desc>
+<line x1="100" y1="190" x2="288" y2="122" stroke="currentColor" stroke-width="1.5"/>
+<polygon points="288,122 277,119 280,128" fill="currentColor"/>
+<line x1="100" y1="190" x2="170" y2="40" stroke="currentColor" stroke-width="2.5"/>
+<polygon points="170,40 162,50 172,52" fill="currentColor"/>
+<line x1="100" y1="190" x2="210" y2="150" stroke="currentColor" stroke-width="2.5"/>
+<polygon points="210,150 199,148 202,158" fill="currentColor"/>
+<line x1="100" y1="190" x2="60" y2="80" stroke="currentColor" stroke-width="2.5"/>
+<polygon points="60,80 56,91 66,88" fill="currentColor"/>
+<line x1="210" y1="150" x2="170" y2="40" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="60" y1="80" x2="170" y2="40" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="296" y="122">κ</text>
+<text x="176" y="36">Ĝ</text>
+<text x="218" y="160">Ĝ<tspan dy="-6" font-size="10">∥</tspan></text>
+<text x="34" y="78">Ĝ<tspan dy="-6" font-size="10">⊥</tspan></text>
+<text x="100" y="210" font-size="11">origin</text>
+</svg>
+<figcaption>Figure 12.1. A real vector \(\hat{\mathbf G}\) in the \((\kappa_1,\kappa_2)\) plane, with the wavevector \(\boldsymbol\kappa\) at 20&deg; to the \(\kappa_1\) axis. For \(\hat{\mathbf G}=(70,150)\) in arbitrary units, (12.12) gives \(\hat{\mathbf G}^{\parallel}=(110.0,40.0)\), and \(\hat{\mathbf G}^{\perp}=\hat{\mathbf G}-\hat{\mathbf G}^{\parallel}=(-40.0,110.0)\), whose scalar product with \(\boldsymbol\kappa\) is zero. The slide draws the same construction. For a complex vector the construction applies separately to the real and imaginary parts, because \(\boldsymbol\kappa\) is real. The figure shows the geometry only; it does not show the third direction.</figcaption>
+</figure>
+<p>The numbers of Figure 12.1 are an arithmetic check of (12.12): \(\mathbf e\cdot\hat{\mathbf G}=117.1\), and the two parts add to \(\hat{\mathbf G}\). A statistical consequence is useful later. If the three components of \(\hat{\mathbf G}\) are independent random numbers of equal variance, then \(\mathbf e\cdot\hat{\mathbf G}\) has the variance of one component, so the parallel part holds one third of the expected energy and the perpendicular part two thirds, for every direction of \(\boldsymbol\kappa\). The program draws such coefficients on 728 wavevectors, which are 364 conjugate pairs (12.6), and finds the parallel share 0.3222. For independent components of equal variance the share of one independent pair has the beta distribution with parameters 364 and 728 (2 of the 6 real components of a pair are parallel, 4 are perpendicular), mean 1/3 and standard deviation \(\sqrt{(1/3)(2/3)/1093}=0.014\), so the value lies 0.8 standard deviations below 1/3 and is consistent with it.</p>
+
+<h2 id="ns-modes">The Navier&ndash;Stokes equations for the coefficients <a class="timestamp" href="https://www.youtube.com/watch?v=yNcX3jeVpFY&amp;t=482s">L33 8:02</a></h2>
+<p>The momentum equation, in the conservative form that the slide writes, is</p>
+\[
+\frac{\partial u_j}{\partial t}+\frac{\partial(u_ju_k)}{\partial x_k}=\nu\frac{\partial^2u_j}{\partial x_k\partial x_k}-\frac1\rho\frac{\partial p}{\partial x_j}. \tag{12.15}
+\]
+<p>It differs from the form \(u_k\partial u_j/\partial x_k\) of chapter 6 by \(u_j\,\partial u_k/\partial x_k\), which vanishes by continuity. The conservative form is chosen because the transform (12.9) applies to a derivative, and \(\partial(u_ju_k)/\partial x_k\) is the derivative of a product. The transform of each term follows.</p>
+<ul>
+<li><em>Time derivative.</em> The box average and \(\partial/\partial t\) act on different variables, so they commute, and \(\mathscr F_{\boldsymbol\kappa}\{\partial u_j/\partial t\}=d\hat u_j/dt\). For each \(\boldsymbol\kappa\) the coefficient depends on time only, so the partial derivative becomes an ordinary one.</li>
+<li><em>Viscous term.</em> Two applications of (12.9) give \(\mathscr F_{\boldsymbol\kappa}\{\nu\,\partial^2u_j/\partial x_k\partial x_k\}=\nu(i\kappa_k)(i\kappa_k)\hat u_j=-\nu\kappa^2\hat u_j\).</li>
+<li><em>Pressure term.</em> Let \(\hat p(\boldsymbol\kappa,t)\) be the coefficient of the kinematic pressure \(p/\rho\). The slide calls \(p/\rho\) the dynamic pressure; this book writes kinematic pressure, because dynamic pressure usually denotes \(\tfrac12\rho|\mathbf u|^2\). The density is constant, so \(\mathscr F_{\boldsymbol\kappa}\{-\rho^{-1}\partial p/\partial x_j\}=-i\kappa_j\hat p\).</li>
+<li><em>Nonlinear term.</em> It is written, for now, as an unknown vector \(\hat G_j(\boldsymbol\kappa,t)\equiv\mathscr F_{\boldsymbol\kappa}\{\partial(u_ju_k)/\partial x_k\}\) (the slide's symbol, always carried with its hat and its index because \(G\) is the filter kernel of the chapter "Large-eddy simulation: conceptual steps and filtering"). By (12.9), \(\hat G_j=i\kappa_k\mathscr F_{\boldsymbol\kappa}\{u_ju_k\}\).</li>
+</ul>
+<p>Collecting the four terms,</p>
+\[
+\frac{d\hat u_j}{dt}+\nu\kappa^2\hat u_j=-i\kappa_j\hat p-\hat G_j . \tag{12.16}
+\]
+<p>Equation (12.16) is the slide's result: for each wavevector, an ordinary differential equation for a complex vector. Two limits on its meaning need stating. First, the equations for different wavevectors are not independent. The quantity \(\hat G_j(\boldsymbol\kappa,t)\) is built from the coefficients at other wavevectors (the section <a href="#triads">"The nonlinear coefficient is a sum over pairs of modes"</a>), so (12.16) is an infinite coupled system of ordinary differential equations, not an infinite set of separate ones. The partial differential equation has become a system whose only space-like structure is the lattice of \(\boldsymbol\kappa\). Second, the linear terms are diagonal: if \(\hat G_j\) and \(\hat p\) were zero, each coefficient would decay as \(\hat u_j(\boldsymbol\kappa,t)=\hat u_j(\boldsymbol\kappa,0)\,e^{-\nu\kappa^2t}\). The energy of a mode would then decay at the rate \(2\nu\kappa^2\). Simulations that use this representation take the viscous term into account exactly with an integrating factor and advance the rest in time (Yeung, Sreenivasan and Pope 2018, p. 064603-3), which is possible because the viscous term is diagonal.</p>
+<p>The decay rate \(2\nu\kappa^2\) sets a time scale for each wavenumber. In the jet case the lowest mode, \(\kappa_0=6.28\ \mathrm{rad/m}\), has \(2\nu\kappa_0^2=1.15\times10^{-3}\ \mathrm{s^{-1}}\), a decay time of 867 s against an eddy turnover time \(\ell_0/u_0=0.05\ \mathrm s\): the large scales are not damped directly by viscosity. At \(\kappa=1/\eta\) the rate is \(2\nu/\eta^2=4.7\times10^{3}\ \mathrm{s^{-1}}\), a time of 0.21 ms. This equals \(\tau_\eta/2\) exactly, because \(\nu/\eta^2=(\varepsilon/\nu)^{1/2}=1/\tau_\eta\) by the definitions of the Kolmogorov scales; viscosity acts on the modes near \(\kappa\sim1/\eta\) on the Kolmogorov time scale.</p>
+<p>At the zero wavenumber the terms of (12.16) with \(\kappa^2\) and \(\kappa_j\) vanish, so the pressure term vanishes there because the pressure is periodic and has a finite coefficient, and \(\hat G_j(0,t)=i\cdot0\cdot\mathscr F_0\{u_ju_k\}=0\) by (12.9). So \(d\hat{\mathbf u}(0,t)/dt=0\): the box-average velocity is constant in time. This is the reason that the condition \(\hat{\mathbf u}(0,t)=0\) of the previous section can be imposed once and stays true.</p>
+
+<h2 id="pressure">Pressure in wavenumber space <a class="timestamp" href="https://www.youtube.com/watch?v=yNcX3jeVpFY&amp;t=854s">L33 14:14</a></h2>
+<p>Equation (12.16) contains the unknown \(\hat p\). In physical space the pressure is fixed by the requirement that the velocity remains divergence-free (chapter 6, the section "Pressure is fixed by the constraint of zero divergence"). In wavenumber space the same requirement is algebraic. Multiply (12.16) by \(i\kappa_j\) and sum over \(j\) (<a class="timestamp" href="https://www.youtube.com/watch?v=yNcX3jeVpFY&amp;t=1160s">L33 19:20</a>). The left side is \(d(i\kappa_j\hat u_j)/dt+\nu\kappa^2(i\kappa_j\hat u_j)\), which vanishes by (12.11). On the right, \(i\kappa_j(-i\kappa_j\hat p)=\kappa^2\hat p\), so</p>
+\[
+\kappa^2\,\hat p=i\kappa_j\hat G_j\qquad(\kappa\ne0). \tag{12.17}
+\]
+<p>This is the transform of the Poisson equation \(-\nabla^2(p/\rho)=\partial^2(u_ju_k)/\partial x_j\partial x_k\): the transform of the left side is \(\kappa^2\hat p\) by (12.10), and that of the right side is \(i\kappa_j\hat G_j\). The slide writes the transform of \(-\nabla^2p\) with the symbol \(p\); the pressure that appears in the transform is \(p/\rho\), as in the definition of \(\hat p\). With continuity the right side reduces to \(\partial u_k/\partial x_j\,\partial u_j/\partial x_k\), the right side of chapter 6, (6.12), divided by \(\rho\), so the two Poisson equations coincide. The solution of (12.17) is \(\hat p=i\kappa_j\hat G_j/\kappa^2\). The division by \(\kappa^2\) is the wavenumber form of the non-locality of pressure noted in chapter 6: the coefficient at \(\boldsymbol\kappa\) is fixed by the nonlinear term at the same \(\boldsymbol\kappa\), which in turn depends on all other modes. The coefficient at \(\kappa=0\), the mean pressure, is not determined by (12.17) and does not enter the velocity equation, which contains only the gradient of the pressure.</p>
+<p>Substituting the solution into the pressure term of (12.16), the lecture obtains (<a class="timestamp" href="https://www.youtube.com/watch?v=yNcX3jeVpFY&amp;t=1422s">L33 23:42</a>)</p>
+\[
+-i\kappa_j\hat p=\frac{\kappa_j\kappa_k}{\kappa^2}\hat G_k=\hat G^{\parallel}_j , \tag{12.18}
+\]
+<p>the parallel part (12.12) of \(\hat{\mathbf G}\). The pressure gradient cancels exactly the component of the nonlinear term along \(\boldsymbol\kappa\), which the slide states as "the pressure term exactly balances \(-\hat{\mathbf G}^{\parallel}\)". The recordings end here. One more line completes the equation. In (12.16) the right side is \(\hat G^{\parallel}_j-\hat G_j=-\hat G^{\perp}_j\), so</p>
+\[
+\frac{d\hat u_j}{dt}+\nu\kappa^2\hat u_j=-P_{jk}(\boldsymbol\kappa)\,\hat G_k\qquad(\kappa\ne0). \tag{12.19}
+\]
+<p>Equation (12.19) has no pressure. Only the part of the nonlinear term that is perpendicular to the wavevector changes the velocity coefficient of a solenoidal field, that is, of a coefficient that satisfies (12.11). By (12.14) the right side is perpendicular to \(\boldsymbol\kappa\), so it preserves (12.11): multiplying (12.19) by \(\kappa_j\) gives \(d(\boldsymbol\kappa\cdot\hat{\mathbf u})/dt=-\nu\kappa^2\boldsymbol\kappa\cdot\hat{\mathbf u}\). A divergence that were present initially would decay at the rate \(\nu\kappa^2\) under (12.19). This is a property of (12.19) and not of the Navier&ndash;Stokes equations: (12.17) was obtained from (12.11), so off the set of solenoidal coefficients (12.19) is not the momentum equation with its pressure. In chapter 6 the divergence is carried by the flow as well as diffused, \(D(\nabla\cdot\mathbf U)/Dt=\nu\nabla^2(\nabla\cdot\mathbf U)\), and the Poisson equation keeps a solenoidal field solenoidal without removing a divergence already present. What (12.19) does show is that the set (12.11) is preserved: a coefficient that satisfies (12.11) at one time satisfies it at every later time.</p>
+<p><strong>The Taylor&ndash;Green vortex.</strong> Its nonlinear term can be found in physical space. With \(\partial u_k/\partial x_k=0\), \(\partial(u_ju_k)/\partial x_k=u_k\partial u_j/\partial x_k\), and for the initial field this is \(-\tfrac12(\sin2x_1,\sin2x_2,0)\). Its coefficients lie at the wavevectors \((\pm2,0,0)\) and \((0,\pm2,0)\), for example \(\hat G_1(\pm2,0,0)=\pm i/4\), and each is parallel to its own wavevector. The program finds the largest coefficient, \(\max|\hat{\mathbf G}|=0.2500\), and the largest perpendicular part, \(\max|P_{jk}\hat G_k|=1.0\times10^{-16}\). The pressure of (12.17) is \(\hat p(\pm2,0,0)=\hat p(0,\pm2,0)=-1/8\), the coefficients of \(p/\rho=-\tfrac14(\cos2x_1+\cos2x_2)\), with an error of \(5.8\times10^{-17}\). So (12.19) reduces, for the four modes \((\pm1,\pm1,0)\) with \(\kappa^2=2\), to \(d\hat{\mathbf u}/dt=-2\nu\hat{\mathbf u}\): the program finds a residual of \(1.0\times10^{-16}\) at \(t=0\). The nonlinear term keeps its form as the field decays, only scaled by \(e^{-4\nu t}\), so the result holds at all times. The solution is \(\hat{\mathbf u}(t)=\hat{\mathbf u}(0)e^{-2\nu t}\), the field of the vortex multiplied by \(e^{-2\nu t}\), with kinetic energy \(k(t)=\tfrac14e^{-4\nu t}\): for \(\nu=0.01\) the energy halves after \(\ln2/(4\nu)=17.3\) time units. The nonlinear term is not zero; it creates content at \(\kappa^2=4\), and the pressure removes all of it. This is a property of this flow, a single wavenumber magnitude in two dimensions, and not of the equations.</p>
+
+<h2 id="triads">The nonlinear coefficient is a sum over pairs of modes</h2>
+<p>The lecture leaves \(\hat G_j\) as an unknown. It can be written in terms of the velocity coefficients with the same two tools as before: the series (12.2) and the orthonormality (12.4). The product of two components has the series</p>
+\[
+u_ju_k=\sum_{\boldsymbol\kappa'}\sum_{\boldsymbol\kappa''}\hat u_j(\boldsymbol\kappa')\hat u_k(\boldsymbol\kappa'')\,e^{i(\boldsymbol\kappa'+\boldsymbol\kappa'')\cdot\mathbf x}.
+\]
+<p>Take the box average of this with \(e^{-i\boldsymbol\kappa\cdot\mathbf x}\). By (12.4) only the pairs with \(\boldsymbol\kappa'+\boldsymbol\kappa''=\boldsymbol\kappa\) survive, which fixes \(\boldsymbol\kappa''=\boldsymbol\kappa-\boldsymbol\kappa'\), and with (12.9)</p>
+\[
+\hat G_j(\boldsymbol\kappa,t)=i\kappa_k\sum_{\boldsymbol\kappa'}\hat u_j(\boldsymbol\kappa',t)\,\hat u_k(\boldsymbol\kappa-\boldsymbol\kappa',t). \tag{12.20}
+\]
+<p>The sum is a convolution over the lattice. Equation (12.20) shows what the nonlinearity does in this representation. The coefficient at \(\boldsymbol\kappa\) receives contributions only from pairs of modes whose wavevectors add to \(\boldsymbol\kappa\); the three vectors \(\boldsymbol\kappa'\), \(\boldsymbol\kappa-\boldsymbol\kappa'\) and \(\boldsymbol\kappa\) form a <em>triad</em>. Because the Navier&ndash;Stokes equations are quadratic, no combination of three or more modes appears. Two modes of magnitudes \(\kappa'\) and \(\kappa''\) excite wavenumber magnitudes between \(|\kappa'-\kappa''|\) and \(\kappa'+\kappa''\); this is the mechanism by which the nonlinear term can put energy at wavenumbers that the field did not contain. The Taylor&ndash;Green vortex shows it in the smallest case: the modes \((1,1,0)\) and \((1,-1,0)\), with \(\kappa=\sqrt2\) each, add to \((2,0,0)\), with \(\kappa=2\), and the modes \((1,1,0)\) and \((-1,1,0)\) add to \((0,2,0)\).</p>
+<p>The program checks (12.20) against the way a simulation computes the same quantity: the products \(u_ju_k\) are formed on the grid and transformed. For the random band-limited field with \(|n_j|\le4\) on a \(32^3\) grid, the explicit sum over pairs and the grid products agree to a relative difference of \(2.3\times10^{-15}\). The agreement is an identity here because the product of two modes with \(|n_j|\le4\) has \(|n_j|\le8\), which the \(32^3\) grid represents without aliasing; the section <a href="#limits">"What the representation establishes and what it does not"</a> shows what happens when it does not. The direct sum has \(\sim M^2\) terms for \(M\) retained modes, against \(\sim M\log M\) operations for the grid product with the fast Fourier transform; the production calculation uses the second.</p>
+
+<h2 id="mode-balance">The energy of one mode</h2>
+<p>The slide's expression (12.7) is the energy of a mode; its evolution follows from (12.16). Let \(\hat e(\boldsymbol\kappa,t)=\tfrac12\hat{\mathbf u}^{*}\cdot\hat{\mathbf u}\) be the energy per unit mass of the mode in one realization. Then \(d\hat e/dt=\mathrm{Re}\,(\hat{\mathbf u}^{*}\cdot d\hat{\mathbf u}/dt)\). Insert (12.16) and use \(\boldsymbol\kappa\cdot\hat{\mathbf u}^{*}=0\), which is the conjugate of (12.11): the pressure term gives \(-i\hat p\,(\boldsymbol\kappa\cdot\hat{\mathbf u}^{*})=0\). Hence</p>
+\[
+\frac{d\hat e}{dt}=-2\nu\kappa^2\,\hat e-\mathrm{Re}\bigl(\hat{\mathbf u}^{*}\cdot\hat{\mathbf G}\bigr). \tag{12.21}
+\]
+<p>Pressure does no work on a mode. This is the energy counterpart of (12.18): the pressure gradient of a mode is parallel to \(\boldsymbol\kappa\), and the velocity of the mode is perpendicular to it. The first term is viscous decay at the rate \(2\nu\kappa^2\) found above. The second is the rate at which the nonlinear term takes energy out of the mode and puts it into others. The expectation of (12.21) is the balance equation for the energy at \(\boldsymbol\kappa\) that the slide's heading announces. The viscous term is the discrete counterpart of the dissipation spectrum \(D(\kappa)=2\nu\kappa^2E(\kappa)\) of chapter 11. The program checks that the pressure work vanishes: the largest value of \(|\hat{\mathbf u}^{*}\cdot(-i\boldsymbol\kappa\hat p)|\) over the modes of the random field is \(3.8\times10^{-21}\).</p>
+<p>Summing (12.21) over all modes shows what the nonlinear term does to the total. By (12.8) applied to \(u_j\) and \(\partial(u_ju_k)/\partial x_k\),</p>
+\[
+\sum_{\boldsymbol\kappa}\mathrm{Re}\bigl(\hat{\mathbf u}^{*}\cdot\hat{\mathbf G}\bigr)=\Bigl\langle u_j\frac{\partial(u_ju_k)}{\partial x_k}\Bigr\rangle_V=\Bigl\langle\frac{\partial}{\partial x_k}\bigl(\tfrac12u_ju_ju_k\bigr)\Bigr\rangle_V=0. \tag{12.22}
+\]
+<p>The middle step uses continuity: \(u_j\partial(u_ju_k)/\partial x_k=u_ju_k\partial u_j/\partial x_k=u_k\partial(\tfrac12u_ju_j)/\partial x_k\), and \(\partial u_k/\partial x_k=0\) lets \(u_k\) enter the derivative. The last step uses periodicity as in (12.9): the box average of an exact derivative of a periodic function vanishes. The nonlinear term therefore moves energy between modes and neither creates nor destroys it. The kinetic energy of the box changes only through the viscous term, \(dk/dt=-2\nu\sum_{\boldsymbol\kappa}\kappa^2\hat e\), where \(2\nu\sum_{\boldsymbol\kappa}\kappa^2\hat e\) is the dissipation rate \(\varepsilon\) of chapter 11 in the form \(2\nu\int\kappa^2E\,d\kappa\). In the program the sum over the modes of the random field is \(3.0\times10^{-20}\) against a scale (the sum of the absolute values of the terms) of \(1.2\times10^{-2}\). For the Taylor&ndash;Green vortex, \(2\nu\sum\kappa^2\hat e=2(0.01)(2)(\tfrac14)=0.0100\), the same as \(\nu\langle\omega_i\omega_i\rangle_V=0.0100\) from the vorticity \(\omega_3=-2\cos x_1\cos x_2\); the equality holds for any divergence-free field, since \(|i\boldsymbol\kappa\times\hat{\mathbf u}|^2=\kappa^2|\hat{\mathbf u}|^2\) when \(\boldsymbol\kappa\cdot\hat{\mathbf u}=0\) (Exercise 10). The detailed form of the transfer, the contribution of each triad to \(d\hat e/dt\), and the spectrum balance that it produces are the subject of the chapters "Spectral energy: Fourier modes, the velocity spectrum tensor, and one-dimensional spectra" and "Reynolds-number effects and the energy-spectrum balance".</p>
+
+<h2 id="implementation">Executable check: modes, derivatives, projection, pressure and pairs</h2>
+<p>The program below checks the identities of the chapter on the two flows of the running case and on one demonstration of aliasing. Its inputs are set in the code: the viscosity \(\nu=0.01\), the box side \(2\pi\) (so that \(\kappa_0=1\) and the wavenumbers are integers), grid sizes 8, 16 and 32 per direction, the band limit \(|n_j|\le4\) of the random field, and the seed 12 of NumPy's random-number generator. A coefficient is computed as the box average (12.5), which on a grid is the fast Fourier transform divided by the number of points; the inverse transform returns the grid values. The function <code>wavenumbers</code> raises <code>ValueError</code> for an odd number of grid points or fewer than 4. The program reads no files, writes only to standard output, requires NumPy, and runs in a few seconds.</p>
+<p>Assertions check the residuals of the vortex, the energy, the dissipation, the pair sum and the energy sum against thresholds of \(10^{-14}\) and \(10^{-12}\). The teaching simplifications are explicit: one wavenumber magnitude in the vortex, a band-limited test field that is not a solution of the equations, and a single seed. Values of order \(10^{-16}\) are rounding errors; their last digits depend on the FFT library.</p>
+<pre><code class="language-python">import numpy as np
+
+NU = 0.01       # kinematic viscosity (dimensionless units, box side 2*pi)
+NB = 4          # band limit of the random field: |n_j| &lt;= NB
+
+
+def wavenumbers(n):
+    """Return the integer wavenumber arrays k1, k2, k3 (box side 2*pi)."""
+    if n &lt; 4 or n % 2:
+        raise ValueError("need an even number of grid points, at least 4")
+    k = np.fft.fftfreq(n, 1.0/n)
+    return np.array(np.meshgrid(k, k, k, indexing="ij"))
+
+
+def coeff(u):
+    """Fourier coefficients &lt;u exp(-i k.x)&gt; of grid values (box average)."""
+    return np.fft.fftn(u, axes=(-3, -2, -1))/u.shape[-1]**3
+
+
+def field(uh):
+    """Inverse transform: real grid values from the coefficients."""
+    return np.fft.ifftn(uh, axes=(-3, -2, -1)).real*uh.shape[-1]**3
+
+
+def dot(k, gh):
+    """kappa . g for a vector of coefficients."""
+    return k[0]*gh[0] + k[1]*gh[1] + k[2]*gh[2]
+
+
+def project(gh, k):
+    """P_jk(kappa) g_k (the kappa = 0 coefficient is set to zero)."""
+    k2 = dot(k, k)
+    k2[k2 == 0] = 1.0
+    kg = dot(k, gh)/k2
+    return np.array([gh[j] - k[j]*kg for j in range(3)])
+
+
+def nonlinear(uh, k):
+    """G_j = i k_m F{u_j u_m}, with the products formed on the grid."""
+    u = field(uh)
+    return np.array([1j*sum(k[m]*coeff(u[j]*u[m]) for m in range(3))
+                     for j in range(3)])
+
+
+def convolution(uh, k):
+    """G_j = i k_m sum_{k'} u_j(k') u_m(k - k'), an explicit pair sum."""
+    n = uh.shape[-1]
+    keep = np.argwhere(np.abs(uh).sum(axis=0) &gt; 0)
+    out = np.zeros((3, 3, n, n, n), complex)
+    for p in keep:
+        for j in range(3):
+            for m in range(3):
+                shifted = np.roll(uh[m], tuple(p), axis=(0, 1, 2))
+                out[j, m] += uh[j][tuple(p)]*shifted
+    return np.array([1j*sum(k[m]*out[j, m] for m in range(3))
+                     for j in range(3)])
+
+
+def mode_derivative():
+    """Central difference and Fourier derivative of cos x on 8 points."""
+    n = 8
+    x = 2*np.pi*np.arange(n)/n
+    u, h = np.cos(x), 2*np.pi/n
+    cd = (np.roll(u, -1) - np.roll(u, 1))/(2*h)
+    ik = 1j*np.fft.fftfreq(n, 1.0/n)
+    sp = np.fft.ifft(ik*np.fft.fft(u)).real
+    print("central difference: max error %.4f (1 - sin(h)/h = %.4f)"
+          % (np.abs(cd + np.sin(x)).max(), 1 - np.sin(h)/h))
+    print("Fourier derivative: max error %.1e" % np.abs(sp + np.sin(x)).max())
+
+
+def taylor_green():
+    """Taylor-Green vortex on a 16^3 grid: modes, energy, equation (12.19)."""
+    n = 16
+    k = wavenumbers(n)
+    k2 = dot(k, k)
+    g = 2*np.pi*np.arange(n)/n
+    xx, yy, _ = np.meshgrid(g, g, g, indexing="ij")
+    u = np.array([np.cos(xx)*np.sin(yy), -np.sin(xx)*np.cos(yy), 0*xx])
+    uh = coeff(u)
+    mask = np.abs(uh).sum(axis=0) &gt; 1e-12
+    mags = sorted(set(float(v) for v in k2[mask]))
+    print("Taylor-Green: %d nonzero modes, kappa^2 = %s" % (mask.sum(), mags))
+    i = tuple(np.argwhere((k[0] == 1) &amp; (k[1] == 1) &amp; (k[2] == 0))[0])
+    print("  u_hat(1,1,0): Im u_1 = %.4f, Im u_2 = %.4f, Im u_3 = %.4f;"
+          " largest real part %.1e"
+          % (uh[0][i].imag, uh[1][i].imag, uh[2][i].imag,
+             np.abs(uh[:, mask].real).max()))
+    kbox = 0.5*np.mean((u**2).sum(axis=0))
+    kmode = 0.5*(np.abs(uh)**2).sum()
+    print("  k from box average %.6f, from modes %.6f" % (kbox, kmode))
+    div = np.abs(dot(k, uh)).max()
+    om = 1j*np.array([k[1]*uh[2] - k[2]*uh[1], k[2]*uh[0] - k[0]*uh[2],
+                      k[0]*uh[1] - k[1]*uh[0]])
+    om3 = coeff(-2*np.cos(xx)*np.cos(yy))
+    print("  max |kappa.u_hat| = %.1e; vorticity coefficient error %.1e"
+          % (div, np.abs(om[2] - om3).max()))
+    eps_w = NU*np.mean((field(om)**2).sum(axis=0))
+    eps_s = 2*NU*(k2*0.5*(np.abs(uh)**2).sum(axis=0)).sum()
+    print("  nu &lt;omega^2&gt; = %.6f; 2 nu sum kappa^2 (1/2)|u_hat|^2 = %.6f"
+          % (eps_w, eps_s))
+    gh = nonlinear(uh, k)
+    ph = 1j*dot(k, gh)/np.where(k2 == 0, 1, k2)
+    rhs = -NU*k2*uh - project(gh, k)
+    pexact = coeff(-0.25*(np.cos(2*xx) + np.cos(2*yy)))
+    print("  max|G_hat| %.4f; max|P G_hat| %.1e; max|du_hat/dt + 2 nu u_hat|"
+          " %.1e" % (np.abs(gh).max(), np.abs(project(gh, k)).max(),
+                     np.abs(rhs + 2*NU*uh).max()))
+    print("  pressure coefficient error %.1e" % np.abs(ph - pexact).max())
+    assert div &lt; 1e-14 and abs(kbox - kmode) &lt; 1e-14
+    assert abs(eps_w - eps_s) &lt; 1e-14
+    assert np.abs(rhs + 2*NU*uh).max() &lt; 1e-14
+
+
+def random_field():
+    """Random band-limited solenoidal field on a 32^3 grid."""
+    n = 32
+    k = wavenumbers(n)
+    k2 = dot(k, k)
+    safe = np.where(k2 == 0, 1, k2)
+    rng = np.random.default_rng(12)
+    band = (k2 &gt; 0)
+    for j in range(3):
+        band &amp;= np.abs(k[j]) &lt;= NB
+    wh = coeff(rng.standard_normal((3, n, n, n)))*band
+    kg = dot(k, wh)/safe
+    par = 0.5*sum((np.abs(k[j]*kg)**2).sum() for j in range(3))
+    print("Random field: %d modes; energy fraction parallel to kappa %.4f"
+          " (expected 1/3)" % (band.sum(), par/(0.5*(np.abs(wh)**2).sum())))
+    uh = project(wh, k)
+    u = field(uh)
+    print("  k from box average %.6f, from modes %.6f;"
+          " max |kappa.u_hat| %.1e"
+          % (0.5*np.mean((u**2).sum(axis=0)), 0.5*(np.abs(uh)**2).sum(),
+             np.abs(dot(k, uh)).max()))
+    gh = nonlinear(uh, k)
+    err = np.abs(convolution(uh, k) - gh).max()/np.abs(gh).max()
+    print("  convolution sum against grid products: relative difference"
+          " %.1e" % err)
+    transfer = np.real((np.conj(uh)*gh).sum())
+    scale = np.abs(np.conj(uh)*gh).sum()
+    ph = 1j*dot(k, gh)/safe
+    work = np.abs((np.conj(uh)*(-1j*k*ph)).sum(axis=0)).max()
+    print("  sum over modes of Re(u*.G) = %.1e (scale %.1e);"
+          " largest pressure work on one mode %.1e"
+          % (transfer, scale, work))
+    assert err &lt; 1e-12 and abs(transfer) &lt; 1e-12*scale
+
+
+def aliasing():
+    """Fourier derivative of u^2 for u = sin(5x) on two grids."""
+    for n in (16, 32):
+        x = 2*np.pi*np.arange(n)/n
+        ik = 1j*np.fft.fftfreq(n, 1.0/n)
+        d = np.fft.ifft(ik*np.fft.fft(np.sin(5*x)**2)).real
+        print("d(u^2)/dx, %d points: max error %.1e"
+              % (n, np.abs(d - 5*np.sin(10*x)).max()))
+
+
+if __name__ == "__main__":
+    mode_derivative()
+    taylor_green()
+    random_field()
+    aliasing()</code></pre>
+<p>The exact printed output of <code>python -I</code> is:</p>
+<pre><code>central difference: max error 0.0997 (1 - sin(h)/h = 0.0997)
+Fourier derivative: max error 4.4e-16
+Taylor-Green: 4 nonzero modes, kappa^2 = [2.0]
+  u_hat(1,1,0): Im u_1 = -0.2500, Im u_2 = 0.2500, Im u_3 = 0.0000; largest real part 7.6e-17
+  k from box average 0.250000, from modes 0.250000
+  max |kappa.u_hat| = 1.6e-16; vorticity coefficient error 1.8e-16
+  nu &lt;omega^2&gt; = 0.010000; 2 nu sum kappa^2 (1/2)|u_hat|^2 = 0.010000
+  max|G_hat| 0.2500; max|P G_hat| 1.0e-16; max|du_hat/dt + 2 nu u_hat| 1.0e-16
+  pressure coefficient error 5.8e-17
+Random field: 728 modes; energy fraction parallel to kappa 0.3222 (expected 1/3)
+  k from box average 0.024033, from modes 0.024033; max |kappa.u_hat| 1.2e-17
+  convolution sum against grid products: relative difference 2.3e-15
+  sum over modes of Re(u*.G) = 3.0e-20 (scale 1.2e-02); largest pressure work on one mode 3.8e-21
+d(u^2)/dx, 16 points: max error 8.0e+00
+d(u^2)/dx, 32 points: max error 4.3e-14</code></pre>
+<p>Each printed line corresponds to a result of the text. The central difference is wrong by 0.0997 where the Fourier derivative is wrong by \(4.4\times10^{-16}\) (the lead). The four vortex modes have \(\kappa^2=2\), and the coefficient at \((1,1,0)\) is \((-i/4,i/4,0)\), as derived in the section <a href="#orthonormality">"Orthonormality of the modes and the coefficients of the series"</a>. The energy 0.250000 from the box and from the modes confirms (12.8); the vorticity and dissipation lines confirm (12.10) and \(\varepsilon=\nu\langle\omega_i\omega_i\rangle_V\) for the vortex. The nonlinear coefficient is large (0.25) and entirely parallel to its wavevector (perpendicular part \(10^{-16}\)), so that (12.19) gives pure viscous decay. The random-field lines confirm the parallel share, Parseval's relation, the pair sum (12.20), the zero total transfer (12.22) and the zero pressure work (12.21). The last two lines show the aliasing discussed in the next section: the exact derivative of \(u^2\) is recovered on 32 points and is wrong by 8.0 on 16 points.</p>
+
+<h2 id="limits">What the representation establishes and what it does not</h2>
+<p><strong>What it establishes.</strong> For a field that is periodic and smooth enough for the series to be differentiated, equations (12.2) to (12.22) are identities. Differentiation, the divergence, the curl and the Laplacian become multiplications; the continuity equation restricts each coefficient to a plane; the pressure is eliminated by a projection; the viscous term is diagonal; and the nonlinear term couples modes through triads and conserves the total energy of the box. These are statements about the continuous, infinite system. The Taylor&ndash;Green vortex shows that they can be checked to rounding error.</p>
+<p><strong>The claim of "no truncation errors".</strong> The lecture states that a simulation in wavenumber space has no truncation errors, that its derivatives are exact, and that the solution is perfect, with unspecified requirements to follow. The statement is true of one operation, the derivative of a field that the retained modes represent: the program finds an error of \(4.4\times10^{-16}\). It is not true of the computed solution, for four reasons that the recordings do not reach. First, a simulation keeps finitely many modes, up to the highest wavenumber \(\kappa_{\max}\); the modes above it are absent, and their effect on the small scales is the resolution question, for which Yeung, Sreenivasan and Pope (2018, p. 064603-3) report that \(\kappa_{\max}\eta\) of order 1.5 may be adequate for low-order statistics and that larger values are needed for higher-order ones because of intermittency. Second, the nonlinear products have wavenumbers beyond those of the factors. On a grid, a wavenumber above the Nyquist wavenumber \(N\kappa_0/2\) is indistinguishable from a lower one, and the product of two represented modes can land there. The last lines of the program show this for \(u=\sin5x\): \(u^2=\tfrac12-\tfrac12\cos10x\) contains the wavenumber 10, which the 16-point grid (Nyquist wavenumber 8) cannot hold; it is folded onto the wavenumber \(-6\), and the computed derivative of \(u^2\) differs from the exact one by 8.0 on the grid points. On 32 points the wavenumber 10 is represented and the error is \(4.3\times10^{-14}\). This is an <em>aliasing</em> error, not a truncation error of the derivative, and Yeung, Sreenivasan and Pope list it beside the errors of finite spatial and temporal resolution as a separate source of inaccuracy in pseudospectral simulation (p. 064603-2). They control it by phase shifting and by truncating the modes at \(\kappa_{\max}=\sqrt2N\kappa_0/3\) (pp. 064603-2 and 064603-3), which reduces the aliasing error without removing it; removing it entirely needs a calculation on a grid of \((2N)^3\) points with truncation at every Runge&ndash;Kutta substage, and even an alias-free solution retains truncation errors in space and time (p. 064603-11). Third, the equations are advanced in time by a finite step, which the Fourier representation does not make exact. Fourth, the statistics of a finite sample have their own sampling error (chapter 8). The chapter "Direct numerical simulation: pseudo-spectral methods and cost" treats these in detail.</p>
+<p><strong>The periodic box.</strong> The representation applies to a field that repeats. The model of the box removes motions larger than \(\mathcal L\) and makes the correlation return to its full value at the separation \(\mathcal L\); the statistics of a box simulation are those of the periodic model, and agree with an unbounded flow only to the extent that \(\mathcal L\gg L_{11}\). The sizes of the jet case in the section <a href="#model">"The objects of the chapter and the running case"</a> are assumed values. A flow bounded by walls needs a different expansion in the wall-normal direction.</p>
+<p><strong>Homogeneity and the single realization.</strong> The relation \(k=\tfrac12\sum\hat E\) needs statistical homogeneity, because it equates the expectation at one point with a box average. The coefficients \(\hat{\mathbf u}(\boldsymbol\kappa,t)\) of one realization are random numbers; the energy \(\hat e\) of (12.21) is a property of that realization, and the energy \(\tfrac12\hat E\) of the slide is its expectation. The statistical independence of the coefficients at different wavevectors in homogeneous turbulence is not used here and not shown.</p>
+<p><strong>The balance of the second moment is not closed.</strong> The expectation of (12.21) contains \(\langle\mathrm{Re}(\hat{\mathbf u}^{*}\cdot\hat{\mathbf G})\rangle\). Since \(\hat{\mathbf G}\) is quadratic in the coefficients (12.20), this is a third-order moment. The equation for the second moment of the coefficients contains a third moment, which is the closure problem of chapter 9 in wavenumber space. The Fourier representation moves the problem to a different set of variables; it does not remove it.</p>
+<p><strong>What the reader can now do.</strong> The reader can now (i) write a periodic zero-mean velocity field as a sum of Fourier modes and compute the coefficient of any mode as a box average; (ii) transform a derivative, a divergence, a curl and a Laplacian into a multiplication and say which hypothesis (periodicity of the field and of its derivative) the rule needs; (iii) project a vector onto the plane perpendicular to a wavevector and state why a divergence-free coefficient has two degrees of freedom; (iv) eliminate the pressure from the equation of one mode and write the nonlinear term as a sum over triads of modes; (v) write the energy equation of one mode and show that the nonlinear term moves energy between modes without changing the total; and (vi) say, with a counterexample on 16 points, why the exact Fourier derivative does not make a computed solution free of error.</p>
+
+<h2 id="exercises">Exercises</h2>
+<p><strong>Exercise 1 (compute).</strong> The jet case of the section "The objects of the chapter and the running case" is simulated in a smaller box, \(\mathcal L=0.5\ \mathrm m\), with the truncation \(\kappa_{\max}=\sqrt2N\kappa_0/3\). (a) Find \(\kappa_0\) and the wavelength of the lowest mode. (b) Find \(N\) and \(N^3\) for \(\kappa_{\max}\eta=1.0\) and for \(1.5\). (c) Find the ratio \(\mathcal L/\eta\) and the grid spacing \(\Delta x=\mathcal L/N\) in units of \(\eta\). (d) Find the memory needed to store the three velocity components in double precision for \(\kappa_{\max}\eta=1.5\). (e) Is the box large compared with \(L_{11}\sim\ell_0\)?</p>
+<details><summary>Solution</summary>
+<p>(a) \(\kappa_0=2\pi/0.5=12.57\ \mathrm{rad/m}\); the lowest mode has the wavelength 0.5 m.</p>
+<p>(b) From \(\kappa_{\max}=\sqrt2N\kappa_0/3\), \(N=3\kappa_{\max}\eta/(\sqrt2\,\kappa_0\eta)\). With \(\eta=7.90\times10^{-5}\ \mathrm m\), \(\kappa_0\eta=9.93\times10^{-4}\). For \(\kappa_{\max}\eta=1.0\): \(N=2.14\times10^3\) and \(N^3=9.8\times10^9\). For 1.5: \(N=3.21\times10^3\) and \(N^3=3.3\times10^{10}\).</p>
+<p>(c) \(\mathcal L/\eta=0.5/7.90\times10^{-5}=6.3\times10^3\). \(\Delta x/\eta=(\mathcal L/\eta)/N=2.96\) for \(\kappa_{\max}\eta=1.0\) and 1.97 for 1.5; these follow the relation \(\Delta x/\eta=2.96/(\kappa_{\max}\eta)\) of Yeung, Sreenivasan and Pope (2018, p. 064603-3, Eq. (2)).</p>
+<p>(d) \(3\times3.29\times10^{10}\times8\ \mathrm B=7.9\times10^{11}\ \mathrm B\), about 0.79 TB, for the velocity alone, before the products and work arrays of the nonlinear term.</p>
+<p>(e) \(\mathcal L/\ell_0=5\). The correlation of the periodic field returns to its full value at \(\mathcal L=0.5\ \mathrm m\), and the largest independent separation is \(\mathcal L/2=0.25\ \mathrm m=2.5\ell_0\). Whether this is enough depends on how fast the correlation decays; Exercise 6 designs the box from an assumed decay.</p>
+</details>
+<p><strong>Exercise 2 (derive).</strong> A real, divergence-free field with zero box average is represented by the modes with \(|n_j|\le n_{\max}\). (a) Count the independent real numbers that define it. (b) Compare with the count for a real field with the same modes and zero mean, without the divergence condition. (c) Evaluate both for \(n_{\max}=4\) and compare with the program's 728 modes.</p>
+<details><summary>Solution</summary>
+<p>(a) The lattice has \((2n_{\max}+1)^3\) vectors; removing \(\boldsymbol\kappa=0\) leaves \((2n_{\max}+1)^3-1\). No nonzero vector equals its own negative, so conjugate symmetry (12.6) pairs the vectors \(\boldsymbol\kappa\) and \(-\boldsymbol\kappa\) into \([(2n_{\max}+1)^3-1]/2\) independent pairs. At each pair, (12.11) confines \(\hat{\mathbf u}\) to a plane: two complex components, four real numbers. The total is \(2[(2n_{\max}+1)^3-1]\).</p>
+<p>(b) Without (12.11), each pair has three complex components, six real numbers: \(3[(2n_{\max}+1)^3-1]\).</p>
+<p>(c) For \(n_{\max}=4\), \((2n_{\max}+1)^3-1=728\), the number of modes printed by the program. The count (a) is 1456 and the count (b) is 2184, a ratio of 2/3. The continuity equation removes one third of the freedom, which is the third component of each coefficient.</p>
+</details>
+<p><strong>Exercise 3 (compute).</strong> For the Taylor&ndash;Green vortex of the running case, (a) find \(\hat{\mathbf u}\) at \((1,1,0)\) and \((1,-1,0)\) from the definition (12.5), and at \((-1,\pm1,0)\) from (12.6); (b) check (12.11) and (12.8); (c) find the time at which the kinetic energy has fallen to one half for \(\nu=0.01\).</p>
+<details><summary>Solution</summary>
+<p>(a) Write \(\cos x_1\sin x_2=(1/4i)[e^{i(x_1+x_2)}-e^{i(x_1-x_2)}+e^{-i(x_1-x_2)}-e^{-i(x_1+x_2)}]\) and \(-\sin x_1\cos x_2=-(1/4i)[e^{i(x_1+x_2)}+e^{i(x_1-x_2)}-e^{-i(x_1-x_2)}-e^{-i(x_1+x_2)}]\). Reading the coefficients of \(e^{i\boldsymbol\kappa\cdot\mathbf x}\): \(\hat{\mathbf u}(1,1,0)=(1/4i,\,-1/4i,\,0)=(-i/4,\,i/4,\,0)\); \(\hat{\mathbf u}(1,-1,0)=(-1/4i,\,-1/4i,\,0)=(i/4,\,i/4,\,0)\). By (12.6), \(\hat{\mathbf u}(-1,-1,0)=(i/4,-i/4,0)\) and \(\hat{\mathbf u}(-1,1,0)=(-i/4,-i/4,0)\). The program prints the imaginary parts \(-0.2500\) and \(0.2500\) at \((1,1,0)\).</p>
+<p>(b) At \((1,1,0)\): \(\boldsymbol\kappa\cdot\hat{\mathbf u}=-i/4+i/4=0\); at \((1,-1,0)\): \(i/4-i/4=0\); the other two follow by conjugation. Each mode has \(|\hat{\mathbf u}|^2=1/8\), so (12.8) gives \(\tfrac12\times4\times\tfrac18=\tfrac14\), equal to \(\tfrac12\langle u_ju_j\rangle_V=\tfrac12(\tfrac14+\tfrac14)\).</p>
+<p>(c) The coefficients decay as \(e^{-2\nu t}\), so \(k(t)=\tfrac14e^{-4\nu t}\) and \(k=\tfrac18\) when \(t=\ln2/(4\nu)=17.3\) for \(\nu=0.01\).</p>
+</details>
+<p><strong>Exercise 4 (check an assumption).</strong> The derivative rule (12.9) assumes a periodic function with a periodic derivative. Test it on \(g(x)=x\) for \(0\lt x\lt\mathcal L\), repeated periodically, in one dimension. (a) Find \(\hat g(\kappa_n)\) for \(n\ne0\). (b) Compare \(i\kappa_n\hat g\) with the coefficient of \(g'=1\) inside one period. (c) Find the term that the periodic argument of the section "Differentiation becomes multiplication" drops, and state what happens to the differentiated series.</p>
+<details><summary>Solution</summary>
+<p>(a) With \(a=\kappa_0n\), \(\int_0^{\mathcal L}xe^{-iax}dx=[xe^{-iax}/(-ia)]_0^{\mathcal L}+(1/ia)\int_0^{\mathcal L}e^{-iax}dx=\mathcal L/(-ia)+0\), because \(e^{-ia\mathcal L}=1\) and the second integral is zero. So \(\hat g(\kappa_n)=(1/\mathcal L)(i\mathcal L/a)=i/a=i\mathcal L/(2\pi n)\).</p>
+<p>(b) The coefficient of \(g'=1\) at \(n\ne0\) is the box average of \(e^{-iax}\), which is zero. But \(i\kappa_n\hat g=i\cdot a\cdot(i/a)=-1\). The rule fails.</p>
+<p>(c) The periodic extension of \(g\) jumps at \(x=m\mathcal L\), so \(h=g\,e^{-iax}\) is not periodic and the average of \(\partial h/\partial x\) is not zero: it equals \([g(\mathcal L^-)-g(0^+)]/\mathcal L=1\). The full relation is \(\mathscr F\{g'\}=i\kappa\hat g+1=-1+1=0\), consistent with (b). The term \(i\kappa_n\hat g=-1\) has the same value for every \(n\) and does not tend to zero, so the term-by-term derivative of the series does not converge; it represents a delta function at the jump (the derivative of the periodic extension in the sense of distributions), not the function 1. The periodicity of both \(g\) and \(g'\) is the condition, and a flow with a jump or a kink at the box face violates it.</p>
+</details>
+<p><strong>Exercise 5 (counterexample).</strong> A colleague argues that a Fourier method has "no truncation errors", so that its derivative of any computed product is exact. Give a counterexample on a grid of 16 points, state the mechanism, and find the grid sizes for which the counterexample disappears.</p>
+<details><summary>Solution</summary>
+<p>Take \(u=\sin5x\) on 16 equally spaced points of \([0,2\pi)\). The field is represented exactly: the wavenumber 5 is below the Nyquist wavenumber 8. The product is \(u^2=\tfrac12-\tfrac12\cos10x\), with the exact derivative \(5\sin10x\). On the grid, \(\cos(10x_j)=\cos(6x_j)\) because \(10-16=-6\), so the discrete transform of \(u^2\) holds the wavenumber 6 where it should hold 10, and the Fourier derivative returns \(3\sin6x_j\). The exact value at the grid points is \(5\sin10x_j=-5\sin6x_j\). The difference is \(8\sin6x_j\), of largest magnitude 8.0, in agreement with the program. The derivative operator is exact for the modes it is given; the error comes from the product, which created a wavenumber that the grid cannot hold. For \(N\ge22\) the Nyquist wavenumber \(N/2\) exceeds 10, and the error is at rounding level (the program prints \(4.3\times10^{-14}\) for 32). For \(N=20\) the wavenumber 10 is at the Nyquist wavenumber, where \(\sin10x_j=0\) at every grid point, and the computed and exact values agree at the grid points by coincidence of this field; the agreement does not extend to other products. The counterexample refutes the statement that the computed derivative of a product is exact. It does not refute the statement that the derivative of a represented field is exact.</p>
+</details>
+<p><strong>Exercise 6 (design).</strong> Choose the box side for the jet case from the following assumptions: the correlation of the unbounded field decays as \(e^{-r/L_{11}}\) with \(L_{11}=\ell_0=0.1\ \mathrm m\), and the periodic field has the sum of the correlations of the two nearest images at the separation \(\mathcal L/2\), \(2e^{-\mathcal L/(2L_{11})}\). Require this sum to be below 0.01. Then find \(N\) for \(\kappa_{\max}\eta=1.5\). State what the design assumes.</p>
+<details><summary>Solution</summary>
+<p>\(2e^{-\mathcal L/(2L_{11})}\lt0.01\) requires \(\mathcal L/(2L_{11})\gt\ln200=5.30\), so \(\mathcal L\gt10.6L_{11}=1.06\ \mathrm m\). Take \(\mathcal L=1.06\ \mathrm m\): \(\kappa_0=5.93\ \mathrm{rad/m}\) and \(\kappa_0\eta=4.68\times10^{-4}\). Then \(N=3(1.5)/(\sqrt2\times4.68\times10^{-4})=6.8\times10^3\), \(N^3=3.1\times10^{11}\). The box of 1 m in the text corresponds to a sum of 0.013 at \(\mathcal L/2\).</p>
+<p>The design assumes an exponential decay, which is a modelling choice and not a property of turbulent correlations established in this book. It assumes that images add linearly. It takes \(L_{11}=\ell_0\), an order-of-magnitude link used throughout the chapter. It ignores the large-scale motions that an experiment would show, and the 1&nbsp;% threshold is arbitrary. The result is a size estimate, not a requirement: a threshold of 0.001 would require \(\mathcal L\gt2L_{11}\ln2000=15.2L_{11}\) and raise \(N\) in proportion.</p>
+</details>
+<p><strong>Exercise 7 (derive; adapted from the course practice problems, <a class="timestamp" href="https://www.youtube.com/watch?v=uWLlkjjBaYo&amp;t=6s">T2 0:06</a>).</strong> Show that, for integer \(n\),
+\[
+\int_0^{\ell}e^{2\pi inx/\ell}\,dx=\begin{cases}0,&n\ne0,\\ \ell,&n=0,\end{cases}
+\]
+and hence establish the orthonormality property (12.4). (The slide writes the box side \(\ell\); this chapter writes \(\mathcal L\).) Then evaluate \(\langle\cos^2(\boldsymbol\kappa\cdot\mathbf x)\rangle_V\) for \(\boldsymbol\kappa\ne0\) and \(\langle\cos(\boldsymbol\kappa\cdot\mathbf x)\cos(\boldsymbol\kappa'\cdot\mathbf x)\rangle_V\) for \(\boldsymbol\kappa'\ne\pm\boldsymbol\kappa\).</p>
+<details><summary>Solution</summary>
+<p>For \(n=0\) the integrand is 1 and the integral is \(\ell\). For \(n\ne0\), \(\int_0^\ell e^{2\pi inx/\ell}dx=[\ell/(2\pi in)](e^{2\pi in}-1)=0\), since \(e^{2\pi in}=1\) for integer \(n\).</p>
+<p>The product of two modes is \(e^{i(\boldsymbol\kappa-\boldsymbol\kappa')\cdot\mathbf x}=\prod_je^{2\pi i(n_j-n_j')x_j/\mathcal L}\). The box average is the product of the three one-dimensional averages \(\mathcal L^{-1}\int_0^{\mathcal L}e^{2\pi i(n_j-n_j')x_j/\mathcal L}dx_j\), each equal to 1 if \(n_j=n_j'\) and 0 otherwise, by the result above with \(n=n_j-n_j'\). The product is 1 only if all three differences vanish, which is \(\boldsymbol\kappa=\boldsymbol\kappa'\): this is (12.4).</p>
+<p>Write \(\cos(\boldsymbol\kappa\cdot\mathbf x)=\tfrac12(e^{i\boldsymbol\kappa\cdot\mathbf x}+e^{-i\boldsymbol\kappa\cdot\mathbf x})\). Then \(\langle\cos^2\rangle_V=\tfrac14(\langle e^{2i\boldsymbol\kappa\cdot\mathbf x}\rangle_V+2+\langle e^{-2i\boldsymbol\kappa\cdot\mathbf x}\rangle_V)=\tfrac12\), because \(2\boldsymbol\kappa=\boldsymbol\kappa-(-\boldsymbol\kappa)\ne0\) makes the first and last terms vanish by (12.4). For the product with \(\boldsymbol\kappa'\), the four terms have the wavevectors \(\pm\boldsymbol\kappa\pm\boldsymbol\kappa'\), none zero when \(\boldsymbol\kappa'\ne\pm\boldsymbol\kappa\); the average is 0.</p>
+</details>
+<p><strong>Exercise 8 (derive; adapted from the course practice problems, <a class="timestamp" href="https://www.youtube.com/watch?v=uWLlkjjBaYo&amp;t=430s">T2 7:10</a>).</strong> Show that \(\mathscr F_{\boldsymbol\kappa}\{\nabla^2g(\mathbf x)\}=-\kappa^2\hat g(\boldsymbol\kappa)\) for a periodic function \(g\), by integrating by parts twice in the definition (12.5). State where periodicity is used. Check the result for \(g=\cos3x_1\cos2x_2\) on \(\mathcal L=2\pi\).</p>
+<details><summary>Solution</summary>
+<p>Write \(\psi\equiv e^{-i\boldsymbol\kappa\cdot\mathbf x}\) and \(\partial_k\equiv\partial/\partial x_k\). For each \(k\), \(\langle\partial_k(\partial_kg)\,\psi\rangle_V=-\langle\partial_kg\,\partial_k\psi\rangle_V+\langle\partial_k(\partial_kg\,\psi)\rangle_V\). The last term is the box average of an exact derivative of a periodic function (\(\partial_kg\) and \(\psi\) are both periodic), so it is zero: this is the first use of periodicity. With \(\partial_k\psi=-i\kappa_k\psi\), the first term is \(i\kappa_k\langle\partial_kg\,\psi\rangle_V\). Repeat for \(\langle\partial_kg\,\psi\rangle_V\): \(=-\langle g\,\partial_k\psi\rangle_V+\langle\partial_k(g\,\psi)\rangle_V=i\kappa_k\hat g\), the second periodicity use. Hence \(\langle\partial_k\partial_kg\,\psi\rangle_V=(i\kappa_k)(i\kappa_k)\hat g=-\kappa^2\hat g\), summed over \(k\).</p>
+<p>Check: \(\nabla^2g=-(9+4)g=-13g\). The coefficients of \(g=\tfrac14\sum e^{i(\pm3x_1\pm2x_2)}\) are \(\tfrac14\) at \((\pm3,\pm2,0)\), where \(\kappa^2=13\), so \(\mathscr F\{\nabla^2g\}=-13\hat g=-\kappa^2\hat g\).</p>
+</details>
+<p><strong>Exercise 9 (derive; adapted from the course practice problems, <a class="timestamp" href="https://www.youtube.com/watch?v=uWLlkjjBaYo&amp;t=747s">T2 12:27</a>).</strong> Given that the volume-average velocity \(\langle\mathbf u(\mathbf x,t)\rangle_V\) is zero, show that the coefficient of the zeroth Fourier mode is zero, \(\hat{\mathbf u}(0,t)=0\). Then show that it remains zero in time, using the momentum equation averaged over the box. (The recording skips this problem at 12:27 and does not return to it. The slide writes the box average with a small italic subscript, read here as \(\ell\); this chapter writes \(\langle\cdot\rangle_V\).)</p>
+<details><summary>Solution</summary>
+<p>Set \(\boldsymbol\kappa=0\) in (12.5): \(e^{0}=1\), so \(\hat{\mathbf u}(0,t)=\langle\mathbf u\rangle_V=0\). (The slide's statement concerns one scalar component; the argument holds for each component, hence for the vector.)</p>
+<p>Average (12.15) over the box. \(\langle\partial u_j/\partial t\rangle_V=d\langle u_j\rangle_V/dt\). The other terms are box averages of exact derivatives of periodic functions: \(\langle\partial(u_ju_k)/\partial x_k\rangle_V=0\), \(\nu\langle\partial^2u_j/\partial x_k\partial x_k\rangle_V=0\) and \(\langle\partial p/\partial x_j\rangle_V=0\), the last if \(p\) is periodic. Hence \(d\langle u_j\rangle_V/dt=0\), which is the equation (12.16) at \(\kappa=0\) written in physical space. The assumption is that the pressure is periodic. A pressure with a mean gradient, \(p=\tilde p+\mathbf g\cdot\mathbf x\) with \(\tilde p\) periodic, acts as a uniform body force and gives \(d\langle\mathbf u\rangle_V/dt=-\mathbf g/\rho\); the model excludes it.</p>
+</details>
+<p><strong>Exercise 10 (derive; adapted from the course practice problems, <a class="timestamp" href="https://www.youtube.com/watch?v=uWLlkjjBaYo&amp;t=756s">T2 12:36</a>).</strong> Show that the Fourier coefficient of the vorticity \(\boldsymbol\omega=\nabla\times\mathbf u\) is \(\hat{\boldsymbol\omega}(\boldsymbol\kappa)=i\boldsymbol\kappa\times\hat{\mathbf u}(\boldsymbol\kappa)\). Then show that \(\boldsymbol\kappa\cdot\hat{\boldsymbol\omega}=0\) and that \(|\hat{\boldsymbol\omega}|^2=\kappa^2|\hat{\mathbf u}|^2\) when \(\boldsymbol\kappa\cdot\hat{\mathbf u}=0\), and evaluate \(\nu\langle\omega_i\omega_i\rangle_V\) for the Taylor&ndash;Green vortex from its modes.</p>
+<details><summary>Solution</summary>
+<p>With the alternating symbol \(\epsilon_{ijk}\), \(\omega_i=\epsilon_{ijk}\partial u_k/\partial x_j\). By (12.9) applied to each component, \(\hat\omega_i=\epsilon_{ijk}\,i\kappa_j\hat u_k=i(\boldsymbol\kappa\times\hat{\mathbf u})_i\). The \(i\) in \(i\kappa_j\) is the imaginary unit, not an index.</p>
+<p>The vector \(\boldsymbol\kappa\times\hat{\mathbf u}\) is perpendicular to \(\boldsymbol\kappa\), so \(\boldsymbol\kappa\cdot\hat{\boldsymbol\omega}=0\): the vorticity is divergence-free, as it must be. For a real vector \(\mathbf a\), \(|\boldsymbol\kappa\times\mathbf a|^2=\kappa^2|\mathbf a|^2-(\boldsymbol\kappa\cdot\mathbf a)^2\). Write \(\hat{\mathbf u}=\mathbf a+i\mathbf b\) with real \(\mathbf a,\mathbf b\); the real \(\boldsymbol\kappa\) acts on each part, so \(|\boldsymbol\kappa\times\hat{\mathbf u}|^2=\kappa^2|\hat{\mathbf u}|^2-(\boldsymbol\kappa\cdot\mathbf a)^2-(\boldsymbol\kappa\cdot\mathbf b)^2\), and the last two terms vanish by (12.11) for the real and imaginary parts. So \(|\hat{\boldsymbol\omega}|^2=\kappa^2|\hat{\mathbf u}|^2\).</p>
+<p>For the vortex, \(\hat{\boldsymbol\omega}(1,1,0)=i(1,1,0)\times(-i/4,i/4,0)=i(0,0,i/4+i/4)=(0,0,-\tfrac12)\), the coefficient of \(\omega_3=-2\cos x_1\cos x_2\) at that mode. By Parseval (the extension of (12.8) to \(\omega\)), \(\langle\omega_i\omega_i\rangle_V=\sum|\hat{\boldsymbol\omega}|^2=4\times\tfrac14=1\), so \(\nu\langle\omega_i\omega_i\rangle_V=0.01\), equal to \(2\nu\sum\kappa^2\hat e=2(0.01)(2)(\tfrac14)\), as the program prints.</p>
+</details>
+
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li>Recordings: <a href="https://www.youtube.com/watch?v=Vyci5TPEAeg">Lecture 31</a>, <a href="https://www.youtube.com/watch?v=02YD75i0Dlg">Lecture 32</a>, <a href="https://www.youtube.com/watch?v=yNcX3jeVpFY">Lecture 33</a>, NPTEL <em>Essentials of Turbulence</em>, IIT Bombay, 2026. Practice problems: <a href="https://www.youtube.com/watch?v=uWLlkjjBaYo">Tutorial 2</a>.</li>
+<li>P. K. Yeung, K. R. Sreenivasan, S. B. Pope, &ldquo;Effects of finite spatial and temporal resolution in direct numerical simulations of incompressible isotropic turbulence&rdquo;, <em>Physical Review Fluids</em> 3, 064603 (2018), DOI 10.1103/PhysRevFluids.3.064603. Pages cited are the article pages 064603-N, which equal the PDF pages N: DNS on a periodic cube with a Fourier pseudospectral algorithm, the list of truncation, aliasing and sampling errors, and the use of phase shifting and truncation in wavenumber space (pp. 064603-2 and 064603-3); the highest resolvable wavenumber \(\kappa_{\max}=\sqrt2N/3\) for a box of side \(2\pi\) and the relation \(\Delta x/\eta\approx2.96/(\kappa_{\max}\eta)\), the adequacy of \(\kappa_{\max}\eta\) of order 1.5 for low-order statistics, the transformation of the equations to ordinary differential equations in wavenumber space and the exact treatment of the viscous term by an integrating factor (p. 064603-3); the alias-free procedure and the remaining truncation errors (p. 064603-11).</li>
+</ul>
+<!-- BOOK-CONTENT-END --></article><nav class="page-turn" aria-label="Chapter navigation"><a rel="prev" href="chapter-11-energy-spectrum.html">Previous available chapter</a><a href="index.html">Lecture index</a><span>Further chapters pending</span></nav></main></div>
+<footer class="site-footer">Independent study notes. NPTEL IIT Bombay course recordings supply the topic sequence; added explanations and teaching constructions are separately attributed. Local edition in progress; a rendered page does not establish editorial completion.</footer></body></html>

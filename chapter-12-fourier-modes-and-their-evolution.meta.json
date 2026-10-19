@@ -1,0 +1,362 @@
+{
+  "chapter": 12,
+  "title": "Fourier modes and their evolution: the Navier–Stokes equations for the coefficients of a periodic velocity field",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "Vyci5TPEAeg",
+      "lecture_number": 31,
+      "media_sha256": "da2a6c45709169fa1216aa07ec1831fed6d27200e4d01cb37628d2c60b51988a",
+      "duration_seconds": 1724.2935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1695.59,
+      "role": "lecture"
+    },
+    {
+      "video_id": "02YD75i0Dlg",
+      "lecture_number": 32,
+      "media_sha256": "fb487f125a41092416387209765bd9dc69b97581a295c4663d7eda391ad4c6ff",
+      "duration_seconds": 1651.1935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1622.61,
+      "role": "lecture"
+    },
+    {
+      "video_id": "yNcX3jeVpFY",
+      "lecture_number": 33,
+      "media_sha256": "b95c045fee7797c8bb90b4f132332e2ba13d43e401f480ae04498cc05485daad",
+      "duration_seconds": 1679.4935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1650.97,
+      "role": "lecture"
+    },
+    {
+      "video_id": "uWLlkjjBaYo",
+      "lecture_number": null,
+      "media_sha256": "c6f1878993d6cfd4322a43a2e84aee28e05107484fc1e10518b545af44afe91b",
+      "duration_seconds": 2199.6935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 2171.18,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercises T2-P7 to T2-P10, Exercises 7 to 10; no chapter section is grounded in this recording.",
+      "tutorial_number": 2
+    }
+  ],
+  "frames_viewed": {
+    "Vyci5TPEAeg": [
+      "f0003",
+      "f0005",
+      "f0009",
+      "f0022",
+      "f0034",
+      "f0040",
+      "f0055"
+    ],
+    "02YD75i0Dlg": [
+      "f0020",
+      "f0033",
+      "f0038",
+      "f0051"
+    ],
+    "yNcX3jeVpFY": [
+      "f0013",
+      "f0018",
+      "f0028",
+      "f0036",
+      "f0053"
+    ],
+    "uWLlkjjBaYo": [
+      "f0015",
+      "f0026"
+    ]
+  },
+  "frames_extracted": {
+    "uWLlkjjBaYo": [
+      "26 s, 31 s, 36 s (slide of problem 7, not in the sampled frames)",
+      "751 s (slide of problem 9, on screen about 1.5 s)"
+    ]
+  },
+  "contact_sheets_scanned": {
+    "Vyci5TPEAeg": [
+      "s01",
+      "s02",
+      "s03"
+    ],
+    "02YD75i0Dlg": [
+      "s01",
+      "s02",
+      "s03"
+    ],
+    "yNcX3jeVpFY": [
+      "s01",
+      "s02",
+      "s03"
+    ]
+  },
+  "source_uncertainties": [
+    "ASR: 'module 7 ... module two' (L31 0:22-0:45); the slide footer reads Module 07 Part B. 'e to the i kappa dot x ... e to the minus kappa prime dot x' (L31 1418 s) drops the i; the slide (f0040) has exp(-i kappa'.x). 'volume average over the cube 0 to n' (L31 1361 s) is 0 <= x_i <= script L (f0040). 'R cubed' (L32 183 s) is the cube of side script L. 'g bar' for the derivative in T2 is the lecturer's notation.",
+    "Spoken justification of the derivative rule (L32 10:50): 'ddx_j of g_hat is zero because g_hat is in Fourier space'. The slide (L32 f0020) writes the correct integration by parts; the chapter gives periodicity as the reason.",
+    "The slide calls (12.7) a 'balance equation for the kinetic energy at wavenumber kappa' (L31 f0022); it is a definition. The half of the kinetic energy is omitted on the slide and mentioned in speech.",
+    "The slide calls p/rho the 'dynamic pressure' (L33 f0036); the chapter writes kinematic pressure. The slide writes the transform of -Laplacian p in the Poisson equation (L33 f0053) with p although p_hat is the coefficient of p/rho.",
+    "The lecture calls e_1, e_2, e_3 direction cosines (L31 f0040); they are the unit vectors along the axes.",
+    "Spoken 'sum over all wavenumber magnitudes' (L31 4:50 and 8:20); the slide sums over the wavenumber vectors kappa = kappa_0 n.",
+    "Zero truncation errors / 'exact' / 'perfect solution' (L31 14:50, L32 15:10, slide L31 f0022): true of the derivative of a represented field, not of the computed solution (chapter section 'What the representation establishes and what it does not').",
+    "Division by kappa^2 in P_jk and p_hat without excluding kappa = 0 (L32, L33 slides).",
+    "The recordings stop at the pressure term (L33 27:20: 'in the next class we will put this all into the Navier-Stokes equations'); equation (12.19) is the chapter's one-line completion. Checked against Lecture 34 (-nljYKsaUwo): it opens (0:05 to about 4:10) by restating the pressure result of Lecture 33 and substituting it into the Navier-Stokes equation, which gives (12.19). (12.19) stays in this chapter and chapter 13 cites it.",
+    "T2 slide equation numbers (6.122)-(6.125) belong to the source book and are not used. T2-P9 is skipped in the recording (12:27).",
+    "Jet-case box size 1 m and L11 ~ l0 are assumptions of the chapter, not lecture values."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None directly; the slides state periodicity and a cube of side script L large compared with L11.",
+      "research_extension": "Truncation kmax = sqrt(2)N/3 and Delta x/eta = 2.96/(kmax eta) (Yeung, Sreenivasan, Pope 2018, p. 064603-3).",
+      "teaching_construction": "Periodic-box model; jet case (nu 1.4607e-5 as in chapters 6, 8 and 10, l0 0.1 m, u0 2 m/s, Re0 1.37e4, eps = u0^3/l0 = 80, eta 7.90e-5 m, box 1 m, N = 6.4e3, 2.6e11 points); Taylor-Green vortex; random band-limited field.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Why the equations are rewritten for each wavenumber",
+      "video_id": "Vyci5TPEAeg",
+      "start": 208.98,
+      "end": 289.9,
+      "lecture_material": "Karman-Howarth equation for f(r,t) does not show the energy cascade; energy per wavenumber needs a spectral analysis; DNS of homogeneous turbulence in wavenumber space.",
+      "research_extension": "Yeung, Sreenivasan, Pope 2018, pp. 064603-2, -3: Fourier pseudospectral DNS in a periodic cube; errors that remain.",
+      "teaching_construction": "Link to chapter 8 (8.29)-(8.32).",
+      "evidence_class": "model"
+    },
+    {
+      "section": "A periodic velocity field is a sum of Fourier modes",
+      "video_id": "Vyci5TPEAeg",
+      "start": 289.9,
+      "end": 1166,
+      "lecture_material": "Series u = sum exp(i kappa.x) u_hat; periodic condition; cube and lowest wavenumber kappa0 = 2 pi/L; mode as cos + i sin; modes non-random.",
+      "research_extension": "None.",
+      "teaching_construction": "Cost of periodicity: no scales above L, R_ij periodic so R(L e1) = R(0); sum over vectors not magnitudes; e_j are axis vectors, not direction cosines.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Orthonormality of the modes and the coefficients of the series",
+      "video_id": "Vyci5TPEAeg",
+      "start": 1166,
+      "end": 1680,
+      "lecture_material": "Wavenumber vector, Kronecker delta, box average, orthonormality (stated without proof), coefficient by orthonormality, conjugate symmetry; operator F_kappa (L32 5:30).",
+      "research_extension": "None.",
+      "teaching_construction": "One-line orthonormality argument; zero mode is the box average; Taylor-Green coefficients.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The energy of a mode and the energy of the box",
+      "video_id": "Vyci5TPEAeg",
+      "start": 612.5,
+      "end": 790,
+      "lecture_material": "Slide expression E_hat = <u_hat* . u_hat>, called a balance equation; half omitted; DNS in wavenumber space.",
+      "research_extension": "None.",
+      "teaching_construction": "Parseval's relation for the box, k = (1/2) sum E_hat under homogeneity, binned relation to E(kappa); correction of the slide wording (definition, not balance).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Differentiation becomes multiplication",
+      "video_id": "02YD75i0Dlg",
+      "start": 416,
+      "end": 973,
+      "lecture_material": "Transform of a derivative is i kappa_j g_hat, derived on the slide by the product rule; operator on a derivative.",
+      "research_extension": "None.",
+      "teaching_construction": "Correct reason (periodicity of h = g exp(-i kappa.x)); gradient, divergence, curl, Laplacian rules; central-difference factor sin(kh)/(kh) and its errors 36.3, 9.97, 2.55 %.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The coefficients of the velocity: random, zero mean and perpendicular to the wavevector",
+      "video_id": "02YD75i0Dlg",
+      "start": 973,
+      "end": 1260,
+      "lecture_material": "u_hat_j = F{u_j}; modes non-random, coefficients random; mean zero; conjugate symmetry; continuity gives kappa.u_hat = 0.",
+      "research_extension": "None.",
+      "teaching_construction": "Expectation versus box average and the zeroth mode; two degrees of freedom; Taylor-Green check.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The projection tensor",
+      "video_id": "02YD75i0Dlg",
+      "start": 1260,
+      "end": 1622.6,
+      "lecture_material": "Decomposition G = G_par + G_perp, e = kappa/kappa, P_jk = delta_jk - kappa_j kappa_k/kappa^2 (continued in L33 1:37-8:02).",
+      "research_extension": "None.",
+      "teaching_construction": "Properties P kappa = 0, symmetry, idempotence, trace 2; Figure 12.1; parallel share 1/3 for iid components.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The Navier-Stokes equations for the coefficients",
+      "video_id": "yNcX3jeVpFY",
+      "start": 482,
+      "end": 854,
+      "lecture_material": "Transform of each term; time derivative becomes total derivative; viscous term -nu kappa^2 u_hat; pressure term -i kappa_j p_hat; nonlinear term G_hat_j; ODE (12.16).",
+      "research_extension": "Viscous term treated exactly by an integrating factor in pseudospectral DNS (Yeung, Sreenivasan, Pope 2018, p. 064603-3).",
+      "teaching_construction": "Coupled-system remark; decay rates 2 nu kappa^2 for the jet case; nu/eta^2 = 1/tau_eta; kappa = 0 equation.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Pressure in wavenumber space",
+      "video_id": "yNcX3jeVpFY",
+      "start": 854,
+      "end": 1650.97,
+      "lecture_material": "p_hat = F{p/rho}; kappa^2 p_hat = i kappa_j G_hat_j (Poisson equation); -i kappa_j p_hat = G_par; pressure balances -G_par.",
+      "research_extension": "None.",
+      "teaching_construction": "Final equation (12.19) (the recordings stop before it); link to chapter 6 (6.12); kappa = 0; solenoidality preserved; Taylor-Green solved exactly.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The nonlinear coefficient is a sum over pairs of modes",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "G_hat left as an unknown.",
+      "research_extension": "None.",
+      "teaching_construction": "Convolution (12.20), triads, Taylor-Green triads; check against grid products (2.3e-15).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The energy of one mode",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Slide heading announces the balance equation for the kinetic energy of Fourier modes; not derived in the recordings.",
+      "research_extension": "None.",
+      "teaching_construction": "Equation (12.21); pressure does no work on a mode; sum rule (12.22); link to D(kappa) of chapter 11.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Executable check: modes, derivatives, projection, pressure and pairs",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program of 164 lines; identity checks on two flows; aliasing demonstration.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the representation establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Claim of zero truncation errors, exactness, perfect solution (L31 14:50 to 15:05, L32 15:10).",
+      "research_extension": "Yeung, Sreenivasan, Pope 2018, pp. 064603-2, -3, -11: truncation, aliasing, remaining errors.",
+      "teaching_construction": "Aliasing mechanism; periodic-box limits; closure problem in wavenumber space.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Exercises",
+      "video_id": "uWLlkjjBaYo",
+      "start": 6,
+      "end": 756,
+      "lecture_material": "Practice problems 7-10 of Tutorial 2 (orthonormality, Laplacian, zeroth mode, vorticity).",
+      "research_extension": "None.",
+      "teaching_construction": "Six original exercises (compute, derive, check an assumption, counterexample, design).",
+      "evidence_class": "derivation"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 31 recording",
+      "url": "https://www.youtube.com/watch?v=Vyci5TPEAeg",
+      "supports": "Fourier series, periodic box, lowest wavenumber, orthonormality, coefficients, modal energy expression, DNS statement.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 32 recording",
+      "url": "https://www.youtube.com/watch?v=02YD75i0Dlg",
+      "supports": "Operator F_kappa, transform of a derivative, velocity coefficients, continuity in wavenumber space, projection tensor.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 33 recording",
+      "url": "https://www.youtube.com/watch?v=yNcX3jeVpFY",
+      "supports": "Projection tensor, transformed Navier-Stokes equations, Poisson equation and pressure term.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Tutorial 2 recording",
+      "url": "https://www.youtube.com/watch?v=uWLlkjjBaYo",
+      "supports": "Practice problems 7-10 (orthonormality integral, Laplacian, zeroth mode, vorticity).",
+      "page_checked": "frames f0015, f0026 and extracted frames at 26 s and 751 s"
+    },
+    {
+      "title": "Effects of finite spatial and temporal resolution in direct numerical simulations of incompressible isotropic turbulence (P. K. Yeung, K. R. Sreenivasan, S. B. Pope), Phys. Rev. Fluids 3, 064603 (2018)",
+      "url": "https://journals.aps.org/prfluids/abstract/10.1103/PhysRevFluids.3.064603",
+      "supports": "Periodic-cube Fourier pseudospectral DNS; truncation, aliasing and sampling errors (p. 064603-2); phase shifting and truncation at kmax = sqrt(2) N/3, Delta x/eta = 2.96/(kmax eta), kmax eta ~ 1.5 for low-order statistics, equations as ODEs in wavenumber space with exact viscous integrating factor (p. 064603-3); alias-free procedure and remaining truncation errors (p. 064603-11).",
+      "page_checked": "pp. 064603-2, 064603-3, 064603-11 (PDF pp. 2, 3, 11)"
+    }
+  ],
+  "exercises": 10,
+  "practice_problems": [
+    {
+      "id": "T2-P7",
+      "exercise": 7,
+      "recording": "uWLlkjjBaYo",
+      "start_seconds": 6
+    },
+    {
+      "id": "T2-P8",
+      "exercise": 8,
+      "recording": "uWLlkjjBaYo",
+      "start_seconds": 430
+    },
+    {
+      "id": "T2-P9",
+      "exercise": 9,
+      "recording": "uWLlkjjBaYo",
+      "start_seconds": 747
+    },
+    {
+      "id": "T2-P10",
+      "exercise": 10,
+      "recording": "uWLlkjjBaYo",
+      "start_seconds": 756
+    }
+  ],
+  "code_check": {
+    "command": "python -I ch12_extracted.py (the chapter listing extracted from the HTML and run in a fresh process); Python 3.13, NumPy 2.2.6; pycodestyle 0 errors; failure test exits with AssertionError",
+    "stdout_matches_printed": true
+  },
+  "symbols_introduced": [
+    {
+      "symbol": "L (script), kappa_0 = 2 pi/L, kappa = kappa_0 n",
+      "first_section": "series",
+      "definition": "Box side (in chapter 6 the same symbol was the nozzle diameter), lowest wavenumber and wavenumber lattice."
+    },
+    {
+      "symbol": "<.>_V",
+      "first_section": "model",
+      "definition": "Box average over the periodic cube (slide <.>_L); the plain <.> stays the expectation."
+    },
+    {
+      "symbol": "u_hat(kappa,t), F_kappa{.}",
+      "first_section": "orthonormality",
+      "definition": "Fourier coefficient of the velocity and the transform operator that gives the coefficient of a mode."
+    },
+    {
+      "symbol": "delta_{kappa,kappa'}",
+      "first_section": "orthonormality",
+      "definition": "Kronecker delta of two wavenumber vectors."
+    },
+    {
+      "symbol": "E_hat(kappa,t), e_hat(kappa,t)",
+      "first_section": "mode-energy",
+      "definition": "Expected modal energy <|u_hat|^2> without the factor 1/2 (slide), and the energy per unit mass of one mode in one realization."
+    },
+    {
+      "symbol": "P_jk(kappa)",
+      "first_section": "projection",
+      "definition": "Projection tensor onto the plane perpendicular to kappa."
+    },
+    {
+      "symbol": "G_hat_j(kappa,t), p_hat(kappa,t)",
+      "first_section": "ns-modes",
+      "definition": "Coefficient of the nonlinear term d(u_j u_k)/dx_k and of the kinematic pressure p/rho."
+    }
+  ]
+}

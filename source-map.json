@@ -1860,6 +1860,171 @@
       "teaching_construction": "Statement of the status of each result and the conditions of each share and constant.",
       "evidence_class": "definition",
       "chapter": "chapter-11-energy-spectrum.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None directly; the slides state periodicity and a cube of side script L large compared with L11.",
+      "research_extension": "Truncation kmax = sqrt(2)N/3 and Delta x/eta = 2.96/(kmax eta) (Yeung, Sreenivasan, Pope 2018, p. 064603-3).",
+      "teaching_construction": "Periodic-box model; jet case (nu 1.4607e-5 as in chapters 6, 8 and 10, l0 0.1 m, u0 2 m/s, Re0 1.37e4, eps = u0^3/l0 = 80, eta 7.90e-5 m, box 1 m, N = 6.4e3, 2.6e11 points); Taylor-Green vortex; random band-limited field.",
+      "evidence_class": "definition",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "Why the equations are rewritten for each wavenumber",
+      "video_id": "Vyci5TPEAeg",
+      "start": 208.98,
+      "end": 289.9,
+      "lecture_material": "Karman-Howarth equation for f(r,t) does not show the energy cascade; energy per wavenumber needs a spectral analysis; DNS of homogeneous turbulence in wavenumber space.",
+      "research_extension": "Yeung, Sreenivasan, Pope 2018, pp. 064603-2, -3: Fourier pseudospectral DNS in a periodic cube; errors that remain.",
+      "teaching_construction": "Link to chapter 8 (8.29)-(8.32).",
+      "evidence_class": "model",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "A periodic velocity field is a sum of Fourier modes",
+      "video_id": "Vyci5TPEAeg",
+      "start": 289.9,
+      "end": 1166,
+      "lecture_material": "Series u = sum exp(i kappa.x) u_hat; periodic condition; cube and lowest wavenumber kappa0 = 2 pi/L; mode as cos + i sin; modes non-random.",
+      "research_extension": "None.",
+      "teaching_construction": "Cost of periodicity: no scales above L, R_ij periodic so R(L e1) = R(0); sum over vectors not magnitudes; e_j are axis vectors, not direction cosines.",
+      "evidence_class": "definition",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "Orthonormality of the modes and the coefficients of the series",
+      "video_id": "Vyci5TPEAeg",
+      "start": 1166,
+      "end": 1680,
+      "lecture_material": "Wavenumber vector, Kronecker delta, box average, orthonormality (stated without proof), coefficient by orthonormality, conjugate symmetry; operator F_kappa (L32 5:30).",
+      "research_extension": "None.",
+      "teaching_construction": "One-line orthonormality argument; zero mode is the box average; Taylor-Green coefficients.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "The energy of a mode and the energy of the box",
+      "video_id": "Vyci5TPEAeg",
+      "start": 612.5,
+      "end": 790,
+      "lecture_material": "Slide expression E_hat = <u_hat* . u_hat>, called a balance equation; half omitted; DNS in wavenumber space.",
+      "research_extension": "None.",
+      "teaching_construction": "Parseval's relation for the box, k = (1/2) sum E_hat under homogeneity, binned relation to E(kappa); correction of the slide wording (definition, not balance).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "Differentiation becomes multiplication",
+      "video_id": "02YD75i0Dlg",
+      "start": 416,
+      "end": 973,
+      "lecture_material": "Transform of a derivative is i kappa_j g_hat, derived on the slide by the product rule; operator on a derivative.",
+      "research_extension": "None.",
+      "teaching_construction": "Correct reason (periodicity of h = g exp(-i kappa.x)); gradient, divergence, curl, Laplacian rules; central-difference factor sin(kh)/(kh) and its errors 36.3, 9.97, 2.55 %.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "The coefficients of the velocity: random, zero mean and perpendicular to the wavevector",
+      "video_id": "02YD75i0Dlg",
+      "start": 973,
+      "end": 1260,
+      "lecture_material": "u_hat_j = F{u_j}; modes non-random, coefficients random; mean zero; conjugate symmetry; continuity gives kappa.u_hat = 0.",
+      "research_extension": "None.",
+      "teaching_construction": "Expectation versus box average and the zeroth mode; two degrees of freedom; Taylor-Green check.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "The projection tensor",
+      "video_id": "02YD75i0Dlg",
+      "start": 1260,
+      "end": 1622.6,
+      "lecture_material": "Decomposition G = G_par + G_perp, e = kappa/kappa, P_jk = delta_jk - kappa_j kappa_k/kappa^2 (continued in L33 1:37-8:02).",
+      "research_extension": "None.",
+      "teaching_construction": "Properties P kappa = 0, symmetry, idempotence, trace 2; Figure 12.1; parallel share 1/3 for iid components.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "The Navier-Stokes equations for the coefficients",
+      "video_id": "yNcX3jeVpFY",
+      "start": 482,
+      "end": 854,
+      "lecture_material": "Transform of each term; time derivative becomes total derivative; viscous term -nu kappa^2 u_hat; pressure term -i kappa_j p_hat; nonlinear term G_hat_j; ODE (12.16).",
+      "research_extension": "Viscous term treated exactly by an integrating factor in pseudospectral DNS (Yeung, Sreenivasan, Pope 2018, p. 064603-3).",
+      "teaching_construction": "Coupled-system remark; decay rates 2 nu kappa^2 for the jet case; nu/eta^2 = 1/tau_eta; kappa = 0 equation.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "Pressure in wavenumber space",
+      "video_id": "yNcX3jeVpFY",
+      "start": 854,
+      "end": 1650.97,
+      "lecture_material": "p_hat = F{p/rho}; kappa^2 p_hat = i kappa_j G_hat_j (Poisson equation); -i kappa_j p_hat = G_par; pressure balances -G_par.",
+      "research_extension": "None.",
+      "teaching_construction": "Final equation (12.19) (the recordings stop before it); link to chapter 6 (6.12); kappa = 0; solenoidality preserved; Taylor-Green solved exactly.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "The nonlinear coefficient is a sum over pairs of modes",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "G_hat left as an unknown.",
+      "research_extension": "None.",
+      "teaching_construction": "Convolution (12.20), triads, Taylor-Green triads; check against grid products (2.3e-15).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "The energy of one mode",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Slide heading announces the balance equation for the kinetic energy of Fourier modes; not derived in the recordings.",
+      "research_extension": "None.",
+      "teaching_construction": "Equation (12.21); pressure does no work on a mode; sum rule (12.22); link to D(kappa) of chapter 11.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "Executable check: modes, derivatives, projection, pressure and pairs",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program of 164 lines; identity checks on two flows; aliasing demonstration.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "What the representation establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Claim of zero truncation errors, exactness, perfect solution (L31 14:50 to 15:05, L32 15:10).",
+      "research_extension": "Yeung, Sreenivasan, Pope 2018, pp. 064603-2, -3, -11: truncation, aliasing, remaining errors.",
+      "teaching_construction": "Aliasing mechanism; periodic-box limits; closure problem in wavenumber space.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
+    },
+    {
+      "section": "Exercises",
+      "video_id": "uWLlkjjBaYo",
+      "start": 6,
+      "end": 756,
+      "lecture_material": "Practice problems 7-10 of Tutorial 2 (orthonormality, Laplacian, zeroth mode, vorticity).",
+      "research_extension": "None.",
+      "teaching_construction": "Six original exercises (compute, derive, check an assumption, counterexample, design).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-12-fourier-modes-and-their-evolution.html"
     }
   ]
 }
