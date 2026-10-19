@@ -1,0 +1,252 @@
+{
+  "chapter": 14,
+  "title": "Kolmogorov, model and dissipation spectra: the full shape of the energy spectrum, and where the energy and the dissipation lie",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "xmAnlM6F23k",
+      "lecture_number": 37,
+      "media_sha256": "c514b36f41c170ca46edaa5ebf22d81e2f9159787989800b07710a79babafc5a",
+      "duration_seconds": 1616.2135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1587.65
+    },
+    {
+      "video_id": "_Yz1K7cBGA0",
+      "lecture_number": 38,
+      "media_sha256": "2a18bec4c65545fb6f7ef12e05a56c03871bb8325ccfb824f60d08f6b2ec2aba",
+      "duration_seconds": 1601.9135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1573.11
+    },
+    {
+      "video_id": "m8MBR4Rtz3s",
+      "lecture_number": 39,
+      "media_sha256": "25c865dfb190604e9ff01cc7f22063210adae3c7a35660ebaf56f528c467e2d8",
+      "duration_seconds": 1627.1935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1598.62
+    },
+    {
+      "video_id": "FbdNzaP6nn0",
+      "lecture_number": 40,
+      "media_sha256": "0d4c37920d12f2e65919bb627c2aa75de848b05b391116e3d1bdff3a459560c2",
+      "duration_seconds": 1642.5535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1614.04
+    }
+  ],
+  "frames_viewed": {
+    "xmAnlM6F23k": [
+      "f0010",
+      "f0012",
+      "f0013",
+      "f0035",
+      "f0036",
+      "f0039",
+      "f0040"
+    ],
+    "_Yz1K7cBGA0": [
+      "f0014",
+      "f0016",
+      "f0022",
+      "f0033",
+      "f0038",
+      "f0044"
+    ],
+    "m8MBR4Rtz3s": [
+      "f0017",
+      "f0019",
+      "f0030",
+      "f0034",
+      "f0040"
+    ],
+    "FbdNzaP6nn0": [
+      "f0004",
+      "f0013",
+      "f0021",
+      "f0023",
+      "f0031",
+      "f0034",
+      "f0038",
+      "f0042"
+    ]
+  },
+  "source_uncertainties": [
+    "L37 (about 14:20 and 20:40-21:15): the speaker says the form that depends on epsilon only belongs to the dissipation range. The second similarity hypothesis and the slide schematic (L37 f0039) place it in the inertial subrange. The chapter follows the slide.",
+    "L37 slide f0012 (E11 as an integral of E/kappa): the cursor hides the sign in front of kappa_1^2/kappa^2. The chapter uses the minus sign; the inverse formula on the same slide, the power-law constants 18/55 and 4/3, and the numerical check 15 int kappa_1^2 E11 = eps for the model all require it.",
+    "L37 slide f0040: the inertial range is written 1 >> kappa eta >> eta/l_0, with the nominal limits written separately; the chapter states that the first form is an order-of-magnitude statement.",
+    "L38 slides f0016-f0033: the length L in f_L(kappa L) is not defined on the slides of these lectures. The chapter takes L = k^(3/2)/epsilon, which reproduces the slide's c_L = 6.78 (computed). The Figure 6.13 caption prints 'Eq. 2.246' while the other captions print 'Eq. 6.246'; read as a misprint.",
+    "L38 (about 12:00-13:00): the speaker reads p0 = 4 as 'one common spectrum'; the slide (f0022) says von Karman spectrum, E ~ kappa^4. The chapter follows the slide.",
+    "L38 slide f0044 (Figure 6.14) and L39 slide f0017: the data are from Saddoughi and Veeravalli (1994), not available; the model-data agreement is as the slides state it. The legend of the figure is not legible at frame resolution.",
+    "L39 f0019 and f0030 (Figure 6.15): the speaker names the dot-dashed curve the 'power spectrum'; the caption names it Pao's spectrum (Eq. 6.254) and the dashed curve the exponential spectrum (Eq. 6.253). The chapter follows the caption and does not analyse either form.",
+    "L39 f0034: the board writes the dissipation spectrum as an integral without the factor 2; slide f0040 gives D = 2 nu kappa^2 E. The chapter follows the slide. The slide calls the 50 % point of the cumulative dissipation the 'centroid'; it is the median.",
+    "L39 and L40 transcripts: the demarcation length is transcribed as '68 eta' and '68' in several places; the slide (L39 f0040) gives 60 eta. L40 transcript '80 and 60' stands for 8 and 60.",
+    "L40 slide f0034: l_0 = 6 L_11 and l_EI = L_11/6 give l_0/l_EI = 36, not the factor 6 of chapter 10. The chapter discusses three readings with model numbers.",
+    "L40 slide f0042 (energy table): no Reynolds number is stated; the recomputed model at Re_lambda = 1000 matches it within 7.4 %. The table depends on the Reynolds number (Re_lambda = 30 and 60 give different values).",
+    "L40 slide f0021: 'a measured E22 differed from the calculated E11 (with the assumption of isotropy) by no more than 10 %': the direction of the comparison is as printed on the slide; the chapter reports it unchanged.",
+    "The model spectrum of the slides is attributed to a textbook through the figure captions. That book was not available. The constants c_L = 6.78 and c_eta = 0.40 are verified by recomputation from the integral conditions; p0 and beta are model inputs and were not verified.",
+    "The recomputed tables use the isotropic relations Re_L = 0.15 Re_lambda^2 and L/eta = Re_L^(3/4) (chapter 11) and L = k^(3/2)/epsilon; the slides do not state which L, Re_lambda convention produces their tables.",
+    "L37 5.87-432 s and L38 5.87-76 s recap the preceding lecture (hypotheses, the one-dimensional spectra and the nominal limits); they are covered by the references to chapters 10 and 11 and by the first section, and have no section of their own. L39 0-37 s and L40 0-239 s repeat figures and the table of the preceding lecture."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Hypotheses and nominal limits l_EI = l_0/6, l_DI = 60 eta (chapters 10 and 11).",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model (homogeneous isotropic fluctuation field), symbols, and the running case of the air jet with k = 6 m^2/s^2, eps = 80 m^2/s^3, Re_lambda = 453.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Two ways of scaling the spectrum",
+      "video_id": "xmAnlM6F23k",
+      "start": 432,
+      "end": 1575,
+      "lecture_material": "E = (eps nu^5)^(1/4) phi(kappa eta) = u_eta^2 eta phi; E = eps^(2/3) kappa^(-5/3) Psi(kappa eta); Psi = (kappa eta)^(5/3) phi; the range of the inertial subrange in kappa eta (slides f0036, f0039, f0040).",
+      "research_extension": "Kolmogorov (1941, p. 12): second similarity hypothesis.",
+      "teaching_construction": "Dimensional derivation of both forms and of their relation; statement that the relation carries no physics; note on the L37 misstatement of the ranges.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "The inertial subrange: why Psi is constant, and the one-dimensional constants",
+      "video_id": "_Yz1K7cBGA0",
+      "start": 76,
+      "end": 432,
+      "lecture_material": "Psi constant in the inertial subrange; C = 1.5; C1 = 18C/55 and C1' = 4C1/3; the general power-law relations C = p(p+2)C1/2 and C1' = (1+p)C1/2 for E11 = C1 A kappa_1^(-p); isotropic relations between E11, E22 and E(kappa) (L37 slides f0012, f0013; L38 slide f0014).",
+      "research_extension": "Yeung and Zhou (1997): spread of C.",
+      "teaching_construction": "Derivative argument that independence of nu forces Psi' = 0; derivation of the slide's general-exponent relations from the isotropic integral; numerical check.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The model spectrum",
+      "video_id": "_Yz1K7cBGA0",
+      "start": 438,
+      "end": 1220,
+      "lecture_material": "Model (14.9), f_L and f_eta with p0 = 2, beta = 5.2, c_L = 6.78, c_eta = 0.40; role of the integral conditions (slides f0016, f0022, f0033, f0038).",
+      "research_extension": "None.",
+      "teaching_construction": "Closed forms c_L = [C B(3/2,1/3)/2]^3 and beta = (2 C Gamma(4/3))^(3/4); numerical root c_eta = 0.402; finite-Re_lambda calibration; fitted versus derived constants; use of the model for the jet.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The model against measured one-dimensional spectra",
+      "video_id": "m8MBR4Rtz3s",
+      "start": 37,
+      "end": 950,
+      "lecture_material": "Collapse of E11 in Kolmogorov variables for kappa_1 eta > 0.1; compensated spectra on a linear-log plot; two alternative dissipation-range forms (slides f0017, f0019, f0030; L38 f0044).",
+      "research_extension": "Saddoughi (1993) pp. 245-247: compilation, peeling off in order of Re, dissipation from the isotropic relation.",
+      "teaching_construction": "Model numbers for the compensated E11; sensitivity of the scaled plot to an error in eps; slope of the semilog fit; inertial-range width of the model.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "The dissipation spectrum and where the dissipation lies",
+      "video_id": "m8MBR4Rtz3s",
+      "start": 958,
+      "end": 1598,
+      "lecture_material": "D(kappa) = 2 nu kappa^2 E, cumulative dissipation, table of peak and 10/50/90 % points, conclusion l_DI = 60 eta (slides f0034, f0040, L40 f0004).",
+      "research_extension": "Saddoughi (1993) pp. 246-247: measured dissipation spectra via 15 nu kappa_1^2 E11.",
+      "teaching_construction": "Nondimensional form 2 x^2 phi(x); recomputation of the table; Reynolds-number dependence; sensitivity of 60 eta to the 10 % criterion; jet application.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The inertial subrange in measured spectra: the plateau and local isotropy",
+      "video_id": "FbdNzaP6nn0",
+      "start": 239,
+      "end": 652,
+      "lecture_material": "Compensated E11, E22, E33 at Re_lambda about 1450 with C1 and C1' lines; ratio 4/3; 10 % statement (slides f0013, f0021).",
+      "research_extension": "Saddoughi (1993) pp. 247, 249: w- and v-spectra, bumps.",
+      "teaching_construction": "Model values of E22/E11 under isotropy; sensitivity of the ratio to the exponent; comparison of the model and measured widths.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "The energy-containing range",
+      "video_id": "FbdNzaP6nn0",
+      "start": 652,
+      "end": 1614,
+      "lecture_material": "Normalisation of E by k and L11; integral of E/kappa; cumulative energy and its table; l_0 = 6 L11 and l_EI = L11/6; link to resolving the large scales (slides f0023, f0031, f0034, f0038, f0042).",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of the L11 integral from E11(0); closed form L11/L = 0.430; recomputed table and its Reynolds-number dependence; reconciliation of the conventions for l_0 and l_EI; jet numbers.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The three ranges of the running case in the model",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Shares of k and eps in the three nominal ranges for the jet; comparison with chapter 11.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Executable check of the model spectrum",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program that calibrates the model, recomputes the tables and evaluates the closed forms.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the statements establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Yeung and Zhou (1997): Reynolds number at which an inertial range emerges.",
+      "teaching_construction": "Classification of each statement as hypothesis, dimensional argument, fit or definition; limits of the model; list of what was not checked.",
+      "evidence_class": "hypothesis"
+    }
+  ],
+  "symbols_introduced": [
+    {
+      "symbol": "phi(kappa eta), Psi(kappa eta)",
+      "first_section": "scaling",
+      "definition": "Kolmogorov spectrum function (slide) and the function of the epsilon-kappa scaling; Psi = (kappa eta)^(5/3) phi. Chapter 11 wrote Psi for the first."
+    },
+    {
+      "symbol": "x = kappa eta",
+      "first_section": "scaling",
+      "definition": "Dimensionless wavenumber."
+    },
+    {
+      "symbol": "f_L(kappa L), f_eta(kappa eta), c_L, c_eta, beta, p0",
+      "first_section": "model-spectrum",
+      "definition": "Factors and constants of the model spectrum (slide notation)."
+    },
+    {
+      "symbol": "D(kappa), eps_(0,kappa)",
+      "first_section": "dissipation",
+      "definition": "Dissipation spectrum 2 nu kappa^2 E and cumulative dissipation."
+    }
+  ],
+  "references": [
+    {
+      "title": "A. N. Kolmogorov, The local structure of turbulence in incompressible viscous fluid for very large Reynolds numbers (1941; translation Proc. R. Soc. Lond. A 434, 1991)",
+      "url": "https://www.jstor.org/stable/51980",
+      "supports": "Second hypothesis of similarity: distributions of velocity differences at separations large compared with the viscous scale are determined by epsilon alone and do not depend on nu",
+      "page_checked": "p. 12 (PDF p. 5)"
+    },
+    {
+      "title": "S. G. Saddoughi, Local isotropy in high Reynolds number turbulent shear flows, CTR Annual Research Briefs 1992 (NASA N94-12302)",
+      "url": "https://ntrs.nasa.gov/citations/19940007830",
+      "supports": "Figure 3 compilation with a curve labelled Pao (1965), p. 245; spectra peel off from -5/3 in order of Re and dissipation from the isotropic relation, p. 246; reliability of data above k1 eta = 0.9, scatter 10 %, C = 1.5 +/- 0.1 for epsilon within 10 %, less than one decade of -5/3 at Re_lambda 600, w-spectrum 4/3 within 5 %, v-spectrum not flat, bumps, p. 247; v- and w-spectra 4/3 of u at Re_lambda 1500, more than one decade, p. 249",
+      "page_checked": "pp. 245-247, 249 (PDF pp. 9-11, 13)"
+    },
+    {
+      "title": "P. K. Yeung, Y. Zhou, On the universality of the Kolmogorov constant in numerical simulations of turbulence, ICASE Report 97-64",
+      "url": "https://ntrs.nasa.gov/citations/19990004129",
+      "supports": "E11 = C1 eps^(2/3) k1^(-5/3), C = 55/18 C1, survey C1 = 0.53 +/- 0.055, simulation C1 about 0.60 and C about 1.62, proper inertial range at k eta about 0.02-0.05 when Re_lambda exceeds 140",
+      "page_checked": "report pp. 1-2 (PDF pp. 3-4)"
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I _editorial/tmp/ch14_model_spectrum.py (assembled into the page by _editorial/tmp/ch14_assemble.py, which runs it with python -I and inserts the stdout)",
+    "stdout_matches_printed": true
+  }
+}

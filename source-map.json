@@ -2344,6 +2344,127 @@
       "teaching_construction": "Exercises 1-6 original; solutions.",
       "evidence_class": "derivation",
       "chapter": "chapter-13-spectral-energy-velocity-spectrum-tensor.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Hypotheses and nominal limits l_EI = l_0/6, l_DI = 60 eta (chapters 10 and 11).",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model (homogeneous isotropic fluctuation field), symbols, and the running case of the air jet with k = 6 m^2/s^2, eps = 80 m^2/s^3, Re_lambda = 453.",
+      "evidence_class": "definition",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "Two ways of scaling the spectrum",
+      "video_id": "xmAnlM6F23k",
+      "start": 432,
+      "end": 1575,
+      "lecture_material": "E = (eps nu^5)^(1/4) phi(kappa eta) = u_eta^2 eta phi; E = eps^(2/3) kappa^(-5/3) Psi(kappa eta); Psi = (kappa eta)^(5/3) phi; the range of the inertial subrange in kappa eta (slides f0036, f0039, f0040).",
+      "research_extension": "Kolmogorov (1941, p. 12): second similarity hypothesis.",
+      "teaching_construction": "Dimensional derivation of both forms and of their relation; statement that the relation carries no physics; note on the L37 misstatement of the ranges.",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The inertial subrange: why Psi is constant, and the one-dimensional constants",
+      "video_id": "_Yz1K7cBGA0",
+      "start": 76,
+      "end": 432,
+      "lecture_material": "Psi constant in the inertial subrange; C = 1.5; C1 = 18C/55 and C1' = 4C1/3; the general power-law relations C = p(p+2)C1/2 and C1' = (1+p)C1/2 for E11 = C1 A kappa_1^(-p); isotropic relations between E11, E22 and E(kappa) (L37 slides f0012, f0013; L38 slide f0014).",
+      "research_extension": "Yeung and Zhou (1997): spread of C.",
+      "teaching_construction": "Derivative argument that independence of nu forces Psi' = 0; derivation of the slide's general-exponent relations from the isotropic integral; numerical check.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The model spectrum",
+      "video_id": "_Yz1K7cBGA0",
+      "start": 438,
+      "end": 1220,
+      "lecture_material": "Model (14.9), f_L and f_eta with p0 = 2, beta = 5.2, c_L = 6.78, c_eta = 0.40; role of the integral conditions (slides f0016, f0022, f0033, f0038).",
+      "research_extension": "None.",
+      "teaching_construction": "Closed forms c_L = [C B(3/2,1/3)/2]^3 and beta = (2 C Gamma(4/3))^(3/4); numerical root c_eta = 0.402; finite-Re_lambda calibration; fitted versus derived constants; use of the model for the jet.",
+      "evidence_class": "model",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The model against measured one-dimensional spectra",
+      "video_id": "m8MBR4Rtz3s",
+      "start": 37,
+      "end": 950,
+      "lecture_material": "Collapse of E11 in Kolmogorov variables for kappa_1 eta > 0.1; compensated spectra on a linear-log plot; two alternative dissipation-range forms (slides f0017, f0019, f0030; L38 f0044).",
+      "research_extension": "Saddoughi (1993) pp. 245-247: compilation, peeling off in order of Re, dissipation from the isotropic relation.",
+      "teaching_construction": "Model numbers for the compensated E11; sensitivity of the scaled plot to an error in eps; slope of the semilog fit; inertial-range width of the model.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The dissipation spectrum and where the dissipation lies",
+      "video_id": "m8MBR4Rtz3s",
+      "start": 958,
+      "end": 1598,
+      "lecture_material": "D(kappa) = 2 nu kappa^2 E, cumulative dissipation, table of peak and 10/50/90 % points, conclusion l_DI = 60 eta (slides f0034, f0040, L40 f0004).",
+      "research_extension": "Saddoughi (1993) pp. 246-247: measured dissipation spectra via 15 nu kappa_1^2 E11.",
+      "teaching_construction": "Nondimensional form 2 x^2 phi(x); recomputation of the table; Reynolds-number dependence; sensitivity of 60 eta to the 10 % criterion; jet application.",
+      "evidence_class": "model",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The inertial subrange in measured spectra: the plateau and local isotropy",
+      "video_id": "FbdNzaP6nn0",
+      "start": 239,
+      "end": 652,
+      "lecture_material": "Compensated E11, E22, E33 at Re_lambda about 1450 with C1 and C1' lines; ratio 4/3; 10 % statement (slides f0013, f0021).",
+      "research_extension": "Saddoughi (1993) pp. 247, 249: w- and v-spectra, bumps.",
+      "teaching_construction": "Model values of E22/E11 under isotropy; sensitivity of the ratio to the exponent; comparison of the model and measured widths.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The energy-containing range",
+      "video_id": "FbdNzaP6nn0",
+      "start": 652,
+      "end": 1614,
+      "lecture_material": "Normalisation of E by k and L11; integral of E/kappa; cumulative energy and its table; l_0 = 6 L11 and l_EI = L11/6; link to resolving the large scales (slides f0023, f0031, f0034, f0038, f0042).",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of the L11 integral from E11(0); closed form L11/L = 0.430; recomputed table and its Reynolds-number dependence; reconciliation of the conventions for l_0 and l_EI; jet numbers.",
+      "evidence_class": "model",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The three ranges of the running case in the model",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Shares of k and eps in the three nominal ranges for the jet; comparison with chapter 11.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "Executable check of the model spectrum",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program that calibrates the model, recomputes the tables and evaluates the closed forms.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "What the statements establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Yeung and Zhou (1997): Reynolds number at which an inertial range emerges.",
+      "teaching_construction": "Classification of each statement as hypothesis, dimensional argument, fit or definition; limits of the model; list of what was not checked.",
+      "evidence_class": "hypothesis",
+      "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
     }
   ]
 }
