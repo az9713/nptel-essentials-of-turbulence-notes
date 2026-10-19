@@ -1,0 +1,295 @@
+{
+  "chapter": 16,
+  "title": "Modeling approaches and criteria for appraising models",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b round 2 had 1 blocking defect, fixed by the lead and checked by the lead (no round 3)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "g83gewi4rHw",
+      "lecture_number": 43,
+      "media_sha256": "07f0b107dbafd77402669b30c899480d184faa92653ccfb56abaa088f3b8cc29",
+      "duration_seconds": 1651.3335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1622.91
+    },
+    {
+      "video_id": "81Y5cmJ82HA",
+      "lecture_number": 44,
+      "media_sha256": "134310aa274025e1578da42f7af9283b6d42c8860a3c444629543f5d3895b6f7",
+      "duration_seconds": 1652.9335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1624.78
+    },
+    {
+      "video_id": "y9ynLwJhGFM",
+      "lecture_number": 45,
+      "media_sha256": "0101d9e42cc6450e54e74998173632cc0e10aeda496884ff375f73a2a2bf4985",
+      "duration_seconds": 1613.2135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1586.16
+    }
+  ],
+  "frames_viewed": {
+    "g83gewi4rHw": [
+      "f0007",
+      "f0008",
+      "f0049",
+      "f0051"
+    ],
+    "81Y5cmJ82HA": [
+      "f0010",
+      "f0019",
+      "f0027",
+      "f0040",
+      "f0045"
+    ],
+    "y9ynLwJhGFM": [
+      "f0016",
+      "f0023",
+      "f0030",
+      "f0032",
+      "f0036",
+      "f0041",
+      "f0050"
+    ]
+  },
+  "source_uncertainties": [
+    "Unverified (named in reader text, not opened): Pope, Turbulent Flows (2000), the apparent source of the module. The five criteria, the definition of completeness and the k-epsilon and mixing-length examples are checked only through Pope (2004), which cites the book as its reference [5]; no page of the book is cited.",
+    "The Source slide of Lecture 43 is not captured by the 30-second frames: f0004 to f0007 show slide 5 of 46 (the challenges slide) while the audio at 3:07 attributes the module to Pope. The attribution rests on the audio and on Pope (2004).",
+    "L43 13:55 says the dissipation rate is a single quantity with no mean; the slide lists it among the mean quantities and the definition used in this book is an ensemble average. Treated as a spoken slip.",
+    "L45 11:15 and 14:55 state exaflops as 10^15; the SI prefix exa is 10^18 and peta is 10^15. The slide table stops at tera. The chapter uses the SI prefixes.",
+    "L44 4:30 attributes a warning to Boussinesq; not checked. L44 6:01-7:15 links the mixing-length analogy to the energy cascade; the chapter keeps the two apart.",
+    "L45 3:19 says the mixing-length model is incomplete because its constants come from empirical relations; the checked definition (Pope 2004 p. 7) is a flow-dependent specification. The chapter states both.",
+    "ASR spellings: 'business hypothesis' for Boussinesq, 'Rana stresses', 'RAMS' and 'RANs' for RANS, 'Re cubed' for Re^3, 'Reynolds average Avi Stokes'. The chapter follows the slides.",
+    "The slide table header reads 'number of directions of statistical homogeneity' while its examples fit the number of directions of statistical inhomogeneity; the chapter follows the examples and the lecture's wording (L44 18:40).",
+    "The speed-against-year slide (f0030) axis reads 'Peak speed (Rmax)'; the chapter does not use the label. The TOP500 country ranking (June 2016) is not used.",
+    "Specification constants in the channel calculation (kappa 0.41, fraction 0.07, specification B) are assumed inputs without a source; they illustrate the dependence on the specification and are not a calibration.",
+    "Lee and Moser (2015): the grid sizes are quoted from the data-file headers; the journal paper was not read, so whether nx and nz count collocation points or Fourier modes is not stated by the chapter."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Definitions of simulation (a field for one realization) and model (equations for mean quantities) as used in L43 1:27-2:17.",
+      "research_extension": "Pope (2004) pp. 2-3 and 6: LES as a resolved field and as a physical model.",
+      "teaching_construction": "The channel of chapter 9 (Re_tau 1000.5, d 2 cm, nu 1e-6 m^2/s) as the running case with the two client questions.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The turbulence problem and three ways to compute around it",
+      "video_id": "g83gewi4rHw",
+      "start": 141,
+      "end": 1486,
+      "lecture_material": "Objective and the four difficulties (slide f0008); DNS, LES and RANS as defined on slide f0049; the cost and accuracy ordering (L43 23:10-24:40, repeated L44 1:18-1:40).",
+      "research_extension": "Pope (2004) p. 8: resolution measure M = k_r/(k_res + k_r), M = 0 DNS, M = 1 RANS; pp. 3-4: cases where LES has less advantage; L45 accuracy slide: DNS removes only the model error.",
+      "teaching_construction": "Table 16.1, Figure 16.1, the qualification of the accuracy ordering, the correction that epsilon is already an average.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "How the cost of a direct simulation grows with the Reynolds number",
+      "video_id": "g83gewi4rHw",
+      "start": 967,
+      "end": 1086,
+      "lecture_material": "Slide: DNS cost increases as Re^3, restricted to low-to-moderate Re; example Re 100 to 1000 gives a factor 1000.",
+      "research_extension": "Pope (2004) p. 13: LES cost ~ (L/Delta)^4, comparable with DNS for Delta ~ eta; Lee and Moser (2015) data-file headers: grids and Re_tau.",
+      "teaching_construction": "Reference to chapter 5 for the derivation; local grid exponents 2.27 and 2.38 against 9/4 as a consistency check; memory of one snapshot (14, 58, 2899 GB).",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Five criteria and two extreme cases",
+      "video_id": "g83gewi4rHw",
+      "start": 1486,
+      "end": 1622.91,
+      "lecture_material": "Slide f0051: five criteria; mixing-length model and DNS as two extremes; question of how complete LES and RANS are (L43 25:40).",
+      "research_extension": "Pope (2004) p. 15: the same five criteria, attributed to Pope (2000); additional LES-only convergence requirement not added to the list.",
+      "teaching_construction": "None.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The mixing-length model: one algebraic relation closes the mean equations",
+      "video_id": "81Y5cmJ82HA",
+      "start": 156,
+      "end": 493,
+      "lecture_material": "Slide f0010: <uv> = -nu_T dU/dy, nu_T = l_m^2 |dU/dy|, l_m specified as a function of position; Boussinesq remark, kinetic-theory analogy, fraction of the flow length (L44 4:12-7:35).",
+      "research_extension": "Chapter 9 (9.13), (9.27) and the Boussinesq attribution (Schmitt 2007 through chapter 9).",
+      "teaching_construction": "Equations (16.5)-(16.7): the channel reduction, the quadratic in dU+/dy+ and its positive root; separation of the momentum-transport analogy from the energy cascade.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Level of description",
+      "video_id": "81Y5cmJ82HA",
+      "start": 493,
+      "end": 717,
+      "lecture_material": "Slide f0019: DNS gives U(x,t) and all statistics; mixing length gives <U>, <V> only; the mean-flow description is adequate in many applications; speaker's grading of the mixing-length model.",
+      "research_extension": "None.",
+      "teaching_construction": "The ladder of statistics of chapters 7-9, and the pressure-gradient and velocity-probability questions for the running case.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Completeness",
+      "video_id": "81Y5cmJ82HA",
+      "start": 717,
+      "end": 1052,
+      "lecture_material": "Slide f0027: definition of completeness, DNS complete, mixing length incomplete, incomplete models useful for narrow classes; L45 2:38-3:42 recap with the statement that constants come from empirical relations.",
+      "research_extension": "Pope (2004) p. 7: the same definition, k-epsilon complete, mixing length incomplete, two practitioners differ; pp. 7-8: LES as practised is incomplete, adaptive LES.",
+      "teaching_construction": "Table 16.2: three specifications of l_m in the channel; separation of flow-dependent specification from boundary conditions and of constants from specifications.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Cost and ease of use",
+      "video_id": "81Y5cmJ82HA",
+      "start": 1052,
+      "end": 1624.78,
+      "lecture_material": "Slide f0040: table of flows by statistical dimensionality; difficulty rules; Re dependence (DNS versus mixing length); two-part task (program, execution); L45 4:41-9:00 repeat and the validation effort.",
+      "research_extension": "Lee and Moser (2015) headers for the DNS grid of a statistically one-dimensional flow.",
+      "teaching_construction": "Table 16.3 and the reading of its row index; the scope of the table (mean-flow calculations); grid convergence of the mean-flow integral (101 and 401 points).",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Computer speed and the range of direct simulation",
+      "video_id": "y9ynLwJhGFM",
+      "start": 558,
+      "end": 1045,
+      "lecture_material": "Slide f0023: table of speeds 1963-1998, a factor of 30 per decade, 1000 in 20 years, caution on achieved speed; f0030 and f0032: speed against year and TOP500 curves; speaker's exaflops 10^15 slip.",
+      "research_extension": "None.",
+      "teaching_construction": "Least-squares fit of the table (27.7 per decade, 769 in 20 years); equation (16.8), growth of the reachable Reynolds number as F_10^(1/3) per decade.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Range of applicability",
+      "video_id": "y9ynLwJhGFM",
+      "start": 1045,
+      "end": 1252,
+      "lecture_material": "Slide f0036: models for homogeneous turbulence, mixing-length geometry restriction, DNS limited by Re, applicability different from accuracy.",
+      "research_extension": "None.",
+      "teaching_construction": "Overlap between completeness and applicability for an incomplete model.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Accuracy",
+      "video_id": "y9ynLwJhGFM",
+      "start": 1252,
+      "end": 1586.16,
+      "lecture_material": "Slide f0050: accuracy by comparison with experiment, boundary conditions, four sources of discrepancy, truncation error and cost; the jet and nozzle example (L45 21:15-26:18).",
+      "research_extension": "Pope (2004) pp. 5-6 and 15: cost of halving the grid spacing is about 2^4 = 16; T = c (L/Delta)^4.",
+      "teaching_construction": "Equation (16.9), cost proportional to the truncation error to the power -4/n; Table 16.4; the inference that the inlet specification grows with the level of description.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Where large-eddy simulation sits on the five criteria",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "L43 21:00-21:30: LES as the filtered velocity of one realization.",
+      "research_extension": "Pope (2004) pp. 3-4, 7-13, 15: statistical relationship of the resolved field to the velocity, Q_m(Delta), intermediate asymptote hypothesis, cost, completeness, range.",
+      "teaching_construction": "Placement of Pope's statements on the lecture's five criteria.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Executable check of the numbers",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program ch16_models.py: mixing-length channel integral, flops fit, grid exponents, error-cost relation, exercise numbers, memory and grid convergence.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the criteria establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Limits of the ordering, of the scaling, of Table 16.2, of the speaker's judgments and of the Pope (2000) attribution.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Six exercises: derive and compute, judge, check an assumption, design, derive and compute, derive.",
+      "evidence_class": "engineering check"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 43 recording",
+      "url": "https://www.youtube.com/watch?v=g83gewi4rHw",
+      "supports": "Challenges, three approaches, DNS cost, five criteria.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 44 recording",
+      "url": "https://www.youtube.com/watch?v=81Y5cmJ82HA",
+      "supports": "Mixing-length model, level of description, completeness, cost and ease of use.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 45 recording",
+      "url": "https://www.youtube.com/watch?v=y9ynLwJhGFM",
+      "supports": "Computer speed, range of applicability, accuracy.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "S. B. Pope, Ten questions concerning the large-eddy simulation of turbulent flows, New J. Phys. 6 (2004) 35",
+      "url": "https://iopscience.iop.org/article/10.1088/1367-2630/6/1/035",
+      "supports": "Five criteria attributed to Pope (2000) (p. 15); definition of completeness with the k-epsilon and mixing-length examples (p. 7); incompleteness of LES as practised and the measure M (pp. 7-8); cost of halving the grid spacing (pp. 5-6); LES cost (L/Delta)^4 and Delta ~ eta (p. 13); resolved field and its statistical relation to U (pp. 2-3, 9-10); dependence on Delta (pp. 11-13); strong and weak cases for LES (pp. 3-4).",
+      "page_checked": "pp. 2-15 (PDF pp. 3-16); journal page = PDF page minus 1"
+    },
+    {
+      "title": "M. Lee and R. D. Moser, DNS of turbulent channel flow up to Re_tau = 5200 (J. Fluid Mech. 774 (2015) 395-415), channel data files",
+      "url": "https://turbulence.oden.utexas.edu/channel2015/content/Data_2015_1000.html",
+      "supports": "Grid sizes nx, ny, nz and Re_tau for the three cases; bulk velocity at Re_tau = 1000.5.",
+      "page_checked": "data-file headers (mean-profile files at Re_tau 550, 1000, 5200); the journal paper was not read for this chapter"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "M, k_r, k_res",
+      "first_section": "approaches",
+      "definition": "Pope's resolution measure (16.1): residual over total turbulent kinetic energy (the source writes K for the resolved energy)."
+    },
+    {
+      "symbol": "Re_0",
+      "first_section": "cost",
+      "definition": "u_0 l_0 / nu, the Reynolds number of the energy-containing eddies (chapter 10); the slide writes Re."
+    },
+    {
+      "symbol": "<uv>, nu_T, l_m (ell_m)",
+      "first_section": "mixing-length",
+      "definition": "Reynolds shear stress (the <u_1 u_2> of chapter 9), turbulent viscosity, mixing length; the slide writes l_m."
+    },
+    {
+      "symbol": "g, l_m^+",
+      "first_section": "mixing-length",
+      "definition": "dU+/dy+ and l_m u_tau / nu in the channel reduction."
+    },
+    {
+      "symbol": "F, F_10",
+      "first_section": "computers",
+      "definition": "Computer speed in flop/s and its growth factor F_10 in ten years (written F_10 because G is the LES filter kernel of NOTATION.md)."
+    },
+    {
+      "symbol": "e_tr, n",
+      "first_section": "accuracy",
+      "definition": "Truncation error and its exponent in (Delta x)^n."
+    },
+    {
+      "symbol": "Delta, W, Q, Q_m",
+      "first_section": "cost",
+      "definition": "Turbulence-resolution length, resolved field, a statistic and its LES estimate (Pope 2004). Pope's integral length scale L is written ell_0 here."
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I ch16_models.py (the chapter listing, extracted and run in a fresh process; stdout compared byte for byte with the printed block; Python 3.13.5, NumPy 2.2.6)",
+    "stdout_matches_printed": true
+  }
+}

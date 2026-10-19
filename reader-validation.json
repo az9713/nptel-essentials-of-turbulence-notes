@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-19T22:43:04.612431+00:00",
+  "checked_at_utc": "2026-10-19T23:28:55.248524+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 22,
-    "local_links_checked": 367,
-    "timestamps_checked": 257,
+    "html_files": 24,
+    "local_links_checked": 395,
+    "timestamps_checked": 288,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -106,7 +106,7 @@
       },
       {
         "mathErrors": 0,
-        "mathNodes": 648,
+        "mathNodes": 798,
         "horizontalOverflow": false,
         "controls": true,
         "emptyToc": false,
@@ -115,7 +115,7 @@
       },
       {
         "mathErrors": 0,
-        "mathNodes": 648,
+        "mathNodes": 798,
         "horizontalOverflow": false,
         "controls": true,
         "emptyToc": false,
@@ -282,6 +282,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-15-reynolds-number-effects-spectrum-balance.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 439,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-16-modeling-approaches-appraisal-criteria.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 439,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-16-modeling-approaches-appraisal-criteria.html",
         "viewport": 390
       },
       {
