@@ -1,0 +1,331 @@
+{
+  "chapter": 3,
+  "title": "Characteristics of turbulent flow and methods of analysis: telling turbulence from other irregular motion, and what can be done once a flow qualifies",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b round 2 had 1 blocking defect, fixed by a reviser and checked by the lead (no round 3)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "doIzWHHabxc",
+      "lecture_number": 6,
+      "media_sha256": "a7f820c989e65a8207b2e22c515c82e0566e2196aebde492a25f1055887a3dd4",
+      "duration_seconds": 1831.7735,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1803.13
+    },
+    {
+      "video_id": "PVK2xepz6mg",
+      "lecture_number": 7,
+      "media_sha256": "da493152e11e6540afc3445589690432173ba75d80795615c6aa3fca4a6ad5d1",
+      "duration_seconds": 1607.2135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1578.78
+    }
+  ],
+  "frames_viewed": {
+    "doIzWHHabxc": [
+      "f0005",
+      "f0010",
+      "f0019",
+      "f0028",
+      "f0033",
+      "f0041",
+      "f0045",
+      "f0047",
+      "f0051",
+      "f0055",
+      "f0057"
+    ],
+    "PVK2xepz6mg": [
+      "f0002",
+      "f0003",
+      "f0013",
+      "f0016",
+      "f0020",
+      "f0030",
+      "f0037",
+      "f0042",
+      "f0049"
+    ]
+  },
+  "source_uncertainties": [
+    "ASR spellings in the transcripts: 'Tannicus and Lamley' is Tennekes and Lumley; 'Biswersk' (L7 about 820 s) is Boussinesq; 'Es-Sahli' and the other source names were read from the Sources slide (an extra frame extracted at 141 s of L6, helper file outside the repository), not from the transcript.",
+    "The Navier-Stokes equation written on L6 f0045 and f0047 (U_t + U.grad U = -(1/rho) grad P + nu lap U) uses a handwritten vector glyph that could be read as U or V; the speech says u; the chapter writes U, as in chapters 1 and 6.",
+    "L6 f0051 and f0055 write Dw/Dt = (w.grad)U + nu lap w with the stretching term circled; the board form w.grad U and the speech agree.",
+    "L7 f0013 writes Kn = lambda/l (handwritten) and the speech says 'lambda over L'; the chapter follows chapter 6 (Kn = lambda_m / l_g).",
+    "L7 f0030 writes tau = mu du/dy and tau_t = mu_t d(u)/dy with an overbar on the mean strain; the chapter writes nu_T and (3.10).",
+    "L7 f0042 and f0049: the legend of the compiled spectra is small and was read together with Figure 3 of Saddoughi (1993, p. 245); the slide reads 'Laufer 1954, pipe 170' where the report reads 'Laufer 1952'. The slide's ordinate is E11/(eps nu^5)^(1/4) (read on f0042); the report prints E11(k1 eta)/(eps nu)^(1/2). The positions at which the curves leave the common curve are readings from the figure, uncertain by a factor of 2 to 3.",
+    "The L7 dissipation slide (f0002) names gravity waves in planetary atmospheres and acoustic noise; the ocean-wave example is on the L6 vorticity slide (f0057). The chapter's wave calculation is for a deep-water surface wave and does not treat either of the dissipation slide's examples.",
+    "The journal article of Saddoughi and Veeravalli (1994), Pope (2000), Tennekes and Lumley (1972), Bakker (2008), Chapman (1979) and Burgers's paper were not obtained; statements attributed to them are as the lecture or the sources opened give them.",
+    "Assumed inputs, not from the lecture or a source: bearing film (50 micrometres, 5 m/s, nu = 1e-4 m2/s), river (1 m, 1 m/s, nu = 1e-6 m2/s), chimney wind 5 m/s, ten times larger Gamma at cruise altitude as an upper bound, water viscosity 1e-6 m2/s for the swell and the liquid jet."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Navier-Stokes equations as written on the slide; the round jet of chapters 6-8 and 10.",
+      "research_extension": "U.S. Standard Atmosphere (1976), Table 10: air properties.",
+      "teaching_construction": "Definitions of attribute, test and excluded motion; notation Kn, nu_T.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Laminar flow is the exception, and large Reynolds numbers are the rule in the lecture's examples",
+      "video_id": "doIzWHHabxc",
+      "start": 156,
+      "end": 553,
+      "lecture_material": "List of natural and engineering flows; laminar flow is the exception; lubricating oil in a bearing.",
+      "research_extension": "None.",
+      "teaching_construction": "Reynolds numbers of the jet and of an assumed bearing film and river.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Irregularity is shared by the motions the lecture excludes",
+      "video_id": "doIzWHHabxc",
+      "start": 580,
+      "end": 816,
+      "lecture_material": "Irregular, seemingly random, chaotic; Tennekes and Lumley as quoted; deterministic equations versus random flow.",
+      "research_extension": "None (back-references to chapters 7, 8, 9).",
+      "teaching_construction": "Separation of statistical description from stochastic equations; irregularity as necessary and not sufficient.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Diffusivity: how fast a patch of fluid spreads",
+      "video_id": "doIzWHHabxc",
+      "start": 816,
+      "end": 1135,
+      "lecture_material": "Diffusivity test, spillway and contrail and chimney examples, list of applications.",
+      "research_extension": "Kaercher (2018): Table 1, ice supersaturation, wind shear, turbulent mixing in the plume and wake.",
+      "teaching_construction": "Effective diffusivity K and its ratio to Gamma; jet Peclet number; laminar plume width; contrail widths against molecular spread.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Large Reynolds numbers: a wide range of sizes between inertia and viscosity",
+      "video_id": "doIzWHHabxc",
+      "start": 1135,
+      "end": 1421,
+      "lecture_material": "Instability at large Re; interaction of viscous and inertial terms; nonlinearity makes the equations nearly intractable.",
+      "research_extension": "None (back-references to chapters 4 and 5).",
+      "teaching_construction": "Three Reynolds numbers of the jet; l_0/eta = Re_0^(3/4) = 1.27e3; grading of the intractability statement.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Three-dimensional vorticity fluctuations: what stretching does to size",
+      "video_id": "doIzWHHabxc",
+      "start": 1421,
+      "end": 1803,
+      "lecture_material": "Turbulence is rotational; vorticity transport equation; stretching absent in 2D; cyclones and ocean waves are not turbulent.",
+      "research_extension": "None (back-reference to chapter 6 and Boffetta and Ecke via chapter 6).",
+      "teaching_construction": "Stretched-vortex solution with core radius (4 nu/a)^(1/2) = 2 eta at the Kolmogorov strain rate; grading of 'breakup'.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Dissipation: the one process that removes energy",
+      "video_id": "PVK2xepz6mg",
+      "start": 43,
+      "end": 243,
+      "lecture_material": "Dissipative; kinetic energy to heat; dies out without supply; waves and sound are not dissipative.",
+      "research_extension": "McComb and co-authors (2015): C_epsilon asymptote 0.468 (manuscript p. 1).",
+      "teaching_construction": "Energy budget of a periodic box; dissipation of a linear deep-water wave, decay rate 4 nu kappa^2; loss times in own time scales; heating rate.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The continuum attribute and the smallest eddies",
+      "video_id": "PVK2xepz6mg",
+      "start": 243,
+      "end": 328,
+      "lecture_material": "Continuum phenomenon; Knudsen number lambda/L much less than 1.",
+      "research_extension": "U.S. Standard Atmosphere (1976), Table 10: mean free path, mean molecular speed, viscosity.",
+      "teaching_construction": "Kn_eta = 1.545 Ma Re_0^(-1/4) for air; jet value 8.4e-4; failure example.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Turbulence is a property of flows, not of fluids",
+      "video_id": "PVK2xepz6mg",
+      "start": 328,
+      "end": 555,
+      "lecture_material": "Turbulence is not a feature of fluids but of flows; same dynamics in all fluids at large Re; each flow unique.",
+      "research_extension": "None (back-reference to chapter 6 on Reynolds-number similarity).",
+      "teaching_construction": "Fluid enters only through Re within the model; equal-Re jet in a liquid; limits (Mach, scalar, buoyancy).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "No general approach: the families of flows and the closure problem",
+      "video_id": "PVK2xepz6mg",
+      "start": 555,
+      "end": 746,
+      "lecture_material": "No general approach; equations need empirical data; more unknowns than equations; ad hoc assumptions.",
+      "research_extension": "None (back-reference to chapter 9, closure count).",
+      "teaching_construction": "Grading of the four statements against the count of chapter 9 and the channel test.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "A model need not be complete: the eddy viscosity as the lecture's case in point",
+      "video_id": "PVK2xepz6mg",
+      "start": 746,
+      "end": 1074,
+      "lecture_material": "Spirited inventors (as quoted); eddy viscosity and mixing length by analogy with molecular transport; flow versus fluid property; LES.",
+      "research_extension": "Chapman and Tobak (1985), pp. 4-5.",
+      "teaching_construction": "Scale-separation comparison (Kn of the molecular law against eddy size over gradient length); eddy viscosity as a flow property.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Dimensional analysis: the form follows, the constant does not",
+      "video_id": "PVK2xepz6mg",
+      "start": 1074,
+      "end": 1132,
+      "lecture_material": "Dimensional analysis and Buckingham's Pi theorem; inertial subrange of the spectrum as the example.",
+      "research_extension": "None.",
+      "teaching_construction": "Null-space statement of the Pi groups; far field of a round jet from the momentum flux; groups of the plotted spectrum; exponent -5/3.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "Asymptotic invariance: what a limit can and cannot remove",
+      "video_id": "PVK2xepz6mg",
+      "start": 1132,
+      "end": 1228,
+      "lecture_material": "High-Re descriptions must behave properly as Re tends to infinity; Reynolds-number similarity of the boundary layer; jet at 1e6 or 2e6.",
+      "research_extension": "Lee and Moser (2015) channel DNS at Re_tau 543.5, 1000.5, 5185.9.",
+      "teaching_construction": "Spread of mean-velocity quantities over the three simulations (Table 3.1); region-specific invariance.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Local invariance and the compiled spectra",
+      "video_id": "PVK2xepz6mg",
+      "start": 1228,
+      "end": 1579,
+      "lecture_material": "Local invariance; Kolmogorov-scaled spectra of many flows overlap except at small wavenumber; inertial subrange in the overlap.",
+      "research_extension": "Saddoughi (1993), Figure 3 (p. 245), pp. 237, 242, 246, 249.",
+      "teaching_construction": "Slide axes as the Pi groups; grading of 'overlaps entirely'; insensitivity of the log-log plot to a 20 % error in epsilon.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Executable checks",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Energy budget, wave decay, loss times, Kn_eta, stretched vortex, Pi groups, channel spreads.",
+      "evidence_class": "engineering check"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 6 recording",
+      "url": "https://www.youtube.com/watch?v=doIzWHHabxc",
+      "supports": "Examples of turbulent flows, irregularity, diffusivity, large Reynolds numbers, vorticity.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 7 recording",
+      "url": "https://www.youtube.com/watch?v=PVK2xepz6mg",
+      "supports": "Dissipation, continuum, flows not fluids, methods of analysis, compiled spectra.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "B. Kaercher, Formation and radiative forcing of contrail cirrus, Nature Communications 9 (2018) 1824",
+      "url": "https://doi.org/10.1038/s41467-018-04068-0",
+      "supports": "Table 1 (short-lived and persistent contrails: conditions, durations, widths); ice supersaturation required for long-lived contrails; spreading by wind shear; turbulent mixing in plume and wake.",
+      "page_checked": "p. 2 (PDF p. 2), p. 3 (PDF p. 3), p. 4 (PDF p. 4)"
+    },
+    {
+      "title": "G. T. Chapman, M. Tobak, Observations, theoretical ideas, and modeling of turbulent flows: past, present, and future, NASA TM 86679 (1985)",
+      "url": "https://ntrs.nasa.gov/citations/19850018856",
+      "supports": "Eddy-viscosity concept confounds flow and material properties; mixing-length conditions not fulfilled by turbulent eddies.",
+      "page_checked": "pp. 4-5 (PDF pp. 6-7)"
+    },
+    {
+      "title": "S. G. Saddoughi, Local isotropy in high Reynolds number turbulent shear flows, CTR Annual Research Briefs 1992 (1993)",
+      "url": "https://ntrs.nasa.gov/citations/19940007830",
+      "supports": "Universality of E11/(eps nu^5)^(1/4) against k1 eta (p. 237); R_lambda definition (p. 242); Figure 3 compilation and legend (p. 245); peel-off and extent of the -5/3 range (pp. 246, 249); 20 % dissipation uncertainty (p. 249).",
+      "page_checked": "pp. 237, 242, 245, 246, 249 (PDF pp. 1, 6, 9, 10, 13)"
+    },
+    {
+      "title": "M. Lee, R. D. Moser, Direct numerical simulation of turbulent channel flow up to Re_tau = 5200, J. Fluid Mech. 774 (2015) 395-415 (data files LM_Channel_0550, 1000, 5200 mean profiles)",
+      "url": "https://doi.org/10.1017/jfm.2015.268",
+      "supports": "Mean velocity profiles and friction Reynolds numbers 543.496, 1000.512, 5185.897 (file headers).",
+      "page_checked": "data-file headers; values interpolated at stated positions"
+    },
+    {
+      "title": "U.S. Standard Atmosphere, 1976, NOAA-S/T 76-1562",
+      "url": "https://ntrs.nasa.gov/citations/19770009539",
+      "supports": "Sea-level values: c = 340.294 m/s, mean free path 6.6328e-8 m, mean air-particle speed 458.94 m/s, nu = 1.4607e-5 m2/s, P0, T0, rho0, g0 (Table 10); gamma = 1.40 exact (eq. 50).",
+      "page_checked": "p. 20 (PDF p. 36), p. 18 (PDF p. 34)"
+    },
+    {
+      "title": "W. D. McComb, A. Berera, S. R. Yoffe, M. F. Linkmann, Energy transfer and dissipation in forced isotropic turbulence, Phys. Rev. E 91 (2015) 043013",
+      "url": "https://strathprints.strath.ac.uk/52798/",
+      "supports": "Asymptotic value C_epsilon,infinity = 0.468 +- 0.006.",
+      "page_checked": "manuscript p. 1 (PDF p. 1)"
+    },
+    {
+      "title": "O. Reynolds, An experimental investigation of the circumstances which determine whether the motion of water shall be direct or sinuous, Phil. Trans. R. Soc. Lond. 174 (1883) 935-982",
+      "url": "https://www.damtp.cam.ac.uk/user/tong/fluids/Reynolds.pdf",
+      "supports": "The critical velocity was very sensitive to disturbance in the water before entering the tubes.",
+      "page_checked": "p. 943 (PDF p. 10)"
+    }
+  ],
+  "symbol_ledger": [
+    {
+      "symbol": "U, p, rho, nu, S_ij, omega",
+      "first_section": "objects",
+      "definition": "Full velocity, pressure, density, kinematic viscosity, rate of strain, vorticity (3.1)."
+    },
+    {
+      "symbol": "\\mathcal U, \\mathcal L, \\ell_g, \\ell",
+      "first_section": "objects",
+      "definition": "Velocity and length of the nozzle flow (chapter 6), smallest length of the flow, and the slide's characteristic length."
+    },
+    {
+      "symbol": "u_0, l_0, Re_0, eta, epsilon, C_epsilon",
+      "first_section": "objects",
+      "definition": "Large-eddy velocity and size, their Reynolds number, Kolmogorov length, dissipation rate and its constant (chapters 5, 6, 10)."
+    },
+    {
+      "symbol": "K, Gamma, sigma, Pe",
+      "first_section": "diffusivity",
+      "definition": "Effective diffusivity (3.2), molecular diffusivity, position variance of a scalar patch, Peclet number."
+    },
+    {
+      "symbol": "a, r_c, omega_c",
+      "first_section": "vorticity",
+      "definition": "Strain rate, core radius and axial vorticity at the axis of the stretched vortex (3.5)."
+    },
+    {
+      "symbol": "script K, <.>_V",
+      "first_section": "dissipation",
+      "definition": "Kinetic energy per unit mass of a periodic box and the box average (3.6)."
+    },
+    {
+      "symbol": "kappa, omega_w, A, E, tau_E",
+      "first_section": "dissipation",
+      "definition": "Wavenumber, wave angular frequency, potential amplitude, energy per area, e-folding time of a deep-water wave (3.7)."
+    },
+    {
+      "symbol": "Kn_eta, lambda_m, V-bar, f, Ma, c",
+      "first_section": "continuum",
+      "definition": "Knudsen number of the smallest eddies, mean free path, mean molecular speed, nu/(V-bar lambda_m), Mach number, speed of sound (3.8), (3.9)."
+    },
+    {
+      "symbol": "M, U_c, B, Re_M, Phi",
+      "first_section": "dimensional-analysis",
+      "definition": "Kinematic momentum flux, centreline velocity, far-field constant, Reynolds number of the momentum flux, scaling function (3.11)."
+    },
+    {
+      "symbol": "E_11(kappa_1), Pi_a, Pi_b, C_1",
+      "first_section": "dimensional-analysis",
+      "definition": "One-dimensional longitudinal spectrum, its dimensionless groups (3.12), the one-dimensional constant of (3.13)."
+    },
+    {
+      "symbol": "u_tau, y, y+, delta, U+",
+      "first_section": "asymptotic-invariance",
+      "definition": "Friction velocity, wall distance, wall-scaled distance, channel half-width, velocity in units of u_tau."
+    }
+  ],
+  "exercises": 7,
+  "code_check": {
+    "command": "python -I _editorial/tmp/ch03_check_code.py (extracts both listings from the HTML, runs each with python -I in a scratch directory, compares stdout with the printed block byte for byte; pycodestyle --max-line-length=100)",
+    "stdout_matches_printed": true
+  }
+}

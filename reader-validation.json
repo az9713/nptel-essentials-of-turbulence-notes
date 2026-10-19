@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-19T16:27:50.201089+00:00",
+  "checked_at_utc": "2026-10-19T16:38:18.503576+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
     "html_files": 17,
-    "local_links_checked": 302,
-    "timestamps_checked": 187,
+    "local_links_checked": 317,
+    "timestamps_checked": 191,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -48,6 +48,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-02-descriptions-definitions-history.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 560,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-03-characteristics-methods-of-analysis.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 560,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-03-characteristics-methods-of-analysis.html",
         "viewport": 390
       },
       {
