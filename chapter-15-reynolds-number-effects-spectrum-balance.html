@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light"><meta name="book-content-sha256" content="a72ae51cf9b028dd933e7ce5f4285766e888bd93b93468ed3231e70b829c6f37"><title>Reynolds-number effects and the energy-spectrum balance: how the ranges grow, and what the balance says about each · Essentials of Turbulence</title>
+<link rel="stylesheet" href="assets/book.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'local'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="assets/mathjax-tex-svg.js"></script><script defer src="assets/book.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="index.html">Essentials of Turbulence · January 2026</a><nav class="course-nav" aria-label="Book"><a href="index.html">Lectures</a><a href="source-map.html">Source map</a><a href="references.html">References</a><a href="numerical-lab.html">Numerical lab</a></nav></header>
+<div class="layout"><aside class="toc" id="chapter-toc" aria-label="On this page"><h2>On this page</h2></aside><main id="main">
+<div class="reading-tools" aria-label="Reading controls"><button id="theme-toggle" aria-pressed="false">Light theme</button><button id="text-toggle" aria-pressed="false">Larger text</button><button id="solutions-toggle" aria-pressed="false">Expand solutions</button><button id="print-page">Print with solutions</button></div>
+<article id="chapter-content"><!-- BOOK-CONTENT-START --><h1>Reynolds-number effects and the energy-spectrum balance: how the ranges grow, and what the balance says about each</h1>
+<p class="lead">The three-range picture of turbulence (energy-containing, inertial, dissipation) is drawn for "very high Reynolds number", and the lectures that draw it never say how high that is. Take the air jet of the preceding chapters: \(\mathrm{Re}_\lambda=453\), \(\varepsilon=80\ \mathrm{m^2/s^3}\), \(\eta=79\ \mu\mathrm m\). Between the lecture's demarcation sizes \(\ell_0/6\) and \(60\eta\) there is a factor 3.5 of eddy size. If energy enters at the large scales and leaves at the small ones, the rate at which energy crosses a given wavenumber should equal \(\varepsilon\) throughout that factor 3.5; for the model spectrum of the course the exact stationary budget gives 0.98 of \(\varepsilon\) at the large-scale end and 0.89 at the small-scale end. The slide's empirical curve for the spectral exponent in grid turbulence gives about 1.59 at this \(\mathrm{Re}_\lambda\), 5 % below the \(5/3\) of the inertial-range law. This chapter derives the energy-spectrum balance from the equation of one Fourier mode, shows which of its terms are exact and which statements about the three ranges are approximations, follows the model spectrum from \(\mathrm{Re}_\lambda=30\) to 1000 in two normalisations, and collects the lecture's evidence that the hypotheses of the previous chapters hold only asymptotically: the exponent of the spectrum, and the velocity-derivative flatness that grows without bound over the measured range.</p>
+<p class="source-note">Grounded in two recordings of the NPTEL course <em>Essentials of Turbulence</em> (Prof. Abhilash J. Chandy, IIT Bombay): <a href="https://www.youtube.com/watch?v=BK_FjrzElak">Lecture 41</a> and <a href="https://www.youtube.com/watch?v=xwif_UjmnEc">Lecture 42</a>, which close Module 08 of the slides ("Scales of Turbulent Motion: Part C"). <strong>Lecture material:</strong> the model spectrum at four Taylor-scale Reynolds numbers in two normalisations; the spectral view of the energy-containing motions; the energy-spectrum balance with its production, transfer and dissipation terms; the integration of the balance over the three ranges; the empirical exponent of the spectrum in grid turbulence as a function of \(\mathrm{Re}_\lambda\); the velocity-derivative skewness and kurtosis against Reynolds number; the attribution of the discrepancies to internal intermittency; the lecturer's closing remarks on the limits of the hypotheses and on testing a model against higher-order moments. The slide captions attribute the exponent data to Mydlarski and Warhaft (1998) and the kurtosis data to Van Atta and Antonia (1980); neither source was opened for this chapter, and the chapter uses their data only as the slides print them. <strong>Research extensions:</strong> Kolmogorov (1962, the refined hypotheses and the moment formula used in the section on higher-order moments) and Kerr (1983, measured velocity-derivative flatness in simulations). <strong>Original teaching constructions:</strong> the derivation of the balance from the single-mode equation of the chapter "Fourier modes and their evolution"; the exact band equation and the check that the three range equations sum to the energy equation; the stationary flux \(\mathcal T_\kappa(\kappa)=\varepsilon-\int_0^\kappa D\,d\kappa'\) and its evaluation for the jet; the numerical test of energy conservation by the transfer in a Taylor&ndash;Green flow; the collapse of the model spectrum in Kolmogorov variables and the widths of its \(-5/3\) region; the conversions between \(\mathrm{Re}_\lambda\) and the other Reynolds numbers; the scaling of the flatness implied by the refined hypotheses; the code and the six exercises. No practice problem is assigned to this chapter.</p>
+
+<h2 id="model">The objects of the chapter and the running case</h2>
+<p>The formal model is statistically homogeneous turbulence of an incompressible fluid of constant kinematic viscosity \(\nu\) (units \(\mathrm{m^2/s}\)), with fluctuation \(\mathbf u(\mathbf x,t)\) of zero mean, in a periodic cube of side \(\mathcal L\) large against the integral scale (chapter 12, "Fourier modes and their evolution"; the large-box limit of the box sums is the one used for the spectra of chapter 8, (8.32), and chapter 11). Its quantities are the turbulent kinetic energy per unit mass \(k=\tfrac12\langle u_iu_i\rangle\), the dissipation rate \(\varepsilon=2\nu\langle s_{ij}s_{ij}\rangle\), the Kolmogorov length \(\eta=(\nu^3/\varepsilon)^{1/4}\) and velocity \(u_\eta=(\varepsilon\nu)^{1/4}\) (chapter 5, (5.14); the slides write \(v\) for the velocity), the energy-spectrum function \(E(\kappa,t)\) with \(k=\int_0^\infty E\,d\kappa\) and the dissipation spectrum \(D(\kappa,t)=2\nu\kappa^2E(\kappa,t)\) with \(\varepsilon=\int_0^\infty D\,d\kappa\) (chapter 11). The argument of a spectrum is always written, because \(E(\omega)\) of chapter 8 is a frequency spectrum. An eddy size \(\ell\) is associated with the wavenumber \(\kappa=2\pi/\ell\) (chapter 11, (11.1)); the association is a convention and not an identity between an eddy and a mode. The lecture's demarcation sizes are \(\ell_{EI}=\ell_0/6\) and \(\ell_{DI}=60\eta\), with wavenumbers \(\kappa_{EI}=2\pi/\ell_{EI}\) and \(\kappa_{DI}=2\pi/\ell_{DI}\). Here \(\ell_0\) and \(u_0\) are the size and velocity of the energy-containing eddies and \(\mathrm{Re}_0=u_0\ell_0/\nu\) (chapter 10). The two factors are nominal: chapter 10 records that the lecture gives no justification for them, and every number below that uses them inherits that status.</p>
+<p>The Reynolds numbers are those of chapter 11, (11.25) and (11.26). With \(L=k^{3/2}/\varepsilon\), \(\mathrm{Re}_L=k^{1/2}L/\nu=k^2/(\varepsilon\nu)\) and the Taylor-scale Reynolds number \(\mathrm{Re}_\lambda=u'\lambda/\nu\), \(u'=(2k/3)^{1/2}\), the relation between them holds for isotropic turbulence, and under the identification \(\varepsilon=u_0^3/\ell_0\), \(u'=u_0\) that chapter 11 uses for the jet, \(\mathrm{Re}_L=\tfrac94\mathrm{Re}_0\):</p>
+\[
+\mathrm{Re}_\lambda^2=\tfrac{20}{3}\,\mathrm{Re}_L=15\,\mathrm{Re}_0 .\tag{15.1}
+\]
+<p>The lengths follow: \(L/\eta=\mathrm{Re}_L^{3/4}=(3/20)^{3/4}\mathrm{Re}_\lambda^{3/2}=0.2411\,\mathrm{Re}_\lambda^{3/2}\), and \(k/u_\eta^2=\mathrm{Re}_L^{1/2}\). The slides write \(R_\lambda\) for \(\mathrm{Re}_\lambda\).</p>
+<p><strong>The model spectrum.</strong> The lecture uses the model spectrum of the preceding lectures (the chapter "Kolmogorov, model, and dissipation spectra" gives its construction and its checks). Here it is needed only as a function with two parameters to be solved for. In Kolmogorov variables, with \(x=\kappa\eta\),</p>
+\[
+\frac{E(\kappa)}{\eta u_\eta^2}=C\,x^{-5/3}\,f_L\!\Bigl(x\,\frac L\eta\Bigr)\,f_\eta(x),\qquad
+f_L(y)=\Bigl[\frac{y}{(y^2+c_L)^{1/2}}\Bigr]^{11/3},\quad
+f_\eta(x)=\exp\Bigl\{-\beta\bigl[(x^4+c_\eta^4)^{1/4}-c_\eta\bigr]\Bigr\}, \tag{15.2}
+\]
+<p>with \(C=1.5\), \(\beta=5.2\) and the low-wavenumber exponent \(\tfrac53+p_0=\tfrac{11}3\) (\(p_0=2\)). The form follows from \(E=C\varepsilon^{2/3}\kappa^{-5/3}f_Lf_\eta\) because \(\varepsilon^{2/3}\kappa^{-5/3}=\eta u_\eta^2\,x^{-5/3}\): the powers of \(\varepsilon\) and \(\nu\) in \(\varepsilon^{2/3}\eta^{2/3}u_\eta^{-2}\) cancel. The constants \(c_L\) and \(c_\eta\) are fixed, at each \(\mathrm{Re}_\lambda\), by the two integral conditions \(\int E\,d\kappa=k\) and \(\int2\nu\kappa^2E\,d\kappa=\varepsilon\); the program below solves them (the slide's high-Reynolds-number values are 6.78 and 0.40). Equation (15.2) is an interpolation with fitted parameters. It contains the \(-5/3\) law by construction, so it can illustrate how the ranges move and cannot test the law.</p>
+<p><strong>The running case.</strong> The air jet of chapters 6&ndash;8 and 10&ndash;13: \(u_0=2\ \mathrm{m/s}\), \(\ell_0=0.1\ \mathrm m\), \(\nu=1.4607\times10^{-5}\ \mathrm{m^2/s}\), \(\mathrm{Re}_0=1.37\times10^4\), \(\varepsilon=u_0^3/\ell_0=80\ \mathrm{m^2/s^3}\), \(\eta=79.0\ \mu\mathrm m\), \(k=6\ \mathrm{m^2/s^2}\), \(\mathrm{Re}_\lambda=453\), \(\kappa_{EI}=377\ \mathrm{m^{-1}}\), \(\kappa_{DI}=1.33\times10^3\ \mathrm{m^{-1}}\). As in chapter 11, the numbers are what the formulas give if the station behaved as homogeneous isotropic turbulence with these scales; the jet is neither. They illustrate the formulas and do not predict a particular jet.</p>
+
+<h2 id="re-effects">The model spectrum at four Reynolds numbers <a class="timestamp" href="https://www.youtube.com/watch?v=BK_FjrzElak&amp;t=100s">L41 1:40</a></h2>
+<p>The slide shows the model spectrum at \(\mathrm{Re}_\lambda=30\), 100, 300 and 1000, with no measured data, in two panels. Panel (a) plots \(E(\kappa)/(kL_{11})\) against \(\kappa L_{11}\), the large-scale normalisation, where \(L_{11}\) is the longitudinal integral scale. Panel (b) plots \(E(\kappa)/(\eta u_\eta^2)\) against \(\kappa\eta\), the Kolmogorov normalisation. The lecture reads two observations from the panels. In the large-scale normalisation the energy-containing range (\(0.1\lt\kappa L_{11}\lt10\)) looks similar for the four curves, the extent of the \(-5/3\) region grows with \(\mathrm{Re}_\lambda\), and the roll-off moves to higher \(\kappa L_{11}\). In the Kolmogorov normalisation the dissipation range (\(\kappa\eta\gt0.1\)) is nearly the same for the four curves, and the energy-containing range moves to lower \(\kappa\eta\) while its height grows. The lecture states that the large-scale panel looks similar and is not identical, and that the Kolmogorov panel overlaps because the universal equilibrium range is universal. The first is a measurement of the plot; the second is an assertion of the first similarity hypothesis, which the model satisfies by construction (it depends on \(\kappa\eta\) alone in the dissipation range).</p>
+<p><strong>Why the Kolmogorov panel collapses.</strong> By (15.2) the Reynolds number enters the model in one place only: the argument \(x\,L/\eta\) of \(f_L\), with \(L/\eta=0.2411\,\mathrm{Re}_\lambda^{3/2}\) from (15.1), and through the weak dependence of the two solved constants. At \(x\gg c_L^{1/2}\eta/L\) the factor \(f_L\) is 1, and the spectrum depends on \(x\) alone: that is the collapse. The low-wavenumber edge is where \(f_L\) leaves 1, at \(x\sim c_L^{1/2}\eta/L\propto\mathrm{Re}_\lambda^{-3/2}\). Raising \(\mathrm{Re}_\lambda\) by a factor \(r\) therefore moves the edge by a factor \(r^{-3/2}\) and leaves the upper end of the range in place: the \(-5/3\) region grows at the low-wavenumber end only. This is the lecture's observation that the gap between large and small scales widens, with the small-scale end fixed in Kolmogorov units.</p>
+<p><strong>What the program gives.</strong> The program (below) solves \(c_L\) and \(c_\eta\) and evaluates the quantities of the table; the numbers are its output.</p>
+<div class="table-wrap"><table>
+<caption>Table 15.1. The model spectrum (15.2) at four Taylor-scale Reynolds numbers (\(\varepsilon=\nu=1\)).</caption>
+<thead><tr><th scope="col">\(\mathrm{Re}_\lambda\)</th><th scope="col">\(L/\eta\)</th><th scope="col">\(c_L\)</th><th scope="col">\(c_\eta\)</th><th scope="col">\(L_{11}/L\)</th><th scope="col">\(\kappa L_{11}\) at peak</th><th scope="col">peak of \(E/(kL_{11})\)</th><th scope="col">peak of \(E/(\eta u_\eta^2)\)</th><th scope="col">width of \(f_Lf_\eta\ge0.9\) (decades)</th><th scope="col">nominal width (decades)</th></tr></thead>
+<tbody>
+<tr><td>30</td><td>39.6</td><td>3.02</td><td>0.460</td><td>0.827</td><td>1.573</td><td>0.2043</td><td>77.7</td><td>0.08</td><td>0</td></tr>
+<tr><td>100</td><td>241</td><td>5.12</td><td>0.410</td><td>0.543</td><td>1.345</td><td>0.2004</td><td>1015</td><td>0.86</td><td>0</td></tr>
+<tr><td>300</td><td>1252</td><td>6.15</td><td>0.403</td><td>0.466</td><td>1.267</td><td>0.2000</td><td>13 578</td><td>1.53</td><td>0.28</td></tr>
+<tr><td>1000</td><td>7622</td><td>6.59</td><td>0.402</td><td>0.441</td><td>1.239</td><td>0.2000</td><td>260 304</td><td>2.30</td><td>1.06</td></tr>
+</tbody></table></div>
+<p>The longitudinal integral scale is computed from the isotropic relation \(L_{11}=(3\pi/4k)\int_0^\infty E(\kappa)\kappa^{-1}d\kappa\), which is \(L_{11}=\pi E_{11}(0)/(2\langle u_1^2\rangle)\) for the one-dimensional spectrum normalised so that \(\int_0^\infty E_{11}\,d\kappa_1=\langle u_1^2\rangle\) (the chapter "Spectral energy: Fourier modes, the velocity spectrum tensor, and one-dimensional spectra" derives it), with \(E_{11}(0)=\int_0^\infty E\kappa^{-1}d\kappa\) in isotropic turbulence, and \(\langle u_1^2\rangle=2k/3\); it needs isotropy. The table supports the lecture's reading in four ways. First, the peak of \(E/(kL_{11})\) is 0.2043, 0.2004, 0.2000 and 0.2000, at \(\kappa L_{11}\) between 1.57 and 1.24: the energy-containing range is similar, and not identical (the peak moves by 27 %). Second, the large-scale normalisation hides a Reynolds-number dependence that the Kolmogorov one displays: \(L_{11}/L\) falls from 0.83 to 0.44, so the integral scale is not the fixed fraction of \(k^{3/2}/\varepsilon\) that a single large-scale unit would suggest. Third, in the Kolmogorov normalisation the model at \(\kappa\eta=0.3\) differs by 0.6 % between \(\mathrm{Re}_\lambda=30\) and 1000, and at \(\kappa\eta=0.5\) by 16 % (\(\mathrm{Re}_\lambda=30\)) and 2.6 % (\(\mathrm{Re}_\lambda=100\)): the dissipation range is nearly, and not exactly, Reynolds-number independent, because \(c_\eta\) is not constant. Fourth, the peak of \(E/(\eta u_\eta^2)\) grows from 78 to \(2.6\times10^5\); between \(\mathrm{Re}_\lambda=300\) and 1000 the factor is 19.2, against \((1000/300)^{5/2}=20.3\) for a law \(\propto\mathrm{Re}_\lambda^{5/2}\). The lecture's reading "energy content increases with Reynolds number" is correct for the plot, whose vertical axis is divided by a small-scale quantity; the energy \(k\) itself is held fixed in the large-scale panel.</p>
+<p><strong>The width of the \(-5/3\) region.</strong> "The extent of the \(-5/3\) region increases" can be given a number once the region is defined. Define it, in this book, as the wavenumber interval on which the compensated spectrum \(E\kappa^{5/3}/(\varepsilon^{2/3})\) is at least \(0.9\,C\), that is \(f_Lf_\eta\ge0.9\); the 10 % threshold is a choice of this chapter. Its width in decades is 0.08, 0.86, 1.53 and 2.30 at \(\mathrm{Re}_\lambda=30\), 100, 300 and 1000. From 100 to 300 the width grows by 0.67 decade and from 300 to 1000 by 0.77, against \(\tfrac32\log_{10}3=0.72\) and \(\tfrac32\log_{10}(10/3)=0.78\) from the \(\mathrm{Re}_\lambda^{3/2}\) law of the low-wavenumber edge. The same Reynolds numbers give, with the nominal sizes \(\ell_0/6\) and \(60\eta\), \(\ell_0/\eta=(\mathrm{Re}_\lambda^2/15)^{3/4}\) by (15.1) and the unit constant, widths of 0, 0, 0.28 and 1.06 decades (the last column). The nominal inertial subrange is much narrower than the model's compensated plateau, and it does not exist at \(\mathrm{Re}_\lambda=30\) and 100. These are two different definitions: the nominal one places the edges at \(\ell_0/6\) and \(60\eta\), the plateau one at the wavenumbers where the model leaves its power law by 10 %. The comparison shows that the nominal edges are conservative for this model, and it cannot show which is closer to a measured spectrum.</p>
+
+<h2 id="energy-range">The energy-containing motions in spectral terms <a class="timestamp" href="https://www.youtube.com/watch?v=BK_FjrzElak&amp;t=460s">L41 7:40</a></h2>
+<p>The slides collect statements about the energy-containing range. Its eddies have sizes \(6L_{11}\gt\ell\gt\tfrac16L_{11}=\ell_{EI}\) (the slide identifies \(\ell_{EI}\) with \(L_{11}/6\); chapter 10 uses \(\ell_0/6\), and the two differ by the ratio \(L_{11}/\ell_0\) of the flow). Their velocity is \(k^{1/2}\) and their time scale \(L_{11}/k^{1/2}\), large against the mean-flow time scale, so that they are affected by the flow's history. Their size is comparable to the flow dimension \(\mathcal L\) (the slide's script \(\mathscr L\)), so that the geometry influences them. All the anisotropy, all the production and, according to the slide, negligible viscous dissipation belong to the range, and it has no universal form. The transfer out of it, \(\mathcal T_{EI}\), is said to scale as \(k^{3/2}/L_{11}\), "so the non-dimensional ratio \(\mathcal T_{EI}/(k^{3/2}/L_{11})\) is not universal". Here \(\mathcal T_{EI}\) is the rate at which energy crosses \(\kappa_{EI}\); it is the \(\mathcal T_{EI}\) of chapter 10, the rate at which the motions smaller than \(\ell_{EI}\) receive energy.</p>
+<p>Three of these statements can be checked on the model. The scaling \(\mathcal T_{EI}\sim k^{3/2}/L_{11}\) is the estimate \(u^3/\ell\) of chapter 5, (5.16), applied with \(u=k^{1/2}\) and \(\ell=L_{11}\); it is a dimensional estimate. The non-universality of the ratio has a visible form in the model: if \(\mathcal T_{EI}\) is replaced by \(\varepsilon\) (Section "Integrating the balance over the three ranges" gives the correction), the ratio is \(\varepsilon L_{11}/k^{3/2}=L_{11}/L\), which is 0.83, 0.54, 0.47 and 0.44 in Table 15.1, so it depends on \(\mathrm{Re}_\lambda\) in the range 30 to 1000 and approaches a value near 0.44. The claim that dissipation is negligible in the range holds in the following sense. The model dissipation at \(\kappa\lt\kappa_{EI}\) is a fraction 0.046, 0.020 and 0.004 of \(\varepsilon\) at \(\mathrm{Re}_\lambda=300\), 453 and 1000 (the program, Part 2): negligible against \(\varepsilon\), and not zero. The slide's statement that the range holds the bulk of the energy has the number 0.900, 0.889 and 0.877 of \(k\) at the same Reynolds numbers, so replacing \(k_{(0,\kappa_{EI})}\) by \(k\), as the lecture does below, costs 10 to 12 %.</p>
+<p>Two statements made in speech need a limit. The lecture says, at L41 20:27, that the transfer "starts to peak in the inertial sub-range and then decreases", and, at L41 20:35, that "as you get to higher and higher Reynolds numbers ... your rate of transfer actually starts to decrease". The first is consistent with the slide's sketch only if "peak" is read as a broad maximum; the slide's figure (L42 5:38) shows a plateau at the value \(\varepsilon\) that begins at the end of the production range and ends in the dissipation range, and the exact stationary flux of the section below decreases monotonically beyond the production range. The second is not supported by the balance: at stationarity the flux through the inertial subrange is \(\varepsilon\) to within the dissipation below that wavenumber, and \(\varepsilon\sim u_0^3/\ell_0\) does not fall with Reynolds number at fixed \(u_0\) and \(\ell_0\) (chapter 10, (10.5) and (10.7)).</p>
+
+<h2 id="derivation">The balance for the energy spectrum, derived from the equation of one mode <a class="timestamp" href="https://www.youtube.com/watch?v=BK_FjrzElak&amp;t=801s">L41 13:21</a></h2>
+<p><strong>The question.</strong> The slide states, for homogeneous turbulence,</p>
+\[
+\frac{\partial}{\partial t}E(\kappa,t)=\mathcal P_\kappa(\kappa,t)-\frac{\partial}{\partial\kappa}\mathcal T_\kappa(\kappa,t)-2\nu\kappa^2E(\kappa,t), \tag{15.3}
+\]
+<p>and says that the right side is production, spectral transfer and dissipation. Where does each term come from, which are exact, and why does the middle one have the form of a derivative? The lecture does not derive (15.3); the steps below do, in the periodic box.</p>
+<p><strong>Step 1: the mode equation.</strong> By chapter 12, (12.19)&ndash;(12.20), each Fourier coefficient \(\hat{\mathbf u}(\boldsymbol\kappa,t)\) of the fluctuation obeys \(d\hat u_j/dt+\nu\kappa^2\hat u_j=-P_{jk}\hat G_k\), with \(\hat G_j=i\kappa_k\sum_{\boldsymbol\kappa'}\hat u_j(\boldsymbol\kappa')\hat u_k(\boldsymbol\kappa-\boldsymbol\kappa')\) the coefficient of \(\partial(u_ju_k)/\partial x_k\) and \(P_{jk}\) the projection tensor. To hold the turbulence statistically stationary against decay, or to model its production by the mean flow, add an external force with coefficient \(\hat f_j\), solenoidal and acting at low wavenumbers; then \(d\hat u_j/dt=-\nu\kappa^2\hat u_j-P_{jk}\hat G_k+\hat f_j\). Let \(\hat e=\tfrac12\hat{\mathbf u}^*\cdot\hat{\mathbf u}\) be the energy of one mode in one realization (chapter 12, "The energy of one mode"). Since \(\boldsymbol\kappa\cdot\hat{\mathbf u}^*=0\), the projection drops out of \(\hat{\mathbf u}^*\cdot P\hat{\mathbf G}\), and pressure does no work on a mode:</p>
+\[
+\frac{d\hat e}{dt}=-2\nu\kappa^2\hat e-\mathrm{Re}\bigl(\hat{\mathbf u}^*\!\cdot\hat{\mathbf G}\bigr)+\mathrm{Re}\bigl(\hat{\mathbf u}^*\!\cdot\hat{\mathbf f}\bigr). \tag{15.4}
+\]
+<p>(Here \(\mathrm{Re}\) is the real part. The first two terms are (12.21); the third is the force.) This is exact for every mode with \(\kappa\ne0\), and \(\hat{\mathbf u}(\mathbf 0)=0\) for a zero-mean fluctuation.</p>
+<p><strong>Step 2: from modes to the spectrum.</strong> Take the expectation, and sum over the modes in a thin shell \(\kappa\lt|\boldsymbol\kappa'|\le\kappa+\Delta\kappa\). The energy-spectrum function is the shell sum per unit wavenumber of the expected modal energy, \(E(\kappa,t)\Delta\kappa=\sum_{\rm shell}\langle\hat e\rangle\) (the large-box limit above). The same sum applied to each term of (15.4), divided by \(\Delta\kappa\), defines the three spectra on the right:</p>
+\[
+D(\kappa,t)=2\nu\kappa^2E,\qquad
+\Theta(\kappa,t)\,\Delta\kappa=-\sum_{\rm shell}\bigl\langle\mathrm{Re}(\hat{\mathbf u}^*\!\cdot\hat{\mathbf G})\bigr\rangle,\qquad
+\mathcal P_\kappa(\kappa,t)\,\Delta\kappa=\sum_{\rm shell}\bigl\langle\mathrm{Re}(\hat{\mathbf u}^*\!\cdot\hat{\mathbf f})\bigr\rangle, \tag{15.5}
+\]
+<p>and the shell sum of (15.4) is</p>
+\[
+\frac{\partial E}{\partial t}=\mathcal P_\kappa+\Theta-2\nu\kappa^2E. \tag{15.6}
+\]
+<p>The symbol \(\Theta(\kappa,t)\) is introduced here for the rate at which the nonlinear term gives energy to the shell; the slide writes it as \(-\partial\mathcal T_\kappa/\partial\kappa\), which is derived next. The viscous term is exactly \(-D(\kappa,t)\), by the definition of \(D\) and the viscous decay rate \(2\nu\kappa^2\) of a mode. The force term is the source of the spectrum. With a mean velocity gradient and no force, the slide describes the source as "the product of the mean velocity gradients \(\partial\langle U_i\rangle/\partial x_j\) and an anisotropic part of the spectrum tensor"; the lecture does not derive it and this chapter does not either. With a uniform mean gradient the fluctuation equation has terms that are linear in the gradient, and the fixed-wavenumber form (15.6) is not their exact image. The forced box is the teaching construction in which (15.6) is exact and the source has the same role: it puts energy in at low wavenumbers.</p>
+<p><strong>Step 3: the nonlinear term moves energy and does not create it.</strong> Summing (15.4) over all modes and taking the expectation, the nonlinear terms add to zero by chapter 12, (12.22): \(\sum_{\boldsymbol\kappa}\mathrm{Re}(\hat{\mathbf u}^*\cdot\hat{\mathbf G})=\langle\partial(\tfrac12u_ju_ju_k)/\partial x_k\rangle_V=0\), because incompressibility lets \(u_j\partial(u_ju_k)/\partial x_k\) be written as an exact derivative and the box average of an exact derivative of a periodic function vanishes. In terms of \(\Theta\):</p>
+\[
+\int_0^\infty\Theta(\kappa,t)\,d\kappa=0. \tag{15.7}
+\]
+<p>This is exact. It is the energy-conservation property of the inertia and pressure terms (chapter 10, (10.1)&ndash;(10.2)) written in wavenumber space.</p>
+<p><strong>Step 4: the flux.</strong> Define the energy that crosses wavenumber \(\kappa\) per unit time, from the modes below to the modes above, as minus the rate at which the nonlinear term changes the energy of the modes below \(\kappa\):</p>
+\[
+\mathcal T_\kappa(\kappa,t)\equiv-\int_0^\kappa\Theta(\kappa',t)\,d\kappa'. \tag{15.8}
+\]
+<p>Then \(\Theta=-\partial\mathcal T_\kappa/\partial\kappa\), which turns (15.6) into the slide's (15.3). The derivative form is therefore not an additional modelling choice; it records that \(\Theta\) integrates to the net flux through a point. The sign: if \(\mathcal T_\kappa(\kappa)\gt0\), the modes below \(\kappa\) lose energy to the nonlinear term, and the modes above gain it. The two end conditions of the lecture follow, with a more precise reason for the second. At \(\kappa=0\) the integral in (15.8) is empty, so \(\mathcal T_\kappa(0)=0\); the lecture's reason, that no energy lies below, is this statement. At the upper end, (15.7) gives \(\mathcal T_\kappa(\infty)=-\int_0^\infty\Theta\,d\kappa=0\). The lecture's reason is that "there are no scales above"; the argument that holds is conservation: a nonlinear term that created or destroyed energy would give a non-zero limit, and the program's Part 4 shows that the flux of a computed field returns to zero at the last retained shell to \(6\times10^{-19}\), as (15.7) requires. In a truncated numerical system the same conservation is what makes the flux zero at the last retained wavenumber (Exercise 3).</p>
+<p><strong>What is exact and what is modelled.</strong> Every term of (15.6) is exact in the periodic box with the force of Step 1: the dissipation term by its definition, the transfer by (15.5) and (15.7), the source by (15.5). Nothing is modelled. What is missing is closure. \(\Theta\) contains triple correlations of the velocity, namely the expectations \(\langle\mathrm{Re}(\hat u_j^*\hat G_j)\rangle\), that the balance does not determine, so (15.6) is one equation for the two unknowns \(E\) and \(\mathcal T_\kappa\). This is the closure problem of chapter 9 ("Reynolds equations, closure, and turbulent viscosity") in wavenumber space: the equation for second-order statistics contains third-order ones. The lecture's integrals over ranges (next section) do not close it either; they relate fluxes at the range boundaries to dissipation and production.</p>
+<p><strong>The integrated form.</strong> Integrate (15.3) over a band \((\kappa_a,\kappa_b)\). The slide's integral of the transfer term is the telescoping sum of the derivative:</p>
+\[
+\frac{d}{dt}E_{(\kappa_a,\kappa_b)}=\mathcal P_{(\kappa_a,\kappa_b)}+\mathcal T_\kappa(\kappa_a)-\mathcal T_\kappa(\kappa_b)-\varepsilon_{(\kappa_a,\kappa_b)}, \tag{15.9}
+\]
+<p>where \(E_{(\kappa_a,\kappa_b)}=\int_{\kappa_a}^{\kappa_b}E\,d\kappa\) is the energy in the band, \(\mathcal P_{(\kappa_a,\kappa_b)}=\int\mathcal P_\kappa d\kappa\) is the slide's production in the band, and \(\varepsilon_{(\kappa_a,\kappa_b)}=\int2\nu\kappa^2E\,d\kappa\) the dissipation in it; the slide writes \(k_{(0,\kappa_{EI})}\), \(\varepsilon_{(0,\kappa_{EI})}\) and \(\mathcal P_{(0,\kappa_{EI})}\) for the three. This is the band-energy equation that the slide integrates. With \(\kappa_a=0\) and \(\kappa_b=\infty\), the transfer terms vanish by the end conditions and (15.9) is the kinetic-energy equation \(dk/dt=\mathcal P-\varepsilon\), with \(\mathcal P\) the total source; the unforced limit is chapter 10, (10.2). With \(\kappa_a=\kappa_{EI}\) and \(\kappa_b=\infty\), and no source above \(\kappa_{EI}\), it is chapter 10, (10.9): \(dk_\lt/dt=\mathcal T_{EI}-\varepsilon_\lt\), where \(k_\lt=E_{(\kappa_{EI},\infty)}\) and \(\varepsilon_\lt=\varepsilon_{(\kappa_{EI},\infty)}\) are the energy and the dissipation of the motions smaller than \(\ell_{EI}\). That is the energy budget of the small scales that the earlier chapter obtained in physical space, and from which it concluded that \(\varepsilon\approx\mathcal T_{EI}\) needs two assumptions: a stationary small-scale energy, \(dk_\lt/dt=0\), and a negligible dissipation at \(\kappa\lt\kappa_{EI}\), so that \(\varepsilon_\lt\approx\varepsilon\). The next section evaluates both for the model.</p>
+
+<h2 id="ranges">Integrating the balance over the three ranges <a class="timestamp" href="https://www.youtube.com/watch?v=xwif_UjmnEc&amp;t=546s">L42 9:06</a></h2>
+<p>The lecture integrates (15.3) over the three ranges (L41 20:59 and again L42 9:06). The exact band equations (15.9) for \((0,\kappa_{EI})\), \((\kappa_{EI},\kappa_{DI})\) and \((\kappa_{DI},\infty)\) are, with \(\mathcal T_{EI}\equiv\mathcal T_\kappa(\kappa_{EI})\), \(\mathcal T_{DI}\equiv\mathcal T_\kappa(\kappa_{DI})\) and the end conditions,</p>
+\[
+\begin{aligned}
+\frac{dE_{EC}}{dt}&amp;=\mathcal P_{EC}-\mathcal T_{EI}-\varepsilon_{EC},\\
+\frac{dE_{I}}{dt}&amp;=\mathcal P_{I}+\mathcal T_{EI}-\mathcal T_{DI}-\varepsilon_{I},\\
+\frac{dE_{D}}{dt}&amp;=\mathcal P_{D}+\mathcal T_{DI}-\varepsilon_{D},
+\end{aligned}\tag{15.10}
+\]
+<p>where EC, I and D label the three bands. Adding the three lines gives \(dk/dt=\mathcal P-\varepsilon\) exactly, because the two intermediate fluxes cancel. The slide's version replaces each equality by an approximation: in the energy-containing range the dissipation is negligible, \(\varepsilon_{EC}\approx0\), the production is the whole of it, \(\mathcal P_{EC}\approx\mathcal P\), and \(E_{EC}\approx k\); in the inertial subrange the only significant process is transfer, so that \(0\approx\mathcal T_{EI}-\mathcal T_{DI}\); in the dissipation range \(0\approx\mathcal T_{DI}-\varepsilon\). The slide's first line, \(dk/dt\approx\mathcal P-\mathcal T_{EI}\), is therefore the first line of (15.10) in which \(E_{EC}\) has been written \(k\); the two differ by the energy outside the range, which the model puts at 10 to 12 % of \(k\) (the section above), and the equality of their time derivatives holds when the energy outside the range is constant. At statistical stationarity all the left sides are zero and the lines say \(\mathcal T_{EI}=\mathcal P_{EC}-\varepsilon_{EC}\), \(\mathcal T_{EI}-\mathcal T_{DI}=\varepsilon_I-\mathcal P_I\), \(\mathcal T_{DI}=\varepsilon_D-\mathcal P_D\).</p>
+<p>The lecture's statement is that \(\mathcal T_{EI}\approx\mathcal T_{DI}\approx\varepsilon\). For the model it can be evaluated. Suppose the flow is stationary and the source acts below \(\kappa_{EI}\), \(\mathcal P_\kappa=0\) for \(\kappa\gt\kappa_{EI}\). Integrating (15.3) from 0 to \(\kappa\ge\kappa_{EI}\) at stationarity, with \(\mathcal P_{(0,\kappa)}=\mathcal P=\varepsilon\), gives</p>
+\[
+\mathcal T_\kappa(\kappa)=\varepsilon-\int_0^\kappa D\,d\kappa'=\int_\kappa^\infty D\,d\kappa'\qquad(\kappa\ge\kappa_{EI}). \tag{15.11}
+\]
+<p>The flux at \(\kappa\) is the dissipation that remains above \(\kappa\). Evaluated for the model spectrum at the jet's \(\mathrm{Re}_\lambda\), \(\mathcal T_{EI}/\varepsilon=0.980\) and \(\mathcal T_{DI}/\varepsilon=0.890\), that is \(78.4\) and \(71.2\ \mathrm{m^2/s^3}\) for \(\varepsilon=80\ \mathrm{m^2/s^3}\); the dissipation inside the inertial subrange is \(0.090\,\varepsilon=7.2\ \mathrm{m^2/s^3}\), which agrees with the 9.0 % that chapter 11 computes for the \(-5/3\) law with the same limits. At the other Reynolds numbers \(\mathcal T_{EI}/\varepsilon=0.954\), 0.980 and 0.996 and \(\mathcal T_{DI}/\varepsilon=0.891\), 0.890 and 0.889 at \(\mathrm{Re}_\lambda=300\), 453 and 1000. The approximation \(\mathcal T_{EI}\approx\varepsilon\) holds to 2 % at the jet; \(\mathcal T_{DI}\approx\varepsilon\) holds to 11 %, and does not improve with Reynolds number, because 0.89 is the share of \(\varepsilon\) above \(\kappa_{DI}\), which depends on the dissipation spectrum in Kolmogorov variables and on the nominal factor 60. The flux is not constant in the nominal range: it falls by 9 % of \(\varepsilon\) at the jet, 11 % at \(\mathrm{Re}_\lambda=1000\). Figure 15.1 shows it.</p>
+<figure>
+<svg viewBox="0 0 740 260" role="img" aria-labelledby="fig-flux-title fig-flux-desc" font-family="Georgia, serif" font-size="13" fill="currentColor">
+<title id="fig-flux-title">Stationary spectral flux for the air jet in the model spectrum</title>
+<desc id="fig-flux-desc">The flux of energy through wavenumber divided by the dissipation rate, against wavenumber times the Kolmogorov length on a logarithmic axis from 0.025 to 3.2. The curve starts at 0.98 at the energy-demarcation wavenumber, falls to 0.89 at the dissipation-demarcation wavenumber, and falls below 0.03 by kappa eta = 1.</desc>
+<g stroke="currentColor" fill="none" stroke-width="1">
+<line x1="70" y1="190" x2="700" y2="190"/>
+<line x1="70" y1="190" x2="70" y2="40"/>
+<line x1="92.3" y1="40" x2="92.3" y2="190" stroke-dasharray="4 4"/>
+<line x1="256" y1="40" x2="256" y2="190" stroke-dasharray="4 4"/>
+<line x1="70" y1="190" x2="64" y2="190"/><line x1="70" y1="115" x2="64" y2="115"/><line x1="70" y1="40" x2="64" y2="40"/>
+<line x1="100" y1="190" x2="100" y2="196"/><line x1="250" y1="190" x2="250" y2="196"/><line x1="400" y1="190" x2="400" y2="196"/><line x1="550" y1="190" x2="550" y2="196"/><line x1="700" y1="190" x2="700" y2="196"/>
+</g>
+<polyline fill="none" stroke="currentColor" stroke-width="2" points="92.3,43.0 104.3,43.4 116.3,43.9 128.3,44.4 140.3,45.0 152.3,45.6 164.3,46.4 176.3,47.2 188.3,48.2 200.3,49.3 212.3,50.5 224.3,51.9 236.3,53.5 248.3,55.2 260.3,57.3 272.3,59.5 284.3,62.1 296.3,65.0 308.3,68.2 320.3,71.9 332.3,76.0 344.3,80.6 356.3,85.8 368.3,91.5 380.3,97.8 392.3,104.7 404.3,112.1 416.3,119.9 428.3,128.1 440.3,136.4 452.3,144.6 464.3,152.4 476.3,159.7 488.3,166.2 500.3,171.9 512.3,176.7 524.3,180.5 536.3,183.5 548.3,185.7 560.3,187.3 572.3,188.4 584.3,189.1 596.3,189.5 608.3,189.8 620.3,189.9 632.3,189.9 644.3,190.0 656.3,190.0 668.3,190.0 680.3,190.0 692.3,190.0"/>
+<g font-size="12">
+<text x="58" y="194" text-anchor="end">0</text><text x="58" y="119" text-anchor="end">0.5</text><text x="58" y="44" text-anchor="end">1</text>
+<text x="100" y="212" text-anchor="middle">10^-1.5</text><text x="250" y="212" text-anchor="middle">10^-1</text><text x="400" y="212" text-anchor="middle">10^-0.5</text><text x="550" y="212" text-anchor="middle">1</text><text x="700" y="212" text-anchor="middle">10^0.5</text>
+<text x="385" y="236" text-anchor="middle">kappa times eta</text>
+<text x="96" y="60" text-anchor="start">kappa_EI</text><text x="260" y="60" text-anchor="start">kappa_DI</text>
+<text x="270" y="86" text-anchor="start">flux / eps: 0.98 at EI, 0.89 at DI</text>
+</g>
+</svg>
+<figcaption>Figure 15.1. The stationary flux \(\mathcal T_\kappa(\kappa)/\varepsilon=1-\int_0^\kappa D\,d\kappa'/\varepsilon\) of (15.11), for the model spectrum at \(\mathrm{Re}_\lambda=453\) (the air jet), against \(\kappa\eta\) on a logarithmic axis. The curve is drawn from \(\kappa_{EI}\eta=0.030\) (left dashed line) because (15.11) assumes that the source acts below \(\kappa_{EI}\); the right dashed line is \(\kappa_{DI}\eta=0.105\). The curve is not constant in the inertial subrange: it falls from 0.98 to 0.89. The flux below \(\kappa_{EI}\) depends on how the source is distributed, which the lecture does not specify, and is not drawn.</figcaption>
+</figure>
+<p>The slide's sketch for very high Reynolds number (L42 5:38) draws \(\mathcal T_\kappa\) as a flat line at \(\varepsilon\) across the whole inertial subrange. Equation (15.11) shows when that is a good picture: when the dissipation inside the range, \(\int_{\kappa_{EI}}^{\kappa_{DI}}D\,d\kappa\), is small against \(\varepsilon\). In the model that share is 0.064, 0.090 and 0.107 of \(\varepsilon\) at \(\mathrm{Re}_\lambda=300\), 453 and 1000, with the nominal limits, so it increases slowly with \(\mathrm{Re}_\lambda\) while the range widens. The reason: as \(\kappa_{EI}\) falls the dissipation below it vanishes, and the share tends to the dissipation below \(\kappa_{DI}\); at \(\mathrm{Re}_\lambda=1000\) it is 0.107, close to the 0.111 that chapter 11 gives as the bound for the \(-5/3\) law with the same limits (that bound uses the unmodified power law). The flat line is the limit of the share of the inertial range, not the statement that the range dissipates nothing. In the lecture's own words the transfer term "does not matter in the overall scheme of things": integrated over all \(\kappa\) it adds to zero, so \(dk/dt=\mathcal P-\varepsilon\) with no trace of the cascade. The cascade appears in the fluxes (15.11) and in the distribution of the dissipation over the ranges, not in the total.</p>
+<p><strong>The slide's sign remark.</strong> The lecture notes that \(-\partial\mathcal T_\kappa/\partial\kappa\) is negative in the energy-containing range and positive in the dissipation range, with the explanation that energy is removed from the large scales and received at the small. This is correct, and (15.8) makes it precise: \(-\partial\mathcal T_\kappa/\partial\kappa=\Theta\) is the rate at which the nonlinear term gives energy to the shell at \(\kappa\); it is negative where the flux increases with \(\kappa\) (below the plateau) and positive where it decreases (above it). It is nearly zero where the flux is nearly constant. In the Taylor&ndash;Green flow of Part 4 at \(t=4\), the shell \(|\mathbf n|=2\) (which holds the initial modes of \(|\mathbf n|=\sqrt3\)) loses \(1.2\times10^{-2}\) and the shells 3 to 11 all gain.</p>
+
+<h2 id="how-high">How high must the Reynolds number be? <a class="timestamp" href="https://www.youtube.com/watch?v=xwif_UjmnEc&amp;t=777s">L42 12:57</a></h2>
+<p>All the statements about the ranges are made "at sufficiently high Reynolds number", and the lecture asks how high. Its answer is a slide with the exponent \(p\) of a power-law fit \(E(\kappa)\sim\kappa^{-p}\) to the inertial range of grid turbulence as a function of \(\mathrm{Re}_\lambda\). The symbols are data attributed on the slide to Mydlarski and Warhaft (1998); the dashed line is \(p=5/3\); the solid line is an empirical curve that the slide prints as</p>
+\[
+p=\frac53-8\,\mathrm{Re}_\lambda^{-3/4}. \tag{15.12}
+\]
+<p>(The lecture says "five-third is 1.67".) The printed curve is consistent with the plotted line: it gives 1.24 at \(\mathrm{Re}_\lambda=50\), where the line starts near 1.2, and 1.66 at \(10^4\). Its values at the Reynolds numbers of the lecture: 1.414 at 100 (the lecture reads "1.3 and 1.4" from the points), 1.516 at 200 (the slide's text says \(p=1.5\) at \(\mathrm{Re}_\lambda=200\)), 1.585 at 450 ("close to 1.6, not even 1.6" in the lecture) and 1.659 at \(10^4\). These are data and an empirical curve of unstated provenance; the chapter has not seen the source. The lecture offers no derivation for the exponent \(-3/4\) or the coefficient 8.</p>
+<p>"Close to \(5/3\)" needs a definition, and the chapter chooses one. The curve is within 5 % of \(5/3\) for \(\mathrm{Re}_\lambda\gt440\) and within 1 % for \(\mathrm{Re}_\lambda\gt3758\); the lecture's own reading, that \(p\) approaches 1.67 near \(\mathrm{Re}_\lambda=10^4\), corresponds to a 0.5 % gap. The jet at \(\mathrm{Re}_\lambda=453\) sits at the 5 % threshold. The atmospheric layer of chapter 5 (\(\mathrm{Re}_\lambda=1.73\times10^4\), chapter 11) is at 1.661, 0.3 % below.</p>
+<p><strong>Conversions that the lecture leaves rough.</strong> The lecture says that at \(\mathrm{Re}_\lambda=10^4\) "the integral-scale Reynolds number is more than a hundred thousand ... close to a million or so", and defers the exact number to the earlier relation. By (15.1), \(\mathrm{Re}_L=\tfrac3{20}\mathrm{Re}_\lambda^2=1.5\times10^7\) and, under the unit-constant identification of the jet, \(\mathrm{Re}_0=\mathrm{Re}_\lambda^2/15=6.7\times10^6\): the lecture's figure is low by a factor 7 to 15. The slide's second bullet calls "10 000 or \(\mathrm{Re}_\lambda=150\)" a reasonably high Reynolds number; by (15.1) \(\mathrm{Re}_\lambda=150\) corresponds to \(\mathrm{Re}_L=3375\) and \(\mathrm{Re}_0=1500\), and \(\mathrm{Re}_L=10^4\) to \(\mathrm{Re}_\lambda=258\). If the slide's 10 000 is read as \(\mathrm{Re}_L\), the two figures differ by a factor 1.7 in \(\mathrm{Re}_\lambda\) (258 against 150); if it is read as \(\mathrm{Re}_0\), \(\mathrm{Re}_\lambda=387\), a factor 2.6. The slide does not say which Reynolds number it means, and (15.1) assumes isotropy and, for \(\mathrm{Re}_0\), the unit constant in \(\varepsilon\sim u_0^3/\ell_0\).</p>
+<p><strong>The model cannot show the deficit.</strong> At the geometric mean of the nominal demarcations, the local exponent \(-d\ln E/d\ln\kappa\) of the model is 1.667, 1.666 and 1.666 at \(\mathrm{Re}_\lambda=300\), 453 and 1000, against 1.56, 1.585 and 1.622 from (15.12). The model has \(-5/3\) built into (15.2) and bends away from it only at the edges, so it reproduces the growth of the \(-5/3\) region and not the measured exponent deficit. The same slide's measured exponent therefore carries information that the model does not contain; the lecture does not say what physical mechanism produces it, and the chapter does not claim one.</p>
+<p><strong>Why the hypotheses still work.</strong> The slide argues that the shortcomings have a minor effect on the modelling of flows, because the small scales carry little energy (and less anisotropy) and have little direct effect on the flow. The lecture gives "80 % in the energy-containing range, 10 to 15 % in the dissipation range" for the energy. In the model at the jet's \(\mathrm{Re}_\lambda\) the energy above \(\kappa_{DI}\) is 3.6 % of \(k\) (5.4 % at \(\mathrm{Re}_\lambda=300\), 1.6 % at 1000), and the energy in the energy-containing range is 88.9 %; the lecture's "10 to 15 %" is not the share of the dissipation range alone. It matches the energy above \(\kappa_{EI}\), the whole universal equilibrium range, which the model puts at 10.0 %, 11.1 % and 12.3 % of \(k\) at \(\mathrm{Re}_\lambda=300\), 453 and 1000. The argument that small scales matter little to the energy is supported by the 3.6 %. It is not an argument about the dissipation: 89 % of \(\varepsilon\) is above \(\kappa_{DI}\) in the same spectrum, and a model that gets \(\varepsilon\) from the large scales through \(\varepsilon\sim u_0^3/\ell_0\) needs the small scales only to carry it away. The slide adds that motions at the dissipative scales are found to be anisotropic. That is a statement about measured departures from local isotropy; chapter 10 reports the measurements of Schumacher, Sreenivasan and Yeung (2003) in shear flows, whose odd derivative moments decrease more slowly than the simplest estimate.</p>
+
+<h2 id="moments">Higher-order moments and internal intermittency <a class="timestamp" href="https://www.youtube.com/watch?v=xwif_UjmnEc&amp;t=1200s">L42 20:00</a></h2>
+<p>Everything so far concerns second-order statistics, the spectrum and quantities integrated against it. The lecture turns to the normalized velocity-derivative moments of the slide,</p>
+\[
+M_n=\frac{\langle(\partial u_1/\partial x_1)^n\rangle}{\langle(\partial u_1/\partial x_1)^2\rangle^{n/2}}, \tag{15.13}
+\]
+<p>of which \(M_3\) is the skewness \(S\) and \(M_4\) the flatness (the slide says kurtosis, \(K\); chapter 7 says flatness). The first similarity hypothesis implies that every \(M_n\) is a universal constant, since the derivative is a small-scale quantity. The slide reports that \(S\) and \(K\) are not constant but increase with Reynolds number, and, for \(K\), "do not appear to reach an asymptote, but ... are consistent with an indefinite increase, possibly as \(K\sim\mathrm{Re}_\lambda^{3/8}\)", with measurements compiled by Van Atta and Antonia (1980) as the data. (The lecture says "an indefinite decrease" in speech; the slide and the plot say increase, and the slide's figure shows \(K\) from about 4 at \(\mathrm{Re}_\lambda=10\) to about 40 at \(3\times10^4\).)</p>
+<p><strong>A correction.</strong> The slide states that a Gaussian variable has \(S=0\) and \(K=4\). The flatness of a Gaussian is 3 (chapter 7, Table 7.1 and its exercise on the Gaussian moments; the slide's 4 is a slip, repeated in the lecture at L42 20:47). The statement of the slide is otherwise unchanged: the measured flatness exceeds the Gaussian value, and the departure grows with \(\mathrm{Re}_\lambda\). On the slide's own line \(K\propto\mathrm{Re}_\lambda^{3/8}\) the increase from \(\mathrm{Re}_\lambda=100\) to \(10^4\) is a factor \(100^{3/8}=5.6\).</p>
+<p><strong>The simulation data.</strong> Kerr (1983, NASA TM 84407, Table 3, p. 35) gives, for the forced isotropic runs F1&ndash;F2 and F25&ndash;F27, the flatness of \(\partial u_1/\partial x_1\) (his \(F_1\)) as 3.39 at \(\mathrm{Re}_\lambda=9.0\) and 5.11 at 82.9, a local exponent \(\ln(5.11/3.39)/\ln(82.9/9.0)=0.185\), about half of 3/8. The two exponents are different statements about different ranges: the simulations stop near \(\mathrm{Re}_\lambda=83\) and the slide's line summarizes experiments to \(3\times10^4\). Neither is a check on the other. If the 3/8 line passed through Kerr's value at 82.9, it would give \(K=9.7\) at \(\mathrm{Re}_\lambda=453\) (Exercise 5).</p>
+<p><strong>What the refined hypotheses say.</strong> The lecture attributes the discrepancies to "internal intermittency" and does not develop it. Chapter 10, (10.22), states Kolmogorov's 1962 refinement: the moments of order \(p\) of the longitudinal velocity difference \(\Delta_{dd}(r)=u_1(x_1+r,x_2,x_3)-u_1(x_1,x_2,x_3)\) over a distance \(r\) are (Kolmogorov 1962, p. 84, equation (10); in this section and in Exercise 5 the letter \(p\) is the order of the moment, as in the paper and in chapter 10, and not the spectral exponent of (15.12))</p>
+\[
+\overline{|\Delta_{dd}(r)|^p}=C_p(\mathbf x,t)\,(r\bar\varepsilon)^{p/3}\Bigl(\frac Lr\Bigr)^{\chi p(p-3)/2}, \tag{15.14}
+\]
+<p>with \(\bar\varepsilon\) the mean dissipation rate, written \(\varepsilon\) elsewhere in this chapter, \(C_p(\mathbf x,t)\) a coefficient that may depend on position and time but not on \(r\), \(L\) the external scale of the flow, and \(\chi\) a universal constant that the paper does not evaluate (the paper writes \(k\) for \(\chi\); the chapter uses \(\chi\) because \(k\) is the kinetic energy). Standardize the fourth moment by the square of the second. The factors \((r\bar\varepsilon)^{p/3}\) cancel, \((L/r)^{\chi\cdot4\cdot1/2}=(L/r)^{2\chi}\) comes from \(p=4\) and \((L/r)^{-2\chi}\) from the square of the \(p=2\) moment, and the ratio is \((L/r)^{4\chi}\). Suppose, as a teaching construction and not a result of the lecture, three things: that the derivative flatness equals the increment flatness at \(r=\eta\); that \(C_4/C_2^2\) does not depend on Reynolds number; and that the external scale is \(L=k^{3/2}/\varepsilon\), so that \(L/\eta=\mathrm{Re}_L^{3/4}\propto\mathrm{Re}_\lambda^{3/2}\) by (15.1) (any external scale proportional to \(k^{3/2}/\varepsilon\) gives the same exponent; Table 15.1 shows that \(L_{11}/L\) changes by 17 % between \(\mathrm{Re}_\lambda=100\) and 300 and by 6 % between 300 and 1000, so \(L_{11}\) is only approximately such a scale). Then</p>
+\[
+K\propto\Bigl(\frac L\eta\Bigr)^{4\chi}\propto\mathrm{Re}_\lambda^{6\chi}. \tag{15.15}
+\]
+<p>The slide's 3/8 corresponds to \(\chi=1/16=0.0625\). That value is not given anywhere in the sources the chapter has seen, and the three assumptions are strong, so (15.15) shows the form of the dependence that the refinement implies (a power law, with a flatness that does not saturate), and it does not test the refinement. The qualitative agreement with the slide is the point the lecture makes: the departures are attributed to the intermittency of the dissipation, which the 1941 hypotheses, built on the mean dissipation, omit.</p>
+<p><strong>Why the lecture says the discrepancies matter little.</strong> The slide states that for the mean velocity and the Reynolds stresses these issues are of minor significance, because the energy and anisotropy lie in the large scales, while internal intermittency concerns rare events visible in higher-order statistics of small-scale quantities; for the energy cascade, "of much more importance is the question of what determines the rate of energy transfer \(\mathcal T_{EI}\) from the energy-containing scales". The statement is a judgment of the lecture, graded as follows. The first part is supported by the shares above: the model puts 3.6 % of the energy above \(\kappa_{DI}\). The second is the question that chapter 10 answers with the empirical \(\varepsilon\approx C_\varepsilon u_0^3/\ell_0\), where the McComb et al. fit has a constant that depends on Reynolds number through \(C_{\varepsilon,\infty}+C'/\mathrm{Re}_L\) (chapter 10, (10.7)); the balance of this chapter fixes \(\mathcal T_{EI}\) in terms of \(\varepsilon\) and cannot say what sets \(\varepsilon\). The lecture's last practical remark, that agreement of a computation with experiment in the mean and the variance does not validate a model and that derivative skewness and flatness, and their Reynolds-number dependence, are further tests, is a recommendation, not a derived result.</p>
+
+<h2 id="implementation">Executable check</h2>
+<p>The program has four parts. Part 1 solves the model spectrum (15.2) at four \(\mathrm{Re}_\lambda\) (inputs: \(C=1.5\), \(\beta=5.2\), \(p_0=2\), \(\mathrm{Re}_\lambda\)) and prints Table 15.1 and the dissipation-range comparison; the integrals are trapezoid sums on a logarithmic grid with 40 001 points from \(10^{-6}\) to 30 in \(\kappa\eta\). Part 2 evaluates (15.11), the shares of energy and dissipation and the local exponent for the jet-like identification \(\ell_0/\eta=(\mathrm{Re}_\lambda^2/15)^{3/4}\). Part 3 evaluates the slide's formula (15.12) and the conversions of (15.1). Part 4 evolves a Taylor&ndash;Green flow to \(t=4\) on a \(32^3\) grid (Runge&ndash;Kutta of fourth order, step 0.02, \(\nu=0.01\), the two-thirds truncation \(|n_j|\le10\)), forms the transfer \(\Theta\) for each integer shell \(\mathrm{round}(|\mathbf n|)\) from \(-\mathrm{Re}(\hat{\mathbf u}^*\cdot\hat{\mathbf G})\) with \(\hat G_j=i\kappa_k\,\mathrm{FFT}(u_ju_k)\), and checks (15.7) and the end condition of the flux. Assumptions: homogeneous isotropic statistics for Part 1 (the \(L_{11}\) relation) and Part 2; a source below \(\kappa_{EI}\) for (15.11); Part 4 is one deterministic realization, not an ensemble. Failure behaviour: if the Newton iteration does not converge in 60 steps the last iterate is used, and the printed constants would then disagree with the integral conditions; the grid is too short at the low end for \(\mathrm{Re}_\lambda\gt3\times10^4\). The run takes about 25 s.</p>
+<pre><code class="language-python">import numpy as np
+
+C, BETA, P0 = 1.5, 5.2, 2.0
+
+
+def model(x, rl, cl, ce):
+    """E/(eta u_eta^2) at x = kappa*eta; rl = L/eta (model spectrum, p0 = 2)."""
+    fl = (rl * x / np.sqrt((rl * x) ** 2 + cl)) ** (5 / 3 + P0)
+    fe = np.exp(-BETA * ((x ** 4 + ce ** 4) ** 0.25 - ce))
+    return C * x ** (-5 / 3) * fl * fe
+
+
+def integ(y, x):
+    """Trapezoid integral of y dx on the log grid x."""
+    return np.sum(0.5 * (y[1:] + y[:-1]) * np.diff(x))
+
+
+X = np.logspace(-6, np.log10(30.0), 40001)
+
+
+def solve(re_lambda):
+    """Fix c_L, c_eta so that int E = k and int 2 x^2 E = eps (units eps = nu = 1)."""
+    re_l = 3 * re_lambda ** 2 / 20                 # Re_L = (3/20) Re_lambda^2
+    rl, k = re_l ** 0.75, re_l ** 0.5              # L/eta and k/u_eta^2
+    p = np.log([6.0, 0.4])
+    for _ in range(60):
+        def res(q):
+            e = model(X, rl, *np.exp(q))
+            return np.array([integ(e, X) / k - 1, integ(2 * X ** 2 * e, X) - 1])
+        f = res(p)
+        if np.max(np.abs(f)) &lt; 1e-10:
+            break
+        jac = np.empty((2, 2))
+        for j in range(2):
+            dq = np.zeros(2); dq[j] = 1e-6
+            jac[:, j] = (res(p + dq) - f) / 1e-6
+        p = p - np.linalg.solve(jac, f)
+    return rl, k, np.exp(p[0]), np.exp(p[1])
+
+
+print("Part 1: model spectrum at four Reynolds numbers (eps = nu = 1, so eta = u_eta = 1)")
+print("Re_lam L/eta    c_L    c_eta  L11/L  kL11 peak  E_pk/(k L11)  E_pk/(eta u^2)  width(f&gt;=0.9)  nominal width")
+dis_ref = None
+for rel in (30, 100, 300, 1000):
+    rl, k, cl, ce = solve(rel)
+    e = model(X, rl, cl, ce)
+    l11 = 3 * np.pi / (4 * k) * integ(e / X, X)              # isotropic relation
+    ip = np.argmax(e)
+    comp = e * X ** (5 / 3) / C                              # f_L f_eta, 1 in the ideal range
+    ok = X[comp &gt;= 0.9]
+    width = np.log10(ok.max() / ok.min()) if ok.size else 0.0
+    print(f"{rel:6d} {rl:8.1f} {cl:6.2f} {ce:6.3f} {l11/rl:6.3f} {X[ip]*l11:9.3f} "
+          f"{e[ip]/(k*l11):12.4f} {e[ip]:14.1f} {width:12.2f} "
+          f"{max(0.0, np.log10((2*np.pi/60)/(2*np.pi/((rel**2/15)**0.75/6)))):14.2f}")
+    sel = np.argmin(np.abs(X - 0.3)); sel2 = np.argmin(np.abs(X - 0.5))
+    if rel == 1000:
+        ref = (e[sel], e[sel2])
+    if rel == 30:
+        r30 = (e[sel], e[sel2])
+    if rel == 100:
+        r100 = (e[sel], e[sel2])
+print("E(0.3/eta), E(0.5/eta) at Re_lam 30 and 100 divided by the Re_lam = 1000 values:",
+      f"{r30[0]/ref[0]:.3f} {r30[1]/ref[1]:.3f} and {r100[0]/ref[0]:.3f} {r100[1]/ref[1]:.3f}")
+
+print()
+print("Part 2: stationary flux T(kappa)/eps = 1 - D(0,kappa)/eps, production below kappa_EI")
+print("air jet: Re_lam 453, l0/eta = (Re_lam^2/15)^(3/4), kappa_EI = 2 pi/(l0/6), kappa_DI = 2 pi/(60 eta)")
+for rel in (100, 300, 453, 1000):
+    rl, k, cl, ce = solve(rel)
+    e = model(X, rl, cl, ce)
+    d = 2 * X ** 2 * e
+    cum_d = np.concatenate(([0], np.cumsum(0.5 * (d[1:] + d[:-1]) * np.diff(X))))
+    cum_k = np.concatenate(([0], np.cumsum(0.5 * (e[1:] + e[:-1]) * np.diff(X)))) / k
+    l0 = (rel ** 2 / 15) ** 0.75
+    xei, xdi = 2 * np.pi / (l0 / 6), 2 * np.pi / 60
+    if xei &gt;= xdi:
+        print(f"Re_lam {rel:5d}: kappa_EI*eta {xei:.4f} &gt;= kappa_DI*eta {xdi:.4f}: no inertial subrange")
+        continue
+    a, b = np.interp(xdi, X, cum_d), np.interp(xei, X, cum_d)
+    print(f"Re_lam {rel:5d}: l0/eta {l0:7.0f}, kappa_EI*eta {xei:.4f}, kappa_DI*eta {xdi:.4f}")
+    print(f"   energy share k(0,EI)/k = {np.interp(xei, X, cum_k):.3f}; dissipation below EI = {b:.3f}, "
+          f"between = {a-b:.3f}, above DI = {1-a:.3f}")
+    mid = np.sqrt(xei * xdi)                                  # geometric mean of the two demarcations
+    dl = (np.log(e[2:]) - np.log(e[:-2])) / (np.log(X[2:]) - np.log(X[:-2]))     # dlnE/dlnk on the grid
+    slope = -np.interp(np.log(mid), np.log(X[1:-1]), dl)
+    print(f"   energy above DI = {1-np.interp(xdi, X, cum_k):.3f}; local exponent -dlnE/dlnk at the geometric mean = {slope:.3f}")
+    print(f"   flux: T(EI)/eps = {1-b:.3f}, T(DI)/eps = {1-a:.3f}; "
+          f"T(EI)-T(DI) = {a-b:.3f} = dissipation inside the inertial subrange")
+
+
+print()
+print("Part 3: numbers read from the slides")
+for rel in (50, 100, 200, 450, 1000, 3700, 10000):
+    p = 5 / 3 - 8 * rel ** -0.75
+    print(f"Re_lam {rel:6d}: p = 5/3 - 8 Re_lam^(-3/4) = {p:.3f}  ({100*(5/3-p)/(5/3):.1f} % below 5/3)")
+for gap in (0.05, 0.01):
+    print(f"p within {100*gap:.0f} % of 5/3 needs Re_lam &gt; {(8 / (gap * 5 / 3)) ** (4 / 3):.0f}")
+rel = 1e4
+print(f"Re_lam = 1e4: Re_L = 3 Re_lam^2/20 = {3*rel**2/20:.2e}, Re_0 = Re_lam^2/15 = {rel**2/15:.2e}")
+print(f"Re_lam = 150: Re_L = {3*150**2/20:.0f}, Re_0 = {150**2/15:.0f};  Re_L = 1e4: Re_lam = {(20e4/3)**0.5:.0f}")
+print(f"K ~ Re_lam^(3/8): factor from 100 to 1e4 = {100**0.375:.2f}; Kerr flatness 3.39 -&gt; 5.11 over Re_lam 9.0 -&gt; 82.9: "
+      f"local exponent {np.log(5.11/3.39)/np.log(82.9/9.0):.3f}")
+
+print()
+print("Part 4: exact transfer in a periodic box, Taylor-Green flow evolved to t = 4 (32^3 points, nu = 0.01)")
+n, nu, dt = 32, 0.01, 0.02
+g = 2 * np.pi * np.arange(n) / n
+x, y, z = np.meshgrid(g, g, g, indexing="ij")
+m = np.fft.fftfreq(n, 1 / n)
+kv = np.array(np.meshgrid(m, m, m, indexing="ij"))
+k2 = np.sum(kv ** 2, axis=0)
+mask = np.all(np.abs(kv) &lt;= 10, axis=0)                        # 2/3 rule: no aliasing into kept modes
+proj = np.eye(3)[:, :, None, None, None] - kv[:, None] * kv[None, :] / np.where(k2 == 0, 1, k2)
+u0 = np.array([np.sin(x) * np.cos(y) * np.cos(z), -np.cos(x) * np.sin(y) * np.cos(z), 0 * x])
+uh = np.fft.fftn(u0, axes=(1, 2, 3)) / n ** 3 * mask
+
+
+def gfun(uh):
+    """G_j = i kappa_k FFT(u_j u_k), the nonlinear term of the mode equation, truncated to kept modes."""
+    u = np.real(np.fft.ifftn(uh, axes=(1, 2, 3))) * n ** 3
+    gh = np.zeros_like(uh)
+    for j in range(3):
+        for k in range(3):
+            gh[j] += 1j * kv[k] * np.fft.fftn(u[j] * u[k]) / n ** 3
+    return gh * mask
+
+
+def rhs(uh):
+    return -np.einsum("jk...,k...-&gt;j...", proj, gfun(uh)) - nu * k2 * uh
+
+
+for _ in range(int(round(4 / dt))):                             # RK4
+    a1 = rhs(uh); a2 = rhs(uh + 0.5 * dt * a1); a3 = rhs(uh + 0.5 * dt * a2); a4 = rhs(uh + dt * a3)
+    uh = uh + dt / 6 * (a1 + 2 * a2 + 2 * a3 + a4)
+gain = -np.real(np.sum(np.conj(uh) * gfun(uh), axis=0))        # nonlinear energy gain of each mode
+shell = np.rint(np.sqrt(k2)).astype(int)
+t_shell = np.bincount(shell.ravel(), weights=gain.ravel())
+e_shell = np.bincount(shell.ravel(), weights=(0.5 * np.sum(np.abs(uh) ** 2, axis=0)).ravel())
+flux = -np.cumsum(t_shell)                                      # T_kappa through the outer edge of each shell
+print(f"energy = {e_shell.sum():.6f};  max |kappa . u_hat| = {np.abs(np.sum(kv * uh, axis=0)).max():.1e}")
+print(f"sum over all modes of the nonlinear gain = {gain.sum():.2e}  (largest single shell gain {np.abs(t_shell).max():.2e})")
+for s_ in range(1, 12):
+    print(f"shell {s_:2d}: energy {e_shell[s_]:.3e}  gain {t_shell[s_]: .3e}  flux through outer edge {flux[s_]: .3e}")
+print(f"flux through the edge of the last kept shell (17) = {flux[17]:.2e}")</code></pre>
+<p>The output is:</p>
+<pre><code>Part 1: model spectrum at four Reynolds numbers (eps = nu = 1, so eta = u_eta = 1)
+Re_lam L/eta    c_L    c_eta  L11/L  kL11 peak  E_pk/(k L11)  E_pk/(eta u^2)  width(f&gt;=0.9)  nominal width
+    30     39.6   3.02  0.460  0.827     1.573       0.2043           77.7         0.08           0.00
+   100    241.0   5.12  0.410  0.543     1.345       0.2004         1015.1         0.86           0.00
+   300   1252.4   6.15  0.403  0.466     1.267       0.2000        13578.2         1.53           0.28
+  1000   7622.0   6.59  0.402  0.441     1.239       0.2000       260304.0         2.30           1.06
+E(0.3/eta), E(0.5/eta) at Re_lam 30 and 100 divided by the Re_lam = 1000 values: 1.006 1.163 and 1.006 1.026
+
+Part 2: stationary flux T(kappa)/eps = 1 - D(0,kappa)/eps, production below kappa_EI
+air jet: Re_lam 453, l0/eta = (Re_lam^2/15)^(3/4), kappa_EI = 2 pi/(l0/6), kappa_DI = 2 pi/(60 eta)
+Re_lam   100: kappa_EI*eta 0.2873 &gt;= kappa_DI*eta 0.1047: no inertial subrange
+Re_lam   300: l0/eta     682, kappa_EI*eta 0.0553, kappa_DI*eta 0.1047
+   energy share k(0,EI)/k = 0.900; dissipation below EI = 0.046, between = 0.064, above DI = 0.891
+   energy above DI = 0.054; local exponent -dlnE/dlnk at the geometric mean = 1.667
+   flux: T(EI)/eps = 0.954, T(DI)/eps = 0.891; T(EI)-T(DI) = 0.064 = dissipation inside the inertial subrange
+Re_lam   453: l0/eta    1265, kappa_EI*eta 0.0298, kappa_DI*eta 0.1047
+   energy share k(0,EI)/k = 0.889; dissipation below EI = 0.020, between = 0.090, above DI = 0.890
+   energy above DI = 0.036; local exponent -dlnE/dlnk at the geometric mean = 1.666
+   flux: T(EI)/eps = 0.980, T(DI)/eps = 0.890; T(EI)-T(DI) = 0.090 = dissipation inside the inertial subrange
+Re_lam  1000: l0/eta    4149, kappa_EI*eta 0.0091, kappa_DI*eta 0.1047
+   energy share k(0,EI)/k = 0.877; dissipation below EI = 0.004, between = 0.107, above DI = 0.889
+   energy above DI = 0.016; local exponent -dlnE/dlnk at the geometric mean = 1.666
+   flux: T(EI)/eps = 0.996, T(DI)/eps = 0.889; T(EI)-T(DI) = 0.107 = dissipation inside the inertial subrange
+
+Part 3: numbers read from the slides
+Re_lam     50: p = 5/3 - 8 Re_lam^(-3/4) = 1.241  (25.5 % below 5/3)
+Re_lam    100: p = 5/3 - 8 Re_lam^(-3/4) = 1.414  (15.2 % below 5/3)
+Re_lam    200: p = 5/3 - 8 Re_lam^(-3/4) = 1.516  (9.0 % below 5/3)
+Re_lam    450: p = 5/3 - 8 Re_lam^(-3/4) = 1.585  (4.9 % below 5/3)
+Re_lam   1000: p = 5/3 - 8 Re_lam^(-3/4) = 1.622  (2.7 % below 5/3)
+Re_lam   3700: p = 5/3 - 8 Re_lam^(-3/4) = 1.650  (1.0 % below 5/3)
+Re_lam  10000: p = 5/3 - 8 Re_lam^(-3/4) = 1.659  (0.5 % below 5/3)
+p within 5 % of 5/3 needs Re_lam &gt; 440
+p within 1 % of 5/3 needs Re_lam &gt; 3758
+Re_lam = 1e4: Re_L = 3 Re_lam^2/20 = 1.50e+07, Re_0 = Re_lam^2/15 = 6.67e+06
+Re_lam = 150: Re_L = 3375, Re_0 = 1500;  Re_L = 1e4: Re_lam = 258
+K ~ Re_lam^(3/8): factor from 100 to 1e4 = 5.62; Kerr flatness 3.39 -&gt; 5.11 over Re_lam 9.0 -&gt; 82.9: local exponent 0.185
+
+Part 4: exact transfer in a periodic box, Taylor-Green flow evolved to t = 4 (32^3 points, nu = 0.01)
+energy = 0.086833;  max |kappa . u_hat| = 2.5e-17
+sum over all modes of the nonlinear gain = -1.84e-18  (largest single shell gain 1.21e-02)
+shell  1: energy 8.442e-34  gain -4.299e-37  flux through outer edge  4.299e-37
+shell  2: energy 5.106e-02  gain -1.208e-02  flux through outer edge  1.208e-02
+shell  3: energy 2.878e-02  gain  5.370e-03  flux through outer edge  6.714e-03
+shell  4: energy 3.622e-03  gain  2.734e-03  flux through outer edge  3.980e-03
+shell  5: energy 1.424e-03  gain  1.065e-03  flux through outer edge  2.915e-03
+shell  6: energy 9.421e-04  gain  1.131e-03  flux through outer edge  1.784e-03
+shell  7: energy 4.957e-04  gain  7.222e-04  flux through outer edge  1.062e-03
+shell  8: energy 2.868e-04  gain  4.470e-04  flux through outer edge  6.148e-04
+shell  9: energy 6.787e-05  gain  1.642e-04  flux through outer edge  4.506e-04
+shell 10: energy 1.226e-04  gain  3.278e-04  flux through outer edge  1.228e-04
+shell 11: energy 1.801e-05  gain  5.121e-05  flux through outer edge  7.158e-05
+flux through the edge of the last kept shell (17) = -6.47e-19</code></pre>
+<p>Reading the output. Part 1 reproduces Table 15.1 and the dissipation-range ratios (1.006 and 1.163 at \(\mathrm{Re}_\lambda=30\); 1.006 and 1.026 at 100). Part 2 gives the shares used in the sections above; the three shares sum to 1.000 at each Reynolds number, which checks the integration. Part 4 shows the property of (15.7): the sum of the nonlinear gains over all modes is \(-1.8\times10^{-18}\) against shell gains of order \(10^{-2}\), and the flux, positive through every shell shown (energy moves to higher wavenumbers throughout), is \(-6.5\times10^{-19}\) at the last retained shell. The jet-like identifications are those of chapter 11; with another constant in \(\varepsilon\sim u_0^3/\ell_0\) the values of \(\ell_0/\eta\) in Part 2 change.</p>
+
+<h2 id="limits">What the relations establish and what they do not</h2>
+<p><strong>Exact.</strong> The balance (15.6) with the transfer (15.5), the conservation (15.7), the flux form (15.3), the band equation (15.9) and its three-range form (15.10), and their sum \(dk/dt=\mathcal P-\varepsilon\), are exact in the periodic box with the force of Step 1; they need incompressibility, homogeneity (or periodicity) and nothing else. The stationary flux (15.11) is exact for a stationary flow whose source lies below \(\kappa_{EI}\). <strong>Not derived here.</strong> The slide's production spectrum for a mean velocity gradient; the lecture does not derive it, and the periodic-box force is a stand-in with the same role. <strong>Closure.</strong> The balance does not determine \(E\) or \(\mathcal T_\kappa\); the transfer contains triple correlations. <strong>Approximations.</strong> The slide's three range equations drop \(\varepsilon_{EC}\), \(\mathcal P_I\), \(\mathcal P_D\) and the time derivatives and replace \(E_{EC}\) by \(k\); the model puts the first at 0.4 to 4.6 % of \(\varepsilon\) and the last at 10 to 12 % of \(k\). <strong>Model.</strong> The spectrum (15.2) has the \(-5/3\) law and the three-range structure built in; its widths and fluxes are properties of the interpolation. Its \(f_Lf_\eta\ge0.9\) width and the book's 10 % threshold are definitions of this chapter. <strong>Empirical.</strong> The exponent curve (15.12) and the \(3/8\) law are the slides' summaries of measurements that the chapter has not opened; the 1.585 at \(\mathrm{Re}_\lambda=453\) is the value of a printed empirical curve at a Reynolds number inside its data range, not a measurement of the jet. <strong>Hypothesis.</strong> The universality of \(M_n\) and of the dissipation range is the first similarity hypothesis; the data on the slides contradict it for \(n\ge3\) over the measured range, and it holds, if at all, in an asymptotic sense, which the slides do not quantify. <strong>The lecture's speech.</strong> The reasons given for \(\mathcal T_\kappa(\infty)=0\) and for "10 to 15 % of the energy in the dissipation range", the Gaussian kurtosis 4, "indefinite decrease", and the integral-scale Reynolds number "close to a million" at \(\mathrm{Re}_\lambda=10^4\) are corrected in the sections above.</p>
+
+<h2 id="exercises">Exercises</h2>
+<p><strong>Exercise 1 (derive, compute).</strong> (a) Derive (15.9) from (15.3) and show that the three equations (15.10) sum to \(dk/dt=\mathcal P-\varepsilon\). (b) For the jet, stationary, with the source below \(\kappa_{EI}\), and the shares 0.020, 0.090 and 0.890 of \(\varepsilon\) that the program gives below \(\kappa_{EI}\), between the demarcations and above \(\kappa_{DI}\), find \(\mathcal T_{EI}\), \(\mathcal T_{DI}\) and the dissipation inside the inertial subrange in \(\mathrm m^2/\mathrm s^3\).</p>
+<details><summary>Solution</summary>
+<p>(a) Integrate (15.3) over \((\kappa_a,\kappa_b)\). The time derivative and the source and dissipation terms integrate to \(dE_{(a,b)}/dt\), \(\mathcal P_{(a,b)}\) and \(\varepsilon_{(a,b)}\); the transfer term gives \(-\int\partial\mathcal T_\kappa/\partial\kappa\,d\kappa=\mathcal T_\kappa(\kappa_a)-\mathcal T_\kappa(\kappa_b)\), which is (15.9). For the three bands the terms \(-\mathcal T_{EI}\) and \(+\mathcal T_{EI}\), and \(-\mathcal T_{DI}\) and \(+\mathcal T_{DI}\), cancel in the sum, \(\mathcal T_\kappa(0)=0\) and \(\mathcal T_\kappa(\infty)=0\) remove the ends, and the sum is \(d(E_{EC}+E_I+E_D)/dt=\mathcal P-\varepsilon\). (b) By (15.11), \(\mathcal T_{EI}=(1-0.020)\,80=78.4\), \(\mathcal T_{DI}=0.890\cdot80=71.2\) and the dissipation inside the range is \(78.4-71.2=7.2=0.090\cdot80\ \mathrm{m^2/s^3}\). The three shares sum to 1.000, which is the check that the whole of \(\varepsilon\) is accounted for.</p>
+</details>
+<p><strong>Exercise 2 (derive, compute).</strong> Show that \(f_L=\tfrac12\) at \(y=1.475\,c_L^{1/2}\), where \(f_L(y)=[y/(y^2+c_L)^{1/2}]^{11/3}\). Using \(c_L=5.12\), 6.15 and 6.59 and \(L/\eta=241\), 1252 and 7622 for \(\mathrm{Re}_\lambda=100\), 300 and 1000, find the wavenumber \(\kappa\eta\) at which \(f_L=\tfrac12\), and compare the ratio of the values for 100 and 1000 with \(\mathrm{Re}_\lambda^{-3/2}\).</p>
+<details><summary>Solution</summary>
+<p>\(f_L=\tfrac12\) means \([y^2/(y^2+c_L)]^{11/6}=\tfrac12\), so \(y^2/(y^2+c_L)=2^{-6/11}=0.6852\) and \(y^2=c_L\,2^{-6/11}/(1-2^{-6/11})=c_L/(2^{6/11}-1)=2.176\,c_L\), that is \(y=1.475\,c_L^{1/2}\). (Check: \(2.176/3.176=0.6852\) and \(0.6852^{11/6}=0.500\).) Then \(\kappa\eta=y/(L/\eta)\): \(1.475\cdot2.263/241=0.0139\), \(1.475\cdot2.480/1252=0.00292\) and \(1.475\cdot2.567/7622=5.0\times10^{-4}\). At these wavenumbers \(f_\eta=1.0000\), so the edge belongs to \(f_L\) alone. The ratio of the first to the third is 27.9. The law \(\mathrm{Re}_\lambda^{-3/2}\) predicts \(10^{3/2}=31.6\); the difference is the factor \((6.59/5.12)^{1/2}=1.134\) from the dependence of \(c_L\) on \(\mathrm{Re}_\lambda\) (\(31.6/1.134=27.9\)).</p>
+</details>
+<p><strong>Exercise 3 (judge).</strong> A student writes: "\(\mathcal T_\kappa(0)=0\) because there is no energy below zero wavenumber, and \(\mathcal T_\kappa(\infty)=0\) because there are no scales above infinity." Judge each part, and decide what would happen to the flux at the last retained wavenumber of a computation whose nonlinear term were changed by adding a drag \(-\sigma\hat{\mathbf u}\) to every mode, with \(\sigma=0.05\), for the Taylor&ndash;Green field of Part 4 (\(k=0.086833\)).</p>
+<details><summary>Solution</summary>
+<p>The first part is correct in the sense that \(\mathcal T_\kappa(0)\) is the integral in (15.8) over an empty interval. The second is not the reason. The flux at the top is \(-\int_0^\infty\Theta\,d\kappa\), and it vanishes because the nonlinear term conserves energy, (15.7) from chapter 12, (12.22), which uses incompressibility and periodicity; a computation with a retained last wavenumber has no "scales above" and still gets zero because the truncated sum conserves energy (Part 4: \(-6.5\times10^{-19}\)). With a drag \(-\sigma\hat{\mathbf u}\) the gain of each mode is changed by \(-\sigma|\hat{\mathbf u}|^2\), and the sum over modes becomes \(-2\sigma k=-2(0.05)(0.086833)=-8.7\times10^{-3}\). Then \(\Theta\) no longer integrates to zero and the flux at the last wavenumber is \(+8.7\times10^{-3}\): the added term is a sink distributed over all wavenumbers, which (15.8) would count as a flux out of the top. The correct bookkeeping puts such a term in the dissipation, not in the transfer.</p>
+</details>
+<p><strong>Exercise 4 (compute, judge).</strong> Using (15.12), find the smallest \(\mathrm{Re}_\lambda\) at which \(p\) is within 2 % of \(5/3\), the corresponding \(\mathrm{Re}_0\) and \(\ell_0/\eta\) under the jet identification (15.1), and say whether the atmospheric layer of chapter 5 (\(\mathrm{Re}_\lambda=1.73\times10^4\)) and the jet (453) meet it.</p>
+<details><summary>Solution</summary>
+<p>\(8\,\mathrm{Re}_\lambda^{-3/4}=0.02\cdot\tfrac53\) gives \(\mathrm{Re}_\lambda=(8/0.0333)^{4/3}=1491\), where \(p=1.6333\). Then \(\mathrm{Re}_0=1491^2/15=1.48\times10^5\) and \(\ell_0/\eta=\mathrm{Re}_0^{3/4}=7.55\times10^3\). The layer meets the condition (\(p=1.661\), 0.3 % below \(5/3\), from (15.12)); the jet does not (\(p=1.585\), 4.9 % below). The result is a statement about the printed curve, which the chapter has not checked against its data, and about one definition of "close".</p>
+</details>
+<p><strong>Exercise 5 (compute, derive).</strong> (a) If the slide's line \(K\sim\mathrm{Re}_\lambda^{3/8}\) were fitted through Kerr's flatness 5.11 at \(\mathrm{Re}_\lambda=82.9\), what flatness would it give at 453? (b) Fill in the steps from (15.14) to (15.15) and find \(\chi\) for the exponent 3/8.</p>
+<details><summary>Solution</summary>
+<p>(a) \(5.11\,(453/82.9)^{3/8}=5.11\cdot1.89=9.7\). The estimate is an extrapolation of one line through one point from a different data set. (b) For \(p=4\) the factor is \((L/r)^{\chi\cdot4\cdot1/2}=(L/r)^{2\chi}\); for \(p=2\) it is \((L/r)^{\chi\cdot2\cdot(-1)/2}=(L/r)^{-\chi}\). The standardized fourth moment divides by the square of the second moment: \((L/r)^{2\chi}/(L/r)^{-2\chi}=(L/r)^{4\chi}\); the factors \((r\bar\varepsilon)^{4/3}\) and \(((r\bar\varepsilon)^{2/3})^2\) cancel, and so do \(C_4\) and \(C_2^2\) if their ratio does not depend on \(\mathrm{Re}_\lambda\) (an assumption). With \(r=\eta\), \(L/\eta=\mathrm{Re}_L^{3/4}=(3/20)^{3/4}\mathrm{Re}_\lambda^{3/2}\), so \(K\propto\mathrm{Re}_\lambda^{6\chi}\). Setting \(6\chi=3/8\) gives \(\chi=1/16\).</p>
+</details>
+<p><strong>Exercise 6 (design, judge).</strong> A simulation at \(\mathrm{Re}_\lambda=150\) reports "a clean \(-5/3\) inertial range between \(\kappa\eta=0.03\) and 0.2". Using the lecture's nominal demarcations, the model spectrum and (15.12), judge the claim.</p>
+<details><summary>Solution</summary>
+<p>At \(\mathrm{Re}_\lambda=150\), (15.1) gives \(\mathrm{Re}_0=1500\) and \(\ell_0/\eta=1500^{3/4}=241\), so \(\ell_{EI}/\eta=40.2\) is below \(\ell_{DI}/\eta=60\): the nominal inertial subrange does not exist (\(\kappa_{EI}\eta=0.156\gt\kappa_{DI}\eta=0.105\)). The model's compensated spectrum is within 10 % of \(C\) between \(\kappa\eta=0.022\) and 0.276, 1.10 decades, which contains the interval of the claim; but the model has \(-5/3\) built in, so that is not evidence about the simulation. The slide's empirical curve gives \(p=1.480\) at this Reynolds number, 11 % below \(5/3\), so a fit with the exponent \(5/3\) fixed would be expected to differ from the measured trend. The claim cannot be judged from these inputs: the simulation's own compensated spectrum and a fitted local exponent over the stated interval would settle it, and the chapter's numbers say what to expect (a plateau of a model within 10 %, a measured exponent near 1.5).</p>
+</details>
+
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li>A. N. Kolmogorov, <a href="https://doi.org/10.1017/S0022112062000518">"A refinement of previous hypotheses concerning the local structure of turbulence in a viscous incompressible fluid at high Reynolds number"</a>, J. Fluid Mech. 13 (1962) 82&ndash;85. The moment formula (10) on p. 84.</li>
+<li>R. M. Kerr, <a href="https://ntrs.nasa.gov/citations/19840006396">"Higher-order derivative correlations and the alignment of small-scale structures in isotropic numerical turbulence"</a>, NASA TM 84407 (1983). Velocity-derivative flatness against Taylor-scale Reynolds number, Table 3, p. 35.</li>
+</ul>
+<!-- BOOK-CONTENT-END --></article><nav class="page-turn" aria-label="Chapter navigation"><a rel="prev" href="chapter-14-kolmogorov-model-dissipation-spectra.html">Previous available chapter</a><a href="index.html">Lecture index</a><span>Further chapters pending</span></nav></main></div>
+<footer class="site-footer">Independent study notes. NPTEL IIT Bombay course recordings supply the topic sequence; added explanations and teaching constructions are separately attributed. Local edition in progress; a rendered page does not establish editorial completion.</footer></body></html>

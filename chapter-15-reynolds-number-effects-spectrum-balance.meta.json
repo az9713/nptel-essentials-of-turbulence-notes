@@ -1,0 +1,167 @@
+{
+  "chapter": 15,
+  "title": "Reynolds-number effects and the energy-spectrum balance: how the ranges grow, and what the balance says about each",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "BK_FjrzElak",
+      "lecture_number": 41,
+      "media_sha256": "8d00f0105a38180acf836813d861714a3c4181a45a2c546d4f7510fbe2a61c44",
+      "duration_seconds": 1664.9535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1636.58
+    },
+    {
+      "video_id": "xwif_UjmnEc",
+      "lecture_number": 42,
+      "media_sha256": "07b48900c84fcfea4474679644e6d4d6656ba7657c8d690a8c8f534c31b6d862",
+      "duration_seconds": 1662.4535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1633.82
+    }
+  ],
+  "frames_viewed": {
+    "BK_FjrzElak": [
+      "f0006",
+      "f0010",
+      "f0016",
+      "f0020",
+      "f0027",
+      "f0031",
+      "f0037",
+      "f0043"
+    ],
+    "xwif_UjmnEc": [
+      "f0002",
+      "f0016",
+      "f0028",
+      "f0035",
+      "f0038",
+      "f0041",
+      "f0044",
+      "f0046"
+    ]
+  },
+  "source_uncertainties": [
+    "The slide captions attribute the exponent data to Mydlarski and Warhaft (1998) and the kurtosis data to Van Atta and Antonia (1980); neither source was opened. The empirical curve p = 5/3 - 8 Re_lambda^(-3/4) (L42 f0028) is printed on the slide and was checked only against the plotted curve and the plotted points; its provenance is unknown.",
+    "The slide (L42 f0041) and the speech (L42 20:47) give 4 for the kurtosis of a Gaussian variable; the value is 3. The speech says 'indefinite decrease' where the slide and the plot say increase.",
+    "L42 about 940-955 s: the speech places the integral-scale Reynolds number at Re_lambda = 10^4 'more than a hundred thousand ... close to a million'; the book's relation (15.1) gives 1.5e7 (Re_L) and 6.7e6 (Re_0). The speech defers the exact value to an earlier relation.",
+    "The speech 'ten to fifteen percent of the energy is contained in the dissipation range' (L42 about 1052-1058 s) matches the energy above kappa_EI in the model (10.0 to 12.3 %), not the dissipation range alone; the lecture's own definition of the range there is not stated.",
+    "The lecture's reasons for T_kappa(0) = 0 and T_kappa(infinity) = 0 (no energy below, no scales above) are replaced by the conservation argument of chapter 12, (12.22).",
+    "ASR: 'tau EI' = T_EI; 'Tk' = T_kappa; 'Kolbogorov' = Kolmogorov; 'k eta u eta squared' = eta u_eta^2; 'RE lambda' = Re_lambda; the slide's production spectrum is not derived in the lectures.",
+    "The slide's source for the module (Module 08 Source slide) was not viewed in these two recordings; the chapter makes no source attribution for the module's figures beyond the slide captions.",
+    "The nominal factors 1/6 and 60 in ell_EI and ell_DI are the lecture's 'say' values with no stated justification (chapter 10); every number using them inherits that status."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "",
+      "research_extension": "",
+      "teaching_construction": "Definitions, the Reynolds-number relation (15.1) and the model spectrum in Kolmogorov variables (15.2) restated from earlier chapters; running case of the air jet.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The model spectrum at four Reynolds numbers",
+      "video_id": "BK_FjrzElak",
+      "start": 100,
+      "end": 460,
+      "lecture_material": "The slide of the model spectrum at Re_lambda 30, 100, 300, 1000 in two normalisations and the lecture's reading of it.",
+      "research_extension": "",
+      "teaching_construction": "Collapse in Kolmogorov variables, the program-solved constants, Table 15.1, the width of the -5/3 region and the comparison with the nominal demarcations.",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The energy-containing motions in spectral terms",
+      "video_id": "BK_FjrzElak",
+      "start": 460,
+      "end": 801,
+      "lecture_material": "The slide's statements on size, velocity, time scale, anisotropy, production, negligible dissipation and the non-universal ratio T_EI/(k^{3/2}/L11).",
+      "research_extension": "",
+      "teaching_construction": "Numerical checks of each statement on the model; limits on two spoken statements about the transfer.",
+      "evidence_class": "dimensional argument"
+    },
+    {
+      "section": "The balance for the energy spectrum, derived from the equation of one mode",
+      "video_id": "BK_FjrzElak",
+      "start": 801,
+      "end": 1665,
+      "lecture_material": "The balance equation (15.3) with production, transfer and dissipation; the band integral; the end conditions of the transfer.",
+      "research_extension": "",
+      "teaching_construction": "Derivation from the mode equation of the chapter on Fourier modes (steps 1-4), the definition of the transfer spectrum and the flux, the statement of what is exact, the band equation (15.9).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Integrating the balance over the three ranges",
+      "video_id": "xwif_UjmnEc",
+      "start": 0,
+      "end": 722,
+      "lecture_material": "The three range equations and their sum dk/dt = P - epsilon.",
+      "research_extension": "",
+      "teaching_construction": "The exact forms (15.10), the stationary flux (15.11), its values for the model at the jet's Reynolds number, Figure 15.1, Part 4 of the program.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "How high must the Reynolds number be?",
+      "video_id": "xwif_UjmnEc",
+      "start": 722,
+      "end": 1200,
+      "lecture_material": "The exponent of the spectrum against Re_lambda in grid turbulence (slide empirical curve), the limitations slides, the argument that the small scales carry little energy.",
+      "research_extension": "",
+      "teaching_construction": "Evaluation of the printed curve (15.12), thresholds, conversions between Reynolds numbers, comparison with the model's local exponent and energy shares.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Higher-order moments and internal intermittency",
+      "video_id": "xwif_UjmnEc",
+      "start": 1200,
+      "end": 1540,
+      "lecture_material": "The normalized derivative moments, S and K against Re_lambda, the K ~ Re_lambda^{3/8} line, internal intermittency, the module summary.",
+      "research_extension": "Kolmogorov (1962) eq. (10); Kerr (1983) Table 3.",
+      "teaching_construction": "The standardized-moment algebra from (15.14) to (15.15) and the value chi = 1/16 implied by the slide's exponent.",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "Executable check",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "",
+      "research_extension": "",
+      "teaching_construction": "The four-part program and its printed output.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the relations establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "",
+      "research_extension": "",
+      "teaching_construction": "Classification of every statement as exact, not derived, approximation, model, empirical or hypothesis.",
+      "evidence_class": "definition"
+    }
+  ],
+  "references": [
+    {
+      "title": "A refinement of previous hypotheses concerning the local structure of turbulence in a viscous incompressible fluid at high Reynolds number",
+      "url": "https://doi.org/10.1017/S0022112062000518",
+      "supports": "Equation (10): moments of the velocity difference with the factor (L/r)^{chi p (p-3)/2}; p = 2 gives (L/r)^{-chi}.",
+      "page_checked": "p. 84 (PDF p. 3)"
+    },
+    {
+      "title": "Higher-order derivative correlations and the alignment of small-scale structures in isotropic numerical turbulence",
+      "url": "https://ntrs.nasa.gov/citations/19840006396",
+      "supports": "Table 3: flatness F1 of the longitudinal velocity derivative, 3.39 at Re_lambda 9.0 and 5.11 at 82.9.",
+      "page_checked": "p. 35 (PDF p. 37)"
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I _editorial/tmp/ch15_check.py",
+    "stdout_matches_printed": true
+  }
+}

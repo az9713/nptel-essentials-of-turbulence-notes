@@ -2465,6 +2465,105 @@
       "teaching_construction": "Classification of each statement as hypothesis, dimensional argument, fit or definition; limits of the model; list of what was not checked.",
       "evidence_class": "hypothesis",
       "chapter": "chapter-14-kolmogorov-model-dissipation-spectra.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "",
+      "research_extension": "",
+      "teaching_construction": "Definitions, the Reynolds-number relation (15.1) and the model spectrum in Kolmogorov variables (15.2) restated from earlier chapters; running case of the air jet.",
+      "evidence_class": "definition",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "The model spectrum at four Reynolds numbers",
+      "video_id": "BK_FjrzElak",
+      "start": 100,
+      "end": 460,
+      "lecture_material": "The slide of the model spectrum at Re_lambda 30, 100, 300, 1000 in two normalisations and the lecture's reading of it.",
+      "research_extension": "",
+      "teaching_construction": "Collapse in Kolmogorov variables, the program-solved constants, Table 15.1, the width of the -5/3 region and the comparison with the nominal demarcations.",
+      "evidence_class": "model",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "The energy-containing motions in spectral terms",
+      "video_id": "BK_FjrzElak",
+      "start": 460,
+      "end": 801,
+      "lecture_material": "The slide's statements on size, velocity, time scale, anisotropy, production, negligible dissipation and the non-universal ratio T_EI/(k^{3/2}/L11).",
+      "research_extension": "",
+      "teaching_construction": "Numerical checks of each statement on the model; limits on two spoken statements about the transfer.",
+      "evidence_class": "dimensional argument",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "The balance for the energy spectrum, derived from the equation of one mode",
+      "video_id": "BK_FjrzElak",
+      "start": 801,
+      "end": 1665,
+      "lecture_material": "The balance equation (15.3) with production, transfer and dissipation; the band integral; the end conditions of the transfer.",
+      "research_extension": "",
+      "teaching_construction": "Derivation from the mode equation of the chapter on Fourier modes (steps 1-4), the definition of the transfer spectrum and the flux, the statement of what is exact, the band equation (15.9).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "Integrating the balance over the three ranges",
+      "video_id": "xwif_UjmnEc",
+      "start": 0,
+      "end": 722,
+      "lecture_material": "The three range equations and their sum dk/dt = P - epsilon.",
+      "research_extension": "",
+      "teaching_construction": "The exact forms (15.10), the stationary flux (15.11), its values for the model at the jet's Reynolds number, Figure 15.1, Part 4 of the program.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "How high must the Reynolds number be?",
+      "video_id": "xwif_UjmnEc",
+      "start": 722,
+      "end": 1200,
+      "lecture_material": "The exponent of the spectrum against Re_lambda in grid turbulence (slide empirical curve), the limitations slides, the argument that the small scales carry little energy.",
+      "research_extension": "",
+      "teaching_construction": "Evaluation of the printed curve (15.12), thresholds, conversions between Reynolds numbers, comparison with the model's local exponent and energy shares.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "Higher-order moments and internal intermittency",
+      "video_id": "xwif_UjmnEc",
+      "start": 1200,
+      "end": 1540,
+      "lecture_material": "The normalized derivative moments, S and K against Re_lambda, the K ~ Re_lambda^{3/8} line, internal intermittency, the module summary.",
+      "research_extension": "Kolmogorov (1962) eq. (10); Kerr (1983) Table 3.",
+      "teaching_construction": "The standardized-moment algebra from (15.14) to (15.15) and the value chi = 1/16 implied by the slide's exponent.",
+      "evidence_class": "empirical result",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "Executable check",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "",
+      "research_extension": "",
+      "teaching_construction": "The four-part program and its printed output.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
+    },
+    {
+      "section": "What the relations establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "",
+      "research_extension": "",
+      "teaching_construction": "Classification of every statement as exact, not derived, approximation, model, empirical or hypothesis.",
+      "evidence_class": "definition",
+      "chapter": "chapter-15-reynolds-number-effects-spectrum-balance.html"
     }
   ]
 }
