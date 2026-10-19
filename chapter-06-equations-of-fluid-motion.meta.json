@@ -27,6 +27,37 @@
       "duration_seconds": 1759.3535,
       "transcript_first_start_seconds": 5.87,
       "transcript_last_end_seconds": 1736.74
+    },
+    {
+      "video_id": "7UyTD2lT0sI",
+      "lecture_number": 57,
+      "media_sha256": "203d27fe14cd38c8c7a44e8db5fd5d5660c8f14f6406cef9cd87a6e05ebf316d",
+      "duration_seconds": 1611.5335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1582.71,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercise L57-P1, Exercise 7; no chapter section is grounded in this recording."
+    },
+    {
+      "video_id": "nBZWHP4w8fY",
+      "lecture_number": 58,
+      "media_sha256": "5f7213daa619f7a2d7d12a717334e6d65fe5c5fc1d3307f25a270b92e5ed265e",
+      "duration_seconds": 1875.1535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1846.34,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercises L58-P5 and L58-P6, Exercises 8 and 9; no chapter section is grounded in this recording."
+    },
+    {
+      "video_id": "fgMG7Jd89pw",
+      "lecture_number": null,
+      "media_sha256": "d5d3bc926ae0305a68ccb122602abeb3627b5e3779925a98d882d29367ac0981",
+      "duration_seconds": 3456.3135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 3427.81,
+      "role": "practice-problem source",
+      "note": "Source of the adapted exercises T1-P1 and T1-P2, Exercises 10 and 9; no chapter section is grounded in this recording.",
+      "tutorial_number": 1
     }
   ],
   "frames_viewed": {
@@ -219,9 +250,9 @@
       "video_id": null,
       "start": null,
       "end": null,
-      "lecture_material": "Exercise 6 uses the time-reversal transformation of the slides.",
+      "lecture_material": "Exercise 6 uses the time-reversal transformation of the slides. Exercises 7-10 are adapted from the course practice problems L57-P1 (7UyTD2lT0sI 1:41), L58-P5 (nBZWHP4w8fY 6:08), L58-P6 (nBZWHP4w8fY 21:57) and T1-P2 (fgMG7Jd89pw 15:44), which are one problem in Exercise 9, and T1-P1 (fgMG7Jd89pw 0:54), as assigned by _editorial/practice-map.md.",
       "research_extension": "Exercise 2 uses the Standard Atmosphere values.",
-      "teaching_construction": "Six original exercises with full solutions: derive and check a limit (rotation and strain pressures), compute and check assumptions (station), counterexample (central-difference scalar overshoot), derive (Coriolis term and the rotation axis), design (half-scale model), judge a claim (Taylor-Green under time reversal).",
+      "teaching_construction": "Six original exercises (derive and check a limit, compute and check assumptions, counterexample, derive, design, judge a claim) and four adapted practice-problem exercises (index form of the compressible momentum equation, projection step and pressure Poisson equation, enstrophy equation, four suffix-notation identities), with full solutions for all ten.",
       "evidence_class": "engineering check"
     }
   ],
@@ -323,11 +354,34 @@
       "symbol": "kappa_j, F(t)",
       "first_section": "implementation",
       "definition": "Wavenumber component, Taylor-Green amplitude."
+    },
+    {
+      "symbol": "f, tilde U_j^(n+1), U^(n), phi^(n), Delta t, n",
+      "first_section": "exercises",
+      "definition": "Body-force acceleration (exercise 7); intermediate velocity (tilde, so as not to clash with the hat of exercise 6), velocity at step n, pressure-like scalar of the projection step (not the passive scalar), time step and step index (exercise 8)."
     }
   ],
-  "exercises": 6,
+  "exercises": 10,
   "code_check": {
     "command": "python -I ch06_extracted.py (the chapter listing extracted from the HTML by _editorial/tmp/ch06_check_code.py, run in a fresh process; stdout compared byte for byte with the printed block; pycodestyle clean)",
     "stdout_matches_printed": true
+  },
+  "practice_problems": {
+    "map": "_editorial/practice-map.md (present when checked at the practice-problem addition)",
+    "assigned_to_chapter_6": [
+      "L57-P1",
+      "L58-P5",
+      "L58-P6",
+      "T1-P1",
+      "T1-P2"
+    ],
+    "chapter_exercises": {
+      "L57-P1": 7,
+      "L58-P5": 8,
+      "L58-P6": 9,
+      "T1-P1": 10,
+      "T1-P2": 9
+    },
+    "note": "L58-P6 and T1-P2 are the same problem (practice-map.md); they are one exercise, Exercise 9, with both timestamps."
   }
 }
