@@ -1,0 +1,365 @@
+{
+  "chapter": 13,
+  "title": "Spectral energy: Fourier modes, the velocity spectrum tensor, and one-dimensional spectra",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b passed round 2 (0 blocking)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "-nljYKsaUwo",
+      "lecture_number": 34,
+      "media_sha256": "ad202152590ec01aea0f300e77ff72e5e9cfeb2a77d2323fc91d4039a661be1f",
+      "duration_seconds": 1644.4935,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1615.94
+    },
+    {
+      "video_id": "7UlnbxU3C2c",
+      "lecture_number": 35,
+      "media_sha256": "81adc90791dab151791de6765effafacb80c69cee1084980d82b62b9f2866aca",
+      "duration_seconds": 1511.2535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1482.8
+    },
+    {
+      "video_id": "zBnxrFMKWNI",
+      "lecture_number": 36,
+      "media_sha256": "25e30094dc4141562288b1a63b0b0393461a0e60e3f403c4e33202b66d52626a",
+      "duration_seconds": 1670.4535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1643.65
+    }
+  ],
+  "frames_viewed": {
+    "-nljYKsaUwo": [
+      "f0014",
+      "f0021",
+      "f0040",
+      "f0044",
+      "f0048"
+    ],
+    "7UlnbxU3C2c": [
+      "f0009",
+      "f0021",
+      "f0025",
+      "f0038",
+      "f0040"
+    ],
+    "zBnxrFMKWNI": [
+      "f0003",
+      "f0016",
+      "f0023",
+      "f0039",
+      "f0041",
+      "f0045"
+    ],
+    "iX5PG6TPABQ": [
+      "f0030"
+    ],
+    "uWLlkjjBaYo": [
+      "f0034",
+      "f0050"
+    ]
+  },
+  "frames_extracted": {
+    "7UlnbxU3C2c": [
+      "190 s (Source slide of Module 08, between sampled frames f0007 and f0008)"
+    ],
+    "zBnxrFMKWNI": [
+      "detail of f0041 (low-wavenumber end of the comparison figure, enlarged)"
+    ]
+  },
+  "contact_sheets_scanned": {
+    "-nljYKsaUwo": [
+      "s01",
+      "s02",
+      "s03"
+    ],
+    "7UlnbxU3C2c": [
+      "s01",
+      "s02"
+    ],
+    "zBnxrFMKWNI": [
+      "s01",
+      "s02",
+      "s03"
+    ]
+  },
+  "source_uncertainties": [
+    "Module 07 source: the Source slide of Module 07 was not viewed for this chapter; the chapter relies on the statement of the chapter 'Fourier modes and their evolution' that the module's slides name Pope (2000). Module 08's Source slide (L35, 190 s) was viewed.",
+    "Slide L34 f0040 prints u_hat_j(kappa') inside the sum of the evolution equation; the contraction with P_jk requires u_hat_k(kappa'). The chapter writes u_hat_k (13.1).",
+    "Slide L35 f0009 and L36 f0003 print the Fourier-pair prefactor as 1/(2 pi^3) on both transforms and omit dr, dkappa; the chapter uses chapter 8's pair (8.29)-(8.30), with (2 pi)^-3 on the forward transform only, consistent with the next slide's R_ij(0) = integral of Phi_ij.",
+    "Slide L35 f0025 writes the integrand of the shell integral as (1/2)Phi_ii S(kappa) instead of (1/2)Phi_ii dS(kappa).",
+    "Slide L35 f0023 prints the dissipation integral as epsilon = integral of 2 nu kappa^2 Phi_ii d kappa. With E = (1/2) integral of Phi_ii over the sphere and epsilon = integral of 2 nu kappa^2 E d kappa, that expression is twice the dissipation. The chapter writes epsilon = nu times the integral of kappa^2 Phi_ii, which is the limit of its (13.8) and follows from (11.4) and (8.30).",
+    "L34 19:43: the lecture ascribes the vanishing of the pairs kappa' = kappa and kappa'' = kappa to the Kronecker delta; the chapter gives the reason u_hat(0) = 0 (zero box average).",
+    "L34 22:10-22:40: the lecture gives conjugate symmetry as the reason why coefficients at kappa' != -kappa are uncorrelated; the chapter proves it from homogeneity.",
+    "L36 22:54 (speech): 'C is half C1 p times p over p plus 2'; the slide (f0023) has C = (1/2) p (2+p) C1, and the lecture's own derivation (L36 15:31) gives the slide's form. The chapter follows the slide.",
+    "L36 27:06 (speech): the closing summary says the spectra vary as kappa^2 at low wavenumbers; the slide (f0045) states it for E(kappa) only. The chapter notes the difference.",
+    "The slide's E22 curve (f0041) is a small reproduction; whether it rises slightly before falling cannot be read with certainty. The chapter says 'level, or rises slightly'.",
+    "ASR: 'copper' for kappa (L34 16:40-17:30), 'new' for nu, 'E to 2' for E22 (L36 16:06). Symbols are taken from the slides.",
+    "Practice problems: L59-P9 and T2-P12 pose the same three parts; they are merged as Exercise 8. The T2-P11 slide writes R_ij(r) = <R_ij(r)>_l, which defines R_ij through itself; the exercise uses the box average of the product of velocities. The recording states at L59 24:30 that conjugate symmetry was R_ij(-kappa) = R_ij(kappa); the slide has R_hat_ij(kappa) = R_hat_ji(-kappa).",
+    "Chapter 12 is cited by title only; the statements attributed to it (box of side 1 m, the factor 1/2 absent from its modal energy and present in its per-realization energy e_hat, R_ij periodic in r, the pair sum) were checked against the committed chapter 12 (965c68f) in gate 6b rounds 1 and 2."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None directly.",
+      "research_extension": "None.",
+      "teaching_construction": "Two-level model (periodic box; unbounded homogeneous field of chapter 8); jet case nu 1.4607e-5, u0 2 m/s, l0 0.1 m, Re0 1.37e4, eps 80, eta 79.0 um, k 6, Re_lambda 453 (chapter 11); box 1 m; test spectrum with C 1.5, lL 75.86 mm, beta 2.093, peak 14.4 rad/m.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The evolution equation with the nonlinear term written out",
+      "video_id": "-nljYKsaUwo",
+      "start": 5,
+      "end": 1250,
+      "lecture_material": "Recap of the pressure elimination; G_hat_j = i kappa_k sum u_hat_j(kappa') u_hat_k(kappa - kappa') by box average and orthonormality; final evolution equation; triads; non-local convection; deterministic ODEs (slides f0014, f0021, f0040, f0044).",
+      "research_extension": "None.",
+      "teaching_construction": "Index correction u_hat_k(kappa'); reason why kappa' = kappa pairs vanish (u_hat(0) = 0).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The final period of decay",
+      "video_id": "-nljYKsaUwo",
+      "start": 393,
+      "end": 626,
+      "lecture_material": "Neglect of convection at low Re; u_hat(kappa,t) = u_hat(kappa,0) exp(-nu kappa^2 t); high wavenumbers decay faster (f0014, f0021).",
+      "research_extension": "None.",
+      "teaching_construction": "Energy decay (13.3); late-time law (13.4) from the low-wavenumber exponent; jet check: viscous time at the peak 164 s against turnover 0.05 s; program slope -1.500.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The covariance of the coefficients, the kinetic energy and the dissipation",
+      "video_id": "-nljYKsaUwo",
+      "start": 1253,
+      "end": 1616,
+      "lecture_material": "Zero mean of coefficients; covariance uncorrelated unless kappa' = -kappa; R_hat_ij definition; E_hat = (1/2) R_hat_ii; k and eps as sums over modes (f0044, f0048).",
+      "research_extension": "None.",
+      "teaching_construction": "Proof from homogeneity (13.5); (13.7); positive semidefiniteness and coherence bound; derivation of the dissipation sum from (11.4); the factor 1/2 against Lecture 31.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "From the box to the velocity-spectrum tensor",
+      "video_id": "7UlnbxU3C2c",
+      "start": 197,
+      "end": 704,
+      "lecture_material": "Fourier pair R_ij - Phi_ij; Reynolds-stress density per unit wavenumber volume; R_ij(0) = integral Phi_ij; dimensions; three kinds of information; dissipation integral (f0009, f0021).",
+      "research_extension": "None.",
+      "teaching_construction": "Limit R_hat_ij ~ kappa0^3 Phi_ij (13.10); dissipation integral nu times integral kappa^2 Phi_ii (the slide omits the 1/2); lattice sums for boxes 0.25, 1, 4 m (4.7002, 5.9571, 5.9993 against 6); 56 vectors below the peak in the 1 m box; shell count 3.2e5 at 1000 rad/m.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The energy-spectrum function as an integral over spherical shells",
+      "video_id": "7UlnbxU3C2c",
+      "start": 704,
+      "end": 1100,
+      "lecture_material": "Half trace and integration over the sphere S(kappa); shell drawing kappa to kappa + dkappa; properties of E (real, non-negative, undefined or zero for negative kappa); k and eps integrals (f0025, f0038, f0040).",
+      "research_extension": "None.",
+      "teaching_construction": "Equivalence with (8.32); box shell sum; shell populations (18, 62, 350) and sampling scatter N^-1/2 under a Gaussian assumption.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "In isotropic turbulence the tensor is fixed by the energy spectrum",
+      "video_id": "7UlnbxU3C2c",
+      "start": 1050,
+      "end": 1110,
+      "lecture_material": "In general Phi_ij contains more information than E; in isotropic turbulence Phi_ij is determined by E (f0040).",
+      "research_extension": "None.",
+      "teaching_construction": "Proof of (13.12) from reflections, rotations and incompressibility; role of reflection invariance (helical term).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "One-dimensional spectra and their relation to the energy spectrum",
+      "video_id": "zBnxrFMKWNI",
+      "start": 365,
+      "end": 538,
+      "lecture_material": "E11 related to the longitudinal autocorrelation and to E by (13.14); inversion (13.16); 'this applies to other flows as well' (f0016).",
+      "research_extension": "Yeung and Zhou 1997, eq. (2), report p. 2: inversion as a kinematic constraint under isotropy at scale 1/kappa.",
+      "teaching_construction": "Definition (13.13) with the factor 1/pi; derivation of (13.14); normalization; monotonicity (13.15); derivation of (13.16); locality; share of E11 from kappa > 2 kappa1 (51 %) and > 10 kappa1 (3.9 %).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The integral scale and the transverse spectrum",
+      "video_id": "zBnxrFMKWNI",
+      "start": 538,
+      "end": 655,
+      "lecture_material": "L11 = pi E11(0)/(2<u1^2>); transverse spectrum E22 = (1/2)(E11 - kappa1 dE11/dkappa1) (f0016, f0023).",
+      "research_extension": "Saddoughi 1993, eq. (2), p. 237: E22 = E33 = (1/2)(1 - kappa1 d/dkappa1) E11 under isotropy (Batchelor 1953).",
+      "teaching_construction": "Derivation of (13.17) without isotropy; integral form of E22; L22 = L11/2; non-monotonicity of E22 (13.19); test spectrum maximum 5.66 % above E22(0) at 3.9 rad/m.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Power laws and the constants of the three spectra",
+      "video_id": "zBnxrFMKWNI",
+      "start": 655,
+      "end": 1141,
+      "lecture_material": "E11 = C1 A kappa1^-p with A = <u1^2> L11^(1-p) as example; C = (1/2) p (2+p) C1; C1' = (1/2)(1+p) C1; derivation by differentiation (f0023).",
+      "research_extension": "Saddoughi 1993, p. 238: C = (55/18) C1, C1'/C1 = 4/3; Yeung and Zhou 1997, report p. 2: C = (55/18) C1.",
+      "teaching_construction": "Interval of validity (locality of (13.16)); local slopes and E/E11 of the test spectrum; normalization and the meaning of C1 (C1^(L) = 0.454); dissipation estimate (13.21): 73.6 and 13.8 against 80.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Comparison of the spectra",
+      "video_id": "zBnxrFMKWNI",
+      "start": 1141,
+      "end": 1643,
+      "lecture_material": "Grid-turbulence f(r) at x1/M = 42, 98, 172 (Comte-Bellot and Corrsin 1971, as captioned); comparison figure at R_lambda = 500 from a model spectrum; four observations (f0039, f0041, f0045).",
+      "research_extension": "None.",
+      "teaching_construction": "Figure 13.1 from the test spectrum; check of each observation; low-wavenumber exponent from the correlation (13.22).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Executable check: the test spectrum, the one-dimensional spectra, the constants and the box",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Program (NumPy) with exact printed output; failure test (sign of the weight in E22).",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the relations establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Chapter 11's report of Saddoughi's boundary-layer test of E22/E11 = 4/3.",
+      "teaching_construction": "Classification of results as exact, exact under isotropy, approximate.",
+      "evidence_class": "hypothesis"
+    },
+    {
+      "section": "Exercises",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Exercises 7 and 8 adapted from the practice problems T2-P11, L59-P9 and T2-P12.",
+      "research_extension": "None.",
+      "teaching_construction": "Exercises 1-6 original; solutions.",
+      "evidence_class": "derivation"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 34 recording",
+      "url": "https://www.youtube.com/watch?v=-nljYKsaUwo",
+      "supports": "Pair sum for G_hat, evolution equation, triads, final period of decay, covariance and kinetic energy of Fourier modes.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 35 recording",
+      "url": "https://www.youtube.com/watch?v=7UlnbxU3C2c",
+      "supports": "Velocity-spectrum tensor, its information, dissipation integral, energy-spectrum function, shells, properties.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 36 recording",
+      "url": "https://www.youtube.com/watch?v=zBnxrFMKWNI",
+      "supports": "One-dimensional spectra, inversion, L11, transverse spectrum, power laws and constants, comparison of spectra.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 59 recording (practice problems)",
+      "url": "https://www.youtube.com/watch?v=iX5PG6TPABQ",
+      "supports": "Problem 9 (Exercise 8).",
+      "page_checked": "frame f0030"
+    },
+    {
+      "title": "Tutorial 2 recording (practice problems)",
+      "url": "https://www.youtube.com/watch?v=uWLlkjjBaYo",
+      "supports": "Problems 11 and 12 (Exercises 7 and 8).",
+      "page_checked": "frames f0034, f0050"
+    },
+    {
+      "title": "S. G. Saddoughi, Local isotropy in high Reynolds number turbulent shear flows, CTR Annual Research Briefs 1992 (1993) 237-262",
+      "url": "https://ntrs.nasa.gov/citations/19940007830",
+      "supports": "Isotropic transverse spectrum E22 = E33 = (1/2)(1 - kappa1 d/dkappa1) E11, attributed to Batchelor (1953), eq. (2); C = (55/18) C1 and C1'/C1 = 4/3.",
+      "page_checked": "p. 237 (PDF p. 1), p. 238 (PDF p. 2)"
+    },
+    {
+      "title": "P. K. Yeung, Y. Zhou, On the universality of the Kolmogorov constant in numerical simulations of turbulence, ICASE Report 97-64 (1997)",
+      "url": "https://ntrs.nasa.gov/citations/19990004129",
+      "supports": "E = (1/2) kappa^3 d/dkappa (kappa^-1 dE11/dkappa) as a kinematic constraint if the turbulence at scale 1/kappa is isotropic, eq. (2); C = (55/18) C1.",
+      "page_checked": "report p. 2 (PDF p. 4)"
+    }
+  ],
+  "exercises": 8,
+  "practice_problems": [
+    {
+      "id": "T2-P11",
+      "exercise": 7,
+      "recording": "uWLlkjjBaYo",
+      "start_seconds": 989
+    },
+    {
+      "id": "L59-P9",
+      "exercise": 8,
+      "recording": "iX5PG6TPABQ",
+      "start_seconds": 886
+    },
+    {
+      "id": "T2-P12",
+      "exercise": 8,
+      "recording": "uWLlkjjBaYo",
+      "start_seconds": 1470
+    }
+  ],
+  "code_check": {
+    "command": "python -I ch13_extracted.py (the chapter listing extracted from the HTML and run in a fresh process); Python 3.13.5, NumPy 2.2.6; pycodestyle 0 errors; failure test (E22 weight sign reversed) gives int E22 = 1.9999 and E22(0)/E11(0) = 0.5000",
+    "stdout_matches_printed": true
+  },
+  "symbols_introduced": [
+    {
+      "symbol": "R_hat_ij(kappa,t)",
+      "first_section": "covariance",
+      "definition": "Covariance of Fourier coefficients <u_hat_i*(kappa) u_hat_j(kappa)> (slide symbol)."
+    },
+    {
+      "symbol": "E_hat(kappa,t) = (1/2) R_hat_ii",
+      "first_section": "covariance",
+      "definition": "Kinetic energy per unit mass of one mode, with the factor 1/2 of the Lecture 34 slide."
+    },
+    {
+      "symbol": "S(kappa) (script S)",
+      "first_section": "shells",
+      "definition": "Sphere of radius kappa in wavenumber space (slide symbol)."
+    },
+    {
+      "symbol": "E_ij(kappa_1)",
+      "first_section": "one-dimensional",
+      "definition": "One-sided one-dimensional spectrum, (1/pi) times the transform of R_ij(r1 e1)."
+    },
+    {
+      "symbol": "C_1'",
+      "first_section": "power-laws",
+      "definition": "Transverse one-dimensional constant (slide symbol)."
+    },
+    {
+      "symbol": "A, p",
+      "first_section": "power-laws",
+      "definition": "Normalization factor and exponent of the power-law form (slide symbols)."
+    },
+    {
+      "symbol": "kappa_perp, varphi",
+      "first_section": "one-dimensional",
+      "definition": "Polar coordinates in the (kappa_2, kappa_3) plane, local to the derivations."
+    },
+    {
+      "symbol": "A_s, s",
+      "first_section": "final-decay",
+      "definition": "Low-wavenumber coefficient and exponent of E(kappa,0), local."
+    },
+    {
+      "symbol": "script A, script B",
+      "first_section": "isotropic",
+      "definition": "Scalar functions of the isotropic tensor form, local."
+    },
+    {
+      "symbol": "l_L, beta",
+      "first_section": "model",
+      "definition": "Lengths of the test spectrum (energy-containing length and dissipation coefficient)."
+    }
+  ]
+}

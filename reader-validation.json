@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-19T16:38:18.503576+00:00",
+  "checked_at_utc": "2026-10-19T17:24:27.263456+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 17,
-    "local_links_checked": 317,
-    "timestamps_checked": 191,
+    "html_files": 20,
+    "local_links_checked": 331,
+    "timestamps_checked": 229,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -228,6 +228,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-12-fourier-modes-and-their-evolution.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 938,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-13-spectral-energy-velocity-spectrum-tensor.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 938,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-13-spectral-energy-velocity-spectrum-tensor.html",
         "viewport": 390
       },
       {
