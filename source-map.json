@@ -3026,6 +3026,149 @@
       "teaching_construction": "limits of each result",
       "evidence_class": "engineering check",
       "chapter": "chapter-18-turbulent-viscosity-models.html"
+    },
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None beyond the notation of the slides (residual u', grid spacing h).",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model (random field, expectation, homogeneity); jet running case from chapters 6-13 (nu 1.4607e-5, k 6, eps 80, eta 79.0 um, Re_lambda 453, L 183.7 mm); notation remarks on u' and h.",
+      "evidence_class": "definition",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "What a large-eddy simulation resolves and what it models",
+      "video_id": "IwqbEzn8LNE",
+      "start": 151.65,
+      "end": 1165.36,
+      "lecture_material": "DNS/LES/RANS grid sketch; LES between Reynolds-stress models and DNS in cost; motivated by limitations of each; cost ~ Re^3; nearly all DNS effort on dissipative motions; energy and anisotropy in large scales; small scales universal, simple models; resolved range down to slightly below l_EI; speaker's 90/10 and 80 % remarks; contraction example.",
+      "research_extension": "None.",
+      "teaching_construction": "Grading of the accuracy/cost ordering as a trend; link to chapter 5 cost and chapter 10 hypotheses; check of the 80 % remark against the model spectrum (sharp filter at l_EI keeps 83.5 %).",
+      "evidence_class": "model",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "Four conceptual steps",
+      "video_id": "IwqbEzn8LNE",
+      "start": 1165.36,
+      "end": 1566.97,
+      "lecture_material": "Slide of four steps: decomposition (19.1), filtered equations with residual-stress tensor, closure by eddy viscosity, numerical solution for one realization; comparison with the Reynolds decomposition.",
+      "research_extension": "Pope (2004) p. 9: the resolved field W is the solution of the LES equations, not the filtered field; relation to U is statistical (pp. 9-10).",
+      "teaching_construction": "Statement that step 4's 'filtered realization' is an idealization.",
+      "evidence_class": "definition",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "Filtering is a convolution with a normalized kernel",
+      "video_id": "jKcNOQhuED0",
+      "start": 193.5,
+      "end": 809.31,
+      "lecture_material": "Low-pass filtering; grid spacing h proportional to Delta; Delta somewhat smaller than l_EI; Leonard (1974) definition (19.2), normalization (19.3); homogeneous filter; residual field.",
+      "research_extension": "None (Leonard 1974 not obtained; slide attribution only).",
+      "teaching_construction": "Linearity and commutation with differentiation of a homogeneous filter; divergence-free filtered field.",
+      "evidence_class": "definition",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "A filter is not an average: the filtered residual",
+      "video_id": "jKcNOQhuED0",
+      "start": 809.31,
+      "end": 969.0,
+      "lecture_material": "Slide: analogous to Reynolds decomposition; U-bar random; filtered residual not zero in general; 1D convolution (19.5); speaker's reason (difference of random variables).",
+      "research_extension": "None.",
+      "teaching_construction": "Projection property of the expectation; (19.4); proof that the filtered residual vanishes iff the filter is a projection; sharp spectral filter as the exception; numerical check on a random signal; <U-bar> = filtered <U>.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "Five one-dimensional filters",
+      "video_id": "jKcNOQhuED0",
+      "start": 969.0,
+      "end": 1566.54,
+      "lecture_material": "Table of box, Gaussian, sharp spectral, Cauchy, Pao filters and transfer functions; caption matching rules; Gaussian variance Delta^2/12; box as interval average; figure of kernels; filtered-signal figure (Gaussian, Delta ~ 0.35) with non-zero filtered residual.",
+      "research_extension": "None.",
+      "teaching_construction": "Correction of the printed sharp kernel sin(pi r Delta)/(pi r) to sin(pi r/Delta)/(pi r) by inverse transform (19.6); moments and integrability of each kernel; numerical check of transfer functions and caption rules (box 2/pi at kappa_c).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "The transfer function multiplies each Fourier mode",
+      "video_id": "URI2YAfd7MY",
+      "start": 225.36,
+      "end": 762.06,
+      "lecture_material": "Fourier transform of filtered field = G-hat times U-hat; G-hat = 2 pi F{G}; real and even; G-hat(0) = 1; sharp filter annihilates modes above kappa_c = pi/Delta; transfer-function figure.",
+      "research_extension": "None.",
+      "teaching_construction": "Fourier convention (19.7) matched to chapter 8; convolution theorem derivation (19.9) and its integrability caveat; single-mode result (19.10); box sign reversal; small-kappa expansion; Figure 19.1 and Table 19.2; projection criterion G-hat in {0,1}.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "The filtered one-dimensional spectrum",
+      "video_id": "URI2YAfd7MY",
+      "start": 762.06,
+      "end": 1114.88,
+      "lecture_material": "E11 as twice the Fourier transform of the autocovariance; L11; figure of E11 and Gaussian-filtered E11 at R_lambda 500 with Delta = l_EI = L11/6; 92 % (1D), about 80 % (3D); Gaussian tail beyond kappa_c.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of (19.12); reconciliation of l_EI = L11/6 with chapter 10's l0/6; model spectrum (19.13) with constants solved from k and eps; recomputation: 90.6 % (1D, Re_lambda 453), 90.4 % (Re_lambda 500), 79.0 % (3D).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "How many Fourier modes a filtered field needs",
+      "video_id": "URI2YAfd7MY",
+      "start": 1114.88,
+      "end": 1646.06,
+      "lecture_material": "Fourier series (19.14), kappa_max = pi N_max/L, h_max = pi/kappa_max (19.15); filtered coefficients (19.16); continued in L53 0:05-8:30: sharp filter (19.17), h = pi/kappa_c (19.18), Delta = pi/kappa_c, more modes give no information.",
+      "research_extension": "Pope (2004) p. 11: h/Delta <= 1/4 (second order), <= 1/2 (sixth order); physical LES with h/Delta = 1 or 1/2; numerical LES Delta = h. Yeung, Sreenivasan and Pope (2018) kappa_max eta ~ 1.5 via chapter 12.",
+      "teaching_construction": "Statement that h = Delta is exact only for the sharp filter; jet grid counts (LES 56, DNS 6044 per direction; ratio 1.3e6).",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "Filtering in three dimensions and the resolved fraction of energy",
+      "video_id": "3mEFTyjWYI0",
+      "start": 511.0,
+      "end": 731.0,
+      "lecture_material": "General G(r, x); uniform/non-uniform, isotropic/anisotropic; spherical box of radius Delta/2; sharp filter removes |kappa| >= kappa_c; E-bar = G-hat^2 E; 80 % resolved at 1.2 l_EI (sharp) and 0.8 l_EI (Gaussian); anisotropic grids and Delta = (Delta1 Delta2 Delta3)^(1/3).",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of (19.19) under homogeneity and an isotropic filter; spherical-box transfer function (19.20) and second moment Delta^2/20; cube versus sphere (pi/6) on a grid; derivation of the 80 % widths (19.21): 1.162 and 0.813 l_EI; model-spectrum widths 1.291 and 0.932 l_EI; position of kappa_c relative to kappa_EI.",
+      "evidence_class": "derivation",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "The filtered rate of strain and Lilly's estimate",
+      "video_id": "3mEFTyjWYI0",
+      "start": 731.0,
+      "end": 1563.64,
+      "lecture_material": "Filtered strain-rate tensor and characteristic rate (19.23); mean square (19.24) for high-Re isotropic turbulence; kappa^2 weighting and attenuation; Kolmogorov substitution (19.25) with a_f; attribution to Lilly (1967).",
+      "research_extension": "None (Lilly 1967 not obtained; slide attribution only).",
+      "teaching_construction": "Derivation of (19.24) needing homogeneity and incompressibility; correction of the spoken eps/(2 nu) to eps/nu; a_f values (19.26): 6.902, 7.098, 8.037; model check (estimate 12 % high); jet values (202 1/s against 2340 1/s).",
+      "evidence_class": "derivation",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "Executable check: filters, residuals, the filtered spectrum and the strain-rate coefficient",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "NumPy program: kernels and transfer functions, corrected sharp kernel, spherical box, filtered residuals on a random signal, model spectrum and resolved fractions, 80 % widths, a_f, jet grid counts; two failure tests.",
+      "evidence_class": "engineering check",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
+    },
+    {
+      "section": "What the filtering analysis establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Pope (2004) p. 8 (M = 0.2 as 80 % resolution example), p. 12 (inertial-range asymptote as a hypothesis), pp. 9-10.",
+      "teaching_construction": "Separation of exact filter properties from estimates; non-uniform filters and commutation; wall-bounded limits.",
+      "evidence_class": "model",
+      "chapter": "chapter-19-les-conceptual-steps-filtering.html"
     }
   ]
 }

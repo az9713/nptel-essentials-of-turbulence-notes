@@ -1,0 +1,320 @@
+{
+  "chapter": 19,
+  "title": "Large-eddy simulation: conceptual steps and filtering",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b round 2 had 1 blocking defect, fixed by the lead and checked by the lead (no round 3)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "IwqbEzn8LNE",
+      "lecture_number": 50,
+      "media_sha256": "c67239b98e1c112827a1422b43c2b80773f41bc8ed023e791012874afb12f867",
+      "duration_seconds": 1596.3335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1567.41
+    },
+    {
+      "video_id": "jKcNOQhuED0",
+      "lecture_number": 51,
+      "media_sha256": "95c78f7eb3038c4654339d8effa3bce4eb83e40668ff64332f1c515529cadbd9",
+      "duration_seconds": 1598.3535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1569.7
+    },
+    {
+      "video_id": "URI2YAfd7MY",
+      "lecture_number": 52,
+      "media_sha256": "b0675e25666ddbf571102c5c453666452882180652f7692547f0391976c416aa",
+      "duration_seconds": 1674.5535,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1646.06
+    },
+    {
+      "video_id": "3mEFTyjWYI0",
+      "lecture_number": 53,
+      "media_sha256": "c714c3bffccf91457c54e4366f3da75f2dd491df41e3e6e5631ba333560e41a2",
+      "duration_seconds": 1592.2135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1563.64
+    }
+  ],
+  "frames_viewed": {
+    "IwqbEzn8LNE": [
+      "f0005",
+      "f0021",
+      "f0039",
+      "f0051"
+    ],
+    "jKcNOQhuED0": [
+      "f0020",
+      "f0026",
+      "f0032",
+      "f0035",
+      "f0042",
+      "f0050"
+    ],
+    "URI2YAfd7MY": [
+      "f0021",
+      "f0024",
+      "f0027",
+      "f0037",
+      "f0042",
+      "f0045",
+      "f0049"
+    ],
+    "3mEFTyjWYI0": [
+      "f0009",
+      "f0016",
+      "f0022",
+      "f0024",
+      "f0030",
+      "f0041",
+      "f0050"
+    ],
+    "8-WExK8ejdQ": [
+      "f0002",
+      "f0017",
+      "f0018"
+    ]
+  },
+  "source_uncertainties": [
+    "Slide L51 f0035 (Table, 17:00) prints the sharp spectral kernel as sin(pi r Delta)/(pi r); the inverse transform of H(kappa_c - |kappa|) gives sin(pi r/Delta)/(pi r) (program: 0.4817 against 1.0091 at r = 0.3, Delta = 2). The chapter prints the corrected form and says so.",
+    "The table caption groups 'the other filters' as matched at kappa_c with G-hat = exp(-pi^2/24); this holds for the Gaussian, Cauchy and Pao filters only (box 2/pi = 0.6366; sharp filter discontinuous at kappa_c).",
+    "Slide L52 f0037: 92 % of the 1D energy resolved by the Gaussian filter with Delta = L11/6 at R_lambda 500. The chapter's model spectrum (C 1.5, p0 2, beta 5.2, c_L and c_eta solved) gives 90.6 % at Re_lambda 453 and 90.4 % at 500; the difference (1.6 points) was not traced. The 3D 'approximately 80 %' is reproduced (79.0 %).",
+    "Slide L53 f0024 widths 1.2 l_EI (sharp) and 0.8 l_EI (Gaussian) are reproduced only with the Kolmogorov spectrum extended to infinite kappa and L11 = 0.43 L (1.162, 0.813); the model spectrum gives 1.291 and 0.932. The slide prints 'shape spectral filter'.",
+    "l_EI = L11/6 on slide L52 f0037 and in practice problem 11, versus l_EI = l0/6 in chapter 10; the chapter uses L11/6 and states the difference (jet: 13.90 mm against 16.7 mm).",
+    "L53 speech (about 17:30-18:40) gives the unfiltered mean-square strain as eps/(2 nu); with the slide's definition it is eps/nu. The chapter states the correction.",
+    "L51 speech (19:20-20:10) first marks the box interval as -1 <= r/Delta <= 1 and corrects it to -1/2 <= r/Delta <= 1/2.",
+    "L52 speech (about 21:50) relates kappa_max to grid spacing 'about 2.1' Kolmogorov lengths; this agrees with the chapter's h_max = pi eta/1.5 = 2.09 eta from kappa_max eta = 1.5 (Yeung et al. 2018, p. 064603-3). No discrepancy.",
+    "The slide '4/59 Source' of the module was not shown in the recordings; the speaker says most notes are from Pope's book, and the figures carry its chapter-13 figure numbers. Pope (2000) was not available; no page, equation or value from it is printed.",
+    "Not obtained: Leonard (1974) and Lilly (1967); named only as the slides' attributions. A web search on 2026-10-19 found no open copy of Lilly (1967).",
+    "The slides use U(x) on L51 f0032 and u(x) on L52 f0042 for the same kind of 1D function; the chapter writes U for a field with possible mean and u for a zero-mean field.",
+    "ASR spellings in the transcripts (Smigrensky, chromograph, Bissoness, larger de-simulation) are not used in reader text."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None beyond the notation of the slides (residual u', grid spacing h).",
+      "research_extension": "None.",
+      "teaching_construction": "Formal model (random field, expectation, homogeneity); jet running case from chapters 6-13 (nu 1.4607e-5, k 6, eps 80, eta 79.0 um, Re_lambda 453, L 183.7 mm); notation remarks on u' and h.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "What a large-eddy simulation resolves and what it models",
+      "video_id": "IwqbEzn8LNE",
+      "start": 151.65,
+      "end": 1165.36,
+      "lecture_material": "DNS/LES/RANS grid sketch; LES between Reynolds-stress models and DNS in cost; motivated by limitations of each; cost ~ Re^3; nearly all DNS effort on dissipative motions; energy and anisotropy in large scales; small scales universal, simple models; resolved range down to slightly below l_EI; speaker's 90/10 and 80 % remarks; contraction example.",
+      "research_extension": "None.",
+      "teaching_construction": "Grading of the accuracy/cost ordering as a trend; link to chapter 5 cost and chapter 10 hypotheses; check of the 80 % remark against the model spectrum (sharp filter at l_EI keeps 83.5 %).",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Four conceptual steps",
+      "video_id": "IwqbEzn8LNE",
+      "start": 1165.36,
+      "end": 1566.97,
+      "lecture_material": "Slide of four steps: decomposition (19.1), filtered equations with residual-stress tensor, closure by eddy viscosity, numerical solution for one realization; comparison with the Reynolds decomposition.",
+      "research_extension": "Pope (2004) p. 9: the resolved field W is the solution of the LES equations, not the filtered field; relation to U is statistical (pp. 9-10).",
+      "teaching_construction": "Statement that step 4's 'filtered realization' is an idealization.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Filtering is a convolution with a normalized kernel",
+      "video_id": "jKcNOQhuED0",
+      "start": 193.5,
+      "end": 809.31,
+      "lecture_material": "Low-pass filtering; grid spacing h proportional to Delta; Delta somewhat smaller than l_EI; Leonard (1974) definition (19.2), normalization (19.3); homogeneous filter; residual field.",
+      "research_extension": "None (Leonard 1974 not obtained; slide attribution only).",
+      "teaching_construction": "Linearity and commutation with differentiation of a homogeneous filter; divergence-free filtered field.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "A filter is not an average: the filtered residual",
+      "video_id": "jKcNOQhuED0",
+      "start": 809.31,
+      "end": 969.0,
+      "lecture_material": "Slide: analogous to Reynolds decomposition; U-bar random; filtered residual not zero in general; 1D convolution (19.5); speaker's reason (difference of random variables).",
+      "research_extension": "None.",
+      "teaching_construction": "Projection property of the expectation; (19.4); proof that the filtered residual vanishes iff the filter is a projection; sharp spectral filter as the exception; numerical check on a random signal; <U-bar> = filtered <U>.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Five one-dimensional filters",
+      "video_id": "jKcNOQhuED0",
+      "start": 969.0,
+      "end": 1566.54,
+      "lecture_material": "Table of box, Gaussian, sharp spectral, Cauchy, Pao filters and transfer functions; caption matching rules; Gaussian variance Delta^2/12; box as interval average; figure of kernels; filtered-signal figure (Gaussian, Delta ~ 0.35) with non-zero filtered residual.",
+      "research_extension": "None.",
+      "teaching_construction": "Correction of the printed sharp kernel sin(pi r Delta)/(pi r) to sin(pi r/Delta)/(pi r) by inverse transform (19.6); moments and integrability of each kernel; numerical check of transfer functions and caption rules (box 2/pi at kappa_c).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The transfer function multiplies each Fourier mode",
+      "video_id": "URI2YAfd7MY",
+      "start": 225.36,
+      "end": 762.06,
+      "lecture_material": "Fourier transform of filtered field = G-hat times U-hat; G-hat = 2 pi F{G}; real and even; G-hat(0) = 1; sharp filter annihilates modes above kappa_c = pi/Delta; transfer-function figure.",
+      "research_extension": "None.",
+      "teaching_construction": "Fourier convention (19.7) matched to chapter 8; convolution theorem derivation (19.9) and its integrability caveat; single-mode result (19.10); box sign reversal; small-kappa expansion; Figure 19.1 and Table 19.2; projection criterion G-hat in {0,1}.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The filtered one-dimensional spectrum",
+      "video_id": "URI2YAfd7MY",
+      "start": 762.06,
+      "end": 1114.88,
+      "lecture_material": "E11 as twice the Fourier transform of the autocovariance; L11; figure of E11 and Gaussian-filtered E11 at R_lambda 500 with Delta = l_EI = L11/6; 92 % (1D), about 80 % (3D); Gaussian tail beyond kappa_c.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of (19.12); reconciliation of l_EI = L11/6 with chapter 10's l0/6; model spectrum (19.13) with constants solved from k and eps; recomputation: 90.6 % (1D, Re_lambda 453), 90.4 % (Re_lambda 500), 79.0 % (3D).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "How many Fourier modes a filtered field needs",
+      "video_id": "URI2YAfd7MY",
+      "start": 1114.88,
+      "end": 1646.06,
+      "lecture_material": "Fourier series (19.14), kappa_max = pi N_max/L, h_max = pi/kappa_max (19.15); filtered coefficients (19.16); continued in L53 0:05-8:30: sharp filter (19.17), h = pi/kappa_c (19.18), Delta = pi/kappa_c, more modes give no information.",
+      "research_extension": "Pope (2004) p. 11: h/Delta <= 1/4 (second order), <= 1/2 (sixth order); physical LES with h/Delta = 1 or 1/2; numerical LES Delta = h. Yeung, Sreenivasan and Pope (2018) kappa_max eta ~ 1.5 via chapter 12.",
+      "teaching_construction": "Statement that h = Delta is exact only for the sharp filter; jet grid counts (LES 56, DNS 6044 per direction; ratio 1.3e6).",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "Filtering in three dimensions and the resolved fraction of energy",
+      "video_id": "3mEFTyjWYI0",
+      "start": 511.0,
+      "end": 731.0,
+      "lecture_material": "General G(r, x); uniform/non-uniform, isotropic/anisotropic; spherical box of radius Delta/2; sharp filter removes |kappa| >= kappa_c; E-bar = G-hat^2 E; 80 % resolved at 1.2 l_EI (sharp) and 0.8 l_EI (Gaussian); anisotropic grids and Delta = (Delta1 Delta2 Delta3)^(1/3).",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of (19.19) under homogeneity and an isotropic filter; spherical-box transfer function (19.20) and second moment Delta^2/20; cube versus sphere (pi/6) on a grid; derivation of the 80 % widths (19.21): 1.162 and 0.813 l_EI; model-spectrum widths 1.291 and 0.932 l_EI; position of kappa_c relative to kappa_EI.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The filtered rate of strain and Lilly's estimate",
+      "video_id": "3mEFTyjWYI0",
+      "start": 731.0,
+      "end": 1563.64,
+      "lecture_material": "Filtered strain-rate tensor and characteristic rate (19.23); mean square (19.24) for high-Re isotropic turbulence; kappa^2 weighting and attenuation; Kolmogorov substitution (19.25) with a_f; attribution to Lilly (1967).",
+      "research_extension": "None (Lilly 1967 not obtained; slide attribution only).",
+      "teaching_construction": "Derivation of (19.24) needing homogeneity and incompressibility; correction of the spoken eps/(2 nu) to eps/nu; a_f values (19.26): 6.902, 7.098, 8.037; model check (estimate 12 % high); jet values (202 1/s against 2340 1/s).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Executable check: filters, residuals, the filtered spectrum and the strain-rate coefficient",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "NumPy program: kernels and transfer functions, corrected sharp kernel, spherical box, filtered residuals on a random signal, model spectrum and resolved fractions, 80 % widths, a_f, jet grid counts; two failure tests.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the filtering analysis establishes and what it does not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "Pope (2004) p. 8 (M = 0.2 as 80 % resolution example), p. 12 (inertial-range asymptote as a hypothesis), pp. 9-10.",
+      "teaching_construction": "Separation of exact filter properties from estimates; non-uniform filters and commutation; wall-bounded limits.",
+      "evidence_class": "model"
+    }
+  ],
+  "references": [
+    {
+      "title": "Lecture 50 recording",
+      "url": "https://www.youtube.com/watch?v=IwqbEzn8LNE",
+      "supports": "Introduction to LES and the four conceptual steps.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 51 recording",
+      "url": "https://www.youtube.com/watch?v=jKcNOQhuED0",
+      "supports": "Filtering operation, residual, filtered residual, table of 1D filters, filtered signal.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 52 recording",
+      "url": "https://www.youtube.com/watch?v=URI2YAfd7MY",
+      "supports": "Spectral representation, filtered E11 spectrum and 92 %, resolution of filtered fields.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 53 recording",
+      "url": "https://www.youtube.com/watch?v=3mEFTyjWYI0",
+      "supports": "Sharp spectral filter and Delta = pi/kappa_c, 3D filters, 80 % widths, filtered rate of strain, a_f.",
+      "page_checked": "slide frames listed in frames_viewed"
+    },
+    {
+      "title": "Lecture 60 recording (practice problems 10 and 11)",
+      "url": "https://www.youtube.com/watch?v=8-WExK8ejdQ",
+      "supports": "Exercises 7 and 8 (statements and equations 13-19).",
+      "page_checked": "slide frames f0002, f0017, f0018"
+    },
+    {
+      "title": "S. B. Pope, Ten questions concerning the large-eddy simulation of turbulent flows, New J. Phys. 6 (2004) 35",
+      "url": "https://iopscience.iop.org/article/10.1088/1367-2630/6/1/035",
+      "supports": "M = k_r/(K + k_r), 'M = 0.2 corresponds to the resolution of 80% of the kinetic energy' (p. 8); W defined as the solution of the LES equations, not the filtered field; 'not sustainable'; U-bar a random field whose future is not determined by its current state; relationship 'can only be statistical' (p. 9, p. 10); h/Delta <= 1/4 second order, <= 1/2 sixth order; physical LES generally with h/Delta = 1 or 1/2; numerical LES Delta = h (p. 11); intermediate asymptote 'a hypothesis, in need of testing' (p. 12).",
+      "page_checked": "pp. 8-12 (PDF pp. 9-13)"
+    },
+    {
+      "title": "P. K. Yeung, K. R. Sreenivasan, S. B. Pope, Phys. Rev. Fluids 3 (2018) 064603",
+      "url": "https://doi.org/10.1103/PhysRevFluids.3.064603",
+      "supports": "kappa_max eta of order 1.5, used through chapter 12 for the DNS grid count.",
+      "page_checked": "p. 064603-3 (PDF p. 3)"
+    }
+  ],
+  "exercises": 8,
+  "code_check": {
+    "command": "python -I ch19_listing.py (the chapter listing, run in a fresh process; stdout inserted verbatim into the printed block by _editorial/tmp/ch19_insert_code.py)",
+    "stdout_matches_printed": true
+  },
+  "practice_problems": [
+    {
+      "id": "L60-P10",
+      "exercise": 7,
+      "recording": "8-WExK8ejdQ",
+      "start_seconds": 25
+    },
+    {
+      "id": "L60-P11",
+      "exercise": 8,
+      "recording": "8-WExK8ejdQ",
+      "start_seconds": 475
+    }
+  ],
+  "symbols_introduced": [
+    {
+      "symbol": "U-bar, u'",
+      "first_section": "four-steps",
+      "definition": "Filtered (resolved) velocity and residual (subgrid-scale) velocity of (19.1); in earlier chapters u' was the root-mean-square velocity."
+    },
+    {
+      "symbol": "G(r), G-hat(kappa)",
+      "first_section": "filtering",
+      "definition": "Filter kernel (19.2)-(19.3) and its transfer function (19.8), dimensionless and equal to 1 at kappa = 0."
+    },
+    {
+      "symbol": "Delta, kappa_c = pi/Delta",
+      "first_section": "one-d-filters",
+      "definition": "Filter width and characteristic wavenumber of the slides; Delta = h for the sharp spectral filter."
+    },
+    {
+      "symbol": "h",
+      "first_section": "model",
+      "definition": "Grid spacing, as on the slides (Delta is reserved for the filter width)."
+    },
+    {
+      "symbol": "ell_EI = L11/6",
+      "first_section": "filtered-spectrum",
+      "definition": "Demarcation length as the slide defines it; differs from the l0/6 of chapter 10 (jet: 13.90 mm against 16.7 mm)."
+    },
+    {
+      "symbol": "S-bar (script)",
+      "first_section": "strain",
+      "definition": "Characteristic filtered rate of strain (2 S-bar_ij S-bar_ij)^(1/2) of (19.23); a_f is the filter-dependent coefficient of (19.25)."
+    }
+  ]
+}

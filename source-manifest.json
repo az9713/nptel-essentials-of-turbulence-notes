@@ -120,9 +120,9 @@
     },
     {
       "order": 19,
-      "title": "Large-eddy simulation: conceptual steps and filtering",
+      "title": "Large-eddy simulation: the four conceptual steps and the filtering operation",
       "lectures": "50-53",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 20,
