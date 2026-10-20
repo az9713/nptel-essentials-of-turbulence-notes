@@ -108,9 +108,9 @@
     },
     {
       "order": 17,
-      "title": "Direct numerical simulation: pseudo-spectral methods and cost",
+      "title": "Direct numerical simulation: pseudo-spectral methods and the cost of resolving every scale",
       "lectures": "46-48",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 18,

@@ -1,11 +1,11 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-20T01:35:44.955267+00:00",
+  "checked_at_utc": "2026-10-20T01:38:51.315455+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
     "html_files": 24,
-    "local_links_checked": 408,
+    "local_links_checked": 421,
     "timestamps_checked": 296,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
@@ -300,6 +300,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-16-modeling-approaches-appraisal-criteria.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 710,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-17-dns-pseudo-spectral-methods-cost.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 710,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-17-dns-pseudo-spectral-methods-cost.html",
         "viewport": 390
       },
       {
