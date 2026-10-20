@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light"><meta name="book-content-sha256" content="871660425a6b27b62e0ab55be00ab4b26325620f5c4dd214b6c0ae48c70554d9"><title>Filtered equations, the Smagorinsky model, and LES in wavenumber space · Essentials of Turbulence</title>
+<link rel="stylesheet" href="assets/book.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'local'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="assets/mathjax-tex-svg.js"></script><script defer src="assets/book.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="index.html">Essentials of Turbulence · January 2026</a><nav class="course-nav" aria-label="Book"><a href="index.html">Lectures</a><a href="source-map.html">Source map</a><a href="references.html">References</a><a href="numerical-lab.html">Numerical lab</a></nav></header>
+<div class="layout"><aside class="toc" id="chapter-toc" aria-label="On this page"><h2>On this page</h2></aside><main id="main">
+<div class="reading-tools" aria-label="Reading controls"><button id="theme-toggle" aria-pressed="false">Light theme</button><button id="text-toggle" aria-pressed="false">Larger text</button><button id="solutions-toggle" aria-pressed="false">Expand solutions</button><button id="print-page">Print with solutions</button></div>
+<article id="chapter-content"><!-- BOOK-CONTENT-START --><h1>Filtered equations, the Smagorinsky model, and LES in wavenumber space</h1>
+<p class="lead">A direct simulation of the air-jet turbulence used as the running case of the earlier chapters, placed in a periodic box of side 1 m, needs about 6000 grid points in each direction (Exercise 3). A large-eddy simulation that keeps 80 % of the kinetic energy on the grid needs about 56. The other 20 % of the energy, and the whole dissipation rate of \(80\ \mathrm{m^2/s^3}\), then belong to motions that the grid does not carry. This chapter derives the equations that the coarse grid must solve, identifies the single term in them that is not known, closes it with the Smagorinsky model, derives the model's one constant from the Kolmogorov spectrum, and states what a simulation built this way can and cannot reproduce.</p>
+<p class="source-note">Grounded in three recordings of the NPTEL course <em>Essentials of Turbulence</em> (Prof. Abhilash J. Chandy, IIT Bombay): <a href="https://www.youtube.com/watch?v=d2UiVIgUbGo">Lecture 54</a>, <a href="https://www.youtube.com/watch?v=ZHqm6yAAuPE">Lecture 55</a> and <a href="https://www.youtube.com/watch?v=MCLApXrqnbs">Lecture 56</a>. The filter, the filtered field, the filter width, the residual field, the cutoff wavenumber, the filter transfer functions and the filtered energy spectrum are defined in the preceding chapter, "Large-eddy simulation: conceptual steps and filtering"; this chapter restates only what it uses, in the slides' symbols. <strong>Lecture material:</strong> the filtered continuity and momentum equations; the residual stress, the residual kinetic energy, the anisotropic residual stress and the modified filtered pressure; the kinetic-energy equation of the filtered field with its dissipation and transfer terms; the statement that the mean transfer balances the dissipation; the Smagorinsky model in two parts; the absence of backscatter; Lilly's inertial-range derivation of the Smagorinsky coefficient and the scalings that follow; the Smagorinsky filter and the effective Kolmogorov scale; the limits of a very small and a very large filter and of laminar flow; near-wall resolution and near-wall modelling; a priori and a posteriori tests; the filtered velocity and the filtered Navier–Stokes equations in wavenumber space; the statistical view of large-eddy simulation. Slide captions carry figure and equation numbers of a textbook that was not available; no page, equation or value of that book is used. <strong>Research extensions:</strong> Pope (2004) on Lilly's analysis, the dynamic model, near-wall motions and the statistical relation between an LES and the filtered velocity; Lilly's 1988 research brief on the length scale of the Smagorinsky model. <strong>Original teaching constructions:</strong> the running case (the air jet as homogeneous isotropic turbulence with the model spectrum of chapter 14), the expansion of the residual stress, the residual-energy budget that states when the mean transfer equals the dissipation, the convexity bound on the coefficient, the coefficient recomputed from the model spectrum (Table 20.1), the corrections to the sign of \(\varepsilon_f\) on the energy-equation slide, to two printed formulas of the Smagorinsky-filter slide and to two of the wavenumber-space slide, the lattice count, the laminar-shear calculation, the program and the six exercises.</p>
+
+<h2 id="model">The objects of the chapter and the running case</h2>
+<p>The fluid is incompressible and Newtonian, with constant density \(\rho\) and kinematic viscosity \(\nu\). The velocity field is \(\mathbf U(\mathbf x,t)\) with components \(U_i\), and \(p(\mathbf x,t)\) is the pressure. Repeated indices are summed over 1, 2, 3. The Navier–Stokes equations in the form used here are (9.4) of chapter 9 together with \(\partial U_i/\partial x_i=0\).</p>
+<p>A <em>filter</em> replaces a field \(\phi(\mathbf x,t)\) by a local weighted average,</p>
+\[
+\overline\phi(\mathbf x,t)=\int G(\mathbf r)\,\phi(\mathbf x-\mathbf r,t)\,d\mathbf r,\qquad \int G(\mathbf r)\,d\mathbf r=1, \tag{20.1}
+\]
+<p>where the kernel \(G\) has a characteristic width \(\Delta\), the <em>filter width</em>. In this chapter \(G\) does not depend on \(\mathbf x\) (a spatially uniform filter). Then (20.1) is a convolution, and differentiation commutes with filtering: \(\overline{\partial\phi/\partial x_i}=\partial\overline\phi/\partial x_i\) and \(\overline{\partial\phi/\partial t}=\partial\overline\phi/\partial t\). The Fourier transform of \(G\) is the <em>transfer function</em> \(\hat G(\boldsymbol\kappa)\), so that a Fourier coefficient of \(\overline\phi\) is \(\hat G\) times that of \(\phi\). For an isotropic filter \(\hat G\) depends only on \(\kappa=|\boldsymbol\kappa|\). The <em>sharp spectral filter</em> has \(\hat G(\kappa)=H(\kappa_c-\kappa)\), with \(H\) the Heaviside function and cutoff wavenumber \(\kappa_c=\pi/\Delta\). The filtered velocity is \(\overline{\mathbf U}\), and the <em>residual field</em> is</p>
+\[
+\mathbf u'(\mathbf x,t)\equiv\mathbf U(\mathbf x,t)-\overline{\mathbf U}(\mathbf x,t). \tag{20.2}
+\]
+<p>The prime follows the slides. In chapters 10 and 11, \(u'\) without bold type and without arguments is the root-mean-square velocity \((2k/3)^{1/2}\) of (10.4); in this chapter \(\mathbf u'\) and \(u_i'\) are always the residual field. The residual field is not the fluctuation \(\mathbf u=\mathbf U-\langle\mathbf U\rangle\) of chapter 9: \(\langle\cdot\rangle\) is an expectation, while the filter is a local average of one realization.</p>
+<p>The running case is the air-jet station of chapters 13 and 14: \(\nu=1.4607\times10^{-5}\ \mathrm{m^2/s}\), turbulent kinetic energy \(k=6\ \mathrm{m^2/s^2}\), dissipation rate \(\varepsilon=80\ \mathrm{m^2/s^3}\), so that the Kolmogorov length is \(\eta=(\nu^3/\varepsilon)^{1/4}=79.0\ \mu\mathrm m\), the length \(L=k^{3/2}/\varepsilon=0.1837\ \mathrm m\) and \(\mathrm{Re}_\lambda=453\). As in those chapters, the jet's turbulence is replaced by homogeneous isotropic turbulence with these statistics, held statistically stationary by forcing at the largest scales, in a periodic box of side \(\mathcal L=1\ \mathrm m\). The jet is neither homogeneous nor isotropic, so the case is a model problem with realistic numbers, not a description of the jet. The energy spectrum is the model spectrum (14.9)–(14.10) of chapter 14 with \(C=1.5\), \(p_0=2\) and \(\beta=5.2\); the two remaining constants, fixed by \(\int_0^\infty E\,d\kappa=k\) and \(\int_0^\infty2\nu\kappa^2E\,d\kappa=\varepsilon\) at this Reynolds number, are \(c_L=6.357\) and \(c_\eta=0.402\) (program below). The slide's \(c_L=6.78\), reproduced by chapter 14's (14.11), is the high-Reynolds-number limit; at finite \(\mathrm{Re}_\lambda\) the condition \(\int_0^\infty E\,d\kappa=k\) lowers \(c_L\), to 6.46 at \(\mathrm{Re}_\lambda=600\) in chapter 14 and 6.357 at 453 here, while \(c_\eta\) stays 0.402. Every section asks one question of this case: which equations does a coarse grid solve, which term is unknown, what model closes it, what coefficient the model needs, and what the result can be compared with.</p>
+
+<h2 id="continuity">Filtering the continuity equation: both parts of the field are solenoidal <a class="timestamp" href="https://www.youtube.com/watch?v=d2UiVIgUbGo&amp;t=84s">L54 1:24</a></h2>
+<p>Apply the filter to \(\partial U_i/\partial x_i=0\). Because the filter commutes with differentiation,</p>
+\[
+\overline{\Bigl(\frac{\partial U_i}{\partial x_i}\Bigr)}=\frac{\partial\overline U_i}{\partial x_i}=0,\qquad
+\frac{\partial u_i'}{\partial x_i}=\frac{\partial}{\partial x_i}\bigl(U_i-\overline U_i\bigr)=0. \tag{20.3}
+\]
+<p>The second statement follows from the first and from the continuity of \(\mathbf U\). Both the filtered field and the residual field are solenoidal. This is exact for every spatially uniform filter. It fails for a filter whose width varies with position, for example a width that shrinks toward a wall, because then \(\overline{\partial\phi/\partial x_i}\) and \(\partial\overline\phi/\partial x_i\) differ by a term proportional to the gradient of the width. The equations of this chapter assume a uniform width.</p>
+
+<h2 id="momentum">The filtered momentum equation and the residual stress <a class="timestamp" href="https://www.youtube.com/watch?v=d2UiVIgUbGo&amp;t=195s">L54 3:15</a></h2>
+<p>Filter each term of the momentum equation (9.4), written with the convective term in divergence form. The time derivative, the viscous term and the pressure gradient are linear, so filtering passes through them; the convective term is quadratic:</p>
+\[
+\frac{\partial\overline U_j}{\partial t}+\frac{\partial\overline{U_iU_j}}{\partial x_i}=\nu\frac{\partial^2\overline U_j}{\partial x_i\partial x_i}-\frac1\rho\frac{\partial\overline p}{\partial x_j}, \tag{20.4}
+\]
+<p>where \(\overline p\) is the filtered pressure. Equation (20.4) is exact. It is not a closed equation for \(\overline{\mathbf U}\), because the filtered product \(\overline{U_iU_j}\) is not the product \(\overline U_i\,\overline U_j\) of the filtered velocities. The difference defines the <em>residual stress tensor</em>,</p>
+\[
+\tau^R_{ij}\equiv\overline{U_iU_j}-\overline U_i\,\overline U_j, \tag{20.5}
+\]
+<p>which the slides set beside the Reynolds stress \(\langle u_iu_j\rangle=\langle U_iU_j\rangle-\langle U_i\rangle\langle U_j\rangle\) of chapter 9. The two definitions have the same form, with the filter in place of the expectation. The analogy is formal, and an expansion shows where it stops. Substitute \(\mathbf U=\overline{\mathbf U}+\mathbf u'\) in \(\overline{U_iU_j}\):</p>
+\[
+\tau^R_{ij}=\bigl(\overline{\overline U_i\,\overline U_j}-\overline U_i\,\overline U_j\bigr)+\bigl(\overline{\overline U_i\,u_j'}+\overline{u_i'\,\overline U_j}\bigr)+\overline{u_i'u_j'}. \tag{20.6}
+\]
+<p>The Reynolds stress has only the analogue of the last term, because the expectation has the two properties \(\langle\langle U_i\rangle\langle U_j\rangle\rangle=\langle U_i\rangle\langle U_j\rangle\) and \(\langle\langle U_i\rangle u_j\rangle=0\). A filter has neither in general. For a Gaussian or box filter, filtering twice changes the field, \(\overline{\overline{\mathbf U}}\ne\overline{\mathbf U}\), so \(\overline{\mathbf u'}\ne0\) and the second bracket does not vanish. For the sharp spectral filter, filtering twice gives the same field (the filter is a projection), so \(\overline{\mathbf u'}=0\), and the box average of a cross product, \(\langle\overline U_iu_j'\rangle_V\), vanishes because the two fields have no wavenumber in common. The cross terms themselves do not vanish: the product of a resolved mode \(\boldsymbol\kappa_1\) (\(\kappa_1\lt\kappa_c\)) and a residual mode \(\boldsymbol\kappa_2\) (\(\kappa_2\ge\kappa_c\)) has wavenumber \(\boldsymbol\kappa_1+\boldsymbol\kappa_2\), which can lie inside the cutoff, so it survives the filter. The first bracket remains as well, because the product of two fields with wavenumbers below \(\kappa_c\) contains wavenumbers up to \(2\kappa_c\). So \(\tau^R_{ij}\) is not the stress of the residual motions alone, and its value depends on the filter as well as on the flow. The program below does not test (20.6); it is an algebraic identity that Exercise 2 evaluates for a laminar flow, where \(\tau^R_{ij}\) is not zero although the flow has no residual motions in the turbulent sense.</p>
+<p>Substituting (20.5) into (20.4) gives</p>
+\[
+\frac{\partial\overline U_j}{\partial t}+\frac{\partial(\overline U_i\,\overline U_j)}{\partial x_i}=\nu\frac{\partial^2\overline U_j}{\partial x_i\partial x_i}-\frac{\partial\tau^R_{ij}}{\partial x_i}-\frac1\rho\frac{\partial\overline p}{\partial x_j}. \tag{20.7}
+\]
+<p>Every term except \(\partial\tau^R_{ij}/\partial x_i\) is a function of the filtered fields. The step is exact; the unknown is now isolated in one term. This is the same move as in the Reynolds equations (9.7), and it has the same consequence: four equations (three components of (20.7) and \(\partial\overline U_i/\partial x_i=0\)) for four filtered unknowns \(\overline{\mathbf U}\), \(\overline p\), plus six unknown components of \(\tau^R_{ij}\).</p>
+
+<h2 id="closure">Isotropic and anisotropic parts: the modified pressure and the closure problem <a class="timestamp" href="https://www.youtube.com/watch?v=d2UiVIgUbGo&amp;t=335s">L54 5:35</a></h2>
+<p>Half the trace of the residual stress is the <em>residual kinetic energy</em>, and the remainder is the <em>anisotropic residual stress</em>:</p>
+\[
+k_r\equiv\tfrac12\tau^R_{ii},\qquad \tau^r_{ij}\equiv\tau^R_{ij}-\tfrac23k_r\delta_{ij},\qquad \tau^r_{ii}=0. \tag{20.8}
+\]
+<p>The factor \(\tfrac23\) makes \(\tau^r_{ij}\) traceless: \(2k_r\) is the trace of \(\tau^R_{ij}\), and \(\tfrac13\) of it goes to each diagonal component. This is the decomposition (9.17)–(9.18) of chapter 9, applied to \(\tau^R_{ij}\). The isotropic part \(\tfrac23k_r\delta_{ij}\) has a divergence \(\tfrac23\,\partial k_r/\partial x_j\), which has the form of a pressure gradient. It is absorbed into a <em>modified filtered pressure</em></p>
+\[
+\overline p_{\mathrm m}\equiv\overline p+\tfrac23\rho k_r. \tag{20.9}
+\]
+<p>The slide writes the modified pressure with the same symbol \(\overline p\) as the filtered pressure. This chapter writes \(\overline p_{\mathrm m}\), as chapter 9 wrote \(p_{\mathrm m}\) in (9.20); the overbar marks it as a filtered-field quantity, and it is not the filter of chapter 9's \(p_{\mathrm m}\). With the filtered substantial derivative \(\bar D/\bar Dt\equiv\partial/\partial t+\overline{\mathbf U}\cdot\nabla\) (the slide's symbol; chapter 9 used the same operator symbol with the mean velocity) and \(\partial\overline U_i/\partial x_i=0\), equation (20.7) becomes</p>
+\[
+\frac{\bar D\overline U_j}{\bar Dt}=\nu\frac{\partial^2\overline U_j}{\partial x_i\partial x_i}-\frac{\partial\tau^r_{ij}}{\partial x_i}-\frac1\rho\frac{\partial\overline p_{\mathrm m}}{\partial x_j}. \tag{20.10}
+\]
+<p>The divergence of (20.10) gives a Poisson equation for \(\overline p_{\mathrm m}\), as for the pressure in chapter 9: once \(\tau^r_{ij}\) is known, \(\overline p_{\mathrm m}\) is determined by \(\overline{\mathbf U}\) and \(\tau^r_{ij}\). The left side and the first and last terms on the right are therefore closed. The equations are closed by a model for \(\tau^r_{ij}\), called a residual-stress model or a subgrid-scale (SGS) model. The pressure \(\overline p\) itself is not recovered from \(\overline p_{\mathrm m}\) unless \(k_r\) is also modelled.</p>
+<p>The lecture lists three ways in which (20.10) differs from the Reynolds equations. First, \(\overline{\mathbf U}\), \(\overline p_{\mathrm m}\) and \(\tau^r_{ij}\) are random, three-dimensional and unsteady even when the flow is statistically stationary or homogeneous; the equations are solved for one realization at a time, and statistics are formed afterwards. Second, \(\tau^r_{ij}\) depends on the type and the width of the filter, as (20.6) shows. Third, \(\overline{\mathbf U}\) also depends on the filter, yet neither \(G\) nor \(\Delta\) appears in (20.10): they enter only through the model for \(\tau^r_{ij}\). Section <a href="#smagorinsky-filter">"The Smagorinsky filter"</a> returns to the third point.</p>
+
+<h2 id="energy">The kinetic energy of the filtered field and the transfer to the residual motions <a class="timestamp" href="https://www.youtube.com/watch?v=d2UiVIgUbGo&amp;t=732s">L54 12:12</a></h2>
+<p>The reason for resolving the large scales is that they hold most of the energy, while the energy cascade of chapter 10 carries energy from them to the small scales. An LES must therefore represent the transfer of kinetic energy from the filtered field to the residual field. Write the kinetic-energy field as \(\mathcal E(\mathbf x,t)\equiv\tfrac12\mathbf U\cdot\mathbf U\) (the slides write \(E\); the script letter keeps it apart from the spectrum \(E(\kappa)\), which this chapter also uses). Its filter splits into two parts,</p>
+\[
+\overline{\mathcal E}=\tfrac12\overline{\mathbf U\cdot\mathbf U}=\mathcal E_f+k_r,\qquad \mathcal E_f\equiv\tfrac12\,\overline{\mathbf U}\cdot\overline{\mathbf U},\qquad k_r=\tfrac12\overline{\mathbf U\cdot\mathbf U}-\tfrac12\,\overline{\mathbf U}\cdot\overline{\mathbf U}=\tfrac12\tau^R_{ii}. \tag{20.11}
+\]
+<p>Here \(\mathcal E_f\) is the kinetic energy of the filtered velocity field and \(k_r\) is the residual kinetic energy of (20.8); the last equality is (20.5) with \(j=i\).</p>
+<p><strong>Derivation of the equation for \(\mathcal E_f\).</strong> Multiply (20.10) by \(\overline U_j\) and treat each term. Let \(\bar S_{ij}\equiv\tfrac12(\partial\overline U_i/\partial x_j+\partial\overline U_j/\partial x_i)\) be the filtered rate of strain.</p>
+<ol>
+<li>Left side: \(\overline U_j\,\bar D\overline U_j/\bar Dt=\bar D\mathcal E_f/\bar Dt\), because \(\bar D/\bar Dt\) is a first-order differential operator.</li>
+<li>Viscous term: by \(\partial\overline U_i/\partial x_i=0\), \(\partial^2\overline U_j/\partial x_i\partial x_i=\partial(2\bar S_{ij})/\partial x_i\), since the extra term \(\partial^2\overline U_i/\partial x_i\partial x_j\) is the gradient of the divergence. Then \(\nu\overline U_j\,\partial(2\bar S_{ij})/\partial x_i=\partial(2\nu\overline U_j\bar S_{ij})/\partial x_i-2\nu\bar S_{ij}\,\partial\overline U_j/\partial x_i\), and the last product equals \(2\nu\bar S_{ij}\bar S_{ij}\) because \(\bar S_{ij}\) is symmetric, so only the symmetric part of the gradient survives the contraction.</li>
+<li>Residual-stress term: \(-\overline U_j\,\partial\tau^r_{ij}/\partial x_i=-\partial(\overline U_j\tau^r_{ij})/\partial x_i+\tau^r_{ij}\bar S_{ij}\), again by symmetry of \(\tau^r_{ij}\).</li>
+<li>Pressure term: \(-\overline U_j\,\partial(\overline p_{\mathrm m}/\rho)/\partial x_j=-\partial(\overline U_j\overline p_{\mathrm m}/\rho)/\partial x_j\), using the continuity equation a second time.</li>
+</ol>
+<p>Collecting the divergences on the left,</p>
+\[
+\frac{\bar D\mathcal E_f}{\bar Dt}-\frac{\partial}{\partial x_i}\Bigl[\overline U_j\Bigl(2\nu\bar S_{ij}-\tau^r_{ij}-\frac{\overline p_{\mathrm m}}{\rho}\delta_{ij}\Bigr)\Bigr]=-\varepsilon_f-\mathcal P_r,
+\qquad \varepsilon_f\equiv2\nu\bar S_{ij}\bar S_{ij},\qquad \mathcal P_r\equiv-\tau^r_{ij}\bar S_{ij}. \tag{20.12}
+\]
+<p>The derivation is exact given (20.10); it uses the symmetry of \(\bar S_{ij}\) and \(\tau^r_{ij}\) and the solenoidal filtered field twice. Because \(\bar S_{ii}=0\), the isotropic part of \(\tau^R_{ij}\) contributes nothing to the contraction, so \(\mathcal P_r=-\tau^R_{ij}\bar S_{ij}\) as well. The slide (L54, 17:30) prints the right side as \(\varepsilon_f-\mathcal P_r\), without the minus sign on \(\varepsilon_f\); the derivation gives \(-\varepsilon_f-\mathcal P_r\), and the slide that follows names \(-\varepsilon_f\) as the sink, so (20.12) keeps the minus sign.</p>
+<p><strong>Interpretation.</strong> The bracketed flux on the left moves \(\mathcal E_f\) from place to place; integrated over a periodic box it contributes nothing. The two terms on the right change the total. The term \(-\varepsilon_f\) is viscous dissipation acting directly on the filtered field, and \(\varepsilon_f\ge0\). The term \(\mathcal P_r\) appears with a minus sign in (20.12). The same product appears with a plus sign in the equation for \(k_r\), which the lecture names without deriving; \(\mathcal P_r\) is therefore the rate of production of residual kinetic energy, and it represents the rate of transfer of energy from the filtered motions to the residual motions. The slides note that \(\mathcal P_r\) is sometimes called the SGS dissipation and written \(\varepsilon_s\), and call that name inappropriate: unlike true dissipation, \(\mathcal P_r\) comes entirely from inviscid inertial processes (no \(\nu\) appears in it), and it can be negative at a point, where it transfers energy from the residual to the filtered motions.</p>
+<p><strong>How small is \(\varepsilon_f\)?</strong> The lecture states that for a high-Reynolds-number flow with a filter width much larger than \(\eta\), \(\varepsilon_f\) is relatively small. The section <a href="#lilly">"The coefficient from the inertial subrange"</a> derives \(\langle\varepsilon_f\rangle/\varepsilon=a_fC(\eta/\Delta)^{4/3}\) for a filter in the inertial subrange, with \(a_fC=10.35\) for the sharp filter. This is \(4.4\ \%\) at \(\Delta=60\eta\) and \(1\ \%\) at \(\Delta=181\eta\). The model spectrum of the running case gives \(4.3\ \%\) at \(\Delta=60\eta\) (Table 20.1).</p>
+
+<h2 id="balance">When the mean transfer equals the dissipation <a class="timestamp" href="https://www.youtube.com/watch?v=d2UiVIgUbGo&amp;t=1298s">L54 21:38</a></h2>
+<p>The slides conclude that \(\langle\mathcal P_r\rangle\approx\varepsilon\): at high Reynolds number with the filter in the inertial subrange, the filtered field holds nearly all of the kinetic energy, \(\langle\mathcal E_f\rangle\approx\langle\overline{\mathcal E}\rangle\); the dominant sink in the equation for \(\langle\mathcal E_f\rangle\) is \(\langle\mathcal P_r\rangle\), and the sink in the equation for \(\langle\overline{\mathcal E}\rangle\) is \(\varepsilon\). The argument compares two equations whose energies are nearly equal and concludes that their sinks are nearly equal. A budget makes the condition exact.</p>
+<p>Take homogeneous turbulence with zero mean velocity, either decaying or kept stationary by a forcing acceleration \(\mathbf f\), added to the right side of the momentum equation (and so \(+\overline{\mathbf f}\) to the right side of (20.10)), confined to wavenumbers at which \(\hat G=1\); for the sharp spectral filter that means any forcing below \(\kappa_c\), and for a Gaussian or box filter it is an approximation that holds to the extent that \(\hat G(\kappa)^2\approx1\) at the forced wavenumbers (for a Gaussian filter and forcing at \(\kappa_f=0.1\kappa_c\), the error is \(1-\exp(-\pi^2/1200)=0.8\ \%\) of the forcing power). For a homogeneous field, the expectation of a filtered quantity equals the expectation of the quantity, because the filter is a weighted average with unit weight of values that all have the same expectation; hence \(\langle\overline{\mathcal E}\rangle=\langle\mathcal E\rangle\). The mean of (20.12), with the forcing term \(\langle\overline{\mathbf U}\cdot\overline{\mathbf f}\rangle\) added, loses its flux term by homogeneity, so \(d\langle\mathcal E_f\rangle/dt=F-\langle\varepsilon_f\rangle-\langle\mathcal P_r\rangle\), where \(F=\langle\mathbf U\cdot\mathbf f\rangle\) is the power of the forcing per unit mass (zero in decay). The full field obeys \(d\langle\mathcal E\rangle/dt=F-\varepsilon\), with \(\varepsilon\) the dissipation rate of chapter 10. Where \(\hat G=1\) on the forced wavenumbers (exactly for the sharp filter; to the 0.8 % above for the Gaussian example), \(\overline{\mathbf f}=\mathbf f\) and \(\langle\overline{\mathbf U}\cdot\mathbf f\rangle=\langle\mathbf U\cdot\mathbf f\rangle\) (the residual field has no component at those wavenumbers), so the same \(F\) enters both equations. For a general filter the filtered budget has \(F_f=\langle\overline{\mathbf U}\cdot\overline{\mathbf f}\rangle=\sum\hat G^2\,\mathrm{Re}\langle\hat{\mathbf u}^*\cdot\hat{\mathbf f}\rangle\) in place of \(F\). Subtracting, with \(\langle\mathcal E\rangle=\langle\mathcal E_f\rangle+\langle k_r\rangle\),</p>
+\[
+\frac{d\langle k_r\rangle}{dt}=\langle\mathcal P_r\rangle-\bigl(\varepsilon-\langle\varepsilon_f\rangle\bigr). \tag{20.13}
+\]
+<p>The bracket is the dissipation that occurs in the residual motions. So \(\langle\mathcal P_r\rangle=\varepsilon-\langle\varepsilon_f\rangle\) exactly when the residual energy is steady, and \(\langle\mathcal P_r\rangle\approx\varepsilon\) when, in addition, \(\langle\varepsilon_f\rangle\ll\varepsilon\). The requirement is on the rate of change of \(\langle k_r\rangle\), not on its size: a residual energy of 20 % of \(k\) does not spoil the balance if it is steady. In decaying turbulence \(d\langle k_r\rangle/dt\) is not zero, but chapter 10's argument (10.9)–(10.10) bounds it: the small scales adjust on their own time scale, which is short compared with the decay time. For the sharp filter the result is the transfer relation (11.5) of chapter 11 evaluated at \(\kappa=\kappa_c\): in stationary turbulence the flux through \(\kappa_c\) equals the dissipation above \(\kappa_c\).</p>
+
+<h2 id="smagorinsky">The Smagorinsky model: an eddy viscosity and a length proportional to the filter width <a class="timestamp" href="https://www.youtube.com/watch?v=ZHqm6yAAuPE&amp;t=258s">L55 4:18</a></h2>
+<p>The lecture treats the classical Smagorinsky model, with a constant coefficient, and mentions the dynamic version, which computes the coefficient during the simulation, only for contrast. The slides describe it as the simplest residual-stress model and the basis of several more advanced ones. Like the turbulent-viscosity models of chapter 9, it has two parts.</p>
+<p><strong>Intrinsic assumption: a linear eddy-viscosity model.</strong> The anisotropic residual stress is proportional to the filtered rate of strain,</p>
+\[
+\tau^r_{ij}=-2\nu_r\bar S_{ij}, \tag{20.14}
+\]
+<p>where the coefficient \(\nu_r(\mathbf x,t)\) is the <em>eddy viscosity of the residual motions</em>. This is the form (9.27) of the turbulent-viscosity hypothesis, \(a_{ij}=-2\nu_T\langle S_{ij}\rangle\), with the filtered strain in place of the mean strain; chapter 9's \(\nu_T\) and this chapter's \(\nu_r\) are different quantities. Both sides of (20.14) are traceless, which is why the model is written for \(\tau^r_{ij}\) and not \(\tau^R_{ij}\). The assumption has the limitations that chapter 9 found for its mean-flow counterpart: it aligns the principal axes of the stress with those of the strain, and it makes the stress a function of the local strain only.</p>
+<p><strong>Specific assumption: a mixing-length form.</strong> By analogy with the mixing-length hypothesis, the residual viscosity is the square of a length times a rate of strain:</p>
+\[
+\nu_r=\ell_S^2\,\bar{\mathcal S}=(C_S\Delta)^2\,\bar{\mathcal S},\qquad \bar{\mathcal S}\equiv\bigl(2\bar S_{ij}\bar S_{ij}\bigr)^{1/2}. \tag{20.15}
+\]
+<p>The <em>Smagorinsky length</em> \(\ell_S\) (the slides write \(l_S\)) plays the role of the mixing length and is taken proportional to the filter width through the <em>Smagorinsky coefficient</em> \(C_S\); \(\bar{\mathcal S}\) is the characteristic filtered rate of strain. The definition of \(\bar{\mathcal S}\) is local: it is a field, not an average. A handwritten annotation on the slide (L55, slide at 9:30) adds angle brackets, \(\langle2\bar S_{ij}\bar S_{ij}\rangle^{1/2}\); with brackets the model would have a viscosity that is uniform in space, which is a different model, and the identity (20.16) below would hold only on average. The chapter uses the local definition.</p>
+<p><strong>The transfer is never negative.</strong> Substituting (20.14) into the definition of \(\mathcal P_r\) in (20.12),</p>
+\[
+\mathcal P_r=-\tau^r_{ij}\bar S_{ij}=2\nu_r\bar S_{ij}\bar S_{ij}=\nu_r\bar{\mathcal S}^2=\ell_S^2\,\bar{\mathcal S}^3\ \ge0. \tag{20.16}
+\]
+<p>Every factor is non-negative: \(C_S^2\ge0\), \(\Delta^2\gt0\) and \(\bar{\mathcal S}\ge0\) as the magnitude of a tensor. So the model transfers energy from the filtered motions to the residual motions at every point and every instant. It cannot represent transfer in the opposite direction, which is called <em>backscatter</em>, although the exact \(\mathcal P_r\) can be negative locally. The statement depends on \(C_S^2\), not on \(C_S\): a model that allows backscatter must let the coefficient of \(\bar{\mathcal S}^3\) become negative, which a real \(C_S\) cannot do. The lecture notes that the dynamic Smagorinsky model computes \(C_S^2\) from the resolved field, so that it can become negative, and names stratified flows and magnetohydrodynamic flows, which have buoyancy or Lorentz-force source terms in the momentum equation, as flows where backscatter matters. These examples are the lecture's; the chapter has not checked them against a source.</p>
+
+<h2 id="lilly">The coefficient from the inertial subrange <a class="timestamp" href="https://www.youtube.com/watch?v=ZHqm6yAAuPE&amp;t=740s">L55 12:20</a></h2>
+<p>The coefficient \(C_S\) is the one number the model needs. The lecture derives it for high-Reynolds-number turbulence with the filter width in the inertial subrange, \(\ell_{EI}\gt\Delta\gt\ell_{DI}\), where \(\ell_{EI}\) and \(\ell_{DI}\) are the demarcation lengths of chapter 10. The derivation has three steps.</p>
+<p><strong>Step 1: the mean square filtered strain from the spectrum.</strong> In homogeneous turbulence with zero mean velocity gradient, chapter 11's (11.3)–(11.4) give \(\langle\partial_ju_i\,\partial_ju_i\rangle=\int_0^\infty2\kappa^2E(\kappa)\,d\kappa\), and for a solenoidal homogeneous field \(\langle2s_{ij}s_{ij}\rangle=\langle\partial_ju_i\,\partial_ju_i\rangle\) (the two differ by \(\langle\partial_ju_i\,\partial_iu_j\rangle\), which is the second derivative of a correlation and vanishes by homogeneity and continuity). The filtered field has the filtered spectrum \(\overline E(\kappa)=\hat G(\kappa)^2E(\kappa)\), because each Fourier coefficient is multiplied by \(\hat G\) and the energy is quadratic in the coefficients. Hence</p>
+\[
+\langle\bar{\mathcal S}^2\rangle=\int_0^\infty2\kappa^2\hat G(\kappa)^2E(\kappa)\,d\kappa\approx2\int_0^\infty\kappa^2\hat G(\kappa)^2C\varepsilon^{2/3}\kappa^{-5/3}\,d\kappa=a_fC\varepsilon^{2/3}\Delta^{-4/3},
+\qquad a_f\equiv2\int_0^\infty(\kappa\Delta)^{1/3}\hat G(\kappa)^2\,d(\kappa\Delta). \tag{20.17}
+\]
+<p>The first equality is exact under the stated assumptions; the program checks it, including the factor 2, on a random solenoidal field in a periodic box, where it holds to round-off. The approximation replaces \(E(\kappa)\) by the Kolmogorov spectrum (11.7) at all wavenumbers. It is good when \(\kappa_c\) lies in the inertial subrange, for this reason: the factor \(\kappa^2\) weights the integral toward high wavenumbers and \(\hat G^2\) removes wavenumbers beyond \(\kappa_c\), so the integral is dominated by wavenumbers near \(\kappa_c\), where the Kolmogorov form holds. The constant \(a_f\) depends on the type of filter and not on \(\Delta\). The slide attributes this analysis to Lilly in 1967 (L54, slide at 0:30).</p>
+<p>For the sharp spectral filter, \(\hat G^2=1\) for \(\kappa\Delta\lt\pi\) and 0 beyond, so</p>
+\[
+a_f=2\int_0^{\pi}x^{1/3}\,dx=\tfrac32\pi^{4/3}=6.902. \tag{20.18}
+\]
+<p>(The board computation at L55 about 20:00 writes the upper limit as \(\kappa_c\) after changing the variable to \(\kappa\Delta\); the limit in that variable is \(\kappa_c\Delta=\pi\), which is the value used.) The same calculation gives the estimate of \(\varepsilon_f\) quoted earlier: \(\langle\varepsilon_f\rangle=\nu\langle\bar{\mathcal S}^2\rangle=a_fC\nu\varepsilon^{2/3}\Delta^{-4/3}\), and with \(\nu=\eta^{4/3}\varepsilon^{1/3}\), \(\langle\varepsilon_f\rangle/\varepsilon=a_fC(\eta/\Delta)^{4/3}\).</p>
+<p><strong>Step 2: the energy balance.</strong> By (20.13) with a steady residual energy and \(\langle\varepsilon_f\rangle\ll\varepsilon\), and by (20.16),</p>
+\[
+\varepsilon=\langle\mathcal P_r\rangle=\langle\nu_r\bar{\mathcal S}^2\rangle=\ell_S^2\langle\bar{\mathcal S}^3\rangle. \tag{20.19}
+\]
+<p>The length \(\ell_S\) comes out of the average because it is a constant. Solve (20.17) for \(\varepsilon=\langle\bar{\mathcal S}^2\rangle^{3/2}(a_fC)^{-3/2}\Delta^{2}\) and substitute in (20.19):</p>
+\[
+\ell_S=\frac{\Delta}{(Ca_f)^{3/4}}\Bigl(\frac{\langle\bar{\mathcal S}^3\rangle}{\langle\bar{\mathcal S}^2\rangle^{3/2}}\Bigr)^{-1/2}. \tag{20.20}
+\]
+<p><strong>Step 3: neglect the fluctuations of \(\bar{\mathcal S}\).</strong> Lilly's approximation \(\langle\bar{\mathcal S}^3\rangle\approx\langle\bar{\mathcal S}^2\rangle^{3/2}\) sets the bracket in (20.20) to 1. With (20.18),</p>
+\[
+C_S=\frac{\ell_S}{\Delta}=(Ca_f)^{-3/4}=\frac1\pi\Bigl(\frac{2}{3C}\Bigr)^{3/4}=0.173\qquad(C=1.5). \tag{20.21}
+\]
+<p>The slide prints \(\approx0.17\); the program gives 0.1733. The result confirms, for \(\Delta\) in the inertial subrange, the model's supposition that \(\ell_S\) is proportional to \(\Delta\). With \(\ell_S\sim\Delta\) and (20.17), \(\bar{\mathcal S}\sim\varepsilon^{1/3}\Delta^{-2/3}\), and the other inertial-range scalings follow:</p>
+\[
+\nu_r\sim\ell_S^2\bar{\mathcal S}\sim\varepsilon^{1/3}\Delta^{4/3},\qquad \tau^r_{ij}\sim\ell_S^2\bar{\mathcal S}^2\sim\varepsilon^{2/3}\Delta^{2/3}. \tag{20.22}
+\]
+<p>These are the scalings of the velocity \((\varepsilon\Delta)^{1/3}\) and the time \((\Delta^2/\varepsilon)^{1/3}\) of chapter 10's (10.18)–(10.19) at the scale \(\Delta\): \(\nu_r\) is a velocity times a length and \(\tau^r_{ij}\) a velocity squared.</p>
+<p><strong>What the derivation assumes, and the direction of the error.</strong> The assumptions are: a high Reynolds number with \(\kappa_c\) in the inertial subrange; the Kolmogorov spectrum with \(C=1.5\) at and near \(\kappa_c\); \(\langle\varepsilon_f\rangle\ll\varepsilon\) and a steady residual energy; homogeneity and isotropy; and the neglect of the fluctuations of \(\bar{\mathcal S}\). The last one has a definite sign. The function \(y\mapsto y^{3/2}\) is convex for \(y\ge0\), so Jensen's inequality applied to \(y=\bar{\mathcal S}^2\) gives</p>
+\[
+\langle\bar{\mathcal S}^3\rangle\ge\langle\bar{\mathcal S}^2\rangle^{3/2}, \tag{20.23}
+\]
+<p>with equality only if \(\bar{\mathcal S}\) is the same everywhere. By (20.20) the exact coefficient is therefore at most the value (20.21): fluctuations of \(\bar{\mathcal S}\) lower \(C_S\). For a size estimate, suppose the filtered velocity gradients were Gaussian and isotropic. The five independent components of a traceless symmetric Gaussian isotropic tensor are then independent with equal variance, \(\bar{\mathcal S}\) has a chi distribution with 5 degrees of freedom, and \(\langle\bar{\mathcal S}^3\rangle/\langle\bar{\mathcal S}^2\rangle^{3/2}=2^{3/2}\Gamma(4)/[\Gamma(5/2)\,5^{3/2}]=1.142\), which lowers \(C_S\) by the factor \(1.142^{-1/2}=0.936\), to 0.162. The random Gaussian field of the program gives the ratio 1.145. Measured velocity gradients are not Gaussian (chapter 11 discusses their skewness), so this is an illustration of the size of the correction, not a value for real turbulence.</p>
+<p>The coefficient also depends on the filter through \(a_f\). For the Gaussian filter, \(\hat G^2=\exp(-\kappa^2\Delta^2/12)\), and (20.17) gives \(a_f=12^{2/3}\Gamma(2/3)=7.098\) and \(C_S=0.170\) (Exercise 1); for the Pao filter of the next section, \(a_f=18/\pi^{2/3}=8.392\) and \(C_S=0.150\). <a href="https://iopscience.iop.org/article/10.1088/1367-2630/6/1/035">Pope (2004)</a> states the same point: in the inertial subrange the appropriate value of the Smagorinsky coefficient is uniquely determined, for a given filter type, by the analysis developed by Lilly (p. 17). The lecture calls the value universal because \(C\) is; the filter dependence means that 0.17 is universal only for the sharp spectral filter with \(\kappa_c=\pi/\Delta\).</p>
+<p><strong>Lilly's own account.</strong> A 1988 research brief by Lilly (<a href="https://ntrs.nasa.gov/citations/19890013446">Lilly 1989</a>, in the Center for Turbulence Research Annual Research Briefs 1988) describes the method: it assumes inertial-range theory and neglects intermittency, equates the loss of energy from the resolved scales, \(\lambda^2S^3\) in its notation, to the viscous dissipation, and evaluates \(S^2\) by integrating the spectrum up to the cutoff wavenumber (p. 5), with the Kolmogorov constant "about 1.5" (p. 6); it attributes the original analysis to Lilly (1966, 1967) (p. 3). Its printed result, \(\lambda=(4/3\alpha)^{3/4}k_m^{-1}\) with \(\alpha\) the Kolmogorov constant and \(k_m\) the cutoff (p. 6, eq. (13)), is \(2^{3/4}=1.68\) times the slide's \(\ell_S=(3C/2)^{-3/4}\kappa_c^{-1}\) at the same cutoff. The difference comes from its eq. (9), \(S^2=\int_0^{k_m}k^2E\,dk\) (p. 5), which has no factor 2, whereas (20.17) has \(2\kappa^2\); the two definitions of \(S\) agree, since the brief's \(S^2=S_{ij}(S_{ij}+S_{ji})\) with \(S_{ij}\) the velocity gradient (p. 5) equals \(2\bar S_{ij}\bar S_{ij}\). The brief describes \(E(k)\) only as "the spectral amplitude of kinetic energy, defined as an integral along the surfaces of spheres in spectral space" (p. 6), which fixes the spherical integration but not whether the kinetic energy is \(\tfrac12u_iu_i\) or \(u_iu_i\); so this chapter does not decide whether eq. (9) or the normalization carries the factor. The brief also relates \(k_m\) to the grid interval \(\Delta\) by \(k_m=\text{constant}/\Delta\), with the constant at least 2 for the Nyquist limit and at least 3 for dealiased pseudo-spectral integration, the latter increasing \(\lambda\) by 50 % (p. 6). With these differences in convention, the value 0.17 cannot be compared with the brief without first fixing the definitions of \(E\), \(\Delta\) and \(\kappa_c\). The 1967 paper was not obtained.</p>
+
+<h2 id="running-case">The coefficient in the running case</h2>
+<p>The jet at \(\mathrm{Re}_\lambda=453\) tests the inertial-subrange assumption. Chapter 10's nominal demarcations are \(\ell_{DI}\approx60\eta=4.74\ \mathrm{mm}\) and \(\ell_{EI}\approx\ell_0/6\), with \(\ell_0=0.1\ \mathrm m\) for the jet, so \(\ell_{EI}\approx16.7\ \mathrm{mm}\) (the preceding chapter uses \(L_{11}/6=13.9\ \mathrm{mm}\) for the same flow; \(\ell_0\) is a nominal eddy size and \(L_{11}\) the measured integral scale. With 13.9 mm the window spans a factor of 2.9 instead of 3.5, and the coefficient at its upper edge lies between the 10 mm and 16.67 mm rows of Table 20.1, 0.179 and 0.186, so the range 0.172 to 0.186 read from the table below still bounds it): the window \(\ell_{EI}\gt\Delta\gt\ell_{DI}\) spans a factor of 3.5. (The slide compares \(\Delta\) with the lengths directly. If instead \(\kappa_c=\pi/\Delta\) is compared with \(2\pi/\ell\), the window is \(2.4\ \mathrm{mm}\lt\Delta\lt8.3\ \mathrm{mm}\); the factor 2 between the two readings comes from the \(\pi\) in \(\kappa_c=\pi/\Delta\).) The program evaluates (20.17) with the full model spectrum instead of the Kolmogorov form, and replaces the balance (20.19) by \(\langle\mathcal P_r\rangle=\varepsilon-\langle\varepsilon_f\rangle\), the steady form of (20.13). It keeps Lilly's step 3. The coefficient that the balance then requires is</p>
+\[
+C_S^2=\frac{\varepsilon-\nu\langle\bar{\mathcal S}^2\rangle}{\Delta^2\langle\bar{\mathcal S}^2\rangle^{3/2}},\qquad \langle\bar{\mathcal S}^2\rangle=\int_0^{\kappa_c}2\kappa^2E(\kappa)\,d\kappa. \tag{20.24}
+\]
+<div class="table-wrap"><table>
+<caption>Table 20.1. Sharp spectral filter applied to the model spectrum of the running case (\(\eta=79.0\ \mu\mathrm m\), \(L=0.1837\ \mathrm m\), \(\varepsilon=80\ \mathrm{m^2/s^3}\)). Columns: resolved fraction of \(k\); \(\langle\varepsilon_f\rangle/\varepsilon\); the ratio of \(\langle\bar{\mathcal S}^2\rangle\) to its inertial estimate (20.17); the coefficient from (20.24); the resulting \(\nu_r/\nu\) with \(\bar{\mathcal S}=\langle\bar{\mathcal S}^2\rangle^{1/2}\).</caption>
+<thead><tr><th scope="col">\(\Delta\) (mm)</th><th scope="col">\(\Delta/\eta\)</th><th scope="col">\(k\) resolved</th><th scope="col">\(\langle\varepsilon_f\rangle/\varepsilon\)</th><th scope="col">\(\langle\bar{\mathcal S}^2\rangle\) / (20.17)</th><th scope="col">\(C_S\)</th><th scope="col">\(\nu_r/\nu\)</th></tr></thead>
+<tbody>
+<tr><td>1.00</td><td>12.7</td><td>0.989</td><td>0.344</td><td>0.979</td><td>0.143</td><td>1.9</td></tr>
+<tr><td>2.00</td><td>25.3</td><td>0.970</td><td>0.138</td><td>0.992</td><td>0.162</td><td>6.2</td></tr>
+<tr><td>4.74</td><td>60.0</td><td>0.930</td><td>0.043</td><td>0.980</td><td>0.172</td><td>22.2</td></tr>
+<tr><td>10.00</td><td>126.6</td><td>0.871</td><td>0.015</td><td>0.949</td><td>0.179</td><td>63.7</td></tr>
+<tr><td>16.67</td><td>211.0</td><td>0.811</td><td>0.007</td><td>0.904</td><td>0.186</td><td>133.1</td></tr>
+<tr><td>17.95</td><td>227.2</td><td>0.800</td><td>0.007</td><td>0.895</td><td>0.188</td><td>148.5</td></tr>
+<tr><td>30.00</td><td>379.7</td><td>0.711</td><td>0.003</td><td>0.811</td><td>0.203</td><td>326.7</td></tr>
+<tr><td>60.00</td><td>759.5</td><td>0.539</td><td>0.001</td><td>0.611</td><td>0.251</td><td>1094.4</td></tr>
+</tbody></table></div>
+<p>Table 20.1 shows three things. Inside the nominal window (rows 4.74 to 16.67 mm) the coefficient is 0.172 to 0.186, within 8 % of (20.21); the model spectrum lies below the Kolmogorov form at low wavenumbers, so \(\langle\bar{\mathcal S}^2\rangle\) is 2 % to 10 % below its estimate and \(C_S\) correspondingly above 0.173. Toward the energy-containing range (30 and 60 mm) the inertial estimate fails and the required coefficient rises to 0.25. Toward the dissipation range (1 and 2 mm) the filtered field dissipates a growing share of \(\varepsilon\) by molecular viscosity (34 % at \(\Delta=1\ \mathrm{mm}\)), less is left for the model, and the coefficient falls to 0.14. Under these assumptions \(C_S\) is a function of \(\Delta/\eta\) and \(\Delta/L\), and it is constant only where both ratios put \(\kappa_c\) in the inertial subrange.</p>
+<p>The lecture's guideline for an LES is that the filtered field should hold about 80 % or more of the energy (L54 21:43 in speech; the slide on near-wall resolution states 80 % as the criterion for LES with near-wall resolution). For the jet that requires \(\Delta=17.95\ \mathrm{mm}=227\eta=0.098L\), just above the nominal \(\ell_{EI}\); the coefficient required there is 0.188, and the model viscosity is 149 times the molecular viscosity. At \(\mathrm{Re}_\lambda=453\) an LES that keeps 80 % of the energy has its cutoff at the upper edge of the inertial subrange, not inside it. The window grows with the Reynolds number: \(\ell_{EI}/\ell_{DI}\) increases as \(\mathrm{Re}_0^{3/4}\) by (10.15).</p>
+
+<h2 id="smagorinsky-filter">The Smagorinsky filter and the effective Kolmogorov scale <a class="timestamp" href="https://www.youtube.com/watch?v=MCLApXrqnbs&amp;t=60s">L56 1:00</a></h2>
+<p>Once \(\ell_S\) is specified, (20.10) with (20.14)–(20.15) can be solved for \(\overline{\mathbf U}\). The filter \(G\) does not appear in these equations, nor in the model; only the length \(\ell_S\) does. Which filter, then, does an LES with the Smagorinsky model perform? For homogeneous isotropic turbulence the slides answer with a consistency condition. Let a DNS of the flow give the spectrum \(E(\kappa)\), and an LES of the same flow give the spectrum \(\overline E(\kappa)\) of its filtered field. Since a filter with transfer function \(\hat G\) turns \(E\) into \(\hat G^2E\), the filter that makes the two consistent is</p>
+\[
+\hat G(\kappa)=\Bigl(\frac{\overline E(\kappa)}{E(\kappa)}\Bigr)^{1/2}. \tag{20.25}
+\]
+<p>This is the transfer function of the <em>Smagorinsky filter</em>: only with this filter does the filtered DNS field have the same spectrum as the LES field. The slide adds that this match of the spectrum implies nothing about other statistics.</p>
+<p>The slides estimate \(\overline E(\kappa)\) for high Reynolds number and \(\ell_S\ll L_{11}\) (\(L_{11}\) the integral scale of chapter 11) in three steps.</p>
+<ol>
+<li>Take for \(E(\kappa)\) the model spectrum with Pao's form for the dissipation range, \(E=C\varepsilon^{2/3}\kappa^{-5/3}f_L(\kappa L)\exp[-\tfrac32C(\kappa\eta)^{4/3}]\), with \(f_L\) as in (14.10).</li>
+<li>Approximate \(\bar{\mathcal S}\) in the model by \(\langle\bar{\mathcal S}^2\rangle^{1/2}\), so that \(\nu_r\) is a constant. Then (20.10) with (20.14) becomes
+\[
+\frac{\bar D\overline U_j}{\bar Dt}=(\nu+\nu_r)\nabla^2\overline U_j-\frac1\rho\frac{\partial\overline p_{\mathrm m}}{\partial x_j}, \tag{20.26}
+\]
+which is the Navier–Stokes equation with viscosity \(\nu+\nu_r\). Its solution is that of a DNS at a Reynolds number lower by the factor \(1+\nu_r/\nu\).</li>
+<li>The effective Kolmogorov scale of that DNS is \(\bar\eta\equiv[(\nu+\nu_r)^3/\varepsilon]^{1/4}\). If \(\bar\eta\) is small compared with the integral scale, it is consistent to suppose that the LES yields the spectrum \(\overline E=C\varepsilon^{2/3}\kappa^{-5/3}f_L(\kappa L)\exp[-\tfrac32C(\kappa\bar\eta)^{4/3}]\).</li>
+</ol>
+<p><strong>Relating \(\bar\eta\) to \(\ell_S\).</strong> In (20.26) the energy is dissipated at the rate \((\nu+\nu_r)\bar{\mathcal S}^2\), which equals \(\varepsilon\) in a steady state; with \(\nu_r=\ell_S^2\bar{\mathcal S}\), \(\bar{\mathcal S}=\nu_r/\ell_S^2\) and \(\varepsilon=(\nu+\nu_r)\nu_r^2/\ell_S^4\). Then</p>
+\[
+\bar\eta^4=\frac{(\nu+\nu_r)^3}{\varepsilon}=\ell_S^4\Bigl(\frac{\nu+\nu_r}{\nu_r}\Bigr)^2,\qquad \bar\eta=\ell_S\Bigl(1+\frac{\nu}{\nu_r}\Bigr)^{1/2}. \tag{20.27}
+\]
+<p>The slide (L56, 7:00) prints \(\bar\eta=\ell_S(1+\nu_r/\nu)^{1/2}\), with the ratio inverted. The printed form cannot be right: at high Reynolds number \(\nu_r\gg\nu\), the effective scale should approach \(\ell_S\), as (20.27) does, whereas the printed form grows without bound (31.6 \(\ell_S\) at \(\nu_r/\nu=1000\) in the program). The two forms agree only at \(\nu_r=\nu\).</p>
+<p><strong>The implied filter.</strong> Divide the two spectra: \(\hat G^2=\overline E/E=\exp[-\tfrac32C(\bar\eta^{4/3}-\eta^{4/3})\kappa^{4/3}]\). This has the form of the <em>Pao filter</em> of the preceding chapter, whose transfer function on the slides of <a class="timestamp" href="https://www.youtube.com/watch?v=jKcNOQhuED0&amp;t=1106s">L51 18:26</a> is \(\hat G=\exp[-\tfrac{\pi^{2/3}}{24}(\Delta\kappa)^{4/3}]\), so that \(\hat G^2=\exp[-\tfrac{\pi^{2/3}}{12}(\Delta\kappa)^{4/3}]\). Equating the exponents defines the width of the implied filter, \(\tfrac{\pi^{2/3}}{12}\Delta^{4/3}=\tfrac32C(\bar\eta^{4/3}-\eta^{4/3})\). Write \(x=\nu_r/\nu\). From the definitions, \(\bar\eta=\eta(1+x)^{3/4}\), so \(\Delta^{4/3}=(18C/\pi^{2/3})\,\eta^{4/3}x\), and from (20.27) \(\ell_S=\eta\,x^{1/2}(1+x)^{1/4}\). Hence</p>
+\[
+C_S=\frac{\ell_S}{\Delta}=\frac{\pi^{1/2}}{(18C)^{3/4}}\Bigl(1+\frac1x\Bigr)^{1/4}=\frac{\pi^{1/2}}{(18C)^{3/4}}\Bigl[1+\frac{18C}{\pi^{2/3}}\Bigl(\frac{\eta}{\Delta}\Bigr)^{4/3}\Bigr]^{1/4}\approx0.15\Bigl[1+\Bigl(\frac{6.68\,\eta}{\Delta}\Bigr)^{4/3}\Bigr]^{1/4}. \tag{20.28}
+\]
+<p>The slide prints \((\pi/\Delta)^{4/3}\) in place of \((\eta/\Delta)^{4/3}\) inside the bracket; that term would not be dimensionless, and the slide's own second form, \(0.15[1+(7\eta/\Delta)^{4/3}]^{1/4}\), has \(\eta\). The slide's 7 is \((18C/\pi^{2/3})^{3/4}=6.68\) rounded, and its 0.15 is \(\pi^{1/2}/(18\times1.5)^{3/4}=0.1496\). The program checks (20.28) against the direct construction for \(x=0.1\), 1, 10 and 1000.</p>
+<p>Two consistency checks follow. In the limit \(\Delta\gg\eta\), (20.28) gives 0.1496, which is exactly Lilly's coefficient (20.21) evaluated with the Pao filter's \(a_f=18/\pi^{2/3}\): the implied-filter analysis and Lilly's analysis agree when the filter is the one the model implies. And at the lecture's level of approximation, a coefficient of 0.17 with a sharp spectral filter and 0.15 with a Pao filter describe the same model, \(\nu_r=\ell_S^2\bar{\mathcal S}\) with one \(\ell_S\); only the label \(\Delta\) differs.</p>
+<p>The slides add that the implied filter is an approximation, because the fluctuations of \(\bar{\mathcal S}\) were neglected in step 2, and that it depends on the form assumed for the dissipation spectrum. With the exponential spectrum \(\exp(-\beta_0\kappa\eta)\) the same construction gives the Cauchy filter, and with chapter 14's model spectrum \(f_\eta\) it gives, at high Reynolds number, \(\hat G=\exp\{-\tfrac12\beta[((\kappa\ell_S)^4+c_\eta^4)^{1/4}-c_\eta]\}\) (L56 slide at 9:30; this follows from (14.10) with \(\bar\eta\to\ell_S\) and \(f_\eta(\kappa\eta)\to1\)). The slides call the model spectrum the most accurate representation of the dissipation spectrum and the filter deduced from it the best estimate of the Smagorinsky filter. The accompanying figure, from the unavailable textbook, compares the transfer functions and filter functions of the Gaussian, Cauchy, Pao and model-implied filters; this chapter does not reproduce it.</p>
+<p>For the running case at 80 % resolved energy (Table 20.1), \(\nu_r/\nu=148.5\), so the LES is a DNS at a Reynolds number lower by the factor 149.5, with \(\bar\eta=3.38\ \mathrm{mm}\), close to \(\ell_S=C_S\Delta=3.37\ \mathrm{mm}\), as (20.27) requires for \(\nu_r\gg\nu\).</p>
+
+<h2 id="limits-filter">Limiting behaviours: very small and very large filters, and laminar flow <a class="timestamp" href="https://www.youtube.com/watch?v=MCLApXrqnbs&amp;t=594s">L56 9:54</a></h2>
+<p>The slides take the ideal application of LES to be high-Reynolds-number turbulence with the filter in the inertial subrange, and examine three departures from it.</p>
+<p><strong>A very small filter.</strong> If the filter is in the far dissipation range (\(\Delta/\eta\ll1\)), the slide states that the coefficient can be determined to be \(C_S=0.13\), and that the model then yields \(\nu_r\sim\Delta^2\), a faster decrease with \(\Delta\) than the inertial-range \(\nu_r\sim\Delta^{4/3}\) of (20.22). The lecture gives no derivation of 0.13, and this chapter has not found one in an accessible source; it is reported as the slide's value. The scaling \(\nu_r\sim\Delta^2\) follows from (20.15) at fixed \(C_S\) when \(\bar{\mathcal S}\) stops depending on \(\Delta\), which happens when the filter removes only scales smaller than \(\eta\), where the velocity is smooth. The slide adds that the uncertainty in this limit matters little in practice: for small \(\Delta/\eta\) the viscous stresses dominate the residual stresses. Table 20.1 shows the start of this regime: at \(\Delta=12.7\eta\) the ratio \(\nu_r/\nu\) is 1.9 and the filtered field dissipates 34 % of \(\varepsilon\) itself. The lecture adds that a simulation with such a small filter approaches a DNS, so it gives up the saving that is the reason for LES. Note that (20.24) for a sharp filter in the dissipation range does not give 0.13; it gives a coefficient that falls toward zero, because the transfer across \(\kappa_c\) then decreases with the dissipation above \(\kappa_c\), and that dissipation decreases exponentially with \(\kappa_c\eta\) in the model spectrum. Different filters and different definitions of the coefficient give different limits; the chapter does not reconcile them.</p>
+<p><strong>A very large filter.</strong> As \(\Delta/L\to\infty\), the filter averages over regions much larger than the largest eddies. The filtered velocity then tends to the mean \(\langle\mathbf U(\mathbf x,t)\rangle\), the residual velocity \(\mathbf u'\) tends to the fluctuation \(\mathbf u\), and \(\tau^R_{ij}\) tends to the Reynolds stress \(\langle u_iu_j\rangle\). The limit makes (20.6) collapse to its last term, and LES becomes a Reynolds-averaged calculation. In the same limit the Smagorinsky model becomes a mixing-length model with a length that grows with \(\Delta\), which is not a physical mixing length; Table 20.1 shows the required \(C_S\) already rising at \(\Delta=0.33L\).</p>
+<p><strong>Laminar flow.</strong> For laminar flow the Reynolds equations revert to the Navier–Stokes equations, because the Reynolds stresses are zero. The residual stress is in general not zero in laminar flow, because the filter of a product differs from the product of the filters whenever the velocity varies within \(\Delta\). For laminar shear flows the residual shear stress is zero, and the appropriate coefficient is \(C_S=0\); a nonzero \(C_S\) produces a residual shear stress of order \(\Delta^2\). The slide concludes that the Smagorinsky model with a constant nonzero \(C_S\) is incorrect for laminar flow. Exercise 2 computes both stresses for plane Couette flow: the exact anisotropic residual stress has normal components of order \(\Delta^2S^2\) and no shear component, while the model has a shear component \(-C_S^2\Delta^2S|S|\) and no normal components, and drains energy from the laminar flow at the rate \(C_S^2\Delta^2|S|^3\), where the exact \(\mathcal P_r\) is zero. The lecture states that the dynamic model alleviates this because \(C_S^2\) is computed, and is likely to come out near zero in laminar flow. Pope (2004) lists laminar flows, transitional flows and the viscous near-wall region as the cases where the dynamic procedure has been most successful in remedying the standard model's deficiencies (p. 17).</p>
+
+<h2 id="near-wall">Near-wall resolution and tests of model performance <a class="timestamp" href="https://www.youtube.com/watch?v=MCLApXrqnbs&amp;t=796s">L56 13:16</a></h2>
+<p><strong>Two treatments of walls.</strong> In LES with near-wall resolution (LES-NWR), the filter and the grid are fine enough to resolve 80 % of the energy everywhere, including the viscous wall region. In LES with near-wall modelling (LES-NWM), the near-wall motions are not resolved but modelled. The slide states that in LES-NWR the number of grid nodes increases as \(\mathrm{Re}^{1.76}\), which makes it infeasible for high-Reynolds-number flows such as those in aeronautical and meteorological applications, and that the requirements of LES-NWM are independent of \(\mathrm{Re}\). The slide does not say which Reynolds number is meant or where the exponent comes from, and this chapter has not checked the exponent. The reason for a power law is given by Pope (2004): in the viscous near-wall region the momentum transfer is carried by structures whose size scales with the viscous length, and "as has been appreciated at least since Chapman", these near-wall motions cannot be resolved in high-Reynolds-number LES but must be modelled, to avoid computational requirements that increase as a power of the Reynolds number (p. 4).</p>
+<p><strong>A priori and a posteriori tests.</strong> A model can be tested in two ways. An <em>a priori</em> test uses experimental or DNS data to measure directly the accuracy of a modelling assumption: for example, the residual stress given by the Smagorinsky model is computed from a filtered DNS field and compared with the residual stress computed from the same DNS field by (20.5). The slide reports such a test by Clark, Ferziger and Reynolds (1979) on a \(64^3\) DNS at \(\mathrm{Re}_\lambda=38\); the paper was not obtained, and the slide gives no result of the test. An <em>a posteriori</em> test runs the LES and compares its statistics with experiment or DNS. The slide compares \(\langle\overline{\mathbf U}\rangle\) and the resolved stress</p>
+\[
+\mathcal R_{ij}\equiv\langle\overline U_i\,\overline U_j\rangle-\langle\overline U_i\rangle\langle\overline U_j\rangle \tag{20.29}
+\]
+<p>(written \(\mathcal R^r_{ij}\) on the slide, without a definition) with \(\langle\mathbf U\rangle\) and \(\langle u_iu_j\rangle\), and notes that these are not directly equivalent, but that the difference decreases as the filter width decreases. The difference can be stated exactly when the flow is statistically homogeneous in every direction in which the filter acts (for a three-dimensional filter, homogeneous turbulence; for a channel flow, only if the filter is restricted to the wall-parallel directions \(x_1\) and \(x_3\)). Then the expectation of a filtered quantity equals the expectation of the quantity, because \(\langle\overline\phi\rangle=\int G(\mathbf r)\langle\phi(\mathbf x-\mathbf r)\rangle\,d\mathbf r=\langle\phi\rangle\int G\,d\mathbf r\) when \(\langle\phi\rangle\) does not vary along \(\mathbf r\). So \(\langle U_iU_j\rangle=\langle\overline{U_iU_j}\rangle=\langle\overline U_i\,\overline U_j\rangle+\langle\tau^R_{ij}\rangle\) and \(\langle U_i\rangle=\langle\overline U_i\rangle\). Subtracting \(\langle U_i\rangle\langle U_j\rangle\),</p>
+\[
+\langle u_iu_j\rangle=\mathcal R_{ij}+\langle\tau^R_{ij}\rangle. \tag{20.30}
+\]
+<p>The Reynolds stress is the resolved stress plus the mean residual stress, and the second term decreases with \(\Delta\). Where the filter acts across an inhomogeneous direction, as a three-dimensional filter does in a channel, (20.30) acquires further terms from the filtered variation of the mean, and the comparison of \(\mathcal R_{ij}\) with \(\langle u_iu_j\rangle\) carries that error too. The comparison of \(\mathcal R_{ij}\) with \(\langle u_iu_j\rangle\) is therefore fair only when \(\langle\tau^R_{ij}\rangle\) is small or is added back, for which the model would also have to supply \(k_r\). For inhomogeneous flows, the slide's general conclusion from a posteriori tests is that the Smagorinsky model is too dissipative: it transfers too much energy to the residual motions, and \(C_S\) is generally decreased in such cases. The lecture illustrates the consequence with a flow at a Reynolds number of a million computed as if at an apparent Reynolds number "as low as 30 000", and labels the second number as one it is putting out as an example; it is not a result.</p>
+<p>The lecture calls the a priori test appropriate for assessing directly the validity of a modelling approximation, and says that a new model is usually tested this way first. Pope (2004) gives a different judgment: since the LES field and the filtered DNS field can only be related statistically (next section), "a priori testing as it is usually practiced is highly dubious, since it compares LES quantities with the corresponding quantities obtained from a particular realization" of the velocity field (p. 9). The two judgments are compatible if the a priori comparison is made between statistics, for example the mean transfer \(\langle\mathcal P_r\rangle\) or the joint distribution of model and exact stresses, rather than point by point. Exercise 5 asks for such a design.</p>
+
+<h2 id="wavenumber">LES in wavenumber space <a class="timestamp" href="https://www.youtube.com/watch?v=MCLApXrqnbs&amp;t=1130s">L56 18:50</a></h2>
+<p>Like DNS, LES is used as a research tool for homogeneous turbulence, and then the modelling and the numerical solution are usually done in wavenumber space. The slide notes that residual-stress models built in wavenumber space differ from those used in physical space and cannot be used for inhomogeneous flows. Consider homogeneous turbulence with zero mean velocity, periodic with period \(\mathcal L\) in each direction. As in chapter 12's (12.2)–(12.3), the velocity is a Fourier series \(\mathbf u(\mathbf x,t)=\sum_{\boldsymbol\kappa}e^{i\boldsymbol\kappa\cdot\mathbf x}\hat{\mathbf u}(\boldsymbol\kappa,t)\) over wavevectors that are integer multiples of \(\kappa_0=2\pi/\mathcal L\), with coefficients that satisfy conjugate symmetry (12.6) and are orthogonal to \(\boldsymbol\kappa\) (12.11). (The slides write \(\mathbf u\) for the velocity here because the mean is zero, so the velocity equals its fluctuation.)</p>
+<p>The sharp spectral filter with cutoff \(\kappa_c\) multiplies each coefficient by a Heaviside function of \(\kappa=|\boldsymbol\kappa|\):</p>
+\[
+\hat{\overline{\mathbf u}}(\boldsymbol\kappa,t)=H(\kappa_c-\kappa)\,\hat{\mathbf u}(\boldsymbol\kappa,t),\qquad
+\overline{\mathbf u}(\mathbf x,t)=\sum_{\boldsymbol\kappa}e^{i\boldsymbol\kappa\cdot\mathbf x}\hat{\overline{\mathbf u}}(\boldsymbol\kappa,t)=\sum_{\boldsymbol\kappa:\,\kappa\lt\kappa_c}e^{i\boldsymbol\kappa\cdot\mathbf x}\hat{\mathbf u}(\boldsymbol\kappa,t). \tag{20.31}
+\]
+<p><strong>How many coefficients are represented.</strong> An LES computation with \(N^3\) wavevectors holds them on a uniform lattice within a cube of side \(2\kappa_c\) in wavenumber space, with \(-(\tfrac12N-1)\kappa_0,\dots,0,\dots,\tfrac12N\kappa_0\) in each direction, so that \(\kappa_c=\tfrac12N\kappa_0\). This is the Nyquist convention; the chapter "Direct numerical simulation: pseudo-spectral methods and cost" discusses the smaller usable cutoff when aliasing errors are removed. Because the filter is isotropic, (20.31) keeps only the wavevectors inside the sphere of radius \(\kappa_c\), which lies inside the cube. The fraction of nonzero coefficients is approximately</p>
+\[
+\frac{\tfrac43\pi\kappa_c^3}{(2\kappa_c)^3}=\frac\pi6=0.524. \tag{20.32}
+\]
+<p>The approximation replaces a count of lattice points by a ratio of volumes. The program counts the lattice points with \(|\mathbf n|\lt N/2\): the fraction is 0.5134 for \(N=16\), 0.5210 for 32, 0.5228 for 64 and 0.5235 for 128, approaching \(\pi/6=0.5236\) from below as the shell of lattice cells cut by the sphere becomes a smaller share of its volume.</p>
+<p><strong>The filtered equations.</strong> The Navier–Stokes equations for the coefficients are (12.19)–(12.20) of chapter 12: \(d\hat u_j/dt+\nu\kappa^2\hat u_j=-i\kappa_\ell P_{jk}(\boldsymbol\kappa)\sum_{\boldsymbol\kappa'}\hat u_k(\boldsymbol\kappa')\hat u_\ell(\boldsymbol\kappa-\boldsymbol\kappa')\), with the projection tensor \(P_{jk}\) of (12.13) and the index of the first coefficient in the sum equal to the second index of \(P_{jk}\). This is a coupled set of ordinary differential equations, one for each of the infinitely many modes. Multiplying by \(H(\kappa_c-\kappa)\) gives the equations for the nonzero filtered coefficients:</p>
+\[
+\frac{d\hat{\overline u}_j}{dt}+\nu\kappa^2\hat{\overline u}_j=-i\kappa_\ell P_{jk}(\boldsymbol\kappa)\,H(\kappa_c-\kappa)\sum_{\boldsymbol\kappa'}\hat u_k(\boldsymbol\kappa')\,\hat u_\ell(\boldsymbol\kappa-\boldsymbol\kappa'). \tag{20.33}
+\]
+<p>The slide (L56, 22:00) prints the coefficient inside the sum as \(\hat u_j(\boldsymbol\kappa')\), the same index slip that chapter 13 found on an earlier slide, and prints the Heaviside factor of the filtered equation as \(H(\kappa-\kappa_c)\), which would select the modes outside the sphere; the slide's own text, "for the non-zero coefficients (\(\kappa\lt\kappa_c\))", and the filter definition (20.31) require \(H(\kappa_c-\kappa)\). Equation (20.33) is a finite set of about \(\pi N^3/6\) equations, but it is unclosed: the sum on the right contains coefficients \(\hat u_k(\boldsymbol\kappa')\) with \(|\boldsymbol\kappa'|\ge\kappa_c\) and \(\hat u_\ell(\boldsymbol\kappa-\boldsymbol\kappa')\) with \(|\boldsymbol\kappa-\boldsymbol\kappa'|\ge\kappa_c\), which are the residual field. Splitting the sum into pairs with both members inside the sphere and pairs with at least one member outside separates the resolved nonlinear term from the wavenumber-space residual term, which the slides write \(\mathbf F^{\gt}\); a wavenumber-space model replaces that term.</p>
+
+<h2 id="statistical">A statistical view: what an LES can match <a class="timestamp" href="https://www.youtube.com/watch?v=MCLApXrqnbs&amp;t=1375s">L56 22:55</a></h2>
+<p>What is the ideal model for the residual motions? For a Reynolds-averaged model the answer is direct: the ideal model gives the correct Reynolds-stress field. For LES the slides answer with a thought experiment. Consider an accurate pseudo-spectral DNS of homogeneous isotropic turbulence with \(N_{\mathrm{DNS}}^3\) modes, and an LES of the same flow with cutoff \(\kappa_c\) and \(N_{\mathrm{LES}}^3\ll N_{\mathrm{DNS}}^3\) modes. As is common in practice, the DNS initial condition is set by specifying the Fourier amplitudes \(|\hat{\mathbf u}(\boldsymbol\kappa,0)|\) deterministically, to obtain a specified spectrum \(E(\kappa,0)\), while the phases are random.</p>
+<p>Now run several DNS realizations whose initial coefficients are identical for \(|\boldsymbol\kappa|\lt\kappa_c\) and differ, through their random phases, for \(|\boldsymbol\kappa|\ge\kappa_c\). Their initial states differ, so their sample paths differ. Filter each path: the filtered initial states \(\{\hat{\overline{\mathbf u}}(\boldsymbol\kappa,0)\}\) are identical by construction, but as time evolves the filtered states of the realizations disperse, because the resolved modes are coupled through (20.33) to residual modes that differ. A deterministic LES model, by contrast, produces a unique evolution of \(\{\hat{\overline{\mathbf u}}(\boldsymbol\kappa,t)\}\) from the given initial condition. A stochastic LES model produces paths that disperse, but the cause of its dispersion (in the slide's example, white noise) is different from that of the filtered DNS. The slides draw three conclusions:</p>
+<ol>
+<li>The filtered DNS field \(\{\hat{\overline{\mathbf u}}(\boldsymbol\kappa,t)\}\) is not uniquely determined by the filtered initial condition \(\{\hat{\overline{\mathbf u}}(\boldsymbol\kappa,0)\}\).</li>
+<li>No LES model can produce filtered velocity fields that match those of the DNS realization by realization.</li>
+<li>The best that can be achieved is a statistical correspondence between the LES and the filtered DNS fields.</li>
+</ol>
+<p>Pope (2004) makes the same argument in physical space and draws the definition that follows from it: the LES velocity is defined as the solution of the LES equations, not as the filtered value of the velocity, and since the velocity is a random field whose future is not determined by its current state, there is no value of the LES field that equals the filtered velocity for \(t\gt0\); the relationship can only be statistical (p. 9). Conclusion 1 rests on sensitivity of the dynamics to the residual modes; chapter 1 and chapter 7 examine the same sensitivity in the Lorenz equations. The conclusions set the standard by which the earlier sections should be read: (20.21) is a statement about \(\langle\mathcal P_r\rangle\), (20.25) about a spectrum, and (20.30) about a mean stress. None of them claims a pointwise match.</p>
+<p>Lecture 56 ends the theory part of the course with this view; the lecture states that the remaining sessions work through practice problems.</p>
+
+<h2 id="implementation">Executable check: the coefficient, the filtered strain, the running case and the slide formulas</h2>
+<p>The program below checks the chapter's closed forms and computes the running case. Inputs are set in the code: \(C=1.5\); the jet values \(\nu\), \(k\), \(\varepsilon\); the model-spectrum constants \(p_0=2\), \(\beta=5.2\). It has five parts. Part 1 evaluates \(a_f\) of (20.17) by quadrature for the sharp, Gaussian and Pao filters, compares each with its closed form, and computes \(C_S=(Ca_f)^{-3/4}\); it asserts that the slide form of (20.21) equals the sharp-filter value. Part 2 builds a random solenoidal velocity field on a \(64^3\) periodic lattice (Gaussian random coefficients, an arbitrary spectrum, projected onto \(\boldsymbol\kappa\cdot\hat{\mathbf u}=0\)), computes \(\langle2S_{ij}S_{ij}\rangle\) from the field by FFT derivatives and \(2\sum\kappa^2E\) from the coefficients, unfiltered and after a sharp filter, asserts that they agree to \(10^{-10}\) (this is the factor 2 of (20.17)), and reports \(\langle\bar{\mathcal S}^3\rangle/\langle\bar{\mathcal S}^2\rangle^{3/2}\) beside the chi-distribution value of (20.23). Part 3 solves the two integral conditions for \(c_L\) and \(c_\eta\) by alternating bisection, finds the \(\Delta\) that resolves 80 % of \(k\), and prints Table 20.1 from (20.24). Part 4 builds \(\bar\eta\), \(\ell_S\) and the implied Pao width from their definitions for four values of \(\nu_r/\nu\), asserts that (20.27) and (20.28) reproduce them, and prints the slide's printed \(\bar\eta\) form for comparison. Part 5 counts lattice points inside the sphere for (20.32).</p>
+<p>Simplifications: the integrals are trapezoidal sums (on 400 001 points in Part 1 and 60 001 logarithmically spaced points in Part 3); Part 3 neglects the fluctuations of \(\bar{\mathcal S}\) and assumes stationarity; the random field of Part 2 is Gaussian by construction, so its moment ratio says nothing about real turbulence. The program checks algebra and arithmetic; it does not validate the Smagorinsky model against any flow. It uses NumPy, reads no files and writes only to standard output. A failure raises <code>AssertionError</code>. A useful failure test: in Part 2, replace <code>2*(0.5*(...))**2</code> by <code>(0.5*(...))**2</code>, that is \(S_{ij}S_{ij}\) without the factor 2; the assertion then fails, and if \(a_f\) were redefined without its factor 2 to compensate, \(C_S\) would change by \(2^{3/4}=1.68\), which is the size of the discrepancy with Lilly's brief discussed above.</p>
+<pre><code class="language-python">import math
+import numpy as np
+
+C = 1.5                                   # Kolmogorov constant
+
+# Part 1. Filter constant a_f and the Smagorinsky coefficient (20.14)-(20.16).
+def a_f(G2, xmax=60.0, n=400001):
+    """2 * integral of x^(1/3) G2(x) dx, x = kappa*Delta (trapezoid)."""
+    x = np.linspace(0.0, xmax, n)
+    y = x**(1/3)*G2(x)
+    return 2.0*float(np.sum(0.5*(y[1:] + y[:-1])*np.diff(x)))
+
+filters = {
+    "sharp":    (lambda x: (x &lt; math.pi).astype(float), 1.5*math.pi**(4/3)),
+    "Gaussian": (lambda x: np.exp(-x**2/12), 12**(2/3)*math.gamma(2/3)),
+    "Pao":      (lambda x: np.exp(-math.pi**(2/3)/12*x**(4/3)),
+                 18/math.pi**(2/3)),
+}
+for name, (G2, closed) in filters.items():
+    af = a_f(G2)
+    print(f"{name:8s} a_f numeric={af:.4f} closed={closed:.4f} "
+          f"C_S=(C a_f)^(-3/4)={(C*closed)**-0.75:.4f}")
+CS = (2/(3*C))**0.75/math.pi
+assert abs(CS - (C*1.5*math.pi**(4/3))**-0.75) &lt; 1e-12
+print(f"slide form (1/pi)(2/(3C))^(3/4) = {CS:.4f}")
+
+# Part 2. Random solenoidal field on a periodic 2*pi box: the factor 2 in
+# &lt;S^2&gt; = 2 sum kappa^2 G^2 E, and the moment ratio &lt;S^3&gt;/&lt;S^2&gt;^(3/2).
+rng = np.random.default_rng(20)
+N = 64
+k1 = np.fft.fftfreq(N, 1.0/N)
+KX, KY, KZ = np.meshgrid(k1, k1, k1, indexing="ij")
+K2 = KX**2 + KY**2 + KZ**2
+K = np.sqrt(K2)
+K2s = np.where(K2 == 0, 1.0, K2)
+amp = np.where(K &gt; 0, K**2*np.exp(-K2/16.0), 0.0)     # arbitrary spectrum
+uh = [np.fft.fftn(rng.standard_normal((N, N, N))) for _ in range(3)]
+uh = [amp*u for u in uh]
+div = (KX*uh[0] + KY*uh[1] + KZ*uh[2])/K2s          # project: kappa.u = 0
+uh = [uh[0] - KX*div, uh[1] - KY*div, uh[2] - KZ*div]
+kv = (KX, KY, KZ)
+
+def strain_moments(G):
+    """Return &lt;2 S_ij S_ij&gt;, its spectral value, and &lt;S^3&gt;/&lt;S^2&gt;^(3/2)."""
+    g = [np.real(np.fft.ifftn(1j*kv[j]*G*uh[i]))
+         for i in range(3) for j in range(3)]
+    S2 = sum(2*(0.5*(g[3*i + j] + g[3*j + i]))**2
+             for i in range(3) for j in range(3))
+    spec = sum(np.sum(K2*np.abs(G*uh[i]/N**3)**2) for i in range(3))
+    return S2.mean(), spec, (S2**1.5).mean()/S2.mean()**1.5
+
+for name, G in (("unfiltered", np.ones_like(K)),
+                ("sharp, kc=8", (K &lt; 8).astype(float))):
+    s2, spec, ratio = strain_moments(G)
+    print(f"{name:12s} &lt;2SS&gt;={s2:.6e} 2*sum k^2 E={spec:.6e} "
+          f"&lt;S^3&gt;/&lt;S^2&gt;^1.5={ratio:.3f}")
+    assert abs(s2/spec - 1) &lt; 1e-10
+chi5 = 2**1.5*math.gamma(4)/math.gamma(2.5)/5**1.5
+print(f"Gaussian strain (chi, 5 dof) ratio={chi5:.4f}  "
+      f"C_S factor={chi5**-0.5:.4f}  C_S={CS*chi5**-0.5:.4f}")
+
+# Part 3. Running case: the air jet with the model spectrum (14.9)-(14.10).
+nu, k, eps = 1.4607e-5, 6.0, 80.0
+L, eta = k**1.5/eps, (nu**3/eps)**0.25
+beta, p0 = 5.2, 2.0
+lnk = np.linspace(math.log(1e-4/L), math.log(50/eta), 60001)
+kap = np.exp(lnk)
+
+def E_model(cL, ce):
+    fL = (kap*L/np.sqrt((kap*L)**2 + cL))**(5/3 + p0)
+    fe = np.exp(-beta*(((kap*eta)**4 + ce**4)**0.25 - ce))
+    return C*eps**(2/3)*kap**(-5/3)*fL*fe
+
+def cum(y):                       # cumulative integral of y d(kappa)
+    w = y*kap
+    return np.concatenate(([0.0], np.cumsum(0.5*(w[1:] + w[:-1])*np.diff(lnk))))
+
+def bisect(f, a, b):
+    fa = f(a)
+    for _ in range(80):
+        m = 0.5*(a + b)
+        if (f(m) &gt; 0) == (fa &gt; 0):
+            a, fa = m, f(m)
+        else:
+            b = m
+    return 0.5*(a + b)
+
+cL, ce = 6.78, 0.40
+for _ in range(30):
+    cL = bisect(lambda c: cum(E_model(c, ce))[-1] - k, 0.5, 30.0)
+    ce = bisect(lambda c: cum(2*nu*kap**2*E_model(cL, c))[-1] - eps, 0.0, 2.0)
+E = E_model(cL, ce)
+kcum, ecum = cum(E), cum(2*nu*kap**2*E)
+print(f"jet: L={L:.4f} m eta={eta*1e6:.1f} um c_L={cL:.3f} c_eta={ce:.3f} "
+      f"check k={kcum[-1]:.4f} eps={ecum[-1]:.4f}")
+
+def at(arr, kc):
+    return float(np.interp(math.log(kc), lnk, arr))
+
+def les_state(Delta):
+    kc = math.pi/Delta
+    S2 = at(ecum, kc)/nu                 # &lt;S^2&gt; = int_0^kc 2 kappa^2 E
+    eps_f = nu*S2
+    S2_in = 1.5*math.pi**(4/3)*C*eps**(2/3)*Delta**(-4/3)
+    Pr = eps - eps_f                     # stationary balance, (11.5)
+    cs = math.sqrt(Pr/(Delta**2*S2**1.5))
+    nur = (cs*Delta)**2*math.sqrt(S2)
+    return kc, at(kcum, kc)/k, eps_f/eps, S2/S2_in, cs, nur
+
+Delta80 = bisect(lambda d: at(kcum, math.pi/d)/k - 0.8, 1e-4, 0.5)
+print(f"Delta for 80% resolved energy = {Delta80*1e3:.2f} mm "
+      f"= {Delta80/eta:.0f} eta = {Delta80/L:.4f} L")
+print("Delta[mm] Delta/eta kc*eta  k_res/k eps_f/eps S2/S2_in   C_S  "
+      "nu_r/nu")
+for D in (1e-3, 2e-3, 60*eta, 10e-3, 0.1/6, Delta80, 30e-3, 60e-3):
+    kc, kr, ef, ratio, cs, nur = les_state(D)
+    print(f"{D*1e3:8.2f} {D/eta:9.1f} {kc*eta:6.3f} {kr:8.3f} {ef:9.3f} "
+          f"{ratio:8.3f} {cs:6.3f} {nur/nu:8.2f}")
+kc, kr, ef, ratio, cs, nur = les_state(Delta80)
+print(f"80% case: N = (1 m)/Delta = {1/Delta80:.0f}; Re lowered by "
+      f"1+nu_r/nu = {1 + nur/nu:.1f}; eta_bar = "
+      f"{((nu + nur)**3/eps)**0.25*1e3:.3f} mm; l_S = {cs*Delta80*1e3:.3f} mm")
+
+# Part 4. Effective Kolmogorov scale and the implied (Smagorinsky) filter.
+for x in (0.1, 1.0, 10.0, 1e3):           # x = nu_r/nu
+    nur = x*nu
+    lS = (nur**2*(nu + nur)/eps)**0.25     # from eps=(nu+nu_r)S^2, nu_r=lS^2 S
+    eta_bar = ((nu + nur)**3/eps)**0.25
+    corrected = lS*(1 + nu/nur)**0.5
+    slide = lS*(1 + nur/nu)**0.5
+    # Pao match: (3/4)C(eta_bar^(4/3)-eta^(4/3)) = (pi^(2/3)/24) Delta^(4/3)
+    Delta = (18*C/math.pi**(2/3)*(eta_bar**(4/3) - eta**(4/3)))**0.75
+    cs_match = lS/Delta
+    cs_formula = (math.pi**0.5/(18*C)**0.75
+                  *(1 + 18*C/math.pi**(2/3)*(eta/Delta)**(4/3))**0.25)
+    assert abs(eta_bar/corrected - 1) &lt; 1e-12 and abs(cs_match/cs_formula - 1) &lt; 1e-12
+    print(f"nu_r/nu={x:7.1f} eta_bar/lS={eta_bar/lS:.4f} slide form/lS="
+          f"{slide/lS:7.3f} Delta/eta={Delta/eta:8.2f} C_S={cs_match:.4f}")
+print(f"limit C_S = pi^(1/2)/(18C)^(3/4) = {math.pi**0.5/(18*C)**0.75:.4f}; "
+      f"(18C/pi^(2/3))^(3/4) = {(18*C/math.pi**(2/3))**0.75:.3f}")
+
+# Part 5. Fraction of the N^3 lattice inside the sphere |n| &lt; N/2.
+for n in (16, 32, 64, 128):
+    m = np.arange(-n//2 + 1, n//2 + 1)
+    s = m[:, None, None]**2 + m[None, :, None]**2 + m[None, None, :]**2
+    inside = np.count_nonzero(s &lt; (n/2)**2)
+    print(f"N={n:3d} inside={inside:7d} fraction={inside/n**3:.4f}")
+print(f"pi/6={math.pi/6:.4f}")
+</code></pre>
+<p>Run in a fresh interpreter (<code>python -I</code>, Python 3.13, NumPy 2.2), the program prints:</p>
+<pre><code>sharp    a_f numeric=6.9015 closed=6.9017 C_S=(C a_f)^(-3/4)=0.1733
+Gaussian a_f numeric=7.0976 closed=7.0976 C_S=(C a_f)^(-3/4)=0.1697
+Pao      a_f numeric=8.3915 closed=8.3915 C_S=(C a_f)^(-3/4)=0.1496
+slide form (1/pi)(2/(3C))^(3/4) = 0.1733
+unfiltered   &lt;2SS&gt;=6.457653e+00 2*sum k^2 E=6.457653e+00 &lt;S^3&gt;/&lt;S^2&gt;^1.5=1.145
+sharp, kc=8  &lt;2SS&gt;=5.996871e+00 2*sum k^2 E=5.996871e+00 &lt;S^3&gt;/&lt;S^2&gt;^1.5=1.145
+Gaussian strain (chi, 5 dof) ratio=1.1418  C_S factor=0.9358  C_S=0.1621
+jet: L=0.1837 m eta=79.0 um c_L=6.357 c_eta=0.402 check k=6.0000 eps=80.0000
+Delta for 80% resolved energy = 17.95 mm = 227 eta = 0.0977 L
+Delta[mm] Delta/eta kc*eta  k_res/k eps_f/eps S2/S2_in   C_S  nu_r/nu
+    1.00      12.7  0.248    0.989     0.344    0.979  0.143     1.91
+    2.00      25.3  0.124    0.970     0.138    0.992  0.162     6.24
+    4.74      60.0  0.052    0.930     0.043    0.980  0.172    22.15
+   10.00     126.6  0.025    0.871     0.015    0.949  0.179    63.70
+   16.67     211.0  0.015    0.811     0.007    0.904  0.186   133.14
+   17.95     227.2  0.014    0.800     0.007    0.895  0.188   148.52
+   30.00     379.7  0.008    0.711     0.003    0.811  0.203   326.68
+   60.00     759.5  0.004    0.539     0.001    0.611  0.251  1094.39
+80% case: N = (1 m)/Delta = 56; Re lowered by 1+nu_r/nu = 149.5; eta_bar = 3.378 mm; l_S = 3.367 mm
+nu_r/nu=    0.1 eta_bar/lS=3.3166 slide form/lS=  1.049 Delta/eta=    1.19 C_S=0.2725
+nu_r/nu=    1.0 eta_bar/lS=1.4142 slide form/lS=  1.414 Delta/eta=    6.68 C_S=0.1780
+nu_r/nu=   10.0 eta_bar/lS=1.0488 slide form/lS=  3.317 Delta/eta=   37.58 C_S=0.1532
+nu_r/nu= 1000.0 eta_bar/lS=1.0005 slide form/lS= 31.639 Delta/eta= 1188.36 C_S=0.1497
+limit C_S = pi^(1/2)/(18C)^(3/4) = 0.1496; (18C/pi^(2/3))^(3/4) = 6.683
+N= 16 inside=   2103 fraction=0.5134
+N= 32 inside=  17071 fraction=0.5210
+N= 64 inside= 137059 fraction=0.5228
+N=128 inside=1097911 fraction=0.5235
+pi/6=0.5236
+</code></pre>
+<p>The lines map onto the chapter as follows: the first four lines give (20.18), (20.21) and the Gaussian and Pao coefficients; the next three give the factor-2 check and (20.23); the line beginning "jet" gives the running-case constants; the table is Table 20.1; the four lines beginning <code>nu_r/nu</code> check (20.27) and (20.28) and show the slide's \(\bar\eta\) form diverging; the last lines give (20.32).</p>
+
+<h2 id="limits">What the derivations establish and what they do not</h2>
+<p>Exact, for a spatially uniform filter: the filtered continuity equation (20.3), the filtered momentum equation (20.4), the definition (20.5) and the expansion (20.6) of the residual stress, the energy equation (20.12), the residual-energy budget (20.13) for decaying homogeneous turbulence, and for forced homogeneous turbulence when the filter transfer function equals 1 at the forced wavenumbers (the sharp filter with forcing below \(\kappa_c\)), and the relation (20.30) between the Reynolds stress and the resolved stress when the flow is homogeneous in every filtered direction. Exact under homogeneity and the definitions: the first equality of (20.17) and the lattice count behind (20.32).</p>
+<p>Modelled: the eddy-viscosity form (20.14) and the mixing-length form (20.15). The one-way transfer (20.16) is a property of the model, not of turbulence. The value 0.17 rests on five assumptions (inertial-range cutoff, Kolmogorov spectrum with \(C=1.5\), negligible \(\varepsilon_f\), steady residual energy, neglected fluctuations of \(\bar{\mathcal S}\)), and on the sharp filter with \(\kappa_c=\pi/\Delta\). The fluctuation assumption biases \(C_S\) upward by (20.23); the filter type changes it from 0.173 (sharp) to 0.150 (Pao), a difference of 16 % of the smaller value; and the model spectrum of the running case gives 0.143 to 0.251 across \(\Delta=12.7\eta\) to \(760\eta\), with 0.172 to 0.186 inside the nominal inertial window. The implied-filter result (20.28) inherits the constant-\(\bar{\mathcal S}\) approximation and the assumed form of the dissipation spectrum.</p>
+<p>Corrected or not verified: the sign of \(\varepsilon_f\) on the right side of the energy-equation slide, the printed forms \(\bar\eta=\ell_S(1+\nu_r/\nu)^{1/2}\) and \((\pi/\Delta)^{4/3}\) on the Smagorinsky-filter slide, and the index and Heaviside argument on the wavenumber-space slide, are corrected in (20.12), (20.27), (20.28) and (20.33). The far-dissipation-range value \(C_S=0.13\), the LES-NWR exponent 1.76, the result of Clark, Ferziger and Reynolds (1979), the conclusion that the model is too dissipative in inhomogeneous flows, and the backscatter examples are the lecture's and were not checked against a source. The 1967 paper of Lilly and the 1963 paper of Smagorinsky were not obtained.</p>
+<p>Not addressed by the lectures: the filtered equations with a filter whose width varies in space, which is the usual case near walls; the modelling of \(k_r\) when \(\overline p\) itself is wanted; the dynamic procedure; and any comparison of an LES with data.</p>
+
+<h2 id="exercises">Exercises</h2>
+<p><strong>Exercise 1 (derive).</strong> For the Gaussian filter, \(\hat G(\kappa)=\exp(-\kappa^2\Delta^2/24)\). (a) Compute \(a_f\) of (20.17) in closed form. (b) Find \(C_S\) for \(C=1.5\) and compare it with the sharp-filter and Pao-filter values. (c) A colleague says "\(C_S=0.17\) is universal because the Kolmogorov constant is". State precisely what is universal in the derivation and what is not.</p>
+<details><summary>Solution</summary>
+<p>(a) \(\hat G^2=\exp(-x^2/12)\) with \(x=\kappa\Delta\), so \(a_f=2\int_0^\infty x^{1/3}e^{-x^2/12}dx\). Substitute \(t=x^2/12\): \(x=(12t)^{1/2}\), \(dx=\tfrac12(12/t)^{1/2}dt\), \(x^{1/3}=(12t)^{1/6}\). The integral becomes \(\tfrac12\,12^{2/3}\int_0^\infty t^{-1/3}e^{-t}dt=\tfrac12\,12^{2/3}\Gamma(2/3)\), so \(a_f=12^{2/3}\Gamma(2/3)=5.2415\times1.3541=7.098\). The program's quadrature gives 7.0976.</p>
+<p>(b) \(C_S=(Ca_f)^{-3/4}=(10.647)^{-3/4}=0.170\). The sharp filter gives 0.173 and the Pao filter 0.150; the Gaussian value is 2 % below the sharp one and 13 % above the Pao one.</p>
+<p>(c) Universal, under the hypotheses of chapter 10: the inertial-range spectrum and its constant \(C\), hence the product \(Ca_f\) for a given filter shape. Not universal: \(a_f\), which depends on the filter type and on the definition of \(\Delta\) for that type; and the validity of the derivation, which needs \(\kappa_c\) in the inertial subrange, a steady residual energy and negligible \(\varepsilon_f\). The value also neglects the fluctuations of \(\bar{\mathcal S}\), which by (20.23) lower it. The correct statement is "for a given filter type, Lilly's analysis fixes \(C_S\) when the cutoff is in the inertial subrange", which is Pope's (2004, p. 17).</p>
+</details>
+<p><strong>Exercise 2 (counterexample).</strong> Plane Couette flow has \(U_1=Sx_2\), \(U_2=U_3=0\), with constant shear rate \(S\gt0\). Apply a three-dimensional Gaussian filter that is a product of one-dimensional Gaussians, each with second moment \(\Delta^2/12\). (a) Compute \(\overline U_i\), \(\tau^R_{ij}\), \(k_r\) and \(\tau^r_{ij}\). (b) Compute the Smagorinsky \(\tau^r_{ij}\) and \(\mathcal P_r\). (c) Evaluate for air (\(\nu=1.5\times10^{-5}\ \mathrm{m^2/s}\)) with \(S=100\ \mathrm s^{-1}\), \(\Delta=1\ \mathrm{mm}\) and \(C_S=0.17\), and compare with the viscous stress and the viscous dissipation.</p>
+<details><summary>Solution</summary>
+<p>(a) A symmetric filter with unit weight leaves a linear function unchanged, so \(\overline U_1=Sx_2\) and \(\overline U_2=\overline U_3=0\). For the product, \(\overline{U_1^2}=S^2\,\overline{x_2^2}=S^2(x_2^2+\Delta^2/12)\), because the filter average of \((x_2-r_2)^2\) is \(x_2^2\) plus the second moment. Hence \(\tau^R_{11}=S^2\Delta^2/12\), and every other component is zero, because \(U_2=U_3=0\) makes every product containing them vanish. Then \(k_r=\tfrac12\tau^R_{11}=S^2\Delta^2/24\), and \(\tau^r_{11}=S^2\Delta^2/12-\tfrac23\,S^2\Delta^2/24=S^2\Delta^2/18\), \(\tau^r_{22}=\tau^r_{33}=-S^2\Delta^2/36\), \(\tau^r_{12}=0\). The exact transfer is \(\mathcal P_r=-\tau^r_{ij}\bar S_{ij}=-2\tau^r_{12}\bar S_{12}=0\), since the only nonzero strain components are \(\bar S_{12}=\bar S_{21}=S/2\).</p>
+<p>(b) \(\bar{\mathcal S}=(2\cdot2\cdot S^2/4)^{1/2}=S\), \(\nu_r=C_S^2\Delta^2S\), and \(\tau^r_{12}=-2\nu_r\bar S_{12}=-C_S^2\Delta^2S^2\); all normal components are zero because \(\bar S_{11}=\bar S_{22}=\bar S_{33}=0\). By (20.16), \(\mathcal P_r=\nu_rS^2=C_S^2\Delta^2S^3\gt0\). The model has a shear stress where the exact one is zero and no normal stresses where the exact ones are not zero, and it removes energy from a flow in which the exact transfer is zero.</p>
+<p>(c) \(C_S^2\Delta^2=0.0289\times10^{-6}\ \mathrm{m^2}\). Model shear stress (per unit density) \(2.89\times10^{-4}\ \mathrm{m^2/s^2}\); viscous shear stress \(\nu S=1.5\times10^{-3}\ \mathrm{m^2/s^2}\); ratio \(\nu_r/\nu=0.193\). So the model adds 19 % to the wall shear stress of a laminar Couette flow at these values, and its transfer \(2.89\times10^{-2}\ \mathrm{m^2/s^3}\) is 19 % of the viscous dissipation \(\nu S^2=0.15\ \mathrm{m^2/s^3}\). The exact normal residual stress \(\tau^R_{11}=8.3\times10^{-4}\ \mathrm{m^2/s^2}\) is not zero: in a laminar flow the residual stress measures the variation of the velocity within \(\Delta\), not turbulence. The counterexample shows why the slide calls a constant nonzero \(C_S\) incorrect for laminar flow.</p>
+</details>
+<p><strong>Exercise 3 (compute).</strong> For the running case in the box of side \(\mathcal L=1\ \mathrm m\): (a) with the Nyquist convention \(\kappa_c=\tfrac12N\kappa_0\), show that \(N=\mathcal L/\Delta\), and find \(N\) for the 80 % filter of Table 20.1. (b) A DNS needs \(\kappa_{\max}\eta\approx1.5\) (chapter 5, from Yeung, Sreenivasan and Pope 2018) with \(\kappa_{\max}=\tfrac12N\kappa_0\). Find \(N_{\mathrm{DNS}}\). (c) Estimate the ratio of the work of the two simulations for the same physical time, assuming a fixed Courant number. (d) What does the LES give up for this saving?</p>
+<details><summary>Solution</summary>
+<p>(a) \(\kappa_c=\pi/\Delta=\tfrac12N(2\pi/\mathcal L)\) gives \(N=\mathcal L/\Delta=1/0.01795=56\).</p>
+<p>(b) \(N_{\mathrm{DNS}}=2\kappa_{\max}/\kappa_0=2\times1.5/(\eta\kappa_0)=3\mathcal L/(2\pi\eta)=3/(2\pi\times79.0\times10^{-6})=6.04\times10^{3}\).</p>
+<p>(c) The ratio of grid spacings is \(6044/56=108\). The number of points scales with its cube, \(1.26\times10^{6}\); at a fixed Courant number the time step scales with the grid spacing (the velocity scale is the same), so the number of steps scales with its first power. Work ratio about \(108^4=1.4\times10^{8}\), with the cost per point per step taken to be the same, which ignores the cost of evaluating the model.</p>
+<p>(d) It gives up the residual 20 % of \(k\), which the Smagorinsky model does not supply (it models only \(\tau^r_{ij}\)), the dissipation-range statistics, and pointwise agreement with any realization (section <a href="#statistical">"A statistical view"</a>). It also relies on a coefficient that at this filter width is 0.188 by (20.24), not 0.173, because \(\Delta\) lies at the upper edge of the inertial subrange at \(\mathrm{Re}_\lambda=453\). With \(\nu_r/\nu=149\), its solution is that of a DNS at a Reynolds number 150 times lower, in the sense of (20.26).</p>
+</details>
+<p><strong>Exercise 4 (check an assumption).</strong> (a) Prove (20.23). (b) Show from (20.20) that the exact \(C_S\) is at most the value (20.21), and state when equality holds. (c) If \(\bar{\mathcal S}^2\) were exponentially distributed (an extreme case of intermittency for a non-negative variable), what would \(\langle\bar{\mathcal S}^3\rangle/\langle\bar{\mathcal S}^2\rangle^{3/2}\) and \(C_S\) be?</p>
+<details><summary>Solution</summary>
+<p>(a) Let \(y=\bar{\mathcal S}^2\ge0\) and \(\phi(y)=y^{3/2}\). Then \(\phi''(y)=\tfrac34y^{-1/2}\gt0\) for \(y\gt0\), so \(\phi\) is convex on \([0,\infty)\), and Jensen's inequality gives \(\langle\phi(y)\rangle\ge\phi(\langle y\rangle)\), that is \(\langle\bar{\mathcal S}^3\rangle\ge\langle\bar{\mathcal S}^2\rangle^{3/2}\).</p>
+<p>(b) In (20.20) the bracket is at least 1 and enters with power \(-\tfrac12\), so \(\ell_S\le\Delta(Ca_f)^{-3/4}\). Equality requires equality in Jensen's inequality, which for a strictly convex function holds only if \(y\) is constant with probability one: a uniform \(\bar{\mathcal S}\).</p>
+<p>(c) For an exponential \(y\) with mean \(m\), \(\langle y^{3/2}\rangle=m^{3/2}\Gamma(5/2)=1.329\,m^{3/2}\). The ratio is 1.329 and \(C_S\) is lowered by \(1.329^{-1/2}=0.867\), to 0.150. For comparison the Gaussian-gradient value is 1.142, giving 0.162. The coefficient's sensitivity to the distribution of \(\bar{\mathcal S}\) is of the same order as its sensitivity to the filter type.</p>
+</details>
+<p><strong>Exercise 5 (design and judge).</strong> A group filters one DNS snapshot of isotropic turbulence with a sharp filter, computes the exact \(\tau^r_{12}\) by (20.5) and the Smagorinsky \(\tau^r_{12}\) at every point, finds a correlation coefficient of 0.3 between them, and concludes that the Smagorinsky model is wrong. (a) Use the statistical view to explain why a pointwise comparison is not the right test of an LES model. (b) Design an a priori test that is consistent with that view, using the same DNS. (c) Design an a posteriori test and state the correction that (20.30) requires.</p>
+<details><summary>Solution</summary>
+<p>(a) An LES model is judged by the statistics it produces, because no model can reproduce the filtered DNS realization by realization (conclusion 2 of the statistical view; Pope 2004, p. 9). A pointwise correlation compares the model with one realization of the residual stress; a low correlation does not show that the model gives wrong statistics, and a high one would not show that it gives right ones. A model can also be written as the exact stress plus a fluctuation uncorrelated with the resolved field; such a model has a low pointwise correlation and can still give the right mean transfer.</p>
+<p>(b) Compare quantities that enter the evolution of resolved statistics: the mean transfer \(\langle\mathcal P_r\rangle\) from the model, \(C_S^2\Delta^2\langle\bar{\mathcal S}^3\rangle\), with the exact \(\langle-\tau^r_{ij}\bar S_{ij}\rangle\); and, beyond the mean, the distribution of \(\mathcal P_r\) conditional on \(\bar{\mathcal S}\), which shows the backscatter the model cannot produce. Use many snapshots or a large box so that the averages are converged, and repeat for several \(\Delta\), since the exact transfer depends on \(\Delta\).</p>
+<p>(c) Run the LES with the model, form \(\langle\overline{\mathbf U}\rangle\), the resolved stress \(\mathcal R_{ij}\) of (20.29) and the spectrum, and compare with the DNS. By (20.30), compare \(\mathcal R_{ij}\) with \(\langle u_iu_j\rangle-\langle\tau^R_{ij}\rangle\), where \(\langle\tau^R_{ij}\rangle\) is computed from the filtered DNS, or compare \(\mathcal R_{ij}\) with the filtered DNS's own \(\mathcal R_{ij}\). Comparing \(\mathcal R_{ij}\) with \(\langle u_iu_j\rangle\) directly mixes the model error with the filtered-out stress. Repeat at two or more \(\Delta\) to see whether the statistics converge as \(\Delta\) decreases.</p>
+</details>
+<p><strong>Exercise 6 (derive and count).</strong> (a) For the sharp filter in a periodic box, show that \(\mathcal P_r\) averaged over the box equals the rate at which the nonlinear term of (20.33) transfers energy out of the modes with \(\kappa\lt\kappa_c\). (b) For \(N=64\), how many real numbers define the filtered field, given conjugate symmetry and \(\boldsymbol\kappa\cdot\hat{\overline{\mathbf u}}=0\)? (c) Why does the slide's \(H(\kappa-\kappa_c)\) fail as the filter factor?</p>
+<details><summary>Solution</summary>
+<p>(a) The box average of (20.12) removes the divergence and gives \(d\langle\mathcal E_f\rangle_V/dt=-\langle\varepsilon_f\rangle_V-\langle\mathcal P_r\rangle_V\) for unforced flow. By chapter 12's (12.8), \(\langle\mathcal E_f\rangle_V=\sum_{\kappa\lt\kappa_c}\tfrac12|\hat{\mathbf u}|^2\); summing the mode-energy equation (12.21) over \(\kappa\lt\kappa_c\) gives the viscous term \(-\sum2\nu\kappa^2\tfrac12|\hat{\mathbf u}|^2=-\langle\varepsilon_f\rangle_V\) plus the sum of the nonlinear terms over the resolved modes. Equating the two expressions, \(\langle\mathcal P_r\rangle_V\) is minus the nonlinear gain of the resolved modes, that is, the rate at which the nonlinear term of (20.33) moves energy out of the sphere \(\kappa\lt\kappa_c\). (A standard further result, not proved in this book, is that each triad of wavevectors conserves energy by itself, so that only triads with at least one member outside the sphere contribute.)</p>
+<p>(b) The program counts 137 059 wavevectors with \(|\mathbf n|\lt32\). Each coefficient has three complex components constrained by one complex condition \(\boldsymbol\kappa\cdot\hat{\mathbf u}=0\), so two complex numbers, four real numbers. Conjugate symmetry pairs \(\boldsymbol\kappa\) with \(-\boldsymbol\kappa\), halving the count; the zero wavevector has zero velocity. Total about \(137\,058\times4/2=2.74\times10^{5}\) real numbers, against \(3\times64^3=7.9\times10^{5}\) values of a velocity field on the \(64^3\) grid.</p>
+<p>(c) \(H(\kappa-\kappa_c)=1\) for \(\kappa\gt\kappa_c\), so it would keep the equations of the residual modes and set those of the resolved modes to zero, the opposite of (20.31). The slide's text "for the non-zero coefficients (\(\kappa\lt\kappa_c\))" requires \(H(\kappa_c-\kappa)\).</p>
+</details>
+
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li>Recordings: <a href="https://www.youtube.com/watch?v=d2UiVIgUbGo">Lecture 54</a>, <a href="https://www.youtube.com/watch?v=ZHqm6yAAuPE">Lecture 55</a>, <a href="https://www.youtube.com/watch?v=MCLApXrqnbs">Lecture 56</a>; filter table in <a href="https://www.youtube.com/watch?v=jKcNOQhuED0">Lecture 51</a>. NPTEL <em>Essentials of Turbulence</em>, IIT Bombay, 2026.</li>
+<li>S. B. Pope, <a href="https://iopscience.iop.org/article/10.1088/1367-2630/6/1/035">"Ten questions concerning the large-eddy simulation of turbulent flows"</a>, New J. Phys. 6 (2004) 35. Near-wall motions must be modelled (p. 4); the LES field and the filtered field are related only statistically, and a priori testing as usually practised (p. 9); Lilly's analysis fixes the coefficient for a given filter type, and the dynamic model's successes (p. 17).</li>
+<li>D. K. Lilly, <a href="https://ntrs.nasa.gov/citations/19890013446">"The length scale for sub-grid-scale parameterization with anisotropic resolution"</a>, in Center for Turbulence Research, Annual Research Briefs 1988, NASA Ames Research Center and Stanford University (1989), pp. 3–8. The method of the inertial-range analysis and its constants (pp. 3, 5, 6).</li>
+</ul>
+<!-- BOOK-CONTENT-END --></article><nav class="page-turn" aria-label="Chapter navigation"><a rel="prev" href="chapter-19-les-conceptual-steps-filtering.html">Previous available chapter</a><a href="index.html">Lecture index</a><span>End of selected recordings</span></nav></main></div>
+<footer class="site-footer">Independent study notes. NPTEL IIT Bombay course recordings supply the topic sequence; added explanations and teaching constructions are separately attributed. Local edition in progress; a rendered page does not establish editorial completion.</footer></body></html>

@@ -1,0 +1,275 @@
+{
+  "chapter": 20,
+  "title": "Filtered equations, the Smagorinsky model, and LES in wavenumber space",
+  "status": "reviewed and locally validated; passes 1-9 complete; gate 6b round 2 had 2 blocking defects, fixed by the lead and checked by the lead (no round 3)",
+  "transcript_provenance": "Local machine transcription (faster-whisper small.en); not publisher captions",
+  "recordings": [
+    {
+      "video_id": "d2UiVIgUbGo",
+      "lecture_number": 54,
+      "media_sha256": "e0465d5fba6e9c02eb388ab83a4997e47309352167feda98aade9dd06327d1a0",
+      "duration_seconds": 1554.7335,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1525.83
+    },
+    {
+      "video_id": "ZHqm6yAAuPE",
+      "lecture_number": 55,
+      "media_sha256": "feaba71dbf80640f12f421edaa66beb854c648e1e217d23a8fb22b261ef1d362",
+      "duration_seconds": 1517.5735,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1488.23
+    },
+    {
+      "video_id": "MCLApXrqnbs",
+      "lecture_number": 56,
+      "media_sha256": "f493939f0e50ed5cdcff8b5360e27e72419dc529365d6fdded4d4dff8e97c0e3",
+      "duration_seconds": 1729.9135,
+      "transcript_first_start_seconds": 5.87,
+      "transcript_last_end_seconds": 1700.98
+    }
+  ],
+  "frames_viewed": {
+    "d2UiVIgUbGo": [
+      "f0002",
+      "f0006",
+      "f0009",
+      "f0011",
+      "f0017",
+      "f0021",
+      "f0026",
+      "f0036",
+      "f0041",
+      "f0045"
+    ],
+    "ZHqm6yAAuPE": [
+      "f0004",
+      "f0011",
+      "f0020",
+      "f0026",
+      "f0043",
+      "f0045",
+      "f0047"
+    ],
+    "MCLApXrqnbs": [
+      "f0004",
+      "f0007",
+      "f0011",
+      "f0015",
+      "f0017",
+      "f0020",
+      "f0021",
+      "f0025",
+      "f0027",
+      "f0035",
+      "f0039",
+      "f0040",
+      "f0042",
+      "f0045",
+      "f0047",
+      "f0050",
+      "f0053",
+      "f0054",
+      "f0055"
+    ],
+    "jKcNOQhuED0": [
+      "f0037"
+    ]
+  },
+  "source_uncertainties": [
+    "Slides L54 f0036 and L55 f0004 print the right side of the E_f equation as eps_f - P_r; the derivation and the following slide's text ('the sink -eps_f') give -eps_f - P_r, which (20.12) uses.",
+    "Slide L56 f0015 prints eta-bar = l_S (1 + nu_r/nu)^(1/2); the definitions give l_S (1 + nu/nu_r)^(1/2) (20.27). The same slide prints (pi/Delta)^(4/3) inside the C_S bracket; dimensional consistency and the slide's own 0.15[1 + (7 eta/Delta)^(4/3)]^(1/4) require (eta/Delta)^(4/3). The program checks both corrections.",
+    "Slide L56 f0045 prints u_hat_j(kappa') inside the sum (index must be k, as chapter 13 found for an earlier slide) and H(kappa - kappa_c) in the filtered equation (must be H(kappa_c - kappa)).",
+    "Handwritten annotation on L55 f0020 writes S-bar = <2 S_ij S_ij>^(1/2) with angle brackets; the chapter uses the local definition, which (20.16) requires.",
+    "The board computation (L55 about 20:00) writes the upper limit kappa_c after the change of variable to kappa Delta; the value used, kappa_c Delta = pi, is correct.",
+    "Speech slips: L55 14:20 'delta to the minus 5/3' (slide: -4/3); L55 22:25 'C eps^(2/3) kappa^(4/3)' for the Kolmogorov spectrum (-5/3); L54 23:14 'E bar is equal to Ef'.",
+    "Not verified (slide or speech only): C_S = 0.13 in the far dissipation range; LES-NWR grid nodes ~ Re^1.76; the Clark, Ferziger and Reynolds (1979) a priori test (64^3, Re_lambda 38); 'too dissipative' for inhomogeneous flows; backscatter examples (stratified, MHD); the apparent Reynolds number '30 000', which the speaker labels as an illustrative number.",
+    "Not obtained: Lilly (1967) IBM symposium paper (web search found citations only); Smagorinsky (1963) Mon. Weather Rev. (AMS returned HTTP 403 to scripted download); Clark, Ferziger and Reynolds (1979); the textbook whose figures and equation numbers appear in slide captions (Pope 2000); no page, equation or value from it is used. The Module 10 'Source' slide was not shown in Lecture 50's recording.",
+    "Lilly (1989, CTR ARB 1988) eq. (9) has no factor 2; its printed length scale is 2^(3/4) times the slide's at the same cutoff. The brief's S^2 = S_ij(S_ij+S_ji) equals 2 Sbar_ij Sbar_ij, so the two S agree; the brief describes E(k) only as the spectral amplitude of kinetic energy integrated over spheres (p. 6), so whether eq. (9) or the normalization carries the factor is not decided.",
+    "The lead's message names the cutoff wavenumber k_r; the slides write kappa_c, and the chapter follows the slides. kappa_c = pi/Delta is defined in the preceding chapter's lectures (L51 filter table, f0037) and restated by L55 speech.",
+    "The slide's inertial-subrange condition l_EI > Delta > l_DI compares Delta directly with the demarcation lengths; comparing kappa_c = pi/Delta with 2 pi/l halves the window. The chapter states both.",
+    "ASR spellings corrected: 'Smegrinsky', 'Smigrensky', 'Megrinsky', 'Magrinsky', 'Meckowski', 'Magnitsky', 'McGrensky' = Smagorinsky; 'dark scatter' = backscatter; 'Rand's' = RANS; 'alias' = LES; 'subgroup scale' = subgrid-scale; 'Wilter Navier-Stokes' = filtered Navier-Stokes; 'powers form', 'power spectrum', 'power filter' = Pao's form, Pao spectrum, Pao filter; 'heavy side' = Heaviside; 'renal stresses' = Reynolds stresses; 'granitic energy' = kinetic energy; 'nu j bar hat' = filtered coefficient.",
+    "Timestamps are section anchors from local speech-recognition segment times; they locate topic changes to within a few seconds."
+  ],
+  "sections": [
+    {
+      "section": "The objects of the chapter and the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "Filter, filtered field, filter width, residual field and sharp spectral filter with kappa_c = pi/Delta as used on the L54-L56 slides (defined in the preceding chapter).",
+      "research_extension": "None.",
+      "teaching_construction": "Running case: air jet (nu 1.4607e-5, k 6, eps 80, eta 79.0 um, L 0.1837 m, Re_lambda 453) as forced homogeneous isotropic turbulence in a 1 m box with the chapter 14 model spectrum; c_L 6.357, c_eta 0.402 solved by the program. Collision note for u'.",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "Filtering the continuity equation: both parts of the field are solenoidal",
+      "video_id": "d2UiVIgUbGo",
+      "start": 84,
+      "end": 195,
+      "lecture_material": "Filtered continuity; filtered and residual fields solenoidal (slide f0006, f0009).",
+      "research_extension": "None.",
+      "teaching_construction": "Remark that a spatially varying width breaks commutation (derivable).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The filtered momentum equation and the residual stress",
+      "video_id": "d2UiVIgUbGo",
+      "start": 195,
+      "end": 335,
+      "lecture_material": "Filtered momentum equation (slide eq. (1)), residual stress tensor and its analogy with the Reynolds stress (f0009, f0011).",
+      "research_extension": "None.",
+      "teaching_construction": "Expansion (20.6) of the residual stress into three brackets; projection property of the sharp filter; closed form (20.7) and unknown count.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Isotropic and anisotropic parts: the modified pressure and the closure problem",
+      "video_id": "d2UiVIgUbGo",
+      "start": 335,
+      "end": 732,
+      "lecture_material": "k_r, tau^r_ij, modified filtered pressure, filtered substantial derivative, Poisson equation, closure by a residual-stress model; three differences from the Reynolds equations (f0011, f0017, f0021).",
+      "research_extension": "None.",
+      "teaching_construction": "Distinct symbol p_m-bar for the modified pressure (slide reuses p-bar).",
+      "evidence_class": "definition"
+    },
+    {
+      "section": "The kinetic energy of the filtered field and the transfer to the residual motions",
+      "video_id": "d2UiVIgUbGo",
+      "start": 732,
+      "end": 1298,
+      "lecture_material": "E-bar = E_f + k_r; equation for E_f with eps_f and P_r; interpretation of P_r as transfer; SGS-dissipation terminology inappropriate (f0026, f0036, f0041, f0045).",
+      "research_extension": "None.",
+      "teaching_construction": "Term-by-term derivation of (20.12); estimate eps_f/eps = a_f C (eta/Delta)^(4/3).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "When the mean transfer equals the dissipation",
+      "video_id": "d2UiVIgUbGo",
+      "start": 1298,
+      "end": 1526,
+      "lecture_material": "<P_r> approx eps because <E_f> approx <E> (f0045).",
+      "research_extension": "None.",
+      "teaching_construction": "Exact budget (20.13) d<k_r>/dt = <P_r> - (eps - <eps_f>) for decaying homogeneous turbulence, or forced at wavenumbers where G-hat = 1 (exact for the sharp filter; 0.8 % for a Gaussian filter forced at 0.1 kappa_c); link to (11.5).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The Smagorinsky model: an eddy viscosity and a length proportional to the filter width",
+      "video_id": "ZHqm6yAAuPE",
+      "start": 258,
+      "end": 740,
+      "lecture_material": "Two-part model: linear eddy viscosity, mixing-length form nu_r = (C_S Delta)^2 S-bar; P_r = nu_r S-bar^2; no backscatter; dynamic model computes C_S^2; backscatter examples (f0011, f0020).",
+      "research_extension": "None.",
+      "teaching_construction": "Local definition of S-bar against the handwritten bracketed form; link to (9.27).",
+      "evidence_class": "model"
+    },
+    {
+      "section": "The coefficient from the inertial subrange",
+      "video_id": "ZHqm6yAAuPE",
+      "start": 740,
+      "end": 1488,
+      "lecture_material": "<S-bar^2> = a_f C eps^(2/3) Delta^(-4/3) (L54 f0002, attributed to Lilly 1967); eps = l_S^2 <S-bar^3>; l_S formula; approximation <S^3> approx <S^2>^(3/2); a_f = (3/2) pi^(4/3); C_S = (1/pi)(2/3C)^(3/4) approx 0.17; scalings (f0026, f0043, f0045, f0047).",
+      "research_extension": "Pope (2004) p. 17 (coefficient fixed by Lilly's analysis for a given filter type); Lilly (1989, CTR ARB 1988) pp. 3, 5, 6 (method, alpha about 1.5, eq. (13), k_m conventions).",
+      "teaching_construction": "Derivation of the first equality of (20.17) with the factor 2; Jensen bound (20.23); chi-5 Gaussian illustration 1.142 / 0.162; Gaussian and Pao filter coefficients 0.170 and 0.150; comparison with Lilly's printed constant (factor 2^(3/4)).",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "The coefficient in the running case",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "80 % resolved-energy guideline (L54 speech, L56 near-wall slide).",
+      "research_extension": "None.",
+      "teaching_construction": "Table 20.1 from the model spectrum with the steady balance (20.24): C_S 0.143 to 0.251; Delta for 80 % = 17.95 mm; nu_r/nu = 148.5.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "The Smagorinsky filter and the effective Kolmogorov scale",
+      "video_id": "MCLApXrqnbs",
+      "start": 60,
+      "end": 594,
+      "lecture_material": "Implied filter G = (E-bar/E)^(1/2); Pao-form model spectrum; LES equation with nu + nu_r; effective Kolmogorov scale; C_S formula approx 0.15; model-spectrum filter; figure (f0004, f0007, f0011, f0015, f0017, f0020); Pao filter from L51 f0037.",
+      "research_extension": "None.",
+      "teaching_construction": "Derivation of (20.27) and (20.28); corrections of the printed (1 + nu_r/nu) and (pi/Delta) forms; agreement of the limit 0.1496 with Lilly's coefficient for the Pao filter.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "Limiting behaviours: very small and very large filters, and laminar flow",
+      "video_id": "MCLApXrqnbs",
+      "start": 594,
+      "end": 796,
+      "lecture_material": "C_S = 0.13 and nu_r ~ Delta^2 in the far dissipation range; large-filter limit to RANS; residual stress nonzero in laminar flow; constant C_S incorrect for laminar flow; dynamic model alleviates (f0021, f0025).",
+      "research_extension": "Pope (2004) p. 17 (dynamic model's successes in laminar, transitional and near-wall flows).",
+      "teaching_construction": "Behaviour of (20.24) for a sharp filter in the dissipation range; Couette counterexample (Exercise 2).",
+      "evidence_class": "model"
+    },
+    {
+      "section": "Near-wall resolution and tests of model performance",
+      "video_id": "MCLApXrqnbs",
+      "start": 796,
+      "end": 1130,
+      "lecture_material": "LES-NWR and LES-NWM, Re^1.76 (f0027); a priori and a posteriori tests; Clark et al. (1979); too dissipative in inhomogeneous flows (f0035).",
+      "research_extension": "Pope (2004) p. 4 (near-wall motions must be modelled; Chapman), p. 9 (a priori testing as usually practised).",
+      "teaching_construction": "Definition (20.29) of the resolved stress and the exact relation (20.30).",
+      "evidence_class": "empirical result"
+    },
+    {
+      "section": "LES in wavenumber space",
+      "video_id": "MCLApXrqnbs",
+      "start": 1130,
+      "end": 1375,
+      "lecture_material": "Fourier series, sharp filter, cube of side 2 kappa_c, kappa_c = N kappa_0/2, fraction pi/6, filtered equations, closure problem (f0039, f0040, f0042, f0045).",
+      "research_extension": "None.",
+      "teaching_construction": "Lattice count of the pi/6 fraction; corrections of the coefficient index and of H(kappa - kappa_c) in the slide equation.",
+      "evidence_class": "derivation"
+    },
+    {
+      "section": "A statistical view: what an LES can match",
+      "video_id": "MCLApXrqnbs",
+      "start": 1375,
+      "end": 1701,
+      "lecture_material": "Ideal LES model question; DNS realizations with identical filtered initial conditions; deterministic and stochastic LES; three conclusions; modules complete (f0047, f0050, f0053, f0054, f0055).",
+      "research_extension": "Pope (2004) p. 9 (LES field defined as solution of the LES equations; relation only statistical).",
+      "teaching_construction": "Reading of the earlier results as statistical statements.",
+      "evidence_class": "hypothesis"
+    },
+    {
+      "section": "Executable check: the coefficient, the filtered strain, the running case and the slide formulas",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "NumPy program: a_f for three filters; random-field check of the factor 2 and moment ratio; model-spectrum solve and Table 20.1; implied-filter formulas with assertions; lattice count.",
+      "evidence_class": "engineering check"
+    },
+    {
+      "section": "What the derivations establish and what they do not",
+      "video_id": null,
+      "start": null,
+      "end": null,
+      "lecture_material": "None.",
+      "research_extension": "None.",
+      "teaching_construction": "Classification of results into exact, modelled, corrected and unverified.",
+      "evidence_class": "model"
+    }
+  ],
+  "references": [
+    {
+      "title": "S. B. Pope, Ten questions concerning the large-eddy simulation of turbulent flows, New J. Phys. 6 (2004) 35",
+      "url": "https://iopscience.iop.org/article/10.1088/1367-2630/6/1/035",
+      "supports": "Near-wall motions cannot be resolved in high-Re LES and must be modelled, 'as has been appreciated at least since Chapman' (p. 4); the LES field is defined as the solution of the LES equations, its relation to the filtered velocity can only be statistical, and 'a priori testing as it is usually practiced is highly dubious' (p. 9); in the inertial subrange the Smagorinsky coefficient is uniquely determined for a given filter type by Lilly's analysis, and the dynamic procedure is most successful in laminar, transitional and viscous near-wall flows (p. 17).",
+      "page_checked": "pp. 4, 9, 17 (PDF pp. 5, 10, 18)"
+    },
+    {
+      "title": "D. K. Lilly, The length scale for sub-grid-scale parameterization with anisotropic resolution, CTR Annual Research Briefs 1988 (1989) 3-8",
+      "url": "https://ntrs.nasa.gov/citations/19890013446",
+      "supports": "Attribution of the inertial-range analysis to Lilly (1966, 1967) (p. 3); loss of resolved energy lambda^2 S^3 equated to dissipation, S^2 = S_ij(S_ij + S_ji), eq. (9) S^2 = int_0^km k^2 E dk, intermittency neglected (p. 5); alpha about 1.5, eqs. (11)-(13) lambda = (4/3 alpha)^(3/4) k_m^-1, k_m = constant/Delta with constant >= 2 (Nyquist) or >= 3 (dealiased), +50 % (p. 6).",
+      "page_checked": "pp. 3, 5, 6 (PDF pp. 4, 6, 7; p. 6 viewed rendered)"
+    }
+  ],
+  "exercises": 6,
+  "code_check": {
+    "command": "python -I _editorial/tmp/ch20_code.py",
+    "stdout_matches_printed": true
+  }
+}

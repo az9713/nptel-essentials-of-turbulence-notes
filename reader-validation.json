@@ -1,11 +1,11 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-20T01:46:28.452150+00:00",
+  "checked_at_utc": "2026-10-20T01:59:42.310257+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
     "html_files": 24,
-    "local_links_checked": 434,
+    "local_links_checked": 447,
     "timestamps_checked": 296,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
@@ -354,6 +354,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-19-les-conceptual-steps-filtering.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 744,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-20-filtered-equations-smagorinsky-les-wavenumber.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 744,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-20-filtered-equations-smagorinsky-les-wavenumber.html",
         "viewport": 390
       },
       {

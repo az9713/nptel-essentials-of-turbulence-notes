@@ -108,7 +108,7 @@
     },
     {
       "order": 17,
-      "title": "Direct numerical simulation: pseudo-spectral methods and the cost of resolving every scale",
+      "title": "Direct numerical simulation: pseudo-spectral methods and cost",
       "lectures": "46-48",
       "chapter_status": "reviewed and locally validated"
     },
@@ -120,7 +120,7 @@
     },
     {
       "order": 19,
-      "title": "Large-eddy simulation: the four conceptual steps and the filtering operation",
+      "title": "Large-eddy simulation: conceptual steps and filtering",
       "lectures": "50-53",
       "chapter_status": "reviewed and locally validated"
     },
@@ -128,7 +128,7 @@
       "order": 20,
       "title": "Filtered equations, the Smagorinsky model, and LES in wavenumber space",
       "lectures": "54-56",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     }
   ],
   "lectures": [
