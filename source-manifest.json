@@ -114,9 +114,9 @@
     },
     {
       "order": 18,
-      "title": "Turbulent viscosity models",
+      "title": "Turbulent viscosity models: specifying the viscosity, and the flows the hypothesis cannot describe",
       "lectures": "49-49",
-      "chapter_status": "pending"
+      "chapter_status": "reviewed and locally validated"
     },
     {
       "order": 19,

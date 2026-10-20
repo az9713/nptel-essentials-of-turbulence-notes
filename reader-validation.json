@@ -1,12 +1,12 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-19T23:38:06.976888+00:00",
+  "checked_at_utc": "2026-10-20T01:35:44.955267+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
     "html_files": 24,
-    "local_links_checked": 395,
-    "timestamps_checked": 290,
+    "local_links_checked": 408,
+    "timestamps_checked": 296,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
     "warnings": []
@@ -300,6 +300,24 @@
         "controls": true,
         "emptyToc": false,
         "file": "chapter-16-modeling-approaches-appraisal-criteria.html",
+        "viewport": 390
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 465,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-18-turbulent-viscosity-models.html",
+        "viewport": 1280
+      },
+      {
+        "mathErrors": 0,
+        "mathNodes": 465,
+        "horizontalOverflow": false,
+        "controls": true,
+        "emptyToc": false,
+        "file": "chapter-18-turbulent-viscosity-models.html",
         "viewport": 390
       },
       {

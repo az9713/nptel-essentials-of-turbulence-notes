@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light"><meta name="book-content-sha256" content="9dbaf025f02153490f928af9f63dae3382bf24fbeb731dc0cf11bad56893cac4"><title>Turbulent viscosity models: specifying the viscosity, and the flows the hypothesis cannot describe · Essentials of Turbulence</title>
+<link rel="stylesheet" href="assets/book.css"><script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'local'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="assets/mathjax-tex-svg.js"></script><script defer src="assets/book.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="index.html">Essentials of Turbulence · January 2026</a><nav class="course-nav" aria-label="Book"><a href="index.html">Lectures</a><a href="source-map.html">Source map</a><a href="references.html">References</a><a href="numerical-lab.html">Numerical lab</a></nav></header>
+<div class="layout"><aside class="toc" id="chapter-toc" aria-label="On this page"><h2>On this page</h2></aside><main id="main">
+<div class="reading-tools" aria-label="Reading controls"><button id="theme-toggle" aria-pressed="false">Light theme</button><button id="text-toggle" aria-pressed="false">Larger text</button><button id="solutions-toggle" aria-pressed="false">Expand solutions</button><button id="print-page">Print with solutions</button></div>
+<article id="chapter-content"><!-- BOOK-CONTENT-START --><h1>Turbulent viscosity models: specifying the viscosity, and the flows the hypothesis cannot describe</h1>
+<p class="lead">A water channel of half-width 2 cm carries a mean speed of 1.000 m/s at a friction Reynolds number of 1000.5. A direct simulation of this flow uses 2304 × 512 × 2048 = 2.4 × 10<sup>9</sup> grid points, and the lecture argues that in a fully resolved simulation of homogeneous turbulence most of the modes lie at wavenumbers where the flow holds little energy. The mean-flow equations of chapter 9 need, in addition, one number at each point of a single line across the channel, the turbulent viscosity \(\nu_T\), and the hypothesis that turns it into a stress has a known failure: it predicts that the anisotropy of the Reynolds stresses vanishes wherever the mean strain rate vanishes, and in decaying grid turbulence behind a contraction it does not vanish. This chapter asks what a model of \(\nu_T\) must contain, writes down the two-equation \(k\)–\(\varepsilon\) specification with its constants and the terms that are modelled, checks what those constants imply for the channel, and quantifies why the hypothesis fails when the mean strain is switched off.</p>
+<p class="source-note">Grounded in one recording of the NPTEL course <em>Essentials of Turbulence</em> (Prof. Abhilash J. Chandy, IIT Bombay): <a href="https://www.youtube.com/watch?v=GH4QRyOFlp4">Lecture 49</a>, the closing lecture of the module "Modeling and Simulation". The slides belong to Module 09, "Modeling and Simulation"; at the start of the module the lecture states that most of its material is taken from S. B. Pope, <em>Turbulent Flows</em> (Cambridge University Press, 2000) (<a class="timestamp" href="https://www.youtube.com/watch?v=g83gewi4rHw&amp;t=180s">L43 3:00</a>, the first recording of the chapter "Modeling approaches and criteria for appraising models"), and the caption of the contraction sketch reads "Figure 10.1" (the slide's numbering, not checked against the book). No source slide is shown in Lecture 49. The book was not available, so no page, equation number or value in this chapter is taken from it. <strong>Lecture material:</strong> the cost argument and the differences for inhomogeneous flows; the remark that a Navier–Stokes simulation is not necessarily direct; the intrinsic and specific assumptions; \(\nu_T=u^*\ell^*\) with the mixing-length and \(k\)–\(\varepsilon\) models as examples; the grid-turbulence contraction flow. <strong>Research extensions:</strong> the \(k\)–\(\varepsilon\) equations and constants (OpenFOAM documentation and a 2023 arXiv paper; the original publications were not opened); the Lee–Moser (2015) channel data. <strong>Original teaching constructions:</strong> the mode and cost counts; the logarithmic-layer constant (18.8) and the ratio (18.9); the decay law (18.10); the relaxation model (18.11), whose coefficient is assumed; the code and the six exercises.</p>
+
+<h2 id="model">The objects of the chapter and the running case</h2>
+<p>The formal model is that of chapter 9: incompressible flow of a Newtonian fluid with constant density \(\rho\) and kinematic viscosity \(\nu\), the velocity split by the expectation \(\langle\cdot\rangle\) into a mean \(\langle U_i\rangle\) and a fluctuation \(u_i\), the Reynolds stresses \(\langle u_iu_j\rangle\), the turbulent kinetic energy \(k=\tfrac12\langle u_iu_i\rangle\) and the dissipation rate \(\varepsilon\) (units \(\mathrm{m^2/s^3}\)). The turbulent viscosity \(\nu_T(\mathbf x,t)\) (units \(\mathrm{m^2/s}\)) is the scalar field of the hypothesis (9.27) of chapter 9, section "The turbulent-viscosity hypothesis": the anisotropy \(a_{ij}\equiv\langle u_iu_j\rangle-\tfrac23k\delta_{ij}\) equals \(-2\nu_T\langle S_{ij}\rangle\), with \(\langle S_{ij}\rangle\) the strain rate of the mean velocity. The slides write \(\bar S_{ij}\) for it; this book keeps the overbar for filtered fields. Chapter 9 does not need to be re-read for what follows, but the hypothesis is used without re-deriving it.</p>
+<p><strong>The running case</strong> is the channel of chapter 9, section "The running case: the Reynolds equations in a fully developed channel": plane channel flow at \(\mathrm{Re}_\tau=u_\tau d/\nu=1000.5\) with half-width \(d=2\ \mathrm{cm}\), \(\nu=1.0\times10^{-6}\ \mathrm{m^2/s}\), \(\rho=1000\ \mathrm{kg/m^3}\), friction velocity \(u_\tau=0.0500\ \mathrm{m/s}\), bulk velocity 1.000 m/s and pressure gradient 125 Pa/m. The wall-normal distance is \(y\), \(y^+=yu_\tau/\nu\) and \(U^+=\langle U_1\rangle/u_\tau\). The data are the direct numerical simulation of <a href="https://turbulence.oden.utexas.edu/channel2015/content/Data_2015_1000.html">Lee and Moser (2015)</a>, whose files list \(k\), \(\langle u_1u_2\rangle\) and \(d\langle U_1\rangle/dy\) but not \(\varepsilon\). Quantities in wall units carry the superscript \(+\) (stresses divided by \(u_\tau^2\)).</p>
+
+<h2 id="cost">Why the dissipation range dominates the cost, and what changes in a wall-bounded flow <a class="timestamp" href="https://www.youtube.com/watch?v=GH4QRyOFlp4&amp;t=6s">L49 0:06</a></h2>
+<p>The lecture opens from the cost of direct simulation. Chapter 5, section "A resolution budget for a direct simulation", gives the grid and the work: \(N\propto\mathrm{Re}_0^{3/4}\) points per direction and a cost \(\propto N^4\propto\mathrm{Re}_0^3\) at a fixed Courant number, with \(\mathrm{Re}_0=u_0\ell_0/\nu\) built on the velocity and length of the energy-containing motions. The slide adds a statement about where that cost goes: in a periodic box of side \(\mathcal L\), the wavenumber vectors are \(\boldsymbol\kappa=\kappa_0\mathbf n\) with \(\kappa_0=2\pi/\mathcal L\) and \(\mathbf n\) a vector of integers, and the number of modes of magnitude below \(\kappa\) grows as \(\kappa^3\). The count is the number of lattice points inside a sphere of radius \(\kappa/\kappa_0\), approximately the volume of the sphere:</p>
+\[
+N_{\rm modes}(\lvert\boldsymbol\kappa\rvert\lt\kappa)\approx\frac{4\pi}{3}\Bigl(\frac{\kappa}{\kappa_0}\Bigr)^3.\tag{18.1}
+\]
+<p>The approximation improves with radius. The program below counts the lattice points exactly: the exact count is 92.4 % of (18.1) at a radius of 5 and 99.95 % at a radius of 80. Where the modes lie therefore depends on where the spectrum is. Take \(\kappa_{\max}\eta=1.5\) as the resolution requirement for low-order statistics, a value of order 1.5 quoted by Yeung, Sreenivasan and Pope (2018, p. 064603-3) and used in chapter 5, and take the nominal boundary of the energy-containing range at \(\ell_{EI}=\ell_0/6\) (the slide value of chapter 10; the lectures of that chapter call the number arbitrary for the present), converted to a wavenumber by \(\kappa_{EI}=2\pi/\ell_{EI}\). With \(\ell_0/\eta=\mathrm{Re}_0^{3/4}\), which holds when \(\varepsilon=u_0^3/\ell_0\) (chapter 5; the constant in that estimate is not fixed), the fraction of modes below \(\kappa_{EI}\) among the resolved modes \(\lvert\boldsymbol\kappa\rvert\lt\kappa_{\max}\) (the spherical truncation of the chapter "Direct numerical simulation: pseudo-spectral methods and cost") and the fraction of the cost of the full simulation that a simulation stopping at \(\kappa_{EI}\) would need are</p>
+\[
+\Bigl(\frac{\kappa_{EI}}{\kappa_{\max}}\Bigr)^3,\qquad\Bigl(\frac{\kappa_{EI}}{\kappa_{\max}}\Bigr)^4,\qquad\frac{\kappa_{EI}}{\kappa_{\max}}=\frac{12\pi}{1.5\,\mathrm{Re}_0^{3/4}}.\tag{18.2}
+\]
+<p>The second power comes from cost \(\propto\kappa_{\max}^4\) at a fixed box and Courant number (chapter 5). Table values are in the program output at the end of the chapter. At \(\mathrm{Re}_0=10^3\) the modes below \(\kappa_{EI}\) are 0.28 % of the total and the cost share is 0.040 %; at \(\mathrm{Re}_0=10^4\) they are \(1.6\times10^{-5}\) and \(4.0\times10^{-7}\), and at \(10^5\) they are \(8.9\times10^{-8}\) and \(4.0\times10^{-10}\). At \(\mathrm{Re}_0=100\), \(\kappa_{EI}\eta=1.19\) is close to \(\kappa_{\max}\eta\) and half of the modes lie below it, because at so low a Reynolds number the energy-containing and the dissipation ranges barely separate. The slide states that over 99 % of the effort in a direct simulation is devoted to the dissipation range, and that this share increases with \(\mathrm{Re}\). The count above supports the direction and gives a threshold: modes above \(\kappa_{EI}\) exceed 99 % for \(\mathrm{Re}_0\gtrsim570\), and the cost above it for \(\mathrm{Re}_0\gtrsim340\). It does not confirm the slide's figure itself, for two reasons: modes above \(\kappa_{EI}\) include the inertial subrange as well as the dissipation range, so the count overstates the dissipation share, and the demarcation \(\ell_{EI}=\ell_0/6\) is nominal (the \(\kappa=1/\ell\) convention instead of \(2\pi/\ell\) multiplies each share by \((2\pi)^{-3}\), and Exercise 3 asks for the consequence). The lecture illustrates the point with a "90 % of the cost for 10 % of the energy" rule that it labels arbitrary; it is a figure of speech, not a measured split.</p>
+<p>The slide also states that the mean flow and the energy-containing statistics have only a weak Reynolds-number dependence. Chapter 9, section "Shear-flow forms, scaling, and what the hypothesis leaves open", has a measured instance: at \(y/d\approx0.5\), \(\nu_T/(u_\tau d)\) changes by 6 % while \(\mathrm{Re}_\tau\) changes by a factor of 9.5. That statement concerns one flow and one position. These facts motivate large-eddy simulation, which resolves the energy-containing motions and models the rest; the lecture defers it to a later module.</p>
+<p><strong>What a wall changes.</strong> The slide lists three differences between direct simulation of an inhomogeneous flow and of homogeneous turbulence. Fourier representations cannot be used in a direction of inhomogeneity, because the field is not periodic there: the boundary conditions are physical, not periodic; and near-wall motions impose an additional resolution requirement. The lecture explains the third by the no-slip condition: the velocity is zero at the wall and finite a short distance above it, so the steep gradient must be resolved by a grid that is fine at the wall and may be coarser away from it, whereas homogeneous turbulence in a box has the same requirement everywhere and a uniform grid. In the running case the viscous length is \(\nu/u_\tau=20\ \mu\mathrm m\) against a half-width of 2 cm, a ratio of \(\mathrm{Re}_\tau=1000\). The slide's example is the channel simulation of Kim et al. (1987, the slide's citation; not opened): a box periodic in \(x\) and \(z\), Fourier there and Chebyshev across the channel. The Lee–Moser simulation of the running case is also homogeneous in \(x\) and \(z\); its header gives \(2304\times512\times2048\) points in \(x\), \(y\), \(z\). Its header states a B-spline representation of order 7 in \(y\) in place of the Chebyshev polynomials of Kim et al.</p>
+
+<h2 id="direct">A simulation that solves the Navier–Stokes equations is not automatically direct <a class="timestamp" href="https://www.youtube.com/watch?v=GH4QRyOFlp4&amp;t=671s">L49 11:11</a></h2>
+<p>The slide says that direct simulation gives access to statistics that cannot be measured (Lagrangian statistics, the pressure–rate-of-strain tensor) and adds that "not all simulations based on NS equations are ‘direct’": artificial modifications, incomplete resolution or non-physical boundary conditions can make a simulation correspond to a flow that cannot be realized. The lecture's example is a jet whose inlet fluctuations are not available from an experiment: the mean profile alone may not trigger turbulence, so fluctuations must be specified, and if they differ from the real ones a comparison with measurements may disagree even when the equations are solved exactly. The distinction is between the equations, solved without a model, and the data supplied to them. The criteria for judging a model, including completeness, belong to the chapter "Modeling approaches and criteria for appraising models".</p>
+
+<h2 id="hypothesis">The hypothesis has two parts <a class="timestamp" href="https://www.youtube.com/watch?v=GH4QRyOFlp4&amp;t=1001s">L49 16:41</a></h2>
+<p>Chapter 9 states (9.27) and (9.28) and tests the hypothesis on the channel; this section records how the lecture divides it, because the division locates the failure that the last sections examine. The slide splits the hypothesis into an <em>intrinsic</em> assumption and a <em>specific</em> assumption.</p>
+<p>The intrinsic assumption is that the anisotropy \(a_{ij}\) is determined by the mean velocity gradients \(\partial\langle U_i\rangle/\partial x_j\) at the same point and time, with nothing else entering. The lecture's speech calls this "proportional", but the slide says "determined by", which is the weaker and correct statement of the first assumption: a nonlinear function of the gradient would satisfy the intrinsic assumption but not the specific one. The specific assumption is that the relation is the linear one of (9.27), with one scalar \(\nu_T\):</p>
+\[
+a_{ij}=-2\nu_T\langle S_{ij}\rangle.
+\]
+<p>The slide compares it with the Newtonian viscous stress, for which (in the sign convention of the slide, written \(-(\tau_{ij}+P\delta_{ij})/\rho=-2\nu\bar S_{ij}\), where \(P\) on the slide is the pressure, written \(p\) in this book) the deviatoric stress is proportional to the strain rate. The momentum flux carried by the fluctuations is \(-\rho\langle u_iu_j\rangle\) (chapter 9, section "The Reynolds stress as a mean momentum flux"); its deviatoric part is \(-\rho a_{ij}=2\rho\nu_T\langle S_{ij}\rangle\), which has the form of the viscous stress \(2\rho\nu S_{ij}\) with \(\nu\) replaced by \(\nu_T\). The analogy is a similarity of form. The slide's own argument for the Newtonian law is that, in a laminar shear flow, the straining is very weak (weak against the rate at which molecular collisions restore isotropy, the inverse of the mean free time (the mean free path \(\lambda_{\mathrm m}\) of chapter 6 divided by the molecular speed); this gloss is the book's) and so produces a very small departure from isotropy, which makes a linear relation to the velocity gradient reasonable; it adds that the Newtonian law is the most general linear relation consistent with the mathematical properties of the stress tensor (for an isotropic incompressible fluid; this qualification is the book's, not the slide's). The lecture's conclusion is that in turbulent shear flows the rate of straining is relatively large and gives relatively large anisotropies, so "there is no reason to suppose that the relationship is linear", and that in several classes of flows with a more complex mean velocity gradient the hypothesis is known to fail significantly. The slide on the hypothesis states the model's accuracy plainly: "Unfortunately for many flows, the accuracy of the hypothesis is poor". Section <a href="#history">"Where the mean strain vanishes"</a> examines the claim with a flow and a calculation.</p>
+
+<h2 id="specification">Specifying the turbulent viscosity: a velocity times a length <a class="timestamp" href="https://www.youtube.com/watch?v=GH4QRyOFlp4&amp;t=1056s">L49 17:36</a></h2>
+<p>If the hypothesis is accepted, the closure of the mean equations is complete once \(\nu_T(\mathbf x,t)\) is known: (9.28) then has the form of the Navier–Stokes equations with \(\nu_{\rm eff}=\nu+\nu_T\). The lecture's dimensional step is that \(\nu_T\) has the units of a velocity times a length, so it can be written with a velocity scale \(u^*(\mathbf x,t)\) and a length scale \(\ell^*(\mathbf x,t)\):</p>
+\[
+\nu_T=u^*\ell^*.\tag{18.3}
+\]
+<p>This is a statement of dimensions, not of physics; everything lies in how \(u^*\) and \(\ell^*\) are obtained. The lecture names two ways. In an algebraic model such as the mixing-length model, \(\ell^*\) is prescribed from the geometry of the flow, as a fraction of its characteristic length, and \(u^*\) follows from the mean velocity gradient; chapter "Modeling approaches and criteria for appraising models" treats that model, with its closure, in the channel, and it is not repeated here. In a two-equation model, \(u^*\) and \(\ell^*\) are built from \(k\) and \(\varepsilon\), for which modelled transport equations are solved.</p>
+<p><strong>The \(k\)–\(\varepsilon\) specification.</strong> Take \(u^*=k^{1/2}\), the r.m.s. velocity scale \((2k/3)^{1/2}\) up to a constant, and \(\ell^*=k^{3/2}/\varepsilon\), the large-scale length \(L\) of the notation table (units check: \(\mathrm{m^3/s^3}\) divided by \(\mathrm{m^2/s^3}\) is m). Their product has units \(\mathrm{m^2/s}\), and the proportionality constant is absorbed in a model coefficient \(C_\mu\):</p>
+\[
+\nu_T=C_\mu\frac{k^2}{\varepsilon}.\tag{18.4}
+\]
+<p>The two scalars \(k\) and \(\varepsilon\) are then obtained from transport equations. Write \(\bar D/\bar Dt=\partial/\partial t+\langle U_j\rangle\partial/\partial x_j\) for the mean substantial derivative, as in (9.28). The production of kinetic energy by the mean shear is \(P=-\langle u_iu_j\rangle\,\partial\langle U_i\rangle/\partial x_j\). Under the hypothesis it is a function of \(\nu_T\) and the mean strain only: substituting \(\langle u_iu_j\rangle=a_{ij}+\tfrac23k\delta_{ij}\), the isotropic part gives \(\tfrac23k\,\partial\langle U_i\rangle/\partial x_i=0\) by continuity, and \(a_{ij}\) is contracted with the symmetric part of the gradient, so</p>
+\[
+P=2\nu_T\langle S_{ij}\rangle\langle S_{ij}\rangle.\tag{18.5}
+\]
+<p>The standard \(k\)–\(\varepsilon\) model, in the form given by the <a href="https://doc.openfoam.com/2606/tools/processing/models/turbulence/ras/linear-evm/rtm/kEpsilon">OpenFOAM documentation</a>, which attributes the standard model to Launder and Spalding (1974), and by the appendix of <a href="https://arxiv.org/abs/2305.16738">Michael et al. (2023)</a> (p. 23, equations (14)–(17); the paper attributes the form to Jones and Launder), is</p>
+\[
+\frac{\bar Dk}{\bar Dt}=\frac{\partial}{\partial x_j}\Bigl[\Bigl(\nu+\frac{\nu_T}{\sigma_k}\Bigr)\frac{\partial k}{\partial x_j}\Bigr]+P-\varepsilon,\tag{18.6}
+\]
+\[
+\frac{\bar D\varepsilon}{\bar Dt}=\frac{\partial}{\partial x_j}\Bigl[\Bigl(\nu+\frac{\nu_T}{\sigma_\varepsilon}\Bigr)\frac{\partial\varepsilon}{\partial x_j}\Bigr]+C_{\varepsilon1}\frac{\varepsilon}{k}P-C_{\varepsilon2}\frac{\varepsilon^2}{k},\tag{18.7}
+\]
+<p>with \(C_\mu=0.09\), \(\sigma_k=1.0\), \(\sigma_\varepsilon=1.3\), \(C_{\varepsilon1}=1.44\) and \(C_{\varepsilon2}=1.92\). The OpenFOAM page lists the same five values under "default model coefficients" (the page writes the coefficients \(C_1\), \(C_2\)), and the arXiv paper's Table 2 lists them in the order \(C_\mu\), \(\sigma_k\), \(\sigma_\varepsilon\), \(C_{\varepsilon1}\), \(C_{\varepsilon2}\). The documentation page names \(\sigma_k\) and \(\sigma_\varepsilon\) as coefficients but gives the diffusion terms only as an "effective diffusivity"; the explicit form \(\nu+\nu_T/\sigma\) in (18.6) and (18.7) is the arXiv paper's (verified on the rendered page). The OpenFOAM page adds a compressibility term that vanishes for the incompressible flow of this book. Neither original publication was opened, so the attribution of the constants to a particular experiment is not checked here; the OpenFOAM page says only that the model is "extensively used with known performance", that it over-predicts the turbulent kinetic energy at stagnation points and that it requires a near-wall treatment.</p>
+<p><strong>Which terms are modelled.</strong> The exact equation for \(k\) follows from chapters 6 and 9 in four steps. Subtract the Reynolds equation (9.7) from the Navier–Stokes equation for \(U_i=\langle U_i\rangle+u_i\); with \(p'\) the pressure fluctuation and \(\partial u_j/\partial x_j=0\), the fluctuation obeys</p>
+\[
+\frac{\bar Du_i}{\bar Dt}+u_j\frac{\partial\langle U_i\rangle}{\partial x_j}+\frac{\partial}{\partial x_j}\bigl(u_iu_j-\langle u_iu_j\rangle\bigr)=-\frac1\rho\frac{\partial p'}{\partial x_i}+\nu\nabla^2u_i.
+\]
+<p>Multiply by \(u_i\) and average. The first term gives \(\bar Dk/\bar Dt\); the second gives \(\langle u_iu_j\rangle\,\partial\langle U_i\rangle/\partial x_j=-P\); the third gives \(\partial(\tfrac12\langle u_iu_iu_j\rangle)/\partial x_j\), because \(u_i\,\partial(u_iu_j)/\partial x_j=\partial(\tfrac12u_iu_iu_j)/\partial x_j\) by continuity and \(\langle u_i\rangle=0\) removes the mean stress; the pressure term gives \(-\partial\langle u_jp'\rangle/\partial x_j/\rho\); and the viscous term, with \(s_{ij}=\tfrac12(\partial u_i/\partial x_j+\partial u_j/\partial x_i)\) the rate of strain of the fluctuation, gives \(\nu\langle u_i\nabla^2u_i\rangle=\nu\nabla^2k-\nu\langle(\partial u_i/\partial x_j)(\partial u_i/\partial x_j)\rangle\). The last average is not the dissipation of the notation table: expanding \(2s_{ij}s_{ij}=(\partial u_i/\partial x_j)^2+(\partial u_i/\partial x_j)(\partial u_j/\partial x_i)\) and moving the derivatives with continuity twice gives \(\varepsilon=2\nu\langle s_{ij}s_{ij}\rangle=\nu\langle(\partial u_i/\partial x_j)^2\rangle+\nu\,\partial^2\langle u_iu_j\rangle/\partial x_i\partial x_j\). With the table's \(\varepsilon\), the exact equation is therefore</p>
+\[
+\frac{\bar Dk}{\bar Dt}=-\frac{\partial}{\partial x_j}\Bigl[\tfrac12\langle u_iu_iu_j\rangle+\frac{\langle u_jp'\rangle}{\rho}-2\nu\langle u_is_{ij}\rangle\Bigr]+P-\varepsilon,\qquad
+2\nu\frac{\partial\langle u_is_{ij}\rangle}{\partial x_j}=\nu\nabla^2k+\nu\frac{\partial^2\langle u_iu_j\rangle}{\partial x_i\partial x_j}.
+\]
+<p>Compared with (18.6): \(P\) and \(\varepsilon\) are carried over exactly, and \(P\) is then expressed through the hypothesis, (18.5); the transport by the triple correlation and by the pressure fluctuation is replaced by the gradient-diffusion term \((\nu_T/\sigma_k)\,\partial k/\partial x_j\), a model; and the viscous transport is written as \(\nu\,\partial k/\partial x_j\), which is exact in homogeneous turbulence and elsewhere omits the term \(\nu\,\partial^2\langle u_iu_j\rangle/\partial x_i\partial x_j\) of the exact equation (in the channel, \(\nu\,d^2\langle u_2^2\rangle/dy^2\), the second derivative of one normal stress); the model has no separate representation of this term, and this chapter does not test whether it is small. Equivalently, (18.6) is exact in its viscous term if \(\varepsilon\) there is read as \(\nu\langle(\partial u_i/\partial x_j)^2\rangle\); the two definitions differ by the same second derivative.</p>
+<p>An exact transport equation for \(\varepsilon\) exists but is not used here; (18.7) is a modelled analogue of (18.6), whose production and destruction terms, \(C_{\varepsilon1}\varepsilon P/k\) and \(C_{\varepsilon2}\varepsilon^2/k\), are dimensionally consistent with (18.6) (both terms have units \(\mathrm{m^2/s^4}\)) and whose coefficients are empirical constants. The closure count of chapter 9, section "The closure problem: four equations and ten unknowns", changes accordingly: the six unknown stresses are replaced by the one scalar \(\nu_T\), which is replaced in turn by two scalars \(k\) and \(\varepsilon\) with two transport equations whose five constants are not derived. The constants are the model's input, and the standard values are not claimed to be universal.</p>
+
+<h2 id="loglayer">What the constants imply for the channel</h2>
+<p>The five constants are not independent of the mean profile that the model must reproduce. Consider the layer of the running case where the total shear stress is approximately \(\tau_w\) (\(y\ll d\), \(y^+\gg1\)), so that \(-\langle u_1u_2\rangle=\nu_T\,d\langle U_1\rangle/dy\approx u_\tau^2\), and make three assumptions: \(k\) is uniform, the production equals the dissipation (so (18.6) reduces to \(P=\varepsilon\)), and the mean velocity gradient is \(d\langle U_1\rangle/dy=u_\tau/(\kappa_vy)\) with a constant \(\kappa_v\), the von Kármán constant of the logarithmic law. By (18.5) the production of the channel is \(P=\nu_T(d\langle U_1\rangle/dy)^2=u_\tau^2\,d\langle U_1\rangle/dy\). With \(\varepsilon=P\) and (18.4), \(u_\tau^2=\nu_Td\langle U_1\rangle/dy=C_\mu k^2d\langle U_1\rangle/(\varepsilon\,dy)\) gives \(k=u_\tau^2/\sqrt{C_\mu}\), and then \(\varepsilon=u_\tau^3/(\kappa_vy)\) and \(\nu_T=\kappa_vu_\tau y\). Insert these into (18.7). The diffusion term is \(d/dy\bigl[(\nu_T/\sigma_\varepsilon)d\varepsilon/dy\bigr]=u_\tau^4/(\sigma_\varepsilon y^2)\) (viscosity neglected against \(\nu_T\)). The production and destruction terms combine to \((C_{\varepsilon1}-C_{\varepsilon2})\varepsilon^2/k=-(C_{\varepsilon2}-C_{\varepsilon1})\sqrt{C_\mu}\,u_\tau^4/(\kappa_v^2y^2)\). The sum is zero when</p>
+\[
+\kappa_v^2=\sigma_\varepsilon\,(C_{\varepsilon2}-C_{\varepsilon1})\sqrt{C_\mu}.\tag{18.8}
+\]
+<p>With the constants above \(\kappa_v^2=0.1872\) and \(\kappa_v=0.433\). The Lee–Moser rows give the corresponding local quantity \(1/(y^+dU^+/dy^+)\) as 0.42 at \(y^+=98.8\), 0.37 at 198.5 and 0.35 at 300.8; for \(30\lt y^+\lt500\) it reaches a maximum of 0.434 near \(y^+=69\) and is smaller at every printed row. At \(\mathrm{Re}_\tau=1000\) the profile has no constant slope: the model's 0.433 matches that maximum within 0.3 % and lies above every printed row, by 3 % at \(y^+=98.8\) and by 24 % at 300.8. Equation (18.8) is a property of the equations, not a calibration against this flow; it shows that the model's constants fix the logarithmic-law slope. The same assumptions give the ratio of the turbulence time \(k/\varepsilon\) to the mean-strain time, which the next section uses. Define, for the channel, \(\Pi\equiv(k/\varepsilon)\,d\langle U_1\rangle/dy\). With \(k=u_\tau^2/\sqrt{C_\mu}\) and \(\varepsilon=u_\tau^2\,d\langle U_1\rangle/dy\),</p>
+\[
+\Pi=\frac1{\sqrt{C_\mu}}=3.33\quad(C_\mu=0.09),\qquad\text{and, if }P=\varepsilon,\qquad\Pi=\frac{k}{-\langle u_1u_2\rangle}.\tag{18.9}
+\]
+<p>The second form uses only quantities in the data files. The program evaluates it: \(\Pi\) is 3.98 at \(y^+=98.8\), 3.71 at \(y^+=300.8\) and 3.76 at \(y^+=498.5\). The effective constant \((\langle u_1u_2\rangle/k)^2\), which equals \(C_\mu\) if \(P=\varepsilon\) and (18.4) holds, is 0.034 at \(y^+=29.4\), 0.063 at \(y^+=98.8\) and between 0.068 and 0.073 from \(y^+=150\) to 400, against 0.09. Whether \(P=\varepsilon\) holds in the data cannot be checked here, because the files have no \(\varepsilon\). The test is therefore of the combination of the equilibrium assumption and (18.4): the data are consistent with an effective \(C_\mu\) 19 to 24 % below the standard value from \(y^+=150\) to 400, 30 % below it at \(y^+=98.8\) and 62 % below it at \(y^+=29.4\), where the assumptions do not hold.</p>
+
+<h2 id="history">Where the mean strain vanishes: grid turbulence behind a contraction <a class="timestamp" href="https://www.youtube.com/watch?v=GH4QRyOFlp4&amp;t=1310s">L49 21:50</a></h2>
+<p>The slide's test flow is a wind-tunnel experiment whose sketch is captioned as similar to the apparatus of Uberoi (1956) and Tucker (1970) (the citations as printed; not opened). Air passes through a turbulence-generating grid into a straight section, then through an axisymmetric contraction, then into a second straight section. In the first straight section the mean velocity \(\langle U_1\rangle\) is ideally uniform, so \(\langle S_{ij}\rangle=0\), and the almost isotropic turbulence decays. In the contraction the sketch labels a constant axisymmetric mean strain with one component \(\langle S_{11}\rangle\) and \(\langle S_{22}\rangle=\langle S_{33}\rangle=-\tfrac12\langle S_{11}\rangle\), which has zero trace as continuity requires. In the second straight section \(\langle S_{ij}\rangle=0\) again.</p>
+<p><strong>What the hypothesis predicts.</strong> Wherever \(\langle S_{ij}\rangle=0\), (9.27) gives \(a_{ij}=-2\nu_T\cdot0=0\) for every finite value of \(\nu_T\), so the prediction does not depend on which model supplies \(\nu_T\): the Reynolds stresses are isotropic, \(\langle u_iu_j\rangle=\tfrac23k\delta_{ij}\), in the first and in the second straight section. (The slide says the anisotropies are zero. The speech says the Reynolds stresses are zero, which is not what the hypothesis states, because the isotropic part \(\tfrac23k\delta_{ij}\) remains.) Inside the contraction the hypothesis gives \(a_{11}=-2\nu_T\langle S_{11}\rangle\) and \(a_{22}=a_{33}=+\nu_T\langle S_{11}\rangle\): the streamwise component is below the isotropic value when the flow accelerates.</p>
+<p><strong>What is measured.</strong> The slide, citing Warhaft (1980; not opened), states that the anisotropy generated in the contraction decays quite slowly in the second straight section, on the turbulence time scale \(k/\varepsilon\), so that it persists although the mean strain is zero. The anisotropy exists "because of the prior history of straining to which the turbulence has been subjected", not because of the local mean strain. The consequence drawn on the slide, and by the lecture, is that the intrinsic assumption is violated: \(a_{ij}\) is not a function of the local mean velocity gradient. A function \(F\) of the local gradient alone must give the same \(a_{ij}\) in the second straight section as in the first, since both have \(\langle S_{ij}\rangle=0\). That common value is zero: if \(F\) carries no preferred direction, \(F(0)\) is an isotropic symmetric tensor, a multiple of \(\delta_{ij}\), and \(a_{ij}\) is traceless, so the multiple is zero; independently, the slide describes the turbulence of the first section as almost isotropic, which is \(F(0)\approx0\) measured. The data of the second section give a nonzero value that depends on what happened upstream. The slide adds that the specific assumption fails even for the simplest flows. Chapter 9, section "Testing the turbulent-viscosity hypothesis on the channel", quantifies this in the running case, where the hypothesis gives zero diagonal anisotropy while the data show \(b_{11}\) between 0.13 and 0.51.</p>
+<p><strong>The ratio that decides.</strong> A relation \(a_{ij}=F(\partial\langle U_i\rangle/\partial x_j)\) can be a good approximation only if the turbulence adjusts to a change of the mean strain faster than the mean strain changes. The slide's statement is qualitative: laminar straining produces a very small departure from isotropy, while turbulent straining is large and produces large anisotropy. A quantitative version for the channel is \(\Pi\) of (18.9): the ratio of the turbulence time \(k/\varepsilon\) to the time \(1/(d\langle U_1\rangle/dy)\) of the mean shear is about 3.3 in the model's logarithmic layer and 3.7 to 4.0 in the data of the running case between \(y^+=99\) and 500. Both numbers rest on \(P=\varepsilon\): the model value through the equilibrium layer of (18.8), the data value through the second form of (18.9); neither measures the two times independently, and with \(P=\varepsilon\) the statement \(C_\mu\approx0.09\) and the statement \(\Pi\approx3.3\) are the same statement. The energy balance does not say whether \(a_{ij}\) follows the instantaneous strain; the factor of three to four is the reason to doubt that it does, and the contraction experiment is the test.</p>
+
+<h2 id="relax">A model of the slow decay: how long the anisotropy lasts <a class="timestamp" href="https://www.youtube.com/watch?v=GH4QRyOFlp4&amp;t=1562s">L49 26:02</a></h2>
+<p>The lecture states that the anisotropy decays "slowly, on the turbulence timescale \(k/\varepsilon\)" and gives no equation. A calculation shows what such a decay means when the turbulence itself decays. Without mean strain, \(P=0\) and the diffusion terms vanish in a homogeneous flow, so (18.6) and (18.7) reduce to \(dk/dt=-\varepsilon\) and \(d\varepsilon/dt=-C_{\varepsilon2}\varepsilon^2/k\). Let \(\tau\equiv k/\varepsilon\). Then \(d\tau/dt=(dk/dt)/\varepsilon-k\,(d\varepsilon/dt)/\varepsilon^2=-1+C_{\varepsilon2}\), and</p>
+\[
+\tau=\tau_0+(C_{\varepsilon2}-1)(t-t_0),\qquad k\propto\tau^{-1/(C_{\varepsilon2}-1)}\propto t^{-1.087}\quad(C_{\varepsilon2}=1.92),\tag{18.10}
+\]
+<p>with \(t_0\) the instant at which the decay is first observed and \(\tau_0\equiv k(t_0)/\varepsilon(t_0)\) its turbulence time. (The notation table's \(\tau_0=\ell_0/u_0\) is proportional to this quantity with an order-one constant that this chapter does not fix; here \(\tau_0\) is used only as \(\tau(t_0)\).) The second form follows from \(dk/dt=-k/\tau\) and \(d\tau=(C_{\varepsilon2}-1)dt\), with \(t\) counted from the virtual origin at which \(\tau=0\). The turbulence time \(k/\varepsilon\) grows linearly in time, at the rate \(C_{\varepsilon2}-1=0.92\), as the turbulence decays. The program integrates the two equations numerically over a thousandfold range of time: the fitted slope of \(\ln k\) on \(\ln t\) is \(-1.087\), and \(k/(\varepsilon t)\) is 0.92 at the end of the run, in agreement with (18.10). Because \(\varepsilon\) falls faster than \(k\), the eddy viscosity (18.4) varies as \(t^{1-1/(C_{\varepsilon2}-1)}=t^{-0.087}\) (Exercise 4): a fall of 18 % over a factor of 10 in time, against a fall of 92 % for \(k\).</p>
+<p>The second ingredient is a relaxation law for the anisotropy, which the lecture's statement suggests but does not provide. Assume that, when \(\langle S_{ij}\rangle=0\), every component of \(a_{ij}\) decays at the rate \(1/(c\tau)\), with \(c\) a dimensionless coefficient of order one. This is the simplest form consistent with "decays on \(k/\varepsilon\)"; the value of \(c\) is not taken from the lecture, and no value from the literature is asserted. Then \(da_{ij}/dt=-a_{ij}/(c\tau)\) and, with (18.10),</p>
+\[
+\frac{a_{ij}(\tau)}{a_{ij}(\tau_0)}=\Bigl(\frac{\tau}{\tau_0}\Bigr)^{-1/[c(C_{\varepsilon2}-1)]}.\tag{18.11}
+\]
+<p>Since the time scale is growing, the decay is algebraic, not exponential. The program prints the fraction of the initial anisotropy that remains when \(\tau\) has grown by a factor of 2, 5 and 10: for \(c=1\) it is 0.47, 0.17 and 0.08; for \(c=2\) it is 0.69, 0.42 and 0.29; for \(c=4\) it is 0.83, 0.65 and 0.54. The hypothesis gives zero at every one of those instants. The calculation is a teaching construction. It shows that a decay on \(k/\varepsilon\), with \(k/\varepsilon\) increasing, gives a persistence that no function of the local mean strain can reproduce; it is not a validated model of the contraction experiment, and it uses neither the measured anisotropy nor a measured decay rate.</p>
+<p><strong>Boundary of the conclusion.</strong> The lecture's closing argument is that if the hypothesis is wrong for a flow this simple, it is wrong for many others. That generalisation is the lecture's judgement; the section "What the chapter establishes and what it does not" states what the two flows shown here do and do not establish.</p>
+
+<h2 id="implementation">Executable check: counts, constants and decay</h2>
+<p>The program counts lattice modes exactly against (18.1); evaluates (18.2) at five values of \(\mathrm{Re}_0\); evaluates (18.8) and (18.9) from the constants; computes \(\nu_T/\nu\), \((\langle u_1u_2\rangle/k)^2\) and \(\Pi\) from eight rows of the Lee–Moser \(\mathrm{Re}_\tau=1000\) files (copied, rounded, in wall units: \(y^+\), \(dU^+/dy^+\), \(k^+\), \(\langle u_1u_2\rangle^+\)); integrates (18.6) and (18.7) without strain by fourth-order Runge–Kutta steps of length \(10^{-4}t\), so that the step is uniform in \(\ln t\) and fits the decay exponent; and evaluates (18.11) for three values of \(c\). Part 6 gives the numbers of the exercises.</p>
+<p>Inputs are the embedded rows, the constants of (18.6) and (18.7), \(\kappa_{\max}\eta=1.5\), \(\ell_{EI}=\ell_0/6\), \(u_\tau=0.0500\ \mathrm{m/s}\) and \(\nu=1.0\times10^{-6}\ \mathrm{m^2/s}\). The program reads no file, writes only to standard output and requires NumPy. Its assumptions are homogeneous decay without strain, \(P=\varepsilon\) for the data columns and the nominal \(\ell_{EI}\). Eight rows are not the 256 of the files; the output checks arithmetic and a mechanism and does not validate the model against any flow.</p>
+<pre><code class="language-python">import numpy as np
+
+# Part 1: modes below a wavenumber, and the share of modes above kappa_EI.
+def lattice_count(m):
+    n = np.arange(-m, m + 1)
+    n2 = n[:, None, None] ** 2 + n[None, :, None] ** 2 + n[None, None, :] ** 2
+    return int(np.count_nonzero((n2 &gt; 0) &amp; (n2 &lt; m * m)))  # exclude n = 0
+
+print("Part 1: lattice modes with 0 &lt; |n| &lt; m against (4/3) pi m^3")
+for m in (5, 20, 80):
+    c = lattice_count(m)
+    print(f"  m={m:3d}  count={c:8d}  (4/3)pi m^3={4/3*np.pi*m**3:10.1f}  ratio={c/(4/3*np.pi*m**3):.4f}")
+
+KMAX_ETA = 1.5          # k_max*eta of order 1.5 (Yeung, Sreenivasan and Pope 2018, via chapter 5)
+print("  Re0        l0/eta   kEI*eta   modes below kEI   cost share below kEI (~kappa^4)")
+for re0 in (1e2, 1e3, 1e4, 1e5, 1e6):
+    l0_eta = re0 ** 0.75                 # epsilon ~ u0^3/l0 (chapter 5)
+    k_ei_eta = 2 * np.pi * 6 / l0_eta    # l_EI = l0/6, kappa = 2 pi / length
+    r = k_ei_eta / KMAX_ETA
+    print(f"  {re0:9.3g} {l0_eta:8.1f} {k_ei_eta:9.4f} {r**3:16.3e} {r**4:20.3e}")
+
+# Part 2: standard k-epsilon constants and the logarithmic-layer constant they imply.
+CMU, C1, C2, SK, SE = 0.09, 1.44, 1.92, 1.0, 1.3
+kappa_v = np.sqrt(SE * (C2 - C1) * np.sqrt(CMU))
+print("\nPart 2: kappa_v^2 = sigma_eps (C2 - C1) sqrt(Cmu) =", round(kappa_v**2, 4),
+      " kappa_v =", round(kappa_v, 4))
+print("  S k / eps in the equilibrium log layer = 1/sqrt(Cmu) =", round(1 / np.sqrt(CMU), 3))
+
+# Part 3: Lee and Moser (2015) channel, Re_tau = 1000.512, wall units.
+# rows: y+, dU+/dy+, k+, &lt;uv&gt;+ (copied from the data files, rounded)
+ROWS = [(29.38, 0.10888, 4.6848, -0.8615), (50.01, 0.04802, 4.0594, -0.9021),
+        (98.77, 0.02400, 3.4907, -0.8772), (149.54, 0.01698, 3.1940, -0.8337),
+        (198.52, 0.01346, 2.9704, -0.7877), (300.84, 0.00950, 2.5613, -0.6896),
+        (399.96, 0.00757, 2.2006, -0.5928), (498.50, 0.00630, 1.8645, -0.4954)]
+print("\nPart 3: DNS rows. If production equals dissipation, Cmu_eff=(uv/k)^2 and S k/eps = k/(-uv)")
+print("   y+    y dU+/dy+  nuT/nu   (uv/k)^2   k/(-uv)")
+for yp, dudy, k, uv in ROWS:
+    print(f"  {yp:6.1f}  {yp*dudy:8.3f}  {-uv/dudy:7.1f}  {(uv/k)**2:9.4f}  {k/(-uv):8.3f}")
+
+# Part 4: decay of homogeneous turbulence under the k-epsilon equations (no mean strain).
+# dk/dt = -eps, deps/dt = -C2 eps^2/k.  Exact: k ~ t^(-1/(C2-1)), k/eps = (C2-1) t.
+n_exact = 1 / (C2 - 1)
+k, eps, t = 1.0, 1.0, 1.0 / (C2 - 1)   # start on the power law at t0: k/eps = (C2-1) t0 = 1
+k0, t0 = k, t
+dt_rel = 1e-4
+ts = [t]; ks = [k]
+while t &lt; 1000 * t0:
+    h = dt_rel * t
+    def f(k, e): return -e, -C2 * e * e / k
+    a1 = f(k, eps); a2 = f(k + h/2*a1[0], eps + h/2*a1[1])
+    a3 = f(k + h/2*a2[0], eps + h/2*a2[1]); a4 = f(k + h*a3[0], eps + h*a3[1])
+    k += h/6*(a1[0] + 2*a2[0] + 2*a3[0] + a4[0]); eps += h/6*(a1[1] + 2*a2[1] + 2*a3[1] + a4[1]); t += h
+    ts.append(t); ks.append(k)
+slope = np.polyfit(np.log(ts), np.log(ks), 1)[0]
+print("\nPart 4: k-epsilon decay: exponent n = 1/(C2-1) =", round(n_exact, 4),
+      " fitted slope of ln k on ln t =", round(slope, 4))
+print("  k/(eps t) at the end of the run =", round(k / eps / t, 4), " exact C2-1 =", round(C2 - 1, 4))
+
+# Part 5: anisotropy relaxing at the rate 1/(c k/eps), c assumed (not from the lecture).
+print("\nPart 5: a(t)/a(t0) = (t/t0)^(-1/(c (C2-1))) for tau_a = c k/eps")
+print("   c    t/t0=2   t/t0=5   t/t0=10")
+for c in (1.0, 2.0, 4.0):
+    p = -1 / (c * (C2 - 1))
+    print(f"  {c:3.1f}   {2**p:7.3f}  {5**p:7.3f}  {10**p:7.3f}")
+
+# Part 6: numbers used in the exercises.
+print("\nPart 6: exercise checks")
+print("  sigma_eps for kappa_v=0.41:", round(0.41**2 / ((C2 - C1) * np.sqrt(CMU)), 4))
+yp, dudy, k, uv = 98.77, 0.02400, 3.4907, -0.8772
+U_TAU, NU = 0.0500, 1.0e-6
+p_plus = (-uv) * dudy
+p_dim = p_plus * U_TAU**4 / NU
+y_m = yp * NU / U_TAU
+eps_log = U_TAU**3 / (0.41 * y_m)
+print("  y =", round(y_m * 1e3, 3), "mm; P+ =", round(p_plus, 5), "; P =", round(p_dim, 4),
+      "m^2/s^3; eps from log-layer form =", round(eps_log, 4), "m^2/s^3; P/eps =", round(p_dim / eps_log, 3))
+for power, name in ((3, "modes"), (4, "cost")):
+    r = 0.01 ** (1 / power)                       # share below kEI equal to 1 %
+    l0_eta = 2 * np.pi * 6 / (KMAX_ETA * r)
+    print(f"  share below kEI = 1 % ({name}): l0/eta = {l0_eta:.1f}, Re0 = {l0_eta**(4/3):.0f}")
+r1 = 12 * np.pi / 1.5 / (1e4 ** 0.75) / (2 * np.pi)   # kappa = 1/l instead of 2 pi/l
+print("  kappa=1/l convention at Re0=1e4: modes below kEI =", f"{r1**3:.3e}")
+print("  c=2: t/t0 for a/a0 = 0.1:", round(10 ** (2 * (C2 - 1)), 1))
+print("  decay nu_T exponent 1 - n =", round(1 - n_exact, 4))
+c_half = np.log(5) / ((C2 - 1) * np.log(2))
+print("  c for a/a0 = 0.5 at tau/tau0 = 5:", round(c_half, 3))
+k_dim = 1.8645 * U_TAU**2                 # k+ at y+ = 498.5
+print("  k at y+=498.5:", f"{k_dim:.3e}", "m^2/s^2; (2/3) k rho =", round(2 / 3 * k_dim * 1000, 3), "Pa; tau_w =", round(1000 * U_TAU**2, 3), "Pa")</code></pre>
+<p>Printed output (run with <code>python -I</code>):</p>
+<pre><code>Part 1: lattice modes with 0 &lt; |n| &lt; m against (4/3) pi m^3
+  m=  5  count=     484  (4/3)pi m^3=     523.6  ratio=0.9244
+  m= 20  count=   33370  (4/3)pi m^3=   33510.3  ratio=0.9958
+  m= 80  count= 2143610  (4/3)pi m^3= 2144660.6  ratio=0.9995
+  Re0        l0/eta   kEI*eta   modes below kEI   cost share below kEI (~kappa^4)
+        100     31.6    1.1922        5.020e-01            3.990e-01
+      1e+03    177.8    0.2120        2.823e-03            3.990e-04
+      1e+04   1000.0    0.0377        1.588e-05            3.990e-07
+      1e+05   5623.4    0.0067        8.927e-08            3.990e-10
+      1e+06  31622.8    0.0012        5.020e-10            3.990e-13
+
+Part 2: kappa_v^2 = sigma_eps (C2 - C1) sqrt(Cmu) = 0.1872  kappa_v = 0.4327
+  S k / eps in the equilibrium log layer = 1/sqrt(Cmu) = 3.333
+
+Part 3: DNS rows. If production equals dissipation, Cmu_eff=(uv/k)^2 and S k/eps = k/(-uv)
+   y+    y dU+/dy+  nuT/nu   (uv/k)^2   k/(-uv)
+    29.4     3.199      7.9     0.0338     5.438
+    50.0     2.401     18.8     0.0494     4.500
+    98.8     2.370     36.5     0.0631     3.979
+   149.5     2.539     49.1     0.0681     3.831
+   198.5     2.672     58.5     0.0703     3.771
+   300.8     2.858     72.6     0.0725     3.714
+   400.0     3.028     78.3     0.0726     3.712
+   498.5     3.141     78.6     0.0706     3.764
+
+Part 4: k-epsilon decay: exponent n = 1/(C2-1) = 1.087  fitted slope of ln k on ln t = -1.087
+  k/(eps t) at the end of the run = 0.92  exact C2-1 = 0.92
+
+Part 5: a(t)/a(t0) = (t/t0)^(-1/(c (C2-1))) for tau_a = c k/eps
+   c    t/t0=2   t/t0=5   t/t0=10
+  1.0     0.471    0.174    0.082
+  2.0     0.686    0.417    0.286
+  4.0     0.828    0.646    0.535
+
+Part 6: exercise checks
+  sigma_eps for kappa_v=0.41: 1.1674
+  y = 1.975 mm; P+ = 0.02105 ; P = 0.1316 m^2/s^3; eps from log-layer form = 0.1543 m^2/s^3; P/eps = 0.853
+  share below kEI = 1 % (modes): l0/eta = 116.7, Re0 = 570
+  share below kEI = 1 % (cost): l0/eta = 79.5, Re0 = 342
+  kappa=1/l convention at Re0=1e4: modes below kEI = 6.400e-08
+  c=2: t/t0 for a/a0 = 0.1: 69.2
+  decay nu_T exponent 1 - n = -0.087
+  c for a/a0 = 0.5 at tau/tau0 = 5: 2.524
+  k at y+=498.5: 4.661e-03 m^2/s^2; (2/3) k rho = 3.108 Pa; tau_w = 2.5 Pa</code></pre>
+
+<h2 id="limits">What the chapter establishes and what it does not</h2>
+<ul>
+<li>The mode count (18.1) and the shares (18.2) rest on a nominal demarcation (\(\ell_{EI}=\ell_0/6\), \(\kappa=2\pi/\ell\)) and on \(\ell_0/\eta=\mathrm{Re}_0^{3/4}\) with an unspecified constant. They support the direction of the slide's 99 % statement and place its threshold between \(\mathrm{Re}_0\approx340\) and 570; they do not confirm the 99 %.</li>
+<li>The \(k\)–\(\varepsilon\) equations and constants are as documented in OpenFOAM and in one 2023 paper. The originals were not opened, so the origin and scatter of the constants are not stated. The model needs a near-wall treatment (OpenFOAM); this chapter applies it only to the logarithmic layer and to homogeneous decay.</li>
+<li>Equation (18.8) assumes uniform \(k\), \(P=\varepsilon\) and a logarithmic profile, none of which holds exactly at \(\mathrm{Re}_\tau=1000\); the effective constant uses \(P=\varepsilon\) without \(\varepsilon\) data.</li>
+<li>Equations (18.10) and (18.11) describe decay without strain; the contraction itself is not computed and the persistence is the lecture's statement, not a fit.</li>
+<li>Two failures of the hypothesis are shown: zero normal-stress anisotropy in simple shear (chapter 9) and no memory of upstream straining. Counter-gradient scalar transport, strong rotation, other specifications of \(\nu_T\) (one-equation and \(k\)–\(\omega\) models) and the Reynolds-stress transport equations that the slide names as the alternative are not covered by the lecture and are not treated.</li>
+</ul>
+
+<h2 id="exercises">Exercises</h2>
+<p><strong>Exercise 1 (derive).</strong> Repeat the derivation of (18.8) with a general uniform \(k\) not fixed in advance: show that \(P=\varepsilon\) and (18.4) give \(k=u_\tau^2/\sqrt{C_\mu}\), and that the \(\varepsilon\) equation then requires (18.8). What value of \(\sigma_\varepsilon\) gives \(\kappa_v=0.41\) with the other four constants unchanged?</p>
+<details><summary>Solution</summary>
+<p>With \(-\langle u_1u_2\rangle=\nu_Td\langle U_1\rangle/dy=u_\tau^2\) and \(P=u_\tau^2\,d\langle U_1\rangle/dy=\varepsilon\), (18.4) gives \(u_\tau^2=C_\mu k^2\,(d\langle U_1\rangle/dy)/\varepsilon=C_\mu k^2/u_\tau^2\), so \(k^2=u_\tau^4/C_\mu\) and \(k=u_\tau^2/\sqrt{C_\mu}\). With \(d\langle U_1\rangle/dy=u_\tau/(\kappa_vy)\), \(\varepsilon=u_\tau^3/(\kappa_vy)\) and \(\nu_T=\kappa_vu_\tau y\). In (18.7) the left side is zero (steady, no mean advection of a function of \(y\) in a layer homogeneous in \(x\)). The diffusion term is \(u_\tau^4/(\sigma_\varepsilon y^2)\), as \(d\varepsilon/dy=-\varepsilon/y\) gives \((\nu_T/\sigma_\varepsilon)d\varepsilon/dy=-u_\tau^4/(\sigma_\varepsilon y)\). The reaction terms give \((C_{\varepsilon1}-C_{\varepsilon2})\varepsilon^2/k=-(C_{\varepsilon2}-C_{\varepsilon1})\sqrt{C_\mu}u_\tau^4/(\kappa_v^2y^2)\). The sum vanishes when \(\kappa_v^2=\sigma_\varepsilon(C_{\varepsilon2}-C_{\varepsilon1})\sqrt{C_\mu}\). For \(\kappa_v=0.41\): \(\sigma_\varepsilon=0.41^2/(0.48\times0.3)=0.1681/0.144=1.167\) (program Part 6). The standard value 1.3 is 11 % above this, or, equivalently, the value that reproduces \(\kappa_v=0.41\) is 10 % below the standard.</p>
+</details>
+<p><strong>Exercise 2 (compute).</strong> In the running case at \(y^+=98.8\) (\(dU^+/dy^+=0.0240\), \(\langle u_1u_2\rangle^+=-0.8772\)), find \(y\) in millimetres, the production \(P\) in \(\mathrm{m^2/s^3}\), and the dissipation \(\varepsilon\) that the logarithmic-layer form \(u_\tau^3/(\kappa_vy)\) gives with \(\kappa_v=0.41\). What does the ratio \(P/\varepsilon\) say about the assumption \(P=\varepsilon\) there?</p>
+<details><summary>Solution</summary>
+<p>\(y=98.8\times\nu/u_\tau=98.8\times2.0\times10^{-5}\ \mathrm m=1.975\ \mathrm{mm}\). \(P^+=0.8772\times0.0240=0.02105\), and the unit of \(P\) is \(u_\tau^4/\nu=(0.05)^4/10^{-6}=6.25\ \mathrm{m^2/s^3}\), so \(P=0.1316\ \mathrm{m^2/s^3}\). The log-layer form gives \(\varepsilon=(0.05)^3/(0.41\times1.975\times10^{-3})=0.154\ \mathrm{m^2/s^3}\). The ratio is \(P/\varepsilon=0.85\), the product of two factors: the Reynolds shear stress is 0.877 of \(u_\tau^2\) (the total stress at \(y/d=0.0987\) is 0.90 of \(\tau_w\), and the viscous part is 0.024), and the measured gradient is 0.972 of the logarithmic value \(u_\tau/(\kappa_vy)\) (the local slope \(1/(y^+dU^+/dy^+)\) is 0.422, against 0.41). The log-layer \(\varepsilon\) is derived under \(P=\varepsilon\) and a logarithmic profile, so the ratio compares one model-based quantity with a production computed from data; a measured \(\varepsilon\) would be needed to test \(P=\varepsilon\).</p>
+</details>
+<p><strong>Exercise 3 (check an assumption).</strong> (a) Show that replacing \(\kappa_{EI}=2\pi/\ell_{EI}\) by \(\kappa_{EI}=1/\ell_{EI}\) multiplies the mode share in (18.2) by \((2\pi)^{-3}\) and the cost share by \((2\pi)^{-4}\). (b) At \(\mathrm{Re}_0=10^4\) the \(2\pi\) convention gives a mode share of \(1.59\times10^{-5}\). What does the \(1/\ell\) convention give? (c) Using the \(2\pi\) convention, from which \(\mathrm{Re}_0\) does the share of modes above \(\kappa_{EI}\) exceed 99 %?</p>
+<details><summary>Solution</summary>
+<p>(a) The ratio \(\kappa_{EI}/\kappa_{\max}\) is proportional to \(\kappa_{EI}\), which changes by the factor \(1/(2\pi)\); the cube and the fourth power follow. (b) \(1.588\times10^{-5}\times(2\pi)^{-3}=1.588\times10^{-5}/248.05=6.40\times10^{-8}\), the value in Part 6 of the program. (c) The share below is 1 % when \(\kappa_{EI}/\kappa_{\max}=0.01^{1/3}=0.2154\), that is \(\mathrm{Re}_0^{3/4}=12\pi/(1.5\times0.2154)=116.7\) and \(\mathrm{Re}_0=116.7^{4/3}\approx570\). The result depends on the convention and on \(\ell_{EI}=\ell_0/6\): it is a statement about the nominal demarcation, not about the flow.</p>
+</details>
+<p><strong>Exercise 4 (derive and interpret).</strong> For homogeneous decay without strain under (18.6) and (18.7), show that \(\varepsilon\propto t^{-(n+1)}\) with \(n=1/(C_{\varepsilon2}-1)\) and that \(\nu_T\) of (18.4) varies as \(t^{1-n}\). Evaluate the exponent and say what it means for the effective viscosity of the decaying turbulence.</p>
+<details><summary>Solution</summary>
+<p>From (18.10), \(k\propto t^{-n}\) and \(\tau=k/\varepsilon\propto t\), so \(\varepsilon=k/\tau\propto t^{-(n+1)}\). Then \(\nu_T=C_\mu k^2/\varepsilon\propto t^{-2n+n+1}=t^{1-n}\). With \(C_{\varepsilon2}=1.92\), \(n=1.087\) and \(1-n=-0.087\) (Part 6 of the program). Over a factor of 10 in time, \(\nu_T\) changes by a factor of \(10^{-0.087}=0.82\), while \(k\) falls by \(10^{-1.087}=0.082\). The eddy viscosity of decaying homogeneous turbulence stays nearly constant while the turbulence loses 92 % of its energy. This is a property of the model equations; it is not a measured result for grid turbulence.</p>
+</details>
+<p><strong>Exercise 5 (find a counterexample, then design).</strong> (a) Give a flow, other than the contraction of the lecture, in which \(\langle S_{ij}\rangle=0\) at a point while \(a_{ij}\neq0\) there, using a result of chapter 9. (b) In the relaxation law (18.11), for what coefficient \(c\) does half of the anisotropy remain when \(k/\varepsilon\) has grown by a factor of 5? (c) For \(c=2\), by what factor must \(\tau\) grow before only 10 % remains?</p>
+<details><summary>Solution</summary>
+<p>(a) The centreplane of the channel: by the reflection symmetry of chapter 9 the mean shear \(d\langle U_1\rangle/dy\) vanishes there, so \(\langle S_{ij}\rangle=0\), while the data of chapter 9's test show \(b_{11}=0.13\) at the point nearest the centreplane (anisotropy \(a_{11}=2kb_{11}\neq0\)). The hypothesis requires \(a_{ij}=0\) there, so the failure occurs in a steady, fully developed flow with no history of unsteady straining. The cause of the anisotropy there is not examined here and need not be the contraction's straining history, but the defect is the same: \(a_{ij}\) is not a function of the local mean strain. (b) \(5^{-1/(0.92c)}=0.5\) gives \(c=\ln5/(0.92\ln2)=2.52\) (Part 6). (c) \((\tau/\tau_0)^{-1/(0.92\times2)}=0.1\) gives \(\tau/\tau_0=10^{1.84}=69.2\) (Part 6): 69 times, since \(\tau\) grows only linearly.</p>
+</details>
+<p><strong>Exercise 6 (judge).</strong> The speaker says that, in the straight section where \(\langle S_{ij}\rangle=0\), the turbulent-viscosity hypothesis "predicts that the Reynolds stress is 0". Is that correct? Evaluate the quantity that the hypothesis does give for the running case at \(y^+=498.5\), where \(k^+=1.8645\), as a stress in pascals, and compare it with the wall shear stress.</p>
+<details><summary>Solution</summary>
+<p>No. The hypothesis fixes the anisotropy \(a_{ij}\), not \(\langle u_iu_j\rangle\); with \(\langle S_{ij}\rangle=0\) it gives \(\langle u_iu_j\rangle=\tfrac23k\delta_{ij}\), nonzero while \(k\gt0\). The slide states the correct version ("the Reynolds stress anisotropies are zero"). At \(y^+=498.5\), \(k=1.8645\times u_\tau^2=1.8645\times0.0025=4.66\times10^{-3}\ \mathrm{m^2/s^2}\) and the isotropic normal stress is \(\rho\cdot\tfrac23k=3.108\ \mathrm{Pa}\), 1.24 times the wall shear stress \(\tau_w=2.50\ \mathrm{Pa}\) (Part 6). It exerts no net force on the mean flow because it is isotropic, and chapter 9, section "Only the anisotropic part transports momentum: the modified mean pressure", shows how it is absorbed in the modified mean pressure.</p>
+</details>
+
+<h2 id="primary-sources">Primary sources</h2>
+<ul>
+<li>Recording: <a href="https://www.youtube.com/watch?v=GH4QRyOFlp4">Lecture 49</a>, NPTEL <em>Essentials of Turbulence</em>, IIT Bombay, 2026.</li>
+<li>OpenFOAM documentation, <a href="https://doc.openfoam.com/2606/tools/processing/models/turbulence/ras/linear-evm/rtm/kEpsilon">k-ε turbulence model</a> (equations, "default model coefficients", properties). Documentation licence CC BY-NC-ND 4.0; the page cites Launder and Spalding (1974) and El Tahry (1983), neither opened.</li>
+<li>V. Michael, U. Ahmed, M. Assad, R. Prosser and A. Kowalski, <a href="https://arxiv.org/abs/2305.16738">"Flow characterisation and power consumption in an inline high shear rotor-stator mixer using CFD"</a>, arXiv:2305.16738v1 (2023), appendix, p. 23: the \(k\)–\(\varepsilon\) equations (14)–(17) and Table 2.</li>
+<li>P. K. Yeung, K. R. Sreenivasan and S. B. Pope, <a href="https://doi.org/10.1103/PhysRevFluids.3.064603">"Effects of finite spatial and temporal resolution in direct numerical simulations of incompressible isotropic turbulence"</a>, Phys. Rev. Fluids 3, 064603 (2018), p. 064603-3: \(k_{\max}\eta\) of order 1.5 for low-order statistics.</li>
+<li>M. Lee and R. D. Moser, channel-flow simulation data at \(\mathrm{Re}_\tau=1000\), <a href="https://turbulence.oden.utexas.edu/channel2015/content/Data_2015_1000.html">turbulence.oden.utexas.edu</a> (files <code>LM_Channel_1000_mean_prof.dat</code> and <code>LM_Channel_1000_vel_fluc_prof.dat</code>); cite as M. Lee and R. D. Moser, "Direct numerical simulation of turbulent channel flow up to \(\mathrm{Re}_\tau=5200\)", J. Fluid Mech. 774 (2015) 395–415.</li>
+</ul>
+<!-- BOOK-CONTENT-END --></article><nav class="page-turn" aria-label="Chapter navigation"><a rel="prev" href="chapter-16-modeling-approaches-appraisal-criteria.html">Previous available chapter</a><a href="index.html">Lecture index</a><span>Further chapters pending</span></nav></main></div>
+<footer class="site-footer">Independent study notes. NPTEL IIT Bombay course recordings supply the topic sequence; added explanations and teaching constructions are separately attributed. Local edition in progress; a rendered page does not establish editorial completion.</footer></body></html>
