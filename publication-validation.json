@@ -1,0 +1,403 @@
+{
+  "checked_at_utc": "2026-10-23T04:57:50.828278+00:00",
+  "status": "passed",
+  "tested_commit": "d434120479580f51dc1a73640ff493cce95a6cbd",
+  "live_url": "https://az9713.github.io/nptel-essentials-of-turbulence-notes/",
+  "scope": "Actual served-file byte agreement and focused live reader controls; does not close scientific-review gaps",
+  "public_files_checked": 71,
+  "all_served_bytes_match_git": true,
+  "browser": [
+    {
+      "file": "index.html",
+      "viewport": 1280,
+      "status": "passed"
+    },
+    {
+      "file": "chapter-05-length-scales-in-turbulent-flows.html",
+      "viewport": 1280,
+      "status": "passed"
+    },
+    {
+      "file": "numerical-lab.html",
+      "viewport": 1280,
+      "status": "passed"
+    },
+    {
+      "file": "index.html",
+      "viewport": 390,
+      "status": "passed"
+    },
+    {
+      "file": "chapter-05-length-scales-in-turbulent-flows.html",
+      "viewport": 390,
+      "status": "passed"
+    },
+    {
+      "file": "numerical-lab.html",
+      "viewport": 390,
+      "status": "passed"
+    }
+  ],
+  "readme_preview": {
+    "image_loaded": true,
+    "links_to_live_book": true
+  },
+  "clipboard": "Fallback captured-text comparison; manual OS clipboard not tested",
+  "served_files": [
+    {
+      "file": "README.md",
+      "bytes_match_git": true,
+      "sha256": "23537d4f3f4574b6cb1b0223e2a74b92824310320fa702012d3a4e3225360204"
+    },
+    {
+      "file": "WORKFLOW.md",
+      "bytes_match_git": true,
+      "sha256": "bb18d7aeced866b2064b49b42973235d82b010efee18696852d15f9772d8a714"
+    },
+    {
+      "file": "assets/book.css",
+      "bytes_match_git": true,
+      "sha256": "2d973e5c67896771e55fbc1ff1ddfd07a7969dd5602e2881cf5371d9a230e55e"
+    },
+    {
+      "file": "assets/book.js",
+      "bytes_match_git": true,
+      "sha256": "e31d522b88712b15eddb3323de2c325a4e1ff1bf77bf0cde74f021809d2bae4f"
+    },
+    {
+      "file": "assets/input/tex/extensions/boldsymbol.js",
+      "bytes_match_git": true,
+      "sha256": "d6771fee0772db2657796c8d0e20e1878bb3237f6d3ed1e828e1834a4ff743ca"
+    },
+    {
+      "file": "assets/input/tex/extensions/cancel.js",
+      "bytes_match_git": true,
+      "sha256": "0d263ecf2671d1cc13135b8b4afcdca4d40151a9aea51b69402e68adde4cf8c9"
+    },
+    {
+      "file": "assets/input/tex/extensions/mathtools.js",
+      "bytes_match_git": true,
+      "sha256": "04272d69a0b64783cd5b66820d6f8220ee510409d0b12c38626404be9ed9689c"
+    },
+    {
+      "file": "assets/mathjax-LICENSE",
+      "bytes_match_git": true,
+      "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+    },
+    {
+      "file": "assets/mathjax-tex-svg.js",
+      "bytes_match_git": true,
+      "sha256": "d4295dc33744836935c1399feece5159577b34c5c8ffb9f1c6324cd82e03a882"
+    },
+    {
+      "file": "assets/preview-mobile.png",
+      "bytes_match_git": true,
+      "sha256": "61e76651acc86752af065641df6d219301548e72ed0a9a8d6e0772ed93bd6ba5"
+    },
+    {
+      "file": "assets/preview.png",
+      "bytes_match_git": true,
+      "sha256": "6e7a58637bc18cad35038a41597a4c1f253d704243a81173f95fff202736c193"
+    },
+    {
+      "file": "assets/site-preview.png",
+      "bytes_match_git": true,
+      "sha256": "f670882ebf738c80b14f5bd37e22bac841858d792f1615bdaf7faf79afebb2da"
+    },
+    {
+      "file": "book-overview.html",
+      "bytes_match_git": true,
+      "sha256": "2aeb60dc451f08e27c29ad59dfa9c023e52fa4d032b7c34a791d91dd58dac5e9"
+    },
+    {
+      "file": "chapter-01-why-turbulence-resists-prediction.html",
+      "bytes_match_git": true,
+      "sha256": "8b057cb5d4b8da2c9e24d21e80570deabaac9ca272675fd976f1280b68dde9cc"
+    },
+    {
+      "file": "chapter-01-why-turbulence-resists-prediction.meta.json",
+      "bytes_match_git": true,
+      "sha256": "d15c130fad85e3b20198df1673c687742648faf1b9b28316ea66087d0c26fea5"
+    },
+    {
+      "file": "chapter-02-descriptions-definitions-history.html",
+      "bytes_match_git": true,
+      "sha256": "2afa1e4621ef7874565b07a637986f3538ee3aa187b94b4a7df30aa35dfcd21e"
+    },
+    {
+      "file": "chapter-02-descriptions-definitions-history.meta.json",
+      "bytes_match_git": true,
+      "sha256": "656282520538cb2455c979f5145b5a027acfb3e981837dfe434e9c27c86a9519"
+    },
+    {
+      "file": "chapter-03-characteristics-methods-of-analysis.html",
+      "bytes_match_git": true,
+      "sha256": "9dc378b2f08dd7e4672c3dff27d7fd2b4fc59ea3356ee60e40b8e28e47e5d405"
+    },
+    {
+      "file": "chapter-03-characteristics-methods-of-analysis.meta.json",
+      "bytes_match_git": true,
+      "sha256": "afca1a9f9d20f58fd90d92d0ebf87a43889e7ee5928ada30bcc03519b46ed894"
+    },
+    {
+      "file": "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html",
+      "bytes_match_git": true,
+      "sha256": "e798aebd8d0e6815924a8dacdd1b698281e6df43bb1fa843fbc1571eaf59d40d"
+    },
+    {
+      "file": "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.meta.json",
+      "bytes_match_git": true,
+      "sha256": "c6708187fa05696ad51737381797aebe90ed41222c42b97dca0b282135009787"
+    },
+    {
+      "file": "chapter-05-length-scales-in-turbulent-flows.html",
+      "bytes_match_git": true,
+      "sha256": "3b9d9e0a7414903ec8ad81c8742e177d17decc58b7e5e4c4ad47438f16b36f7e"
+    },
+    {
+      "file": "chapter-05-length-scales-in-turbulent-flows.meta.json",
+      "bytes_match_git": true,
+      "sha256": "2e16090f5761ba57be35438e21bf6e99f55a713093ba68558076b4e231a97323"
+    },
+    {
+      "file": "chapter-06-equations-of-fluid-motion.html",
+      "bytes_match_git": true,
+      "sha256": "ab8c18e66d50dca3bc181d5f789b6123e6a5ab23892b93539ebbbe0a63d0d30c"
+    },
+    {
+      "file": "chapter-06-equations-of-fluid-motion.meta.json",
+      "bytes_match_git": true,
+      "sha256": "26cfc3569baa8cdfd08e8f143e21d0f24327bbe1349e5bd6ec8caaa55ed97849"
+    },
+    {
+      "file": "chapter-07-random-variables-and-probability-density-functions.html",
+      "bytes_match_git": true,
+      "sha256": "5f3dff79271c5040a30ab149637849d39c7e597db3e12e3ba472760f044d2d2a"
+    },
+    {
+      "file": "chapter-07-random-variables-and-probability-density-functions.meta.json",
+      "bytes_match_git": true,
+      "sha256": "e81ae350c9ab9195f95e0886626c573658f5406321815c82358a16eaccb0e9fd"
+    },
+    {
+      "file": "chapter-08-random-processes-spectra-and-random-fields.html",
+      "bytes_match_git": true,
+      "sha256": "f37fa9d59924a830fc204cfeeed6e7d2a5bfc4cf42ad199274507def94fc6d5a"
+    },
+    {
+      "file": "chapter-08-random-processes-spectra-and-random-fields.meta.json",
+      "bytes_match_git": true,
+      "sha256": "5c8c1209f9652afda3be720deb6e499e633d7e9b21505122ab2c621c049975cc"
+    },
+    {
+      "file": "chapter-09-reynolds-equations-closure-and-turbulent-viscosity.html",
+      "bytes_match_git": true,
+      "sha256": "480895376412e7c24126173f4fbbd78953edb14ac1533dee17d1b7b3f31b7a7a"
+    },
+    {
+      "file": "chapter-09-reynolds-equations-closure-and-turbulent-viscosity.meta.json",
+      "bytes_match_git": true,
+      "sha256": "17cefc9f2dbeac82396dc44b97ba48716c84d381afd5638093ec1a11081dff48"
+    },
+    {
+      "file": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html",
+      "bytes_match_git": true,
+      "sha256": "f74616cf10c2128db537d2660ba8584252cb46ef324c85c3c7102ce7fade91b2"
+    },
+    {
+      "file": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.meta.json",
+      "bytes_match_git": true,
+      "sha256": "7297c1d1f5f0fee881ed07b8e37af1f215679066c85738b3af3f6f8abde9b614"
+    },
+    {
+      "file": "chapter-11-energy-spectrum.html",
+      "bytes_match_git": true,
+      "sha256": "4a20d8d62344e7ee8e7fff1c9db1c79f2ff28612e4b8ed6f45cd1fcb7b9f0c4f"
+    },
+    {
+      "file": "chapter-11-energy-spectrum.meta.json",
+      "bytes_match_git": true,
+      "sha256": "c28399050b786ba398aacde86c8d8336f44f56e920934e946010efdf21d451da"
+    },
+    {
+      "file": "chapter-12-fourier-modes-and-their-evolution.html",
+      "bytes_match_git": true,
+      "sha256": "0c23caff44e061f6f752a5304c89db8c578ced369936059419f2d16d031557f0"
+    },
+    {
+      "file": "chapter-12-fourier-modes-and-their-evolution.meta.json",
+      "bytes_match_git": true,
+      "sha256": "8bc4b8294db280c9f26f6aff9c66e49a9c2f9d2c4a52dd1402691b43561240ab"
+    },
+    {
+      "file": "chapter-13-spectral-energy-velocity-spectrum-tensor.html",
+      "bytes_match_git": true,
+      "sha256": "2693f7441b57850b95734ff5758992b84193bf125690524fa569ac5840387c83"
+    },
+    {
+      "file": "chapter-13-spectral-energy-velocity-spectrum-tensor.meta.json",
+      "bytes_match_git": true,
+      "sha256": "32fa6ac95322754bf8be0be8f8e6ad4b144670857e514d21c2f5ac46896f5ed2"
+    },
+    {
+      "file": "chapter-14-kolmogorov-model-dissipation-spectra.html",
+      "bytes_match_git": true,
+      "sha256": "482df88e50f68f494ef331a08613edd01c9401f9cdcf7103eb7c99fd6b711ac5"
+    },
+    {
+      "file": "chapter-14-kolmogorov-model-dissipation-spectra.meta.json",
+      "bytes_match_git": true,
+      "sha256": "8e5eb2c135ab36c67dd7308e1fedcfeacd728840c1bd9300f38bcb416fc73857"
+    },
+    {
+      "file": "chapter-15-reynolds-number-effects-spectrum-balance.html",
+      "bytes_match_git": true,
+      "sha256": "0dfc01daf9d6ed1fd3bffe5cf2ae0d2c35617a2cac4a68b751aa285bf734b841"
+    },
+    {
+      "file": "chapter-15-reynolds-number-effects-spectrum-balance.meta.json",
+      "bytes_match_git": true,
+      "sha256": "9f3ba1045e493048336415e30046f8a85d0926924e51f9053f414a6d723568a7"
+    },
+    {
+      "file": "chapter-16-modeling-approaches-appraisal-criteria.html",
+      "bytes_match_git": true,
+      "sha256": "92993d265c89d220e39d1ae076d44acb56cb825ed68541fdeafc3e4327c317f1"
+    },
+    {
+      "file": "chapter-16-modeling-approaches-appraisal-criteria.meta.json",
+      "bytes_match_git": true,
+      "sha256": "2aa2961ee6368bd676652c9915bd0c20a3e94cc98244043a362bab064646993e"
+    },
+    {
+      "file": "chapter-17-dns-pseudo-spectral-methods-cost.html",
+      "bytes_match_git": true,
+      "sha256": "443937b8e1eab3e50741862ef3e2be80dc66619c3e3278aed25a53698ee003c3"
+    },
+    {
+      "file": "chapter-17-dns-pseudo-spectral-methods-cost.meta.json",
+      "bytes_match_git": true,
+      "sha256": "50caa71c3a94210b4d803cb84660bd25f1fd5ce8dc9a6d9072dd6567836788ef"
+    },
+    {
+      "file": "chapter-18-turbulent-viscosity-models.html",
+      "bytes_match_git": true,
+      "sha256": "03a2b069fa5d226504e093c3afe47153cc017290dec5cbb618617a7943cfc955"
+    },
+    {
+      "file": "chapter-18-turbulent-viscosity-models.meta.json",
+      "bytes_match_git": true,
+      "sha256": "bd2a950926200b3557958a1b7378350f63a29f7b58ffcbe2aeb01b6b5acf9580"
+    },
+    {
+      "file": "chapter-19-les-conceptual-steps-filtering.html",
+      "bytes_match_git": true,
+      "sha256": "48a013bd7a161ad81b2c9b89781f551029742087d1043ec830437007b2c7a187"
+    },
+    {
+      "file": "chapter-19-les-conceptual-steps-filtering.meta.json",
+      "bytes_match_git": true,
+      "sha256": "34ec5e698bd6c665ca5d5ed5186078d17823d1376bd44f96413d9ed42721782f"
+    },
+    {
+      "file": "chapter-20-filtered-equations-smagorinsky-les-wavenumber.html",
+      "bytes_match_git": true,
+      "sha256": "0af5c2ca75b929b1da001cad86c73df94314916aade4061fda55d9c29b6bf8e0"
+    },
+    {
+      "file": "chapter-20-filtered-equations-smagorinsky-les-wavenumber.meta.json",
+      "bytes_match_git": true,
+      "sha256": "7a4dce1595f9b530feb872f95fd82ab409a7221f4cd6a2d2868f78d8a7d8c405"
+    },
+    {
+      "file": "chapter-code-validation.json",
+      "bytes_match_git": true,
+      "sha256": "b64faace55cb86650b6beffab0e8044b751e645e17a98cee891629b490e47e5c"
+    },
+    {
+      "file": "completion.json",
+      "bytes_match_git": true,
+      "sha256": "696cdcc82fc1c2b39ec9743fbb7fe1f66f50f7721832d386af5ef1695631c960"
+    },
+    {
+      "file": "editorial-review-summary.json",
+      "bytes_match_git": true,
+      "sha256": "644f364ffdc3e2ceea6d11859ad53e20613c1e521b017faae7cc295174e66250"
+    },
+    {
+      "file": "index.html",
+      "bytes_match_git": true,
+      "sha256": "ed35defb8f7138e640f35bf966c9971d27e5b210a5abe3848ad011ecced25e58"
+    },
+    {
+      "file": "numerical-lab.html",
+      "bytes_match_git": true,
+      "sha256": "c15268fc015284281030386d0512ac1b0cab36e839179a28962abacc4b1377ec"
+    },
+    {
+      "file": "numerical_lab.py",
+      "bytes_match_git": true,
+      "sha256": "bc80baf338403afdbaa31a2c4f24cd27151d932ef510b1c23886aa95a6eef7eb"
+    },
+    {
+      "file": "package-validation.json",
+      "bytes_match_git": true,
+      "sha256": "4dfc8d23b1df3e9ecefef660f0114dc555b7c35bcaabfeb69974b0bd2b0d2f09"
+    },
+    {
+      "file": "reader-validation.json",
+      "bytes_match_git": true,
+      "sha256": "b7686deaab9d194a680d9362e505931ea06b25f6540744d949c2e11f69af0800"
+    },
+    {
+      "file": "references.html",
+      "bytes_match_git": true,
+      "sha256": "a9be39c8052bee2e8dfab23159cc1e80bd79ca3852f1c9fa7e080d28faf86bd1"
+    },
+    {
+      "file": "source-free-validation.json",
+      "bytes_match_git": true,
+      "sha256": "5c7f7b8072cad9d55486c8a2c38e55e4fff1a1a41c789a40a928546839ce9739"
+    },
+    {
+      "file": "source-manifest.json",
+      "bytes_match_git": true,
+      "sha256": "3675b27263524edb69b20875af60b1144506d1f58b40cd8b5aa9f6129c8d4b1a"
+    },
+    {
+      "file": "source-map.html",
+      "bytes_match_git": true,
+      "sha256": "4437f70420ea0a8f9e0172cb22ef01f724f7a2c553f9a033abc8ceeb09b55ff8"
+    },
+    {
+      "file": "source-map.json",
+      "bytes_match_git": true,
+      "sha256": "eb049c1f624aa0f916fc5c8b36cc631383add91ff9fc0ab00ad46da873879936"
+    },
+    {
+      "file": "source-validation-summary.json",
+      "bytes_match_git": true,
+      "sha256": "01c0f60b90e6163ea2ead4b209d36feb3004e242b73f25b450864c7ece5a1c3b"
+    },
+    {
+      "file": "tools/build_book.py",
+      "bytes_match_git": true,
+      "sha256": "1151488cbf598c30f6891d1c196ffc06bd49bdadceb4724f4f87ea46306b36b2"
+    },
+    {
+      "file": "tools/check_chapter_code.py",
+      "bytes_match_git": true,
+      "sha256": "623dfb3c5c360b7190c4970da68d2ab2543e21eca5ed4c2ea61810e6d7a81e57"
+    },
+    {
+      "file": "tools/check_package.py",
+      "bytes_match_git": true,
+      "sha256": "4a16bd55783428085d793873674197ebb73b4b851d21190d83bf31966add72f6"
+    },
+    {
+      "file": "tools/validate_books.py",
+      "bytes_match_git": true,
+      "sha256": "3d1b6975b48d99744f219da1bab439364dffd10210ef08100ee57aef5034b94a"
+    }
+  ]
+}

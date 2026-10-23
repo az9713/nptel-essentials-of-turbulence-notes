@@ -71,6 +71,8 @@ Code checks report execution and printed-output agreement separately from
 scientific acceptance. Reader checks assess rendering and controls, not
 mathematical correctness. A new independent whole-book scientific review,
 full audiovisual review, and human accessibility certification are not claimed.
+The [publication check](publication-validation.json) records served-file integrity,
+live desktop/mobile controls, and the GitHub-rendered README preview.
 
 Public files contain the rewritten textbook, supporting code, source citations,
 and curated verification records. Raw recordings, transcripts, downloaded
