@@ -64,7 +64,9 @@ completed local manuscript at commit `31a41f2`.
 The [workflow](WORKFLOW.md), [source record](source-validation-summary.json),
 [editorial record](editorial-review-summary.json), [content inventory](completion.json),
 [code checks](chapter-code-validation.json), [reader checks](reader-validation.json),
-and [package checks](package-validation.json) record the evidence and its limits.
+[clean-export checks](source-free-validation.json), and [package checks](package-validation.json)
+record the evidence and its limits. A clean Git export rebuilt all 25 HTML files
+byte-for-byte and passed static checks and the chapter 5 launcher smoke test.
 Code checks report execution and printed-output agreement separately from
 scientific acceptance. Reader checks assess rendering and controls, not
 mathematical correctness. A new independent whole-book scientific review,
