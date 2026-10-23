@@ -1,0 +1,38 @@
+{
+  "checked_at_utc": "2026-10-23T04:48:19.309625+00:00",
+  "status": "all chapters written; independent signoffs pending",
+  "chapter_count": 20,
+  "written_chapters": 20,
+  "final_independent_signoff_pending_chapters": [
+    3,
+    6,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "chapter_body_sha256": {
+    "chapter-01-why-turbulence-resists-prediction.html": "d787ea5d779366388c9d340503c8a67d227c120a418f81dbdfc9e0ed9cf6579d",
+    "chapter-02-descriptions-definitions-history.html": "f12ec7c14792c3f2ad163675d7d854536fe53956adce537627fc48ffdbc7aa2f",
+    "chapter-03-characteristics-methods-of-analysis.html": "f4311689ebf2028c7e4b0c22c4afe7b1bf4950f4eca3dcf5208f894ea74feaf5",
+    "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html": "cd730612097a5768a4d687a527d449f553cfe4dd3e2a9559e21b1a643a1fb40c",
+    "chapter-05-length-scales-in-turbulent-flows.html": "49736f7e6f8b0cafe97c7416c5f12df0714e190ce644c1a044c8a78622bb04f3",
+    "chapter-06-equations-of-fluid-motion.html": "6d5ae8d5a8622f4adbe6c9199fc8201290ebe8645dd04229e28e5ed646adf105",
+    "chapter-07-random-variables-and-probability-density-functions.html": "eee46164f719fa84e965fae1bfa8356a74ce1b43b3c8010f7bc64a52cc9c38ba",
+    "chapter-08-random-processes-spectra-and-random-fields.html": "f393f28088f8f7d3ba8a89b933decb51c61cb7f03d9bb51b40455438abf10927",
+    "chapter-09-reynolds-equations-closure-and-turbulent-viscosity.html": "b7c6399fb127e18c9bf66bb268f1ef5ae0e59ff91e8e9a562576f6424915ee63",
+    "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html": "575763cc218c005c69d1bd8293a9b0f1dc491d744af2e23d26fad4b7f57da62d",
+    "chapter-11-energy-spectrum.html": "d17a062f22dd2f0053b3368da325edce1b326475212518a7edd486441e8195d3",
+    "chapter-12-fourier-modes-and-their-evolution.html": "109148d414051cf01be4f91b8c702abaaa126f79f1aea93a08beaa297d354f52",
+    "chapter-13-spectral-energy-velocity-spectrum-tensor.html": "d5fec78d916e0a289baf1faee10b420bdfc026b4ec756411fc9c701ab4b90b44",
+    "chapter-14-kolmogorov-model-dissipation-spectra.html": "1324a2bc929e7bf1eda28c71929f79d1f6ab2e73468ea9afa11240d9900da597",
+    "chapter-15-reynolds-number-effects-spectrum-balance.html": "a72ae51cf9b028dd933e7ce5f4285766e888bd93b93468ed3231e70b829c6f37",
+    "chapter-16-modeling-approaches-appraisal-criteria.html": "1f9a00007a4777f12a9e54640b06a9af5e8431490ddccb65a80c744d70802016",
+    "chapter-17-dns-pseudo-spectral-methods-cost.html": "12c2bda8663882265dfe9ad064fba5ce6d7006d20f204bee0d9ecb076aa55c20",
+    "chapter-18-turbulent-viscosity-models.html": "9dbaf025f02153490f928af9f63dae3382bf24fbeb731dc0cf11bad56893cac4",
+    "chapter-19-les-conceptual-steps-filtering.html": "a79aa0d4e02ada3aa3a39b1a5ed751ab7ae176b1fd8d79fb175cbc2d7d2d4f51",
+    "chapter-20-filtered-equations-smagorinsky-les-wavenumber.html": "871660425a6b27b62e0ab55be00ab4b26325620f5c4dd214b6c0ae48c70554d9"
+  },
+  "scope": "Content inventory and exact body preservation; does not certify full scientific acceptance"
+}

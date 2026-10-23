@@ -1,11 +1,11 @@
 {
   "course": "Essentials of Turbulence",
-  "checked_at_utc": "2026-10-20T01:59:42.310257+00:00",
+  "checked_at_utc": "2026-10-23T04:49:02.611738+00:00",
   "scope": "Reader mechanics only; does not certify chapter or course completion",
   "static": {
     "status": "passed",
-    "html_files": 24,
-    "local_links_checked": 447,
+    "html_files": 25,
+    "local_links_checked": 475,
     "timestamps_checked": 296,
     "chapter_pages_with_dollar_math": 0,
     "failures": [],
@@ -458,5 +458,6 @@
   "python_execution": {
     "status": "not performed",
     "reason": "Run declared lab/snippet checks separately"
-  }
+  },
+  "static_checked_at_utc": "2026-10-23T04:53:02.336080+00:00"
 }

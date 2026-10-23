@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-10-23T04:53:21.692545+00:00",
+  "status": "passed",
+  "scope": "Public package inventory and exact chapter-body preservation, not scientific acceptance",
+  "chapter_count": 20,
+  "python_listings": 21,
+  "worked_solution_disclosures": 144,
+  "chapter_bodies_preserved_from": "31a41f2",
+  "failures": [],
+  "final_independent_signoff_pending_chapters": [
+    3,
+    6,
+    16,
+    17,
+    18,
+    19,
+    20
+  ]
+}

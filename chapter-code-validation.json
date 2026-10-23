@@ -1,0 +1,298 @@
+{
+  "checked_at_utc": "2026-10-23T04:53:01.704711+00:00",
+  "status": "passed",
+  "scope": "Actual isolated execution and exact printed-output comparison after newline normalization and terminal-newline trimming; not a new scientific review",
+  "python": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]",
+  "chapters": {
+    "chapter-01-why-turbulence-resists-prediction.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "3ea8b1e9b5e33e791b7b8807e75c6af8cb75da65ebb4d04bf2e208b7185e371d",
+          "stdout_sha256": "a759f18a877f62427bd03f9984c3cee245e6a9cbfecef8bcf970ea2448af374f",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-02-descriptions-definitions-history.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "cfe51e7ae17ce19669383f69a1b5a2212f9ca13d876e68c95c0c4ce8996c2245",
+          "stdout_sha256": "098c43921630e3c4cfc51a15d0e33bb6d9bd8e143679d950a56061be01ea90e1",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-03-characteristics-methods-of-analysis.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "643ceac678efd21a7fb998b03aaf167e9defeed65a22825df72bb21a71225a02",
+          "stdout_sha256": "b0e124bf9012e41da74142e66e7393a3124f3f0999ee97c03d600d195bf39736",
+          "stderr": "",
+          "output_diff": []
+        },
+        {
+          "listing": 2,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "aaf9ca08fafd1c3484860b249ce2e35debb45ed04c2b12f7304c02d3bfc1fc1c",
+          "stdout_sha256": "7026a80f35af1490bb74da40eefc34bd51834a4b80a76004d8953f1c96df47d8",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "d3022515975e80af3ca789374e209e5b9dfedcdfb8479343eb2bde21e63287b5",
+          "stdout_sha256": "79d72cf2465eeeae754fc12926747c862069c1ecd574959a8c2248d93668635c",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-05-length-scales-in-turbulent-flows.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "856c598ae3a4399556ff507fc1a9e0490f5c3557a91677b140d0854cd85e8535",
+          "stdout_sha256": "ca411f384276a13842e8dfba379a7573bc364959b47b054e99337492bb851b90",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-06-equations-of-fluid-motion.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "5673359e87407dcf4a3fac8c8e7dc89fa547e31c869d141614d98335448e395e",
+          "stdout_sha256": "ac239479d98b08b230380aadfc3cbbb0d0fb2d4ddbb804286c72989298852506",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-07-random-variables-and-probability-density-functions.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "d3902fb11d48004659052f7293380faa42b687f85c15885ca27c26f5b1c6069a",
+          "stdout_sha256": "c11a0294aaadbfb68b7019b02910ffc197875624e9282ef32afc5fea1c9a970d",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-08-random-processes-spectra-and-random-fields.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "c2468307b02563216473d72edc842a8e2c7310ae877d809d77e8e12917914e45",
+          "stdout_sha256": "d83b903f3005e6ce3028e57cfb37a5466ff211b09d17922c43e1a308841bad87",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-09-reynolds-equations-closure-and-turbulent-viscosity.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "ee0065282913a14bccbb286587813811b7791f8f9521d7f92688a7383f48bca9",
+          "stdout_sha256": "2e884b82ac6f346841fb51e3e788b78e3fbc64fbd2785d34dd66819328f3890a",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "7fb5502fd47158a86da8cbf80a64b8d273a762e791e1b86543b405b08496a5cd",
+          "stdout_sha256": "00b38d0d187e00bde5da7f12f7e6db47a729913f52abff6a3b2c488e27ef6baf",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-11-energy-spectrum.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "fe6b83166cbbb567226974959b7804721ac106a64a9c5f5a381fefea6c1bd28d",
+          "stdout_sha256": "9b115112d1a10c81fda1c864f889b6a341e9c7c567a2acd1c459d056e64e0767",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-12-fourier-modes-and-their-evolution.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "93fceb0740fe0ab81ed8dd7a4f256ff68a95851335177f1256b2db84e15caf71",
+          "stdout_sha256": "f12aaf760ecd10cb95a4167e47eb0901380cb09d3e23b2f0417fb08208e771f9",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-13-spectral-energy-velocity-spectrum-tensor.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "6a2d1eb059960d9f481a1877c446379a5b8fcfa9464c94b35d9b0e34cc914ee4",
+          "stdout_sha256": "ab3e0f518454d1da2c2cefa01dc80d4445dd13dc31b544ca65c525e40d4c8ddc",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-14-kolmogorov-model-dissipation-spectra.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "2f1527ff3079c9c72c655088dac1bc835f89c4e30bce37cb21a364c69a3604e8",
+          "stdout_sha256": "b04205175dd604c9d9243999028248094b090239e89fdcd5610ca45fdd9038ac",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-15-reynolds-number-effects-spectrum-balance.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "9f11c56c7442c73237d8d32492087b2e792c297caaee6eb02f881f7f23ee8670",
+          "stdout_sha256": "cd4940f6a6f875a35e1d7e84cee783157600a9efcd2144716574c5652c98872b",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-16-modeling-approaches-appraisal-criteria.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "8b584b9ac2d98b52a281ff535afd8bec474eebf063b624161011ff9d26f4f7a5",
+          "stdout_sha256": "08085c9cb49ae24d65c57080c3f22ea2d5dd0dd35a4368d196e0f5157e7ce0b2",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-17-dns-pseudo-spectral-methods-cost.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "e19bd6f473dd5283f184f3300291d9f6c2cb39ad941d2deb9f4a116d028d5e6b",
+          "stdout_sha256": "c6653f33a94cdf4d02e72781f90ad7f6eb6e6289fe6462efe094232814ad5509",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-18-turbulent-viscosity-models.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "02bf6935bfded5cd322f39d5c8ba3832e8faf4e65c123a5abd01506e828968c9",
+          "stdout_sha256": "be2f46d58e84d830d1629b6ddb1f4d04b32b43b6f7567d37ce419d30671e3521",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-19-les-conceptual-steps-filtering.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "24fee47fffb4e0cd67cbabe503978d475cbfe103cc444c04300fe5ed6a59317d",
+          "stdout_sha256": "4ecd08444e983a4d6ee9c47a9ac5dcb5edfa9c58700ae496201044996c31a1f7",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    },
+    "chapter-20-filtered-equations-smagorinsky-les-wavenumber.html": {
+      "status": "passed",
+      "checks": [
+        {
+          "listing": 1,
+          "returncode": 0,
+          "output_matches": true,
+          "listing_sha256": "255fc137eb06f7daa8fe3dbdd5533e61a356c13b072cf3a571be6529f84e9e5f",
+          "stdout_sha256": "fbf9e38c4a968ab3077c93a31f1fec03a2b7f9a4250826cf9319544ff19cb90f",
+          "stderr": "",
+          "output_diff": []
+        }
+      ]
+    }
+  },
+  "comparison_note": "Four chapters with preserved CRLF source were rerun after correcting the checker to normalize source newlines as documented. No scientific program or printed result was changed."
+}

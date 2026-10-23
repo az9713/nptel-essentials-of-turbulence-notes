@@ -6,8 +6,8 @@
   "slug": "nptel-essentials-of-turbulence-notes",
   "playlist": "PLOzRYVm0a65e-DeX7ubGuWE_yBp9psdW7",
   "format": "HTML",
-  "publication": "local only",
-  "status": "in progress",
+  "publication": "GitHub Pages",
+  "status": "all chapters written; final independent review pending",
   "scope_note": "Lectures 1-56 are grouped into 20 chapters. Lectures 57-60 (practice problems) and tutorials 1-2 supply exercises. The 4-minute course introduction is out of scope.",
   "chapters": [
     {
@@ -78,7 +78,7 @@
     },
     {
       "order": 12,
-      "title": "Fourier modes and their evolution: the Navier&ndash;Stokes equations for the coefficients of a periodic velocity field",
+      "title": "Fourier modes and their evolution: the Navier–Stokes equations for the coefficients of a periodic velocity field",
       "lectures": "31-33",
       "chapter_status": "reviewed and locally validated"
     },
@@ -814,5 +814,14 @@
       "transcript_status": "local machine transcription (faster-whisper small.en)",
       "frames_status": "one frame per 30 s, private"
     }
+  ],
+  "final_review_pending_chapters": [
+    3,
+    6,
+    16,
+    17,
+    18,
+    19,
+    20
   ]
 }

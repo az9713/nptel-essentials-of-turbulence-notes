@@ -1,0 +1,636 @@
+{
+  "checked_at_utc": "2026-10-23T04:48:19.309625+00:00",
+  "scope": "Manifest assignments and retained local transcript-file hashes; not a new source-content review",
+  "chapter_count": 20,
+  "recording_count": 62,
+  "lecture_note_range": "1–56",
+  "exercise_recordings": "Lectures 57–60 and tutorials 1–2",
+  "transcript_provenance": "Local machine transcription with faster-whisper small.en; not publisher captions",
+  "limitations": [
+    "Machine transcripts can contain recognition errors. Chapter source uncertainties and timestamped citations remain in the chapter sidecars.",
+    "Raw media, transcripts, papers and private editorial records are excluded from the repository.",
+    "Pope (2000), Lilly (1967), Smagorinsky (1963) and Clark–Ferziger–Reynolds (1979) were not obtained; chapter-specific limits remain explicit."
+  ],
+  "recordings": [
+    {
+      "video_id": "xJD2ytlMtBM",
+      "lecture_label": 1,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=xJD2ytlMtBM",
+      "chapter_order": 1,
+      "manifest_duration_seconds": 1551,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "016caa1b5f25a980eb5b0e548569bb87b7c35c9ed2d7c85238cb2f7137d06bfd"
+    },
+    {
+      "video_id": "cEvlgNdHeqg",
+      "lecture_label": 2,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=cEvlgNdHeqg",
+      "chapter_order": 1,
+      "manifest_duration_seconds": 1701,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "dcca6ea6aab36a32a568a5f4c026f542b448226c4c14c6b1b80e6b46f791b8f5"
+    },
+    {
+      "video_id": "Mk7wOgkG1sc",
+      "lecture_label": 3,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=Mk7wOgkG1sc",
+      "chapter_order": 2,
+      "manifest_duration_seconds": 1759,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "055debd58849a45ec6144d7fa30fe845df4a4aefa2dea2c7de0935ef5e72c71e"
+    },
+    {
+      "video_id": "UuNnYCtl8KM",
+      "lecture_label": 4,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=UuNnYCtl8KM",
+      "chapter_order": 2,
+      "manifest_duration_seconds": 1546,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "bb80563eeaf5cf1724b4c11db0f8c33b4c216bb6b87f1979add5ad0459c5ba33"
+    },
+    {
+      "video_id": "AjSItNLIBxU",
+      "lecture_label": 5,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=AjSItNLIBxU",
+      "chapter_order": 2,
+      "manifest_duration_seconds": 1808,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "394629fbaaacf27d5a1abde66ca3608d4d20bf3186e1116a2df0709cc184a417"
+    },
+    {
+      "video_id": "doIzWHHabxc",
+      "lecture_label": 6,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=doIzWHHabxc",
+      "chapter_order": 3,
+      "manifest_duration_seconds": 1832,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "dc9ecbf40e5226a05503b5da3ed0a4e51c2a9594ad726fb9380c5ac4ae72988f"
+    },
+    {
+      "video_id": "PVK2xepz6mg",
+      "lecture_label": 7,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=PVK2xepz6mg",
+      "chapter_order": 3,
+      "manifest_duration_seconds": 1608,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "0a2f79f695381adcb3ff1c3998628c456228427cfa85dfc9f9ff76be6730067c"
+    },
+    {
+      "video_id": "sgsJOZTsR14",
+      "lecture_label": 8,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=sgsJOZTsR14",
+      "chapter_order": 4,
+      "manifest_duration_seconds": 1807,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "48e2184a6ae8a7d486f16fdf554a5e6b7e9327838dab3323ae1a0e878d98500d"
+    },
+    {
+      "video_id": "Pukxt4dxleU",
+      "lecture_label": 9,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=Pukxt4dxleU",
+      "chapter_order": 4,
+      "manifest_duration_seconds": 1641,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "0273656bf12bf5f6b9742509a9403e67d57a2f1169e4f0e04762e918016a17e5"
+    },
+    {
+      "video_id": "tg6XK8hHE0I",
+      "lecture_label": 10,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=tg6XK8hHE0I",
+      "chapter_order": 5,
+      "manifest_duration_seconds": 1620,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "880b6d3361452568a24ec83b5d3c41db598c448da299895b3e2fe5b147ca98c1"
+    },
+    {
+      "video_id": "b6hUpXWUKtU",
+      "lecture_label": 11,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=b6hUpXWUKtU",
+      "chapter_order": 5,
+      "manifest_duration_seconds": 1577,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "2ecd9e656c95cd64477023dcdd85d162420d0136eebd45bcdad96184c4a68f61"
+    },
+    {
+      "video_id": "y6YEet19eag",
+      "lecture_label": 12,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=y6YEet19eag",
+      "chapter_order": 5,
+      "manifest_duration_seconds": 1598,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "bd603507d199330ac85f15fd439b70808dc8189997cee133024b6346fa16a6d5"
+    },
+    {
+      "video_id": "Of4gEhpBg1c",
+      "lecture_label": 13,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=Of4gEhpBg1c",
+      "chapter_order": 5,
+      "manifest_duration_seconds": 1708,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "00ff8bd94d9e10acd24ad242b542bbe61dbc489b4267c5e36eadbd7c44aac466"
+    },
+    {
+      "video_id": "l9Ol7qsyRCg",
+      "lecture_label": 14,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=l9Ol7qsyRCg",
+      "chapter_order": 6,
+      "manifest_duration_seconds": 1631,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "e1fe03cfe4efe68fee9c17623fc5840ee998e5cba0bfcb1481ece78dc7875583"
+    },
+    {
+      "video_id": "OjW3S1VSadk",
+      "lecture_label": 15,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=OjW3S1VSadk",
+      "chapter_order": 6,
+      "manifest_duration_seconds": 1684,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "3cf04347853d2fc0044f5d5402cf0eb4b8d8f2fe6ed43e04ac076935d83dbae7"
+    },
+    {
+      "video_id": "zKfqomYsmRs",
+      "lecture_label": 16,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=zKfqomYsmRs",
+      "chapter_order": 6,
+      "manifest_duration_seconds": 1760,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "0445e034a801d75bfd13ee4137e48c79300ec7c3e136360dccc2c47937f2c99e"
+    },
+    {
+      "video_id": "B4vvx8-C6XU",
+      "lecture_label": 17,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=B4vvx8-C6XU",
+      "chapter_order": 7,
+      "manifest_duration_seconds": 1594,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "4b4c9f2fd09ae0c36ded3522f525989fa98336ace1eb3b2992c4c39277fdbda2"
+    },
+    {
+      "video_id": "GBMMb52KYe0",
+      "lecture_label": 18,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=GBMMb52KYe0",
+      "chapter_order": 7,
+      "manifest_duration_seconds": 1645,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "add76f0460770335bea96c85244f5b1a60cedf2febb6387098d94e29ae5da19a"
+    },
+    {
+      "video_id": "pEfyjFekknE",
+      "lecture_label": 19,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=pEfyjFekknE",
+      "chapter_order": 7,
+      "manifest_duration_seconds": 1594,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "3e27d9836e4c5840608af96e38d51699dde5ccbdbec94e2183171886db575314"
+    },
+    {
+      "video_id": "ku5aCqoMPT8",
+      "lecture_label": 20,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=ku5aCqoMPT8",
+      "chapter_order": 8,
+      "manifest_duration_seconds": 1646,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "3d053cb21eeb24e90bf65897b65370a96edd60434e3703b2d4e0451a9d541f5f"
+    },
+    {
+      "video_id": "Xg7KpnjVBVQ",
+      "lecture_label": 21,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=Xg7KpnjVBVQ",
+      "chapter_order": 8,
+      "manifest_duration_seconds": 1601,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "ec1e068f6aa100395558e6422dad91276141a8b8a7557983a92881b09048ddd9"
+    },
+    {
+      "video_id": "dH3Z9FZPOQ8",
+      "lecture_label": 22,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=dH3Z9FZPOQ8",
+      "chapter_order": 8,
+      "manifest_duration_seconds": 1784,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "605f6d661aa17ae5d9165f3d4503467abad434556a0d690f3247c19e8e75afa9"
+    },
+    {
+      "video_id": "n8ixX5Fl60k",
+      "lecture_label": 23,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=n8ixX5Fl60k",
+      "chapter_order": 9,
+      "manifest_duration_seconds": 1682,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "a1eaec078a3835408d6715572c0ca9b38d496e74a7bfba6845529d93083ba9b9"
+    },
+    {
+      "video_id": "xgKgXoLdHxc",
+      "lecture_label": 24,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=xgKgXoLdHxc",
+      "chapter_order": 9,
+      "manifest_duration_seconds": 1616,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "13312fd28a658528c22b0dda05038cedf7b99e8d85a4ed9d0162e0d6c3c765de"
+    },
+    {
+      "video_id": "DANGQ4_bG80",
+      "lecture_label": 25,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=DANGQ4_bG80",
+      "chapter_order": 9,
+      "manifest_duration_seconds": 1782,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "494c79db9878a9d1278acc7f05769a57ab15d913b26c75944ead13ffe5fc40c1"
+    },
+    {
+      "video_id": "J_2qmhA5KkI",
+      "lecture_label": 26,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=J_2qmhA5KkI",
+      "chapter_order": 10,
+      "manifest_duration_seconds": 1659,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "0015c9c30ee37831c30090821e6a6bf79b4f6a958137c9c4da8c2cd6e69e7070"
+    },
+    {
+      "video_id": "HlG3DmlNklE",
+      "lecture_label": 27,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=HlG3DmlNklE",
+      "chapter_order": 10,
+      "manifest_duration_seconds": 1655,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "7525daa340e0b00d1037635842f16edf080b5cbb906a5eec6be2fb356fbcbcce"
+    },
+    {
+      "video_id": "Lxw-20OCSa8",
+      "lecture_label": 28,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=Lxw-20OCSa8",
+      "chapter_order": 10,
+      "manifest_duration_seconds": 1806,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "6a39506ba9f677cd4f7d25c0f30590206d4f563d31d1e5efd2bdd201488029b6"
+    },
+    {
+      "video_id": "y5bCLx0FOno",
+      "lecture_label": 29,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=y5bCLx0FOno",
+      "chapter_order": 11,
+      "manifest_duration_seconds": 1587,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "fb46b0f1b3ec0ffb5c3cd9294525c849d5692d042f1267d19a733184be7563a5"
+    },
+    {
+      "video_id": "S00uHOMJhr0",
+      "lecture_label": 30,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=S00uHOMJhr0",
+      "chapter_order": 11,
+      "manifest_duration_seconds": 1693,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "46148040838e7d0bbd728f62cc31dc7235141783b227324b0012766264adf28e"
+    },
+    {
+      "video_id": "Vyci5TPEAeg",
+      "lecture_label": 31,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=Vyci5TPEAeg",
+      "chapter_order": 12,
+      "manifest_duration_seconds": 1725,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "bf4cffaca43baac575a214ff7a7d67d4e848af5c3ac5780cd1d1bd53a3fd2a74"
+    },
+    {
+      "video_id": "02YD75i0Dlg",
+      "lecture_label": 32,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=02YD75i0Dlg",
+      "chapter_order": 12,
+      "manifest_duration_seconds": 1652,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "675d00e689eb503f156a8e3646f5f51b4e6c943269dd0268612b6e4058cabb44"
+    },
+    {
+      "video_id": "yNcX3jeVpFY",
+      "lecture_label": 33,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=yNcX3jeVpFY",
+      "chapter_order": 12,
+      "manifest_duration_seconds": 1680,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "b5ca69edccf281f75266a5c56dd4ae0bfb62538795e956a69b2b85645c38788a"
+    },
+    {
+      "video_id": "-nljYKsaUwo",
+      "lecture_label": 34,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=-nljYKsaUwo",
+      "chapter_order": 13,
+      "manifest_duration_seconds": 1645,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "753d080ca5a2710892f38ec28a1ed5bd628ddc92b02bc3f77f24fdee14615bd3"
+    },
+    {
+      "video_id": "7UlnbxU3C2c",
+      "lecture_label": 35,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=7UlnbxU3C2c",
+      "chapter_order": 13,
+      "manifest_duration_seconds": 1512,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "3d369fdcefa9f72f2edaf7a00d54e859548721abfcbbec41b9196ec23a9cf4e2"
+    },
+    {
+      "video_id": "zBnxrFMKWNI",
+      "lecture_label": 36,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=zBnxrFMKWNI",
+      "chapter_order": 13,
+      "manifest_duration_seconds": 1671,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "b141c74927e6a3cba536180e165bbe5ae7824974d0314dac2db21d8d5265bacc"
+    },
+    {
+      "video_id": "xmAnlM6F23k",
+      "lecture_label": 37,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=xmAnlM6F23k",
+      "chapter_order": 14,
+      "manifest_duration_seconds": 1617,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "1728f89807108fe9ff844b77c45910dc6e9ded52077a51cc993563c2ce1cee0a"
+    },
+    {
+      "video_id": "_Yz1K7cBGA0",
+      "lecture_label": 38,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=_Yz1K7cBGA0",
+      "chapter_order": 14,
+      "manifest_duration_seconds": 1602,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "f47f4a1e295ea83dde463c7a8839773fc34c5f5365a22d54ae3732787038ba5d"
+    },
+    {
+      "video_id": "m8MBR4Rtz3s",
+      "lecture_label": 39,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=m8MBR4Rtz3s",
+      "chapter_order": 14,
+      "manifest_duration_seconds": 1628,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "0e792b88157920bf3d504af1fa656cfde2f070c1875c32777a903719fc220ee0"
+    },
+    {
+      "video_id": "FbdNzaP6nn0",
+      "lecture_label": 40,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=FbdNzaP6nn0",
+      "chapter_order": 14,
+      "manifest_duration_seconds": 1643,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "ea977cee5dd0f0fe496705eae926d96bd584ecd6b25d49ac2ef5d304d3e560eb"
+    },
+    {
+      "video_id": "BK_FjrzElak",
+      "lecture_label": 41,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=BK_FjrzElak",
+      "chapter_order": 15,
+      "manifest_duration_seconds": 1665,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "5909548fcf9abb1437e28e638b21cf101fdd105673e6530345db1966f10dd17b"
+    },
+    {
+      "video_id": "xwif_UjmnEc",
+      "lecture_label": 42,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=xwif_UjmnEc",
+      "chapter_order": 15,
+      "manifest_duration_seconds": 1663,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "7ce8bebe4b32dc0d4a43cfd764f33f00350fca7ed12109a92f303a2a9d11b0c5"
+    },
+    {
+      "video_id": "g83gewi4rHw",
+      "lecture_label": 43,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=g83gewi4rHw",
+      "chapter_order": 16,
+      "manifest_duration_seconds": 1652,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "75def8de70f1746c27ae9740e6269ceec10b6e28d73bf6f34f979e76683331ef"
+    },
+    {
+      "video_id": "81Y5cmJ82HA",
+      "lecture_label": 44,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=81Y5cmJ82HA",
+      "chapter_order": 16,
+      "manifest_duration_seconds": 1653,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "7cd9332f8582e625c2d5323c67e81247c3ec3c269bdfcaa2abcfed5a66fd6910"
+    },
+    {
+      "video_id": "y9ynLwJhGFM",
+      "lecture_label": 45,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=y9ynLwJhGFM",
+      "chapter_order": 16,
+      "manifest_duration_seconds": 1614,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "b25c446b95bcc7426efc1530e77f48983b5d4e153148309177859d16f09ebafe"
+    },
+    {
+      "video_id": "_2bmDxF8ReU",
+      "lecture_label": 46,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=_2bmDxF8ReU",
+      "chapter_order": 17,
+      "manifest_duration_seconds": 1656,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "24dde2ec2cd8c1eecf807098624815adef67ddce933c36643aed8533b640beb0"
+    },
+    {
+      "video_id": "PzdrdWJ5dDI",
+      "lecture_label": 47,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=PzdrdWJ5dDI",
+      "chapter_order": 17,
+      "manifest_duration_seconds": 1640,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "952eed5f02e9c21a596342085441f6373ab4834769a6cdfc58b772a83c36b410"
+    },
+    {
+      "video_id": "v0UsR4MzffM",
+      "lecture_label": 48,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=v0UsR4MzffM",
+      "chapter_order": 17,
+      "manifest_duration_seconds": 1626,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "da9fb5c6b5f0446a7ad2cbaba68b806cad2e0912ca085b5831e9a1cdd1c23c24"
+    },
+    {
+      "video_id": "GH4QRyOFlp4",
+      "lecture_label": 49,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=GH4QRyOFlp4",
+      "chapter_order": 18,
+      "manifest_duration_seconds": 1781,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "78ea3e9a0f8d8b641bb8e5908758c44bd131ac48f720fef682ed4d627192f948"
+    },
+    {
+      "video_id": "IwqbEzn8LNE",
+      "lecture_label": 50,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=IwqbEzn8LNE",
+      "chapter_order": 19,
+      "manifest_duration_seconds": 1597,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "294b6f4f0af350200a95fc7aa4474a6b6d720247afe72eccda7b7c1a96c5e66d"
+    },
+    {
+      "video_id": "jKcNOQhuED0",
+      "lecture_label": 51,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=jKcNOQhuED0",
+      "chapter_order": 19,
+      "manifest_duration_seconds": 1599,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "4395f97564b5fa3de6574cf22d100de38e14270ce29509238126817a9d451948"
+    },
+    {
+      "video_id": "URI2YAfd7MY",
+      "lecture_label": 52,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=URI2YAfd7MY",
+      "chapter_order": 19,
+      "manifest_duration_seconds": 1675,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "e0b14299917efede0dd09ffa88915ebec4bec3b2b2d411e173fe37e9620b1629"
+    },
+    {
+      "video_id": "3mEFTyjWYI0",
+      "lecture_label": 53,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=3mEFTyjWYI0",
+      "chapter_order": 19,
+      "manifest_duration_seconds": 1593,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "ed3f2d913d05a31ba4f3a71f456c55fdd8e2ba0041f25fb3905640eff925fe9d"
+    },
+    {
+      "video_id": "d2UiVIgUbGo",
+      "lecture_label": 54,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=d2UiVIgUbGo",
+      "chapter_order": 20,
+      "manifest_duration_seconds": 1555,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "68cfa96d852aaf461e39ce5cc15f36ff71c077fec4357b9ba187b0d315c05f41"
+    },
+    {
+      "video_id": "ZHqm6yAAuPE",
+      "lecture_label": 55,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=ZHqm6yAAuPE",
+      "chapter_order": 20,
+      "manifest_duration_seconds": 1518,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "57d5a39228e0ee3fe271180aea204ce971150f48ee5cf5e5dfb63e1d2bf74ba9"
+    },
+    {
+      "video_id": "MCLApXrqnbs",
+      "lecture_label": 56,
+      "kind": "lecture",
+      "url": "https://www.youtube.com/watch?v=MCLApXrqnbs",
+      "chapter_order": 20,
+      "manifest_duration_seconds": 1730,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "8175fe1e9e6c556f635547ef18569bf376e3b9aa4b805a919d2424c590606de6"
+    },
+    {
+      "video_id": "7UyTD2lT0sI",
+      "lecture_label": 57,
+      "kind": "practice problems",
+      "url": "https://www.youtube.com/watch?v=7UyTD2lT0sI",
+      "chapter_order": null,
+      "manifest_duration_seconds": 1612,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "4f9098d8cee2a3d022a96890896cfc5432307f05074d7d6db92b32e2718a680b"
+    },
+    {
+      "video_id": "nBZWHP4w8fY",
+      "lecture_label": 58,
+      "kind": "practice problems",
+      "url": "https://www.youtube.com/watch?v=nBZWHP4w8fY",
+      "chapter_order": null,
+      "manifest_duration_seconds": 1876,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "3311331955ef8d40379dc02e8330020dac4cc1be3ff7e91439a34aab05b7c44f"
+    },
+    {
+      "video_id": "iX5PG6TPABQ",
+      "lecture_label": 59,
+      "kind": "practice problems",
+      "url": "https://www.youtube.com/watch?v=iX5PG6TPABQ",
+      "chapter_order": null,
+      "manifest_duration_seconds": 1726,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "31d44b263cace96469375faa6b18d68bea00a1ee49e727658c934022eb3a532e"
+    },
+    {
+      "video_id": "8-WExK8ejdQ",
+      "lecture_label": 60,
+      "kind": "practice problems",
+      "url": "https://www.youtube.com/watch?v=8-WExK8ejdQ",
+      "chapter_order": null,
+      "manifest_duration_seconds": 1754,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "dcb8c3b49eeed5c2e74e8c4d6262795cfaa483c32f1210c8234c3db07c8fa927"
+    },
+    {
+      "video_id": "fgMG7Jd89pw",
+      "lecture_label": null,
+      "kind": "tutorial",
+      "url": "https://www.youtube.com/watch?v=fgMG7Jd89pw",
+      "chapter_order": null,
+      "manifest_duration_seconds": 3457,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "3e2ab9d45c1ffd788a3a9b786a03fdc2556356fc67634f30104c517b9c4d67dc"
+    },
+    {
+      "video_id": "uWLlkjjBaYo",
+      "lecture_label": null,
+      "kind": "tutorial",
+      "url": "https://www.youtube.com/watch?v=uWLlkjjBaYo",
+      "chapter_order": null,
+      "manifest_duration_seconds": 2200,
+      "transcript_provenance": "local machine transcription (faster-whisper small.en)",
+      "transcript_json_sha256": "63035d495135ce9289577ccd922da4e0e5094dc9f3aace454f3bf7688cebbe08"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "checked_at_utc": "2026-10-23T04:48:19.309625+00:00",
+  "scope": "Curated historical review records, not a new scientific review or retrospective acceptance",
+  "all_chapters_written": true,
+  "chapter_count": 20,
+  "final_independent_signoff_pending_chapters": [
+    3,
+    6,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "chapter_bodies_preserved_from": "31a41f2",
+  "chapters": [
+    {
+      "chapter": 1,
+      "file": "chapter-01-why-turbulence-resists-prediction.html",
+      "current_body_sha256": "d787ea5d779366388c9d340503c8a67d227c120a418f81dbdfc9e0ed9cf6579d",
+      "latest_recorded_review": "chapter-01-why-turbulence-resists-prediction-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 2,
+      "file": "chapter-02-descriptions-definitions-history.html",
+      "current_body_sha256": "f12ec7c14792c3f2ad163675d7d854536fe53956adce537627fc48ffdbc7aa2f",
+      "latest_recorded_review": "chapter-02-descriptions-definitions-history-round2.md",
+      "latest_recorded_verdict": "yes (prose verdict; no structured header)",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 3,
+      "file": "chapter-03-characteristics-methods-of-analysis.html",
+      "current_body_sha256": "f4311689ebf2028c7e4b0c22c4afe7b1bf4950f4eca3dcf5208f894ea74feaf5",
+      "latest_recorded_review": "chapter-03-characteristics-methods-of-analysis-round2.md",
+      "latest_recorded_verdict": "yes-after-revision",
+      "latest_recorded_blocking_findings": 1,
+      "final_independent_signoff_pending": true,
+      "python_listings": 2,
+      "worked_solution_disclosures": 7,
+      "subsequent_repairs": "Recorded as fixed and checked in the project handoff; no later independent zero-blocking review is recorded."
+    },
+    {
+      "chapter": 4,
+      "file": "chapter-04-origin-of-turbulence-and-turbulent-diffusivity.html",
+      "current_body_sha256": "cd730612097a5768a4d687a527d449f553cfe4dd3e2a9559e21b1a643a1fb40c",
+      "latest_recorded_review": "chapter-04-origin-of-turbulence-and-turbulent-diffusivity-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 5,
+      "file": "chapter-05-length-scales-in-turbulent-flows.html",
+      "current_body_sha256": "49736f7e6f8b0cafe97c7416c5f12df0714e190ce644c1a044c8a78622bb04f3",
+      "latest_recorded_review": "chapter-05-length-scales-in-turbulent-flows-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 6,
+      "file": "chapter-06-equations-of-fluid-motion.html",
+      "current_body_sha256": "6d5ae8d5a8622f4adbe6c9199fc8201290ebe8645dd04229e28e5ed646adf105",
+      "latest_recorded_review": "chapter-06-equations-of-fluid-motion-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": true,
+      "python_listings": 1,
+      "worked_solution_disclosures": 10,
+      "practice_additions": {
+        "review_rounds": 1,
+        "last_recorded_blocking_findings": 3,
+        "followup_independent_review": "pending"
+      }
+    },
+    {
+      "chapter": 7,
+      "file": "chapter-07-random-variables-and-probability-density-functions.html",
+      "current_body_sha256": "eee46164f719fa84e965fae1bfa8356a74ce1b43b3c8010f7bc64a52cc9c38ba",
+      "latest_recorded_review": "chapter-07-random-variables-and-probability-density-functions-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 11
+    },
+    {
+      "chapter": 8,
+      "file": "chapter-08-random-processes-spectra-and-random-fields.html",
+      "current_body_sha256": "f393f28088f8f7d3ba8a89b933decb51c61cb7f03d9bb51b40455438abf10927",
+      "latest_recorded_review": "chapter-08-random-processes-spectra-and-random-fields-round3.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 9
+    },
+    {
+      "chapter": 9,
+      "file": "chapter-09-reynolds-equations-closure-and-turbulent-viscosity.html",
+      "current_body_sha256": "b7c6399fb127e18c9bf66bb268f1ef5ae0e59ff91e8e9a562576f6424915ee63",
+      "latest_recorded_review": "chapter-09-reynolds-equations-closure-and-turbulent-viscosity-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 8
+    },
+    {
+      "chapter": 10,
+      "file": "chapter-10-energy-cascade-and-kolmogorov-hypotheses.html",
+      "current_body_sha256": "575763cc218c005c69d1bd8293a9b0f1dc491d744af2e23d26fad4b7f57da62d",
+      "latest_recorded_review": "chapter-10-energy-cascade-and-kolmogorov-hypotheses-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 11,
+      "file": "chapter-11-energy-spectrum.html",
+      "current_body_sha256": "d17a062f22dd2f0053b3368da325edce1b326475212518a7edd486441e8195d3",
+      "latest_recorded_review": "chapter-11-energy-spectrum-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 12,
+      "file": "chapter-12-fourier-modes-and-their-evolution.html",
+      "current_body_sha256": "109148d414051cf01be4f91b8c702abaaa126f79f1aea93a08beaa297d354f52",
+      "latest_recorded_review": "chapter-12-fourier-modes-and-their-evolution-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 10
+    },
+    {
+      "chapter": 13,
+      "file": "chapter-13-spectral-energy-velocity-spectrum-tensor.html",
+      "current_body_sha256": "d5fec78d916e0a289baf1faee10b420bdfc026b4ec756411fc9c701ab4b90b44",
+      "latest_recorded_review": "chapter-13-spectral-energy-velocity-spectrum-tensor-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 8
+    },
+    {
+      "chapter": 14,
+      "file": "chapter-14-kolmogorov-model-dissipation-spectra.html",
+      "current_body_sha256": "1324a2bc929e7bf1eda28c71929f79d1f6ab2e73468ea9afa11240d9900da597",
+      "latest_recorded_review": "chapter-14-kolmogorov-model-dissipation-spectra-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 15,
+      "file": "chapter-15-reynolds-number-effects-spectrum-balance.html",
+      "current_body_sha256": "a72ae51cf9b028dd933e7ce5f4285766e888bd93b93468ed3231e70b829c6f37",
+      "latest_recorded_review": "chapter-15-reynolds-number-effects-spectrum-balance-round2.md",
+      "latest_recorded_verdict": "yes",
+      "latest_recorded_blocking_findings": 0,
+      "final_independent_signoff_pending": false,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6
+    },
+    {
+      "chapter": 16,
+      "file": "chapter-16-modeling-approaches-appraisal-criteria.html",
+      "current_body_sha256": "1f9a00007a4777f12a9e54640b06a9af5e8431490ddccb65a80c744d70802016",
+      "latest_recorded_review": "chapter-16-modeling-approaches-appraisal-criteria-round2.md",
+      "latest_recorded_verdict": "yes-after-revision",
+      "latest_recorded_blocking_findings": 1,
+      "final_independent_signoff_pending": true,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6,
+      "subsequent_repairs": "Recorded as fixed and checked in the project handoff; no later independent zero-blocking review is recorded."
+    },
+    {
+      "chapter": 17,
+      "file": "chapter-17-dns-pseudo-spectral-methods-cost.html",
+      "current_body_sha256": "12c2bda8663882265dfe9ad064fba5ce6d7006d20f204bee0d9ecb076aa55c20",
+      "latest_recorded_review": "chapter-17-dns-pseudo-spectral-methods-cost-round2.md",
+      "latest_recorded_verdict": "yes-after-revision",
+      "latest_recorded_blocking_findings": 1,
+      "final_independent_signoff_pending": true,
+      "python_listings": 1,
+      "worked_solution_disclosures": 7,
+      "subsequent_repairs": "Recorded as fixed and checked in the project handoff; no later independent zero-blocking review is recorded."
+    },
+    {
+      "chapter": 18,
+      "file": "chapter-18-turbulent-viscosity-models.html",
+      "current_body_sha256": "9dbaf025f02153490f928af9f63dae3382bf24fbeb731dc0cf11bad56893cac4",
+      "latest_recorded_review": "chapter-18-turbulent-viscosity-models-round2.md",
+      "latest_recorded_verdict": "yes-after-revision",
+      "latest_recorded_blocking_findings": 3,
+      "final_independent_signoff_pending": true,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6,
+      "subsequent_repairs": "Recorded as fixed and checked in the project handoff; no later independent zero-blocking review is recorded."
+    },
+    {
+      "chapter": 19,
+      "file": "chapter-19-les-conceptual-steps-filtering.html",
+      "current_body_sha256": "a79aa0d4e02ada3aa3a39b1a5ed751ab7ae176b1fd8d79fb175cbc2d7d2d4f51",
+      "latest_recorded_review": "chapter-19-les-conceptual-steps-filtering-round2.md",
+      "latest_recorded_verdict": "yes-after-revision",
+      "latest_recorded_blocking_findings": 1,
+      "final_independent_signoff_pending": true,
+      "python_listings": 1,
+      "worked_solution_disclosures": 8,
+      "subsequent_repairs": "Recorded as fixed and checked in the project handoff; no later independent zero-blocking review is recorded."
+    },
+    {
+      "chapter": 20,
+      "file": "chapter-20-filtered-equations-smagorinsky-les-wavenumber.html",
+      "current_body_sha256": "871660425a6b27b62e0ab55be00ab4b26325620f5c4dd214b6c0ae48c70554d9",
+      "latest_recorded_review": "chapter-20-filtered-equations-smagorinsky-les-wavenumber-round2.md",
+      "latest_recorded_verdict": "yes-after-revision",
+      "latest_recorded_blocking_findings": 2,
+      "final_independent_signoff_pending": true,
+      "python_listings": 1,
+      "worked_solution_disclosures": 6,
+      "subsequent_repairs": "Recorded as fixed and checked in the project handoff; no later independent zero-blocking review is recorded."
+    }
+  ]
+}
